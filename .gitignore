@@ -1,0 +1,8 @@
+.vs/
+Admin/bin/
+Admin/obj/
+ASPNetIdentity/obj/
+ASPNetIdentity/bin/Debug/netcoreapp2.0/ASPNetIdentity.runtimeconfig.dev.json
+ASPNetIdentity/bin/
+Doitsu.Ecommerce.API/bin/
+Doitsu.Ecommerce.API/obj/
