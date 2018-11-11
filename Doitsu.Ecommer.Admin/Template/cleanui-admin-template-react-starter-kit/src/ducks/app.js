@@ -3,7 +3,7 @@ import { push } from 'react-router-redux'
 import { pendingTask, begin, end } from 'react-redux-spinner'
 import { notification } from 'antd'
 import configuration from 'configuration'
-
+import {getAuthorize} from 'apis/services/userService'
 
 const REDUCER = 'app'
 const NS = `@@${REDUCER}/`
@@ -36,7 +36,6 @@ export const resetHideLogin = () => (dispatch, getState) => {
 
 export const initAuth = roles => (dispatch, getState) => {
   // Use Axios there to get User Data by Auth Token with Bearer Method Authentication
-
   const userRole = window.localStorage.getItem('app.Role')
   const state = getState()
 
@@ -84,11 +83,10 @@ export const initAuth = roles => (dispatch, getState) => {
   }
 }
 
-export function login(username, password, dispatch) {
+export async function login(username, password, dispatch) {
   // Use Axios there to get User Auth Token with Basic Method Authentication
-  
-  
-
+  let token = await getAuthorize(username,password);
+  console.log(token);
 
   if (username === 'admin@mediatec.org' && password === '123123') {
     window.localStorage.setItem('app.Authorization', '')

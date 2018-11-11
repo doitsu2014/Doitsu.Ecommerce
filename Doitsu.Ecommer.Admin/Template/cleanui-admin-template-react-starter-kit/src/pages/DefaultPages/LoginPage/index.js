@@ -6,7 +6,6 @@ import Login from './Login'
 class LoginPage extends React.Component {
   render() {
     const { match, ...props } = this.props
-    console.log('Login Page props: ', this.props)
     return (
       <Page {...props}>
         <Helmet title="Login" />
