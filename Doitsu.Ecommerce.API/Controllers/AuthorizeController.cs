@@ -32,9 +32,8 @@ namespace Doitsu.Ecommerce.API.Controllers
             _userManager = userManager;
         }
 
-        [HttpPost]
+        [HttpPost("login")]
         [AllowAnonymous]
-        [Route("login")]
         public async Task<ActionResult> Login([FromBody]LoginModel loginModel)
         {
             var user = await _userManager.FindByEmailAsync(loginModel.Email);

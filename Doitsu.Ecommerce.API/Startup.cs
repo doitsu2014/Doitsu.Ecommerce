@@ -23,6 +23,16 @@ namespace Doitsu.Ecommerce.API
         public void ConfigureServices(IServiceCollection services)
         {
             RootConfig.Entry(services, Configuration);
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin", builder =>
+                    builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            });
+
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
         }
 
@@ -34,9 +44,10 @@ namespace Doitsu.Ecommerce.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors();
-            app.UseAuthentication();
+            // Shows UseCors with named policy.
+            app.UseCors("AllowSpecificOrigin");
 
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
