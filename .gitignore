@@ -6,3 +6,6 @@ ASPNetIdentity/bin/Debug/netcoreapp2.0/ASPNetIdentity.runtimeconfig.dev.json
 ASPNetIdentity/bin/
 Doitsu.Ecommerce.API/bin/
 Doitsu.Ecommerce.API/obj/
+Doitsu.Ecommer.Admin/Template/cleanui-admin-template-react-starter-kit/public/
+Doitsu.Ecommer.Admin/Template/cleanui-admin-template-react-starter-kit/build/
+Doitsu.Ecommer.Admin/Template/cleanui-admin-template-react-starter-kit/node_modules/
