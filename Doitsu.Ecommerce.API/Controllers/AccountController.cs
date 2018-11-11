@@ -8,8 +8,8 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Doitsu.Ecommerce.API.Models;
-using DoitsuService.Identities;
-using DoitsuUtils;
+using Doitsu.Service.Identities;
+using Doitsu.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +26,6 @@ namespace Doitsu.Ecommerce.API.Controllers
     [Route("api/[controller]")]
     public class AuthorizeController : ControllerBase
     {
-
         public UserManager<ApplicationUser> _userManager;
         public AuthorizeController(UserManager<ApplicationUser> userManager)
         {
@@ -43,33 +42,10 @@ namespace Doitsu.Ecommerce.API.Controllers
             {
                 try
                 {
-                    var tokenHandler = new JwtSecurityTokenHandler();
-                    var key = Encoding.Default.GetBytes(DoitsuJWTValidators.SecretKey);
-                    var issuer = DoitsuJWTValidators.Issuer;
-                    var audience = DoitsuJWTValidators.Audience;
-
-
-                    var tokenDescriptor = new SecurityTokenDescriptor
-                    {
-                        Issuer = issuer,
-                        Audience = audience,
-                        Subject = new ClaimsIdentity(new Claim[]
-                        {
-                            new Claim(ClaimTypes.Name, user.Id.ToString())
-                        }),
-                        Expires = DateTime.UtcNow.AddDays(7),
-                        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-                    };
-
-                    var token = tokenHandler.CreateToken(tokenDescriptor);
-                    var tokenString = tokenHandler.WriteToken(token);
+                    var result = await user.AuthorizeAsync(_userManager, user);
 
                     // return basic user info (without password) and token to store client side
-                    return Ok(new
-                    {
-                        token = tokenString,
-                        validTo = token.ValidTo
-                    });
+                    return Ok(result);
                 }
                 catch (Exception ex)
                 {

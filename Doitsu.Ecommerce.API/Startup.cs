@@ -1,5 +1,5 @@
 ﻿
-using DoitsuService;
+using Doitsu.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,10 +23,6 @@ namespace Doitsu.Ecommerce.API
         public void ConfigureServices(IServiceCollection services)
         {
             RootConfig.Entry(services, Configuration);
-
-
-
-
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
         }
 

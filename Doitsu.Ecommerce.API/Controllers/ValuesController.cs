@@ -2,21 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DoitsuService.Models.Entities;
-using DoitsuService.Models.ViewModels;
-using DoitsuService.Repositories;
-using DoitsuService.Services;
+using Doitsu.Service.Models.Entities;
+using Doitsu.Service.Models.ViewModels;
+using Doitsu.Service.Repositories;
+using Doitsu.Service.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Doitsu.Ecommerce.API.Controllers
 {
 
-    [Authorize]
     [Route("api/[controller]")]
     public class ValuesController : ControllerBase
     {
-        private IBaseService<Product,ProductViewModel> productService;
+        private IBaseService<Product, ProductViewModel> productService;
         public ValuesController(IBaseService<Product, ProductViewModel> productService)
         {
             this.productService = productService;
@@ -27,6 +26,20 @@ namespace Doitsu.Ecommerce.API.Controllers
         public ActionResult Get()
         {
             return Ok(productService.GetAll().ToList());
+        }
+
+        [HttpGet("claims")]
+        [Authorize(Roles = "AppManager,ApiUser")]
+        public ActionResult Claims()
+        {
+
+            return Ok(User.Claims.Select(c =>
+                new
+                {
+                    Type = c.Type,
+                    Value = c.Value
+                })
+            );
         }
 
         // GET api/values/5
