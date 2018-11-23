@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Utils\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -25,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\DoitsuService\DoitsuService\DoitsuService\Doitsu.Service.csproj" />
+    <ProjectReference Include="..\..\DoitsuService\DoitsuService\Doitsu.DBManager\Doitsu.DBManager.csproj" />
     <ProjectReference Include="..\..\DoitsuService\DoitsuService\Utils\Doitsu.Utils.csproj" />
   </ItemGroup>
 

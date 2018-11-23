@@ -8,13 +8,14 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Doitsu.Ecommerce.API.Models;
-using Doitsu.Service.Identities;
+using Doitsu.DBManager.Fandom.Identities;
 using Doitsu.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
+using Doitsu.DBManager.Fandom.Models.Entities;
 //using Microsoft.AspNetCore.Mvc.Attributes;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -55,10 +56,11 @@ namespace Doitsu.Ecommerce.API.Controllers
         }
 
 
-        [HttpPost]
-        [Route("register")]
+        [HttpPost("register")]
+        [AllowAnonymous]
         public async Task<ActionResult<bool>> RegisterAsync([FromBody]RegisterModel registerModel)
         {
+
             try
             {
                 if (!ModelState.IsValid)
@@ -74,10 +76,21 @@ namespace Doitsu.Ecommerce.API.Controllers
                     SecurityStamp = Guid.NewGuid().ToString(),
                     UserName = email
                 };
-
-
                 await _userManager.CreateAsync(newUser, password);
-                return Ok(true);
+                await _userManager.AddToRoleAsync(newUser, "ActiveUser");
+
+
+                // Add role Administrator if register to admin
+                var defaultAdminToken = "dddd4444";
+                if (registerModel.IsAdmin)
+                {
+                    if (registerModel.RegisAdminToken == defaultAdminToken)
+                    {
+                        await _userManager.AddToRoleAsync(newUser, "Administrator");
+                    }
+                }
+
+                return Ok(BaseResponse<dynamic>.PrepareDataSuccess(new { email = email }, $"You have been registered your account."));
             }
             catch
             {

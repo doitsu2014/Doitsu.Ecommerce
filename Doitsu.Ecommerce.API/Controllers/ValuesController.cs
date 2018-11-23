@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Doitsu.Service.Models.Entities;
-using Doitsu.Service.Models.ViewModels;
-using Doitsu.Service.Repositories;
-using Doitsu.Service.Services;
+using Doitsu.DBManager.Fandom.Models.Entities;
+using Doitsu.DBManager.Fandom.Models.ViewModels;
+using Doitsu.DBManager.Fandom.Repositories;
+using Doitsu.DBManager.Fandom.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

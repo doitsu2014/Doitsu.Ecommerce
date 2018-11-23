@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Doitsu.Service;
-using Doitsu.Service.Models;
+using Doitsu.DBManager.Fandom;
+using Doitsu.DBManager.Fandom.Models;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
