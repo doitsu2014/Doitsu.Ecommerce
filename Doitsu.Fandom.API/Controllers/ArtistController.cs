@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using Doitsu.DBManager.Fandom.Models.ViewModels;
 using Doitsu.DBManager.Fandom.Services;
 using Doitsu.Fandom.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Doitsu.Fandom.API.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class ArtistController : ControllerBase
     {
@@ -20,7 +22,7 @@ namespace Doitsu.Fandom.API.Controllers
             this.artistService = artistService;
         }
 
-        [Route("list")]
+        [Route("read")]
         public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string name, [FromQuery]string code )
         {
             var listArtist = this.artistService.GetActiveByQuery(limit, pageSize, currentPage, name);

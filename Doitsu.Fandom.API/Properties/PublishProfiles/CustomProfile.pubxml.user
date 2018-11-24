@@ -6,6 +6,135 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAG/O4EBVkDE6MwW2p9KQM5wAAAAACAAAAAAAQZgAAAAEAACAAAADUdACLE9ocNsdgZvkfvZKEwa/DjnKke9EBFUMc/e170gAAAAAOgAAAAAIAACAAAADy81e/+Pxj2tk7XOS/dX3bVoNHUOWsXdibTVEL+lcUcyAAAACdjSFqfO3s9fvOuARALaQyySP+PiMxS5ls8M5mIUEjOkAAAABbg/vCqJPJpzzQ4RWzZWXEa3s8kTP4vGVxyli5RHfmO2aGu/aUXJtzNPztbEcMywj3B+oOgbsHnd5Yhh0sLbUd</EncryptedPassword>
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAG/O4EBVkDE6MwW2p9KQM5wAAAAACAAAAAAAQZgAAAAEAACAAAADA1/0VKwyUBd8fUB3ISqgqhzfxgXuxDsWV3OhAS6QuOwAAAAAOgAAAAAIAACAAAAB3Rr9zEH7AEMH2/tAuGmqZQreko0N/5zYPAFAm2OIWLSAAAACqrjfFZAVZunIrvgcrjID+s/HlZjwBIuj5bD5YFaThMUAAAABerX11UctXZUIyp1Ct24pkt/Vm0bkUwOSKtyN/o3u+9LvexAU5AkmDixX73Zh3cuUdlXs06kdRs9CCdMoSAkSL</EncryptedPassword>
+    <_PublishTargetUrl>ftp://35.247.175.78:19999</_PublishTargetUrl>
   </PropertyGroup>
+  <ItemGroup>
+    <File Include="appsettings.Development.json">
+      <publishTime>10/27/2018 17:07:21</publishTime>
+    </File>
+    <File Include="appsettings.json">
+      <publishTime>11/24/2018 21:06:42</publishTime>
+    </File>
+    <File Include="AutoMapper.dll">
+      <publishTime>06/18/2018 13:00:14</publishTime>
+    </File>
+    <File Include="Doitsu.DBManager.dll">
+      <publishTime>11/24/2018 21:08:30</publishTime>
+    </File>
+    <File Include="Doitsu.DBManager.pdb">
+      <publishTime>11/24/2018 21:08:30</publishTime>
+    </File>
+    <File Include="Doitsu.Fandom.API.deps.json">
+      <publishTime>11/24/2018 21:08:48</publishTime>
+    </File>
+    <File Include="Doitsu.Fandom.API.dll">
+      <publishTime>11/24/2018 21:08:45</publishTime>
+    </File>
+    <File Include="Doitsu.Fandom.API.pdb">
+      <publishTime>11/24/2018 21:08:45</publishTime>
+    </File>
+    <File Include="Doitsu.Fandom.API.runtimeconfig.json">
+      <publishTime>11/24/2018 21:08:48</publishTime>
+    </File>
+    <File Include="Doitsu.Utils.dll">
+      <publishTime>11/22/2018 22:19:23</publishTime>
+    </File>
+    <File Include="Doitsu.Utils.pdb">
+      <publishTime>11/22/2018 22:19:23</publishTime>
+    </File>
+    <File Include="dotnet-aspnet-codegenerator-design.dll">
+      <publishTime>06/07/2018 00:27:02</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Authentication.dll">
+      <publishTime>07/26/2018 18:17:04</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Authentication.JwtBearer.dll">
+      <publishTime>07/26/2018 18:17:04</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Identity.dll">
+      <publishTime>10/25/2018 18:31:12</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll">
+      <publishTime>10/25/2018 18:31:00</publishTime>
+    </File>
+    <File Include="Microsoft.CodeAnalysis.CSharp.Workspaces.dll">
+      <publishTime>11/16/2018 11:53:48</publishTime>
+    </File>
+    <File Include="Microsoft.CodeAnalysis.Workspaces.dll">
+      <publishTime>11/16/2018 11:53:49</publishTime>
+    </File>
+    <File Include="Microsoft.EntityFrameworkCore.Abstractions.dll">
+      <publishTime>09/20/2018 15:08:26</publishTime>
+    </File>
+    <File Include="Microsoft.EntityFrameworkCore.Design.dll">
+      <publishTime>09/20/2018 15:08:26</publishTime>
+    </File>
+    <File Include="Microsoft.EntityFrameworkCore.dll">
+      <publishTime>09/20/2018 15:08:30</publishTime>
+    </File>
+    <File Include="Microsoft.EntityFrameworkCore.Relational.dll">
+      <publishTime>09/20/2018 15:08:30</publishTime>
+    </File>
+    <File Include="Microsoft.EntityFrameworkCore.SqlServer.dll">
+      <publishTime>09/20/2018 15:08:26</publishTime>
+    </File>
+    <File Include="Microsoft.Extensions.Identity.Core.dll">
+      <publishTime>10/25/2018 18:31:16</publishTime>
+    </File>
+    <File Include="Microsoft.Extensions.Identity.Stores.dll">
+      <publishTime>10/25/2018 18:31:00</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll">
+      <publishTime>06/07/2018 00:27:00</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Core.dll">
+      <publishTime>06/07/2018 00:26:58</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.dll">
+      <publishTime>06/07/2018 00:26:54</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll">
+      <publishTime>06/07/2018 00:26:56</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll">
+      <publishTime>06/07/2018 00:27:02</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll">
+      <publishTime>06/07/2018 00:27:02</publishTime>
+    </File>
+    <File Include="Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll">
+      <publishTime>06/07/2018 00:26:58</publishTime>
+    </File>
+    <File Include="NuGet.Frameworks.dll">
+      <publishTime>11/16/2018 11:53:51</publishTime>
+    </File>
+    <File Include="Remotion.Linq.dll">
+      <publishTime>11/16/2018 11:53:51</publishTime>
+    </File>
+    <File Include="System.Composition.AttributedModel.dll">
+      <publishTime>11/16/2018 11:54:45</publishTime>
+    </File>
+    <File Include="System.Composition.Convention.dll">
+      <publishTime>11/16/2018 11:54:45</publishTime>
+    </File>
+    <File Include="System.Composition.Hosting.dll">
+      <publishTime>11/16/2018 11:54:45</publishTime>
+    </File>
+    <File Include="System.Composition.Runtime.dll">
+      <publishTime>11/16/2018 11:54:45</publishTime>
+    </File>
+    <File Include="System.Composition.TypedParts.dll">
+      <publishTime>11/16/2018 11:54:45</publishTime>
+    </File>
+    <File Include="System.Diagnostics.DiagnosticSource.dll">
+      <publishTime>09/18/2018 19:38:16</publishTime>
+    </File>
+    <File Include="System.Interactive.Async.dll">
+      <publishTime>11/16/2018 11:54:41</publishTime>
+    </File>
+    <File Include="web.config">
+      <publishTime>11/24/2018 21:08:48</publishTime>
+    </File>
+  </ItemGroup>
 </Project>
