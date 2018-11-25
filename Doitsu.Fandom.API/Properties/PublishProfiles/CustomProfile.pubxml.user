@@ -14,34 +14,34 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/27/2018 17:07:21</publishTime>
     </File>
     <File Include="appsettings.json">
-      <publishTime>11/24/2018 21:06:42</publishTime>
+      <publishTime>11/25/2018 23:17:13</publishTime>
     </File>
     <File Include="AutoMapper.dll">
       <publishTime>06/18/2018 13:00:14</publishTime>
     </File>
     <File Include="Doitsu.DBManager.dll">
-      <publishTime>11/24/2018 21:08:30</publishTime>
+      <publishTime>11/25/2018 23:16:23</publishTime>
     </File>
     <File Include="Doitsu.DBManager.pdb">
-      <publishTime>11/24/2018 21:08:30</publishTime>
+      <publishTime>11/25/2018 23:16:23</publishTime>
     </File>
     <File Include="Doitsu.Fandom.API.deps.json">
-      <publishTime>11/24/2018 21:08:48</publishTime>
+      <publishTime>11/25/2018 23:17:19</publishTime>
     </File>
     <File Include="Doitsu.Fandom.API.dll">
-      <publishTime>11/24/2018 21:08:45</publishTime>
+      <publishTime>11/25/2018 23:16:24</publishTime>
     </File>
     <File Include="Doitsu.Fandom.API.pdb">
-      <publishTime>11/24/2018 21:08:45</publishTime>
+      <publishTime>11/25/2018 23:16:24</publishTime>
     </File>
     <File Include="Doitsu.Fandom.API.runtimeconfig.json">
-      <publishTime>11/24/2018 21:08:48</publishTime>
+      <publishTime>11/25/2018 23:17:19</publishTime>
     </File>
     <File Include="Doitsu.Utils.dll">
-      <publishTime>11/22/2018 22:19:23</publishTime>
+      <publishTime>11/25/2018 23:16:22</publishTime>
     </File>
     <File Include="Doitsu.Utils.pdb">
-      <publishTime>11/22/2018 22:19:23</publishTime>
+      <publishTime>11/25/2018 23:16:22</publishTime>
     </File>
     <File Include="dotnet-aspnet-codegenerator-design.dll">
       <publishTime>06/07/2018 00:27:02</publishTime>
@@ -134,7 +134,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/16/2018 11:54:41</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>11/24/2018 21:08:48</publishTime>
+      <publishTime>11/25/2018 23:17:19</publishTime>
     </File>
   </ItemGroup>
 </Project>

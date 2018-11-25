@@ -16,15 +16,16 @@
   }
 
   &__logo {
-    height: 64px;
+    height: 72px;
     background: $menuBg-darken;
   }
 
   &__logoContainer {
-    height: 64px;
-    padding: 13px 20px 15px 22px;
+    height: 72px;
+    padding: 0 24px;
     img {
-      height: 36px;
+      width:100%;
+      height: 64px;
     }
   }
 

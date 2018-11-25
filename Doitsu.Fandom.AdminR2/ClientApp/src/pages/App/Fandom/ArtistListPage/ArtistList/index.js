@@ -1,61 +1,39 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Table, Icon, Input, Button } from 'antd'
 import tableData from './data.json'
+import {readArtist} from 'apis/services/artistService'
+import {setArtistListState} from 'ducks/fandom.js'
 
-const defaultPagination = {
-    pageSizeOptions: ['10', '20'],
-    showSizeChanger: true,
-    current: 1,
-    size: 'small',
-    showTotal: (total) => `Total ${total} items`,
-    total:0
-}
+import './style.scss'
 
+
+const mapStateToProps = (state, props) => ({
+    ...state.fandom.artistListState
+})
+
+@connect(mapStateToProps)
 class ArtistList extends React.Component {
-    state = {
-        tableData: tableData.data,
-        data: tableData.data,
-        pager: { ...defaultPagination },
-        filterDropdownVisible: false,
-        searchText: '',
-        filtered: false
-    }
-
     onInputChange = e => {
-        this.setState({ searchText: e.target.value })
+        this.props.dispatch(setArtistListState({ searchText: e.target.value }));
     }
 
     onSearch = () => {
-        const { searchText, tableData } = this.state
-        let reg = new RegExp(searchText, 'gi')
-        this.setState({
-            filterDropdownVisible: false,
-            filtered: !!searchText,
-            data: tableData.map(record => {
-                let match = record.name.match(reg);
-                if (!match) {
-                    return null;
-                }
-                return {
-                    ...record,
-                    name: (
-                        <span>
-                        {
-                            record.name.split(reg).map(
-                                (text, i) => i > 0 ? [<span className="highlight">{match[0]}</span>, text] : text,
-                            )
-                        }
-                        </span>
-                    ),
-                }
-            })
-            .filter(record => !!record),
+        const { searchText, dispatch } = this.props;
+        readArtist({name: searchText}).then((data) => {
+            let listArtist = data.data;
+            dispatch(setArtistListState({
+                data: listArtist,
+                tableData: listArtist, 
+                filterDropdownVisible: false,
+                filtered: !!searchText
+            }));
         })
     }
 
     handleTableChange = (pagination, filters, sorter) => {
-        if (this.state.pager) {
-          const pager = { ...this.state.pager }
+        if (this.props.pager) {
+          const pager = { ...this.props.pager }
           if (pager.pageSize !== pagination.pageSize) {
             this.pageSize = pagination.pageSize
             pager.pageSize = pagination.pageSize
@@ -63,15 +41,20 @@ class ArtistList extends React.Component {
           } else {
             pager.current = pagination.current
           }
-          this.setState({
+          this.props.dispatch({
             pager: pager,
           })
         }
       }
 
     render() {
-        let { pager, data } = this.state;
-        
+        let { pager, data, isFirstLoadTable, dispatch} = this.props;
+        if(isFirstLoadTable) {
+            readArtist().then((data) => {
+                let listArtist = data.data;
+                dispatch(setArtistListState({data: listArtist, tableData: listArtist, isFirstLoadTable: false}));
+            })
+        }
         const columns = [
             {
                 title: 'ID',
@@ -106,11 +89,11 @@ class ArtistList extends React.Component {
                 filterDropdown: (
                     <div className="custom-filter-dropdown">
                         <Input
-                        ref={ele => (this.searchInput = ele)}
-                        placeholder="Tìm theo tên"
-                        value={this.state.searchText}
-                        onChange={this.onInputChange}
-                        onPressEnter={this.onSearch}
+                            ref={ele => (this.searchInput = ele)}
+                            placeholder="Tìm theo tên"
+                            value={this.props.searchText}
+                            onChange={this.onInputChange}
+                            onPressEnter={this.onSearch}
                         />
                         <Button type="primary" onClick={this.onSearch}>
                             Tìm kiếm
@@ -118,16 +101,15 @@ class ArtistList extends React.Component {
                     </div>
                 ),
                 filterIcon: (
-                    <Icon type="search" style={{ color: this.state.filtered ? '#108ee9' : '#aaa' }} />
+                    <Icon type="search" style={{ color: this.props.filtered ? '#108ee9' : '#aaa' }} />
                 ),
-                filterDropdownVisible: this.state.filterDropdownVisible,
+                filterDropdownVisible: this.props.filterDropdownVisible,
                 onFilterDropdownVisibleChange: visible => {
-                    this.setState(
-                        {
+                    this.props.dispatch(setArtistListState({
                             filterDropdownVisible: visible,
-                        },
-                        () => this.searchInput && this.searchInput.focus(),
-                    )
+                        }
+                    ))
+                    this.searchInput && this.searchInput.focus();
                 },
             },
             {
@@ -136,12 +118,28 @@ class ArtistList extends React.Component {
                 key: 'avatarUrl',
                 render: text => (
                     <a className="utils__link--underlined" href="javascript: void(0);">
-                        <img src={text} alt="" />
+                        <div className="artistList__table-thumbnail">
+                            <img src={text} alt="" width="200" />
+                        </div>
                     </a>
+                ),
+            },
+            {
+                title: 'Tùy chọn',
+                dataIndex: 'edit',
+                key: 'edit',
+                render: id => (
+                    <div className="artistList__edit-datatable-area">
+                        <Button type="primary">
+                            Chỉnh sửa
+                        </Button>
+                        <Button type="danger" >
+                            Xóa
+                        </Button>
+                    </div>
                 ),
             }
         ];
-
         return (
             <div className="card">
                 <div className="card-header">
@@ -160,7 +158,5 @@ class ArtistList extends React.Component {
             </div>
         );
     }
-
 }
-
 export default ArtistList

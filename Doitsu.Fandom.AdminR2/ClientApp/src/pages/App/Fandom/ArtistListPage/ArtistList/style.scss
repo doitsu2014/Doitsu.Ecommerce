@@ -18,4 +18,13 @@
       vertical-align: middle;
     }
   }
+  &__edit-datatable-area {
+    button {
+      margin-left: 10px;
+    }
+  }
+  &__table-thumbnail{
+    vertical-align: middle;
+    text-align: center;
+  }
 }

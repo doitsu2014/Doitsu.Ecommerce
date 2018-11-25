@@ -3,10 +3,12 @@ import { push } from 'react-router-redux'
 import { pendingTask, begin, end } from 'react-redux-spinner'
 import { notification } from 'antd'
 import configuration from 'configuration'
+
 import {getAuthorize} from 'apis/services/userService'
 
 const REDUCER = 'app'
 const NS = `@@${REDUCER}/`
+const DEFAULT_PATH_NAME = "/artist"
 
 const _setFrom = createAction(`${NS}SET_FROM`)
 const _setLoading = createAction(`${NS}SET_LOADING`)
@@ -57,8 +59,8 @@ export const initAuth = roles => (dispatch, getState) => {
 
     // if user is not in role will dispatch
     if (!isUserInRole) {
-      if (!(state.routing.location.pathname === '/dashboard/alpha')) {
-        dispatch(push('/dashboard/alpha'))
+      if (!(state.routing.location.pathname === DEFAULT_PATH_NAME)) {
+        dispatch(push(DEFAULT_PATH_NAME))
       }
       return Promise.resolve(false)
     }
@@ -68,7 +70,7 @@ export const initAuth = roles => (dispatch, getState) => {
 
   if(userRoles && userRoles.find(ur => ur === 'Administrator')) 
   {
-    return setUser(userEmail, 'Administrator')
+    return setUser({email: userEmail, role: 'Administrator'})
   }
   else 
   {
@@ -84,14 +86,13 @@ export async function login(username, password, dispatch) {
   // Use Axios there to get User Auth Token with Basic Method Authentication
   // Token type: {token: "value", validTo: "value", email: "value", roles: []}
   let res = await getAuthorize(username,password);
-  console.log(res);
 
   if(res && res.token) {
     window.localStorage.setItem('app.Authorization', `Bearer ${res.token}`)
     window.localStorage.setItem('app.Email', res.email)
     window.localStorage.setItem('app.Roles', res.roles)
     dispatch(_setHideLogin(true))
-    dispatch(push('/dashboard/alpha'))
+    dispatch(push(DEFAULT_PATH_NAME))
     notification.open({
       type: 'success',
       message: 'You have successfully logged in!',

@@ -33,35 +33,29 @@ class ProfileMenu extends React.Component {
       <Menu selectable={false}>
         <Menu.Item>
           <div className="rfq__widget__system-status__item">
-            <strong>Hello, {userState.role}</strong>
+            <strong>Xin chào, {userState.email}</strong>
             <div>
-              <strong>Billing Plan:</strong> Professional
+              <strong>Chức vụ:</strong> {userState.role}
               <br />
-            </div>
-
-            <div>
-              <strong>Role:</strong> {userState.role}
             </div>
           </div>
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item>
           <div className="rfq__widget__system-status__item">
-            <strong>Email:</strong> {userState.email}
-            <br />
-            <strong>Phone:</strong> +1-800-MEDIATEC
+            <strong>Số điện thoại:</strong> 
           </div>
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item>
           <a href="javascript: void(0);">
-            <i className="topbar__dropdownMenuIcon icmn-user" /> Edit Profile
+            <i className="topbar__dropdownMenuIcon icmn-user" /> Chỉnh sửa thông tin (chưa hoàn thành)
           </a>
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item>
           <a href="javascript: void(0);" onClick={logout}>
-            <i className="topbar__dropdownMenuIcon icmn-exit" /> Logout
+            <i className="topbar__dropdownMenuIcon icmn-exit" /> Đăng xuất
           </a>
         </Menu.Item>
       </Menu>

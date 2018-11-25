@@ -16,10 +16,6 @@ class LoginForm extends React.Component {
 
   // $FlowFixMe
   onSubmit = (isSubmitForm) => event => {
-    
-    console.log();
-    console.log(event);
-
     event.preventDefault()
     const { form, dispatch } = this.props
     if (!isSubmitForm) {
@@ -32,19 +28,16 @@ class LoginForm extends React.Component {
   }
 
   render() {
+
     const { form, isSubmitForm } = this.props
-    console.log(this.onSubmit);
     return (
       <div className="cat__pages__login__block__form">
         <h4 className="text-uppercase">
-          <strong>Please log in</strong>
+          <strong>Đăng nhập vào trang quản trị</strong>
         </h4>
         <br />
         <div className="mb-2">
-          Email: <code>admin@mediatec.org</code> or <code>agent@mediatec.org</code>
-        </div>
-        <div className="mb-4">
-          Password: <code>123123</code>
+          Lưu ý: <code>email</code> và <code>password</code> để đăng nhập chỉ cấp riêng.
         </div>
         <Form layout="vertical" hideRequiredMark onSubmit={this.onSubmit(isSubmitForm)}>
           <FormItem label="Email">
@@ -62,22 +55,13 @@ class LoginForm extends React.Component {
               rules: [{ required: true, message: 'Please input your password' }],
             })(<Input size="default" type="password" />)}
           </FormItem>
-          <div className="mb-2">
-            <a href="javascript: void(0);" className="utils__link--blue utils__link--underlined">
-              Forgot password
-            </a>
-          </div>
           <div className="form-actions">
             <Button
               type="primary"
               className="width-150 mr-4"
               htmlType="submit"
-              loading={isSubmitForm}
-            >
-              Login
-            </Button>
-            <Button className="width-100" htmlType="button">
-              Sign Up
+              loading={isSubmitForm}>
+              Đăng nhập
             </Button>
           </div>
         </Form>

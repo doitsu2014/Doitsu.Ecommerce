@@ -21,7 +21,6 @@ namespace Doitsu.Fandom.API.Controllers
         {
             this.artistService = artistService;
         }
-
         [Route("read")]
         public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string name, [FromQuery]string code )
         {
@@ -32,7 +31,13 @@ namespace Doitsu.Fandom.API.Controllers
         public ActionResult Post([FromBody]ArtistViewModel artistAPIVM)
         {
             var artistVM = this.artistService.Create(artistAPIVM);
-            return Ok();
+            return Ok(BaseResponse<ArtistViewModel>.PrepareDataSuccess(artistVM, "Create a artist successful!"));
+        }
+        [Route("update")]
+        public ActionResult Put([FromBody]ArtistViewModel artistAPIVM)
+        {
+            var artistVM = this.artistService.Update(artistAPIVM);
+            return Ok(BaseResponse<ArtistViewModel>.PrepareDataSuccess(artistVM, "Update the artist successful!"));
         }
     }
 }

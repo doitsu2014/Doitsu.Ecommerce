@@ -81,7 +81,7 @@ namespace Doitsu.Fandom.API.Controllers
 
 
                 // Add role Administrator if register to admin
-                var defaultAdminToken = "dddd4444";
+                var defaultAdminToken = "doitsu_admin";
                 if (registerModel.IsAdmin)
                 {
                     if (registerModel.RegisAdminToken == defaultAdminToken)
@@ -94,7 +94,7 @@ namespace Doitsu.Fandom.API.Controllers
             }
             catch
             {
-                return NotFound();
+                return BadRequest();
             }
         }
     }

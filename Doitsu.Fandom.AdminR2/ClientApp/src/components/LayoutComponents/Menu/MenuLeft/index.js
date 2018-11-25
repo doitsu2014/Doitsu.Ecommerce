@@ -195,11 +195,11 @@ class MenuLeft extends React.Component {
         <div className="menuLeft__logo">
           {params.collapsed ? (
             <div className="menuLeft__logoContainer menuLeft__logoContainer--collapsed">
-              <img src="resources/images/logo-inverse-mobile.png" alt="" />
+              <img src="resources/images/logoygfl.png" alt=""/>
             </div>
           ) : (
             <div className="menuLeft__logoContainer">
-              <img src="resources/images/logo-inverse.png" alt="" />
+              <img src="resources/images/logoygfl.png" alt="" />
             </div>
           )}
         </div>

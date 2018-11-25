@@ -1,11 +1,5 @@
 export default [
   {
-    title: 'Dashboard Alpha',
-    key: 'dashboardAlpha',
-    url: '/dashboard/alpha',
-    icon: 'icmn icmn-stack',
-  },
-  {
     title: 'Quản lý nghệ sĩ',
     key: 'artistManagement',
     icon: 'icmn icmn-users',
@@ -14,6 +8,11 @@ export default [
         title: 'Danh sách nghệ sĩ',
         key: 'artistList',
         url: '/artist',
+      },
+      {
+        title: 'Tạo mới nghệ sĩ',
+        key: 'create_artist',
+        url: '/artist/create_artist',
       },
     ]
   }

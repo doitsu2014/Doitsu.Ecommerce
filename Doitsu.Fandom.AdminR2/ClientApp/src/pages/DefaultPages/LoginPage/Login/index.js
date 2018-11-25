@@ -41,20 +41,16 @@ class Login extends React.Component {
                 </div>
                 <div className="main-login__block__sidebar">
                   <h4 className="main-login__block__sidebar__title text-white">
-                    <strong>Agile Dev Meetup</strong>
+                    <strong>Thông tin phiên bản trang quản trị</strong>
                     <br />
-                    <span>August 2018</span>
+                    <span>Tháng 11, 2018</span>
                   </h4>
                   <div className="main-login__block__sidebar__item">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                    Ipsum has been the industry's standard dummy text ever since the 1500s.
-                  </div>
-                  <div className="main-login__block__sidebar__item">
-                    Ipsum has been the industry's standard dummy text ever since the 1500s.
+                    Phiên bản: 1.0
                   </div>
                   <div className="main-login__block__sidebar__place">
                     <i className="icmn-location mr-3" />
-                    New York, USA
+                      Việt Nam, Hồ Chí Minh
                   </div>
                 </div>
               </div>
@@ -64,19 +60,10 @@ class Login extends React.Component {
         <div className="main-login__footer text-center">
           <ul className="list-unstyled list-inline">
             <li className="list-inline-item">
-              <a href="javascript: void(0);">Terms of Use</a>
-            </li>
-            <li className="active list-inline-item">
-              <a href="javascript: void(0);">Compliance</a>
+              <a href="javascript: void(0);">Điều khoản</a>
             </li>
             <li className="list-inline-item">
-              <a href="javascript: void(0);">Confidential Information</a>
-            </li>
-            <li className="list-inline-item">
-              <a href="javascript: void(0);">Support</a>
-            </li>
-            <li className="list-inline-item">
-              <a href="javascript: void(0);">Contacts</a>
+              <a href="javascript: void(0);">Liên hệ</a>
             </li>
           </ul>
         </div>

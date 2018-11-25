@@ -13,21 +13,12 @@ class TopBar extends React.Component {
     return (
       <div className="topbar">
         <div className="topbar__left">
-          <IssuesHistory />
-          <ProjectManagement />
-          <LiveSearch />
+          <div className="topbar__dropdown d-inline-block mr-4">
+            <a href="javascript:void(0)"><strong>Trang quản trị YGFL</strong></a>
+          </div>
         </div>
         <div className="topbar__right">
-          <a
-            href="https://themeforest.net/item/clean-ui-admin-template-react-redux-ant-design-fully-responsive-freebies/21938700"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mr-4 d-none d-sm-inline"
-          >
-            <Button type="danger">Buy Now 25$</Button>
-          </a>
-          <BitcoinPrice />
-          <HomeMenu />
+          {/* <HomeMenu /> */}
           <ProfileMenu />
         </div>
       </div>

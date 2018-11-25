@@ -13,7 +13,6 @@
     "babel-loader": "7.1.2",
     "babel-preset-react-app": "^3.1.0",
     "babel-runtime": "6.26.0",
-    "bootstrap": "^3.3.7",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
     "chalk": "1.1.3",
     "classnames": "^2.2.5",
@@ -69,7 +68,9 @@
     "webpack": "3.8.1",
     "webpack-dev-server": "2.9.4",
     "webpack-manifest-plugin": "1.3.2",
-    "whatwg-fetch": "2.0.3"
+    "whatwg-fetch": "2.0.3",
+    "less": "2.7.3",
+    "bootstrap": "4.1.1"
   },
   "scripts": {
     "start": "rimraf ./build && node scripts/start.js",
@@ -118,6 +119,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "homepage":"http://ygfl.admin.doitsu.tech",
   "devDependencies": {
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "enhanced-resolve": "3.3.0",

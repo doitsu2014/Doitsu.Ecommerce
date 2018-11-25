@@ -39,7 +39,7 @@ ReactDOM.render(
     <ConnectedRouter history={history}>
       <LocaleProvider locale={enGB}>
         <div>
-          <Helmet titleTemplate="Doitsu Ecommerce" />
+          <Helmet titleTemplate="Trang quản trị YGFL" />
           <Layout />
         </div>
       </LocaleProvider>
