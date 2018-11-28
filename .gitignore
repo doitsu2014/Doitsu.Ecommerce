@@ -14,3 +14,5 @@ Doitsu.Ecommerce.Admin/Template/cleanui-admin-template-react-starter-kit/build/
 Doitsu.Fandom.API/bin/
 Doitsu.Fandom.API/obj/
 obj/
+Doitsu.ImageServer/bin/
+Doitsu.ImageServer/wwwroot/

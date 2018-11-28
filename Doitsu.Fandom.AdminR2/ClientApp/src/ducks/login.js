@@ -15,7 +15,7 @@ export const submit = ({ username, password }: { username: string, password: str
       dispatch(app.deleteSubmitForm(REDUCER))
     } else {
       dispatch(app.deleteSubmitForm(REDUCER))
-      message.error('Invalid username or password')
+      message.error('Sai tên đăng nhập hoặc mật khẩu!')
     }
   })
 }

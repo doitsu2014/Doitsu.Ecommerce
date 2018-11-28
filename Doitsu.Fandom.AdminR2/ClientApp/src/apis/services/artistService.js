@@ -1,6 +1,7 @@
 import axios from 'axios'
 import configuration from 'configuration'
 import { catchError } from '../../../node_modules/rxjs/operators';
+import { notifyError } from 'utils/errorHandler'
 
 export const readArtist = async (request = {}) => {
     const url = configuration.baseAPIUrl + "artist/read";
@@ -12,7 +13,7 @@ export const readArtist = async (request = {}) => {
         let data = response.data;
         return data;
     } catch (e) {
-        console.error(e);
-        return null;
+        notifyError(e);
+        return [];
     }
 }

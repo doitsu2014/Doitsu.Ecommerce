@@ -21,17 +21,22 @@ const loadableRoutes = {
   '/empty': {
     component: loadable(() => import('pages/DefaultPages/EmptyPage')),
   },
-
-
   // Dashboards
   '/dashboard/alpha': {
     component: loadable(() => import('pages/Dashboard/DashboardAlphaPage')),
   },
-
   // Apps
   /// Artist List
   '/artist': {
     component: loadable(() => import('pages/App/Fandom/ArtistListPage'))
+  },
+  /// Artist Edit
+  '/artist/edit': {
+    component: loadable(() => import('pages/App/Fandom/ArtistEditPage'))
+  },
+  /// Artist Edit
+  '/artist/create': {
+    component: loadable(() => import('pages/App/Fandom/ArtistEditPage'))
   }
 }
 

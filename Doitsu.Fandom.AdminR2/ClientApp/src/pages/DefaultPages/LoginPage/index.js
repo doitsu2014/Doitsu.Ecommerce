@@ -8,7 +8,7 @@ class LoginPage extends React.Component {
     const { match, ...props } = this.props
     return (
       <Page {...props}>
-        <Helmet title="Login" />
+        <Helmet title="Đăng nhập" />
         <Login match={match} />
       </Page>
     )

@@ -12,7 +12,7 @@ export default [
       {
         title: 'Tạo mới nghệ sĩ',
         key: 'create_artist',
-        url: '/artist/create_artist',
+        url: '/artist/create',
       },
     ]
   }

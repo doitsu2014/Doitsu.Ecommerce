@@ -95,9 +95,9 @@ export async function login(username, password, dispatch) {
     dispatch(push(DEFAULT_PATH_NAME))
     notification.open({
       type: 'success',
-      message: 'You have successfully logged in!',
+      message: 'Bạn đã đăng nhập thành công!',
       description:
-        'Welcome to my ecommerce web app.',
+        'Chào mừng đến vói trang quản trị YGFL',
     })
     return true;
   }

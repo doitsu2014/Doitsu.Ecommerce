@@ -13,7 +13,7 @@ class EmptyPage extends React.Component {
     const props = this.props
     return (
       <Page {...props}>
-        <Helmet title="Empty Page" />
+        <Helmet title="Không có trang bạn đang tìm" />
         <Empty />
       </Page>
     )

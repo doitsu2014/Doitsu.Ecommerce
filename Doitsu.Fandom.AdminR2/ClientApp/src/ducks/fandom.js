@@ -28,6 +28,10 @@ const initialState = {
         searchText: '',
         filtered: false,
         isFirstLoadTable: true
+    },
+    artistEditState: {
+        id: -1,
+        isUpdate: false
     }
 }
 

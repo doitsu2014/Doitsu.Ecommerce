@@ -119,7 +119,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "homepage":"http://ygfl.admin.doitsu.tech",
+  "homepage": "http://ygfl.admin.doitsu.tech",
   "devDependencies": {
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "enhanced-resolve": "3.3.0",

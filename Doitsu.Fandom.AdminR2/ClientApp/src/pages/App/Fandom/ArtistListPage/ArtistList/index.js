@@ -21,7 +21,9 @@ class ArtistList extends React.Component {
     onSearch = () => {
         const { searchText, dispatch } = this.props;
         readArtist({name: searchText}).then((data) => {
+            
             let listArtist = data.data;
+
             dispatch(setArtistListState({
                 data: listArtist,
                 tableData: listArtist, 
