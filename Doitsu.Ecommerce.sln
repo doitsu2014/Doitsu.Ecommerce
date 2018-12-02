@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doitsu.Fandom.API", "Doitsu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SafeHouse", "SafeHouse", "{C7117549-B877-46F3-A7AA-1C2032B5D86C}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{881BA111-344A-4DE2-A2E6-2A8C87851D4C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doitsu.Fandom.AdminR2", "Doitsu.Fandom.AdminR2\Doitsu.Fandom.AdminR2.csproj", "{4D7B4D31-CB91-43A6-A796-0BFD893341C5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doitsu.ImageServer", "Doitsu.ImageServer\Doitsu.ImageServer.csproj", "{0D7183BA-8077-42AE-88C8-F6BA80D50889}"
@@ -41,10 +39,6 @@ Global
 		{9B17A73D-6C76-4F27-B5A6-2CA54BC0BB69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B17A73D-6C76-4F27-B5A6-2CA54BC0BB69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B17A73D-6C76-4F27-B5A6-2CA54BC0BB69}.Release|Any CPU.Build.0 = Release|Any CPU
-		{881BA111-344A-4DE2-A2E6-2A8C87851D4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{881BA111-344A-4DE2-A2E6-2A8C87851D4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{881BA111-344A-4DE2-A2E6-2A8C87851D4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{881BA111-344A-4DE2-A2E6-2A8C87851D4C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4D7B4D31-CB91-43A6-A796-0BFD893341C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4D7B4D31-CB91-43A6-A796-0BFD893341C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D7B4D31-CB91-43A6-A796-0BFD893341C5}.Release|Any CPU.ActiveCfg = Release|Any CPU

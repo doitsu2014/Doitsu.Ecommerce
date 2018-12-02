@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
+using System.IO;
 using System.Text;
 
 namespace Doitsu.Ecommerce.API
@@ -50,7 +52,12 @@ namespace Doitsu.Ecommerce.API
 
             // Shows UseCors with named policy.
             app.UseCors("AllowSpecificOrigin");
-
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                   Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", Configuration.GetSection("ImageContainerPath").Value)),
+                RequestPath = $"/{Configuration.GetSection("ImageContainerPath").Value}"
+            });
             app.UseAuthentication();
             app.UseMvc();
         }

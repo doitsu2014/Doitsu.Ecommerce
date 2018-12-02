@@ -5,4 +5,4 @@ services:
     image: ${DOCKER_REGISTRY-}doitsufandomapi
     build:
       context: .
-      dockerfile: Doitsu.Fandom.API\Dockerfile
+      dockerfile: Doitsu.Fandom.API/Dockerfile

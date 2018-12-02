@@ -17,3 +17,24 @@ export const readArtist = async (request = {}) => {
         return [];
     }
 }
+
+export const create = async (request) => {
+    const url = configuration.baseAPIUrl + "artist/create";
+    const bodyData = {
+        name: request.artistName,
+        code: request.artistCode,
+        avatarUrl: request.artistAvatarUrl,
+        active: request.active
+    };
+    console.log(bodyData)
+    try {
+        let response = await axios.post(url, bodyData, {
+            headers: {"Authorization": window.localStorage.getItem("app.Authorization")}
+        });
+        let data = response.data;
+        return data;
+    } catch (e) {
+        notifyError(e);
+        return [];
+    }
+}

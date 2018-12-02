@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <UserSecretsId>9c52d3fd-77cb-4a67-bff6-05746b694ff7</UserSecretsId>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\DoitsuService\DoitsuService\Doitsu.DBManager\Doitsu.DBManager.csproj" />
+    <ProjectReference Include="..\..\DoitsuService\DoitsuService\Utils\Doitsu.Utils.csproj" />
   </ItemGroup>
 
   <ItemGroup>
