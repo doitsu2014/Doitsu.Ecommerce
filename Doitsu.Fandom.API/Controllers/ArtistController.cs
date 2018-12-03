@@ -39,5 +39,14 @@ namespace Doitsu.Fandom.API.Controllers
             var artistVM = this.artistService.Update(artistAPIVM);
             return Ok(BaseResponse<ArtistViewModel>.PrepareDataSuccess(artistVM, "Update the artist successful!"));
         }
+        [Route("delete")]
+        public async Task<ActionResult> Delete([FromQuery]int id)
+        {
+            var model = await this.artistService.FindByIdAsync(id);
+            model.Active = false;
+            this.artistService.Update(model);
+
+            return Ok(BaseResponse<ArtistViewModel>.PrepareDataSuccess(model, "Delete the artist successful!"));
+        }
     }
 }

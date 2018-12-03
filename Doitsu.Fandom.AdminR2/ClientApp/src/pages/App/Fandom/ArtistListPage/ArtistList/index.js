@@ -2,8 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Table, Icon, Input, Button } from 'antd'
 import tableData from './data.json'
-import {readArtist} from 'apis/services/artistService'
+import {readArtist, deleteArtist} from 'apis/services/artistService'
 import {setArtistListState} from 'ducks/fandom.js'
+import { setLoading } from 'ducks/app'
+import { notification } from 'antd'
+
 
 import './style.scss'
 
@@ -35,19 +38,45 @@ class ArtistList extends React.Component {
 
     handleTableChange = (pagination, filters, sorter) => {
         if (this.props.pager) {
-          const pager = { ...this.props.pager }
-          if (pager.pageSize !== pagination.pageSize) {
+            const pager = { ...this.props.pager }
+            if (pager.pageSize !== pagination.pageSize) {
             this.pageSize = pagination.pageSize
             pager.pageSize = pagination.pageSize
             pager.current = 1
-          } else {
+            } else {
             pager.current = pagination.current
-          }
-          this.props.dispatch({
+            }
+            this.props.dispatch({
             pager: pager,
-          })
+            })
         }
-      }
+    }
+    
+    handleRemoveList = (e) => {
+        const {dispatch} = this.props;
+        dispatch(setLoading(true));
+        deleteArtist({id: e.target.getAttribute('data-artist-id')})
+            .then((response) => {
+                if(response.success) {
+                    notification.open({
+                      type: 'success',
+                      message: 'Xóa nghệ sĩ',
+                      description:
+                        'Thành công',
+                    })
+                    dispatch(setLoading(false))
+                    dispatch(setArtistListState({isFirstLoadTable: true}))
+                } else {
+                    notification.open({
+                      type: 'error',
+                      message: 'Xóa nghệ sĩ',
+                      description:
+                        `Thất bại: ${response.message}`,
+                    })
+                    dispatch(setLoading(false))
+                }
+            })
+    }
 
     render() {
         let { pager, data, isFirstLoadTable, dispatch} = this.props;
@@ -128,14 +157,14 @@ class ArtistList extends React.Component {
             },
             {
                 title: 'Tùy chọn',
-                dataIndex: 'edit',
-                key: 'edit',
+                dataIndex: 'id',
+                key: 'id',
                 render: id => (
                     <div className="artistList__edit-datatable-area">
                         <Button type="primary">
                             Chỉnh sửa
                         </Button>
-                        <Button type="danger" >
+                        <Button type="danger" data-artist-id={id} onClick={this.handleRemoveList}>
                             Xóa
                         </Button>
                     </div>

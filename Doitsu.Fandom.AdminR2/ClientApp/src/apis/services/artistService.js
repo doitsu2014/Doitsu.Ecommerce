@@ -26,9 +26,26 @@ export const create = async (request) => {
         avatarUrl: request.artistAvatarUrl,
         active: request.active
     };
-    console.log(bodyData)
     try {
         let response = await axios.post(url, bodyData, {
+            headers: {"Authorization": window.localStorage.getItem("app.Authorization")}
+        });
+        let data = response.data;
+        return data;
+    } catch (e) {
+        notifyError(e);
+        return [];
+    }
+}
+
+
+export const deleteArtist = async (request) => {
+    const url = configuration.baseAPIUrl + "artist/delete";
+    try {
+        let response = await axios.delete(url, {
+            params: {
+                id: request.id
+            },
             headers: {"Authorization": window.localStorage.getItem("app.Authorization")}
         });
         let data = response.data;

@@ -4,8 +4,12 @@ import { Input, TreeSelect, Select, Button, Upload, Icon, message } from 'antd'
 import UploadPictures from 'components/DoitsuComponents/UploadPictures'
 import './style.scss'
 import { createWriteStream } from 'fs';
-import {setArtistEditUploadImagesState, setArtistEditState} from 'ducks/fandom'
+import {setArtistEditUploadImagesState, setArtistEditState, setArtistListState} from 'ducks/fandom'
 import { create } from 'apis/services/artistService.js'
+import { setLoading } from 'ducks/app'
+import { notification } from 'antd'
+import { push } from 'react-router-redux'
+
 
 const TreeNode = TreeSelect.TreeNode
 const Option = Select.Option
@@ -68,10 +72,39 @@ class ArtistEdit extends React.Component {
   }
 
   submitEditArtist = () => {
-    const {isUpdate} = this.props;
+    const {isUpdate, dispatch} = this.props;
     if(!isUpdate) {
-        create({...this.props, active: true}).then((response) => {
-          console.log(response);
+      dispatch(setLoading(true))
+      create({...this.props, active: true})
+        .then((response) => {
+          if(response.success) {
+            notification.open({
+              type: 'success',
+              message: 'Tạo mới nghệ sĩ',
+              description:
+                'Thành công',
+            })
+            dispatch(setLoading(false))
+            dispatch(setArtistListState({isFirstLoadTable: true}))
+            dispatch(push('/artist'))
+          }else {
+            notification.open({
+              type: 'error',
+              message: 'Tạo mới nghệ sĩ',
+              description:
+                `Thất bại: ${response.message}`,
+            })
+            dispatch(setLoading(false))
+          }
+        })
+        .catch((error) => {
+          notification.open({
+            type: 'error',
+            message: 'Hệ thống',
+            description:
+              `Có lỗi xảy ra: ${error.message}`,
+          })
+          dispatch(setLoading(false))
         });
     }
   }
@@ -107,9 +140,9 @@ class ArtistEdit extends React.Component {
                     <div className="col-lg-12">
                       <div className="form-actions">
                         <Button type="primary" className="mr-2" onClick={this.submitEditArtist} >
-                          {isUpdate ? 'Lưu lai':'Tao moi'}
+                          {isUpdate ? 'Lưu lại':'Tạo mới'}
                         </Button>
-                        <Button type="default">Huy</Button>
+                        <Button type="default">Hủy</Button>
                       </div>
                     </div>
                   </div>
