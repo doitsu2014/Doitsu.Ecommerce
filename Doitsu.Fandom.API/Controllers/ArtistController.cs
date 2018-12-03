@@ -40,12 +40,9 @@ namespace Doitsu.Fandom.API.Controllers
             return Ok(BaseResponse<ArtistViewModel>.PrepareDataSuccess(artistVM, "Update the artist successful!"));
         }
         [Route("delete")]
-        public async Task<ActionResult> Delete([FromQuery]int id)
+        public async Task<ActionResult> Delete([FromQuery]ArtistViewModel model)
         {
-            var model = await this.artistService.FindByIdAsync(id);
-            model.Active = false;
-            this.artistService.Update(model);
-
+            await this.artistService.DeactiveAsync(model.ID);
             return Ok(BaseResponse<ArtistViewModel>.PrepareDataSuccess(model, "Delete the artist successful!"));
         }
     }
