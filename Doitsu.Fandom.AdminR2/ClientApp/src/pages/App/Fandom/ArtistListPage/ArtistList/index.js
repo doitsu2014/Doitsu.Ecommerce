@@ -1,9 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 import { Table, Icon, Input, Button } from 'antd'
 import tableData from './data.json'
 import {readArtist, deleteArtist} from 'apis/services/artistService'
-import {setArtistListState} from 'ducks/fandom.js'
+import { setArtistListState, setArtistEditState } from 'ducks/fandom'
 import { setLoading } from 'ducks/app'
 import { notification } from 'antd'
 
@@ -24,7 +25,6 @@ class ArtistList extends React.Component {
     onSearch = () => {
         const { searchText, dispatch } = this.props;
         readArtist({name: searchText}).then((data) => {
-            
             let listArtist = data.data;
 
             dispatch(setArtistListState({
@@ -40,14 +40,14 @@ class ArtistList extends React.Component {
         if (this.props.pager) {
             const pager = { ...this.props.pager }
             if (pager.pageSize !== pagination.pageSize) {
-            this.pageSize = pagination.pageSize
-            pager.pageSize = pagination.pageSize
-            pager.current = 1
+                this.pageSize = pagination.pageSize
+                pager.pageSize = pagination.pageSize
+                pager.current = 1
             } else {
-            pager.current = pagination.current
+                pager.current = pagination.current
             }
             this.props.dispatch({
-            pager: pager,
+                pager: pager,
             })
         }
     }
@@ -78,6 +78,16 @@ class ArtistList extends React.Component {
             })
     }
 
+    handleUpdateArtist = (e) => {
+        const { dispatch } = this.props;
+        dispatch(setArtistEditState({ 
+            isReloadInformation: true, 
+            isUpdate: true, 
+            id: e.target.getAttribute('data-artist-id') 
+        }))
+        dispatch(push('/artist/edit'))
+    }
+
     render() {
         let { pager, data, isFirstLoadTable, dispatch} = this.props;
         if(isFirstLoadTable) {
@@ -103,7 +113,7 @@ class ArtistList extends React.Component {
                 dataIndex: 'code',
                 key: 'code',
                 render: text => (
-                    <a className="utils__link--underlined" href="javascript: void(0);">
+                    <a className="utils__link--underlined"  href="javascript: void(0);">
                         {text}
                     </a>
                 ),
@@ -158,10 +168,10 @@ class ArtistList extends React.Component {
             {
                 title: 'Tùy chọn',
                 dataIndex: 'id',
-                key: 'id',
+                key: 'editControls',
                 render: id => (
                     <div className="artistList__edit-datatable-area">
-                        <Button type="primary">
+                        <Button type="primary" data-artist-id={id} onClick={this.handleUpdateArtist}>
                             Chỉnh sửa
                         </Button>
                         <Button type="danger" data-artist-id={id} onClick={this.handleRemoveList}>
@@ -184,6 +194,7 @@ class ArtistList extends React.Component {
                         dataSource={data}
                         pagination={pager}
                         onChange={this.handleTableChange}
+                        rowKey="id"
                      />
                 </div>
             </div>

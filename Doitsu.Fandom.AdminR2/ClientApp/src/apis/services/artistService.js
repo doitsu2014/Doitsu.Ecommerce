@@ -38,6 +38,26 @@ export const create = async (request) => {
     }
 }
 
+export const update = async (request) => {
+    const url = configuration.baseAPIUrl + "artist/update";
+    const bodyData = {
+        id: request.id,
+        name: request.artistName,
+        code: request.artistCode,
+        avatarUrl: request.artistAvatarUrl,
+        active: request.active
+    };
+    try {
+        let response = await axios.put(url, bodyData, {
+            headers: {"Authorization": window.localStorage.getItem("app.Authorization")}
+        });
+        let data = response.data;
+        return data;
+    } catch (e) {
+        notifyError(e);
+        return [];
+    }
+}
 
 export const deleteArtist = async (request) => {
     const url = configuration.baseAPIUrl + "artist/delete";

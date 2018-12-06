@@ -32,8 +32,9 @@ const initialState = {
         isFirstLoadTable: true
     },
     artistEditState: {
-        id: -1,
+        isReloadInformation: false,
         isUpdate: false,
+        id: -1,
         artistCode: '',
         artistName: '',
         artistAvatarUrl: '',

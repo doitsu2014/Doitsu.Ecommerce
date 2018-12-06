@@ -22,9 +22,9 @@ namespace Doitsu.Fandom.API.Controllers
             this.artistService = artistService;
         }
         [Route("read")]
-        public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string name, [FromQuery]string code )
+        public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string name, [FromQuery]string code, [FromQuery]int? id)
         {
-            var listArtist = this.artistService.GetActiveByQuery(limit, pageSize, currentPage, name);
+            var listArtist = this.artistService.GetActiveByQuery(limit, pageSize, currentPage, name, code, id);
             return Ok(BaseResponse<IEnumerable<ArtistViewModel>>.PrepareDataSuccess(listArtist, "Get list artists successful!"));
         }
         [Route("create")]
@@ -34,9 +34,9 @@ namespace Doitsu.Fandom.API.Controllers
             return Ok(BaseResponse<ArtistViewModel>.PrepareDataSuccess(artistVM, "Create a artist successful!"));
         }
         [Route("update")]
-        public ActionResult Put([FromBody]ArtistViewModel artistAPIVM)
+        public async Task<ActionResult> Put([FromBody]ArtistViewModel artistAPIVM)
         {
-            var artistVM = this.artistService.Update(artistAPIVM);
+            var artistVM = await this.artistService.UpdateAsync(artistAPIVM.ID, artistAPIVM);
             return Ok(BaseResponse<ArtistViewModel>.PrepareDataSuccess(artistVM, "Update the artist successful!"));
         }
         [Route("delete")]
