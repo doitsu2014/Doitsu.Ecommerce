@@ -7,15 +7,13 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Doitsu.DBManager.Fandom.Models.Entities;
 using Doitsu.Fandom.API.Models;
-using Doitsu.DBManager.Fandom.Identities;
-using Doitsu.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
-using Doitsu.DBManager.Fandom.Models.Entities;
 //using Microsoft.AspNetCore.Mvc.Attributes;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

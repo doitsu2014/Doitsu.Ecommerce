@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Doitsu.DBManager.BaseClasses;
-using Doitsu.DBManager.Fandom.Models.Entities;
-using Doitsu.DBManager.Fandom.Models.ViewModels;
-using Doitsu.DBManager.Fandom.Repositories;
 using Doitsu.DBManager.Fandom.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

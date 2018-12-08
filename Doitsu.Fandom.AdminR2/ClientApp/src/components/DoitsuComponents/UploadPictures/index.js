@@ -1,13 +1,13 @@
 import React from 'react'
 import './style.scss'
 import { Upload, Icon, Modal, message } from 'antd'
-
+import  config  from 'configuration.js'
 
 class UploadPictures extends React.Component {
   static defaultProps = {
     uploadProps: {
       multiple: true,
-      action: 'http://localhost:54389/api/image/uploads',
+      action: `${config.baseAPIUrl}/image/uploads`,
       headers: {
         'Authorization': window.localStorage.getItem('app.Authorization')
       },

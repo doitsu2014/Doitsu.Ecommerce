@@ -7,11 +7,9 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Doitsu.DBManager.Fandom.Models.ViewModels;
 using Doitsu.Fandom.API.Models;
-using Doitsu.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
