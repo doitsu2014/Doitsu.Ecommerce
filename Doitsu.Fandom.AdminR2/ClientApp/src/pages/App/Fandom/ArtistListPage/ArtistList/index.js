@@ -7,11 +7,7 @@ import {readArtist, deleteArtist} from 'apis/services/artistService'
 import { setArtistListState, setArtistEditState } from 'ducks/fandom'
 import { setLoading } from 'ducks/app'
 import { notification } from 'antd'
-
-
 import './style.scss'
-
-
 const mapStateToProps = (state, props) => ({
     ...state.fandom.artistListState
 })
@@ -190,6 +186,7 @@ class ArtistList extends React.Component {
                 </div>
                 <div className="card-body">
                     <Table 
+                        scroll={{ x: 1000 }} 
                         columns={columns}
                         dataSource={data}
                         pagination={pager}

@@ -1,0 +1,134 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="wwwroot\templates\css\animations.css" />
+    <None Include="wwwroot\templates\css\components.css" />
+    <None Include="wwwroot\templates\css\content-box.css" />
+    <None Include="wwwroot\templates\css\fullpage.twoside.css" />
+    <None Include="wwwroot\templates\css\image-box.css" />
+    <None Include="wwwroot\templates\images\assets\bg-gradient.png" />
+    <None Include="wwwroot\templates\images\assets\clouds_1.png" />
+    <None Include="wwwroot\templates\images\assets\clouds_2.png" />
+    <None Include="wwwroot\templates\images\assets\dotted-line.png" />
+    <None Include="wwwroot\templates\images\assets\fog_1.png" />
+    <None Include="wwwroot\templates\images\assets\fog_2.png" />
+    <None Include="wwwroot\templates\images\assets\gradient-line-dark.png" />
+    <None Include="wwwroot\templates\images\assets\gradient-line.png" />
+    <None Include="wwwroot\templates\images\assets\loader.gif" />
+    <None Include="wwwroot\templates\images\assets\x-close.png" />
+    <None Include="wwwroot\templates\images\bg-1.jpg" />
+    <None Include="wwwroot\templates\images\bg-social.png" />
+    <None Include="wwwroot\templates\images\events\hd-1.jpg" />
+    <None Include="wwwroot\templates\images\events\hd-2.jpg" />
+    <None Include="wwwroot\templates\images\events\hd-3.jpg" />
+    <None Include="wwwroot\templates\images\events\image-1.jpg" />
+    <None Include="wwwroot\templates\images\events\image-2.jpg" />
+    <None Include="wwwroot\templates\images\events\image-3.jpg" />
+    <None Include="wwwroot\templates\images\events\image-4.jpg" />
+    <None Include="wwwroot\templates\images\events\image-5.jpg" />
+    <None Include="wwwroot\templates\images\events\image-6.jpg" />
+    <None Include="wwwroot\templates\images\events\image-7.jpg" />
+    <None Include="wwwroot\templates\images\events\image-8.jpg" />
+    <None Include="wwwroot\templates\images\favicon.png" />
+    <None Include="wwwroot\templates\images\flyer-big.jpg" />
+    <None Include="wwwroot\templates\images\flyer.jpg" />
+    <None Include="wwwroot\templates\images\footer-bg.jpg" />
+    <None Include="wwwroot\templates\images\gallery\image-1.jpg" />
+    <None Include="wwwroot\templates\images\gallery\image-2.jpg" />
+    <None Include="wwwroot\templates\images\gallery\image-3.jpg" />
+    <None Include="wwwroot\templates\images\gallery\image-4.jpg" />
+    <None Include="wwwroot\templates\images\gallery\image-5.jpg" />
+    <None Include="wwwroot\templates\images\gallery\image-6.jpg" />
+    <None Include="wwwroot\templates\images\gallery\image-7.jpg" />
+    <None Include="wwwroot\templates\images\gallery\image-8.jpg" />
+    <None Include="wwwroot\templates\images\gallery\thumb-1.jpg" />
+    <None Include="wwwroot\templates\images\gallery\thumb-10.jpg" />
+    <None Include="wwwroot\templates\images\gallery\thumb-2.jpg" />
+    <None Include="wwwroot\templates\images\gallery\thumb-3.jpg" />
+    <None Include="wwwroot\templates\images\gallery\thumb-4.jpg" />
+    <None Include="wwwroot\templates\images\gallery\thumb-5.jpg" />
+    <None Include="wwwroot\templates\images\gallery\thumb-6.jpg" />
+    <None Include="wwwroot\templates\images\gallery\thumb-7.jpg" />
+    <None Include="wwwroot\templates\images\gallery\thumb-8.jpg" />
+    <None Include="wwwroot\templates\images\gallery\thumb-9.jpg" />
+    <None Include="wwwroot\templates\images\hd-2.jpg" />
+    <None Include="wwwroot\templates\images\logo-small.png" />
+    <None Include="wwwroot\templates\images\logo.png" />
+    <None Include="wwwroot\templates\images\map.jpg" />
+    <None Include="wwwroot\templates\images\overlay\carbonio-white.png" />
+    <None Include="wwwroot\templates\images\overlay\carbonio.png" />
+    <None Include="wwwroot\templates\images\overlay\dotted-white.png" />
+    <None Include="wwwroot\templates\images\overlay\dotted.png" />
+    <None Include="wwwroot\templates\images\overlay\line-45-white.png" />
+    <None Include="wwwroot\templates\images\overlay\line-45.png" />
+    <None Include="wwwroot\templates\images\overlay\points.png" />
+    <None Include="wwwroot\templates\images\overlay\tile.png" />
+    <None Include="wwwroot\templates\images\products\product-1.jpg" />
+    <None Include="wwwroot\templates\images\products\product-2.jpg" />
+    <None Include="wwwroot\templates\images\products\product-3.jpg" />
+    <None Include="wwwroot\templates\images\products\product-4.jpg" />
+    <None Include="wwwroot\templates\images\products\product-5.jpg" />
+    <None Include="wwwroot\templates\images\products\product-6.jpg" />
+    <None Include="wwwroot\templates\images\products\product-7.jpg" />
+    <None Include="wwwroot\templates\images\products\product-8.jpg" />
+    <None Include="wwwroot\templates\images\slide-1-1.png" />
+    <None Include="wwwroot\templates\images\slide-2-2.png" />
+    <None Include="wwwroot\templates\images\slide-bg.jpg" />
+    <None Include="wwwroot\templates\images\slider-banner.png" />
+    <None Include="wwwroot\templates\images\title-4.jpg" />
+    <None Include="wwwroot\templates\scripts\bootstrap\css\bootstrap.css" />
+    <None Include="wwwroot\templates\scripts\bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\templates\scripts\flexslider\flexslider.css" />
+    <None Include="wwwroot\templates\scripts\flexslider\fonts\flexslider-icon.eot" />
+    <None Include="wwwroot\templates\scripts\flexslider\fonts\flexslider-icon.svg" />
+    <None Include="wwwroot\templates\scripts\flexslider\fonts\flexslider-icon.ttf" />
+    <None Include="wwwroot\templates\scripts\flexslider\fonts\flexslider-icon.woff" />
+    <None Include="wwwroot\templates\scripts\flexslider\fonts\flexslider-icond41d.eot" />
+    <None Include="wwwroot\templates\scripts\flexslider\jquery.flexslider-min.js" />
+    <None Include="wwwroot\templates\scripts\font-awesome\css\font-awesome.min.css" />
+    <None Include="wwwroot\templates\scripts\font-awesome\fonts\fontawesome-webfontd41d.eot" />
+    <None Include="wwwroot\templates\scripts\font-awesome\fonts\fontawesome-webfonte0a5.eot" />
+    <None Include="wwwroot\templates\scripts\font-awesome\fonts\fontawesome-webfonte0a5.svg" />
+    <None Include="wwwroot\templates\scripts\font-awesome\fonts\fontawesome-webfonte0a5.ttf" />
+    <None Include="wwwroot\templates\scripts\font-awesome\fonts\fontawesome-webfonte0a5.woff" />
+    <None Include="wwwroot\templates\scripts\font-awesome\fonts\fontawesome-webfonte0a5.woff2" />
+    <None Include="wwwroot\templates\scripts\fullpage.twoside.js" />
+    <None Include="wwwroot\templates\scripts\google.maps.min.js" />
+    <None Include="wwwroot\templates\scripts\imagesloaded.min.js" />
+    <None Include="wwwroot\templates\scripts\isotope.min.js" />
+    <None Include="wwwroot\templates\scripts\jquery.magnific-popup.min.js" />
+    <None Include="wwwroot\templates\scripts\jquery.progress-counter.js" />
+    <None Include="wwwroot\templates\scripts\jquery.slimscroll.min.js" />
+    <None Include="wwwroot\templates\scripts\jquery.spritely.min.js" />
+    <None Include="wwwroot\templates\scripts\jquery.tab-accordion.js" />
+    <None Include="wwwroot\templates\scripts\jquery.twbsPagination.min.js" />
+    <None Include="wwwroot\templates\scripts\magnific-popup.css" />
+    <None Include="wwwroot\templates\scripts\parallax.min.js" />
+    <None Include="wwwroot\templates\scripts\php\contact-form.css" />
+    <None Include="wwwroot\templates\scripts\php\contact-form.js" />
+    <None Include="wwwroot\templates\scripts\script.js" />
+    <None Include="wwwroot\templates\scripts\smooth.scroll.min.js" />
+    <None Include="wwwroot\templates\scripts\social.stream.css" />
+    <None Include="wwwroot\templates\scripts\social.stream.min.js" />
+    <None Include="wwwroot\templates\style.css" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Content\" />
+  </ItemGroup>
+
+</Project>

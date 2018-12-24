@@ -1,0 +1,804 @@
+﻿@page "/nghe-si"
+@model Doitsu.Fandom.Client.Pages.ListArtistModel
+@{
+    ViewData["Title"] = "ListArtist";
+}
+
+<div class="header-title ken-burn ken-burn-center" data-parallax="scroll" data-position="top" data-natural-height="705" data-natural-width="1620" data-image-src="~/templates/images/title-1.jpg">
+    <div class="container">
+        <div class="title-base">
+            <h1 class="text-xl">PHOTOS AND VIDEOS GALLERY</h1>
+            <hr />
+            <p><b>WE ARE</b> A BIG FAMILY</p>
+        </div>
+    </div>
+</div>
+<div class="section-empty">
+    <div class="container content">
+        <div class="album-main" data-album-anima="fade-bottom">
+            <div class="album-list row">
+                <div class="album-box col-md-4">
+                    <div class="img-box scale adv-img adv-img-half-content" data-anima="fade-left" data-trigger="hover">
+                        <a href="#" class="img-box anima-scale-up anima">
+                            <img alt="" src="~/templates/images/gallery/thumb-1.jpg">
+                        </a>
+                        <div class="caption">
+                            <h2 class="album-name">FREE COCKTAIL HAILABO<br><b>25/12/16</b></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="album-box col-md-4">
+                    <div class="img-box scale adv-img adv-img-half-content" data-anima="fade-left" data-trigger="hover">
+                        <a href="#" class="img-box anima-scale-up anima">
+                            <img alt="" src="~/templates/images/gallery/thumb-2.jpg">
+                        </a>
+                        <div class="caption">
+                            <h2 class="album-name">SINGLES PARTY<br><b>25/02/16</b></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="album-box col-md-4" data-album-id="album-3">
+                    <div class="img-box scale adv-img adv-img-half-content" data-anima="fade-left" data-trigger="hover">
+                        <a href="#" class="img-box anima-scale-up anima">
+                            <img alt="" src="~/templates/images/gallery/thumb-3.jpg">
+                        </a>
+                        <div class="caption">
+                            <h2 class="album-name">MEXICAN FOODS AND DRINKS<br><b>05/11/16</b></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="album-box col-md-4">
+                    <div class="img-box scale adv-img adv-img-half-content" data-anima="fade-left" data-trigger="hover">
+                        <a href="#" class="img-box anima-scale-up anima">
+                            <img alt="" src="~/templates/images/gallery/thumb-4.jpg">
+                        </a>
+                        <div class="caption">
+                            <h2 class="album-name">HAWAIIAN MUSIC<br><b>02/10/16</b></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="album-box col-md-4">
+                    <div class="img-box scale adv-img adv-img-half-content" data-anima="fade-left" data-trigger="hover">
+                        <a href="#" class="img-box anima-scale-up anima">
+                            <img alt="" src="~/templates/images/gallery/thumb-5.jpg">
+                        </a>
+                        <div class="caption">
+                            <h2 class="album-name">SAN VALENTINE DAY<br><b>18/08/16</b></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="album-box col-md-4" data-album-id="album-3">
+                    <div class="img-box scale adv-img adv-img-half-content" data-anima="fade-left" data-trigger="hover">
+                        <a href="#" class="img-box anima-scale-up anima">
+                            <img alt="" src="~/templates/images/gallery/thumb-6.jpg">
+                        </a>
+                        <div class="caption">
+                            <h2 class="album-name">NOT FOR NORMAL PEOPLE<br><b>14/15/17</b></h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- INSERT OTHERS ALBUMS MENU ITEMS HERE -->
+            </div>
+            <div class="cont-album-box">
+                <p class="album-title">
+                    <span>...</span>
+                    <a class="button-list circle-button btn btn-default btn-sm">
+                        <i class="fa fa-arrow-left"></i> Album list
+                    </a>
+                </p>
+                <div class="album-item">
+                    <div class="maso-list gallery maso-layout" data-trigger="manual">
+                        <div class="navbar navbar-inner">
+                            <div class="navbar-toggle"><i class="fa fa-bars"></i><span>Menu</span><i class="fa fa-angle-down"></i></div>
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav over ms-rounded inner maso-filters">
+                                    <li class="current-active active"><a data-filter="maso-item">All</a></li>
+                                    <li><a data-filter="cat1">Photos</a></li>
+                                    <li><a data-filter="cat2">Videos</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="maso-box row" data-lightbox-anima="show-scale">
+                            <div data-sort="1" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-1.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-1.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="2" class="maso-item col-md-4 cat2">
+                                <a class="img-box mfp-iframe i-bottom" href="https://www.youtube.com/watch?v=Wd7H311MrWA">
+                                    <i class="fa fa-film"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-9.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="3" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-2.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-2.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="4" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-3.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-3.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="5" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-4.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-4.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="6" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-5.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-5.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="7" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-6.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-6.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="8" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-7.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-7.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="9" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-8.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-8.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="10" class="maso-item col-md-4 cat2">
+                                <a class="img-box mfp-iframe i-bottom" href="https://www.youtube.com/watch?v=Wd7H311MrWA">
+                                    <i class="fa fa-film"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-10.jpg" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="list-nav">
+                            <a href="#" class="circle-button btn-sm btn load-more-maso" data-page-items="7">Load More <i class="fa fa-arrow-down"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="album-item">
+                    <div class="maso-list gallery maso-layout" data-trigger="manual">
+                        <div class="navbar navbar-inner">
+                            <div class="navbar-toggle"><i class="fa fa-bars"></i><span>Menu</span><i class="fa fa-angle-down"></i></div>
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav over ms-rounded inner maso-filters">
+                                    <li class="current-active active"><a data-filter="maso-item">All</a></li>
+                                    <li><a data-filter="cat1">Photos</a></li>
+                                    <li><a data-filter="cat2">Videos</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="maso-box row" data-lightbox-anima="show-scale">
+                            <div data-sort="1" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-1.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-1.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="2" class="maso-item col-md-4 cat2">
+                                <a class="img-box mfp-iframe i-bottom" href="https://www.youtube.com/watch?v=Wd7H311MrWA">
+                                    <i class="fa fa-film"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-9.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="3" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-2.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-2.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="4" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-3.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-3.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="5" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-4.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-4.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="6" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-5.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-5.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="7" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-6.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-6.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="8" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-7.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-7.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="9" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-8.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-8.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="10" class="maso-item col-md-4 cat2">
+                                <a class="img-box mfp-iframe i-bottom" href="https://www.youtube.com/watch?v=Wd7H311MrWA">
+                                    <i class="fa fa-film"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-10.jpg" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="list-nav">
+                            <a href="#" class="circle-button btn-sm btn load-more-maso" data-page-items="7">Load More <i class="fa fa-arrow-down"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="album-item">
+                    <div class="maso-list gallery maso-layout" data-trigger="manual">
+                        <div class="navbar navbar-inner">
+                            <div class="navbar-toggle"><i class="fa fa-bars"></i><span>Menu</span><i class="fa fa-angle-down"></i></div>
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav over ms-rounded inner maso-filters">
+                                    <li class="current-active active"><a data-filter="maso-item">All</a></li>
+                                    <li><a data-filter="cat1">Photos</a></li>
+                                    <li><a data-filter="cat2">Videos</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="maso-box row" data-lightbox-anima="show-scale">
+                            <div data-sort="1" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-1.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-1.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="2" class="maso-item col-md-4 cat2">
+                                <a class="img-box mfp-iframe i-bottom" href="https://www.youtube.com/watch?v=Wd7H311MrWA">
+                                    <i class="fa fa-film"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-9.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="3" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-2.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-2.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="4" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-3.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-3.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="5" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-4.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-4.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="6" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-5.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-5.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="7" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-6.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-6.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="8" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-7.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-7.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="9" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-8.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-8.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="10" class="maso-item col-md-4 cat2">
+                                <a class="img-box mfp-iframe i-bottom" href="https://www.youtube.com/watch?v=Wd7H311MrWA">
+                                    <i class="fa fa-film"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-10.jpg" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="list-nav">
+                            <a href="#" class="circle-button btn-sm btn load-more-maso" data-page-items="7">Load More <i class="fa fa-arrow-down"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="album-item">
+                    <div class="maso-list gallery maso-layout" data-trigger="manual">
+                        <div class="navbar navbar-inner">
+                            <div class="navbar-toggle"><i class="fa fa-bars"></i><span>Menu</span><i class="fa fa-angle-down"></i></div>
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav over ms-rounded inner maso-filters">
+                                    <li class="current-active active"><a data-filter="maso-item">All</a></li>
+                                    <li><a data-filter="cat1">Photos</a></li>
+                                    <li><a data-filter="cat2">Videos</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="maso-box row" data-lightbox-anima="show-scale">
+                            <div data-sort="1" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-1.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-1.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="2" class="maso-item col-md-4 cat2">
+                                <a class="img-box mfp-iframe i-bottom" href="https://www.youtube.com/watch?v=Wd7H311MrWA">
+                                    <i class="fa fa-film"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-9.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="3" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-2.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-2.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="4" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-3.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-3.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="5" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-4.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-4.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="6" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-5.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-5.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="7" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-6.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-6.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="8" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-7.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-7.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="9" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-8.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-8.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="10" class="maso-item col-md-4 cat2">
+                                <a class="img-box mfp-iframe i-bottom" href="https://www.youtube.com/watch?v=Wd7H311MrWA">
+                                    <i class="fa fa-film"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-10.jpg" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="list-nav">
+                            <a href="#" class="circle-button btn-sm btn load-more-maso" data-page-items="7">Load More <i class="fa fa-arrow-down"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="album-item">
+                    <div class="maso-list gallery maso-layout" data-trigger="manual">
+                        <div class="navbar navbar-inner">
+                            <div class="navbar-toggle"><i class="fa fa-bars"></i><span>Menu</span><i class="fa fa-angle-down"></i></div>
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav over ms-rounded inner maso-filters">
+                                    <li class="current-active active"><a data-filter="maso-item">All</a></li>
+                                    <li><a data-filter="cat1">Photos</a></li>
+                                    <li><a data-filter="cat2">Videos</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="maso-box row" data-lightbox-anima="show-scale">
+                            <div data-sort="1" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-1.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-1.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="2" class="maso-item col-md-4 cat2">
+                                <a class="img-box mfp-iframe i-bottom" href="https://www.youtube.com/watch?v=Wd7H311MrWA">
+                                    <i class="fa fa-film"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-9.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="3" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-2.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-2.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="4" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-3.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-3.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="5" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-4.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-4.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="6" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-5.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-5.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="7" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-6.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-6.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="8" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-7.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-7.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="9" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-8.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-8.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="10" class="maso-item col-md-4 cat2">
+                                <a class="img-box mfp-iframe i-bottom" href="https://www.youtube.com/watch?v=Wd7H311MrWA">
+                                    <i class="fa fa-film"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-10.jpg" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="list-nav">
+                            <a href="#" class="circle-button btn-sm btn load-more-maso" data-page-items="7">Load More <i class="fa fa-arrow-down"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="album-item">
+                    <div class="maso-list gallery maso-layout" data-trigger="manual">
+                        <div class="navbar navbar-inner">
+                            <div class="navbar-toggle"><i class="fa fa-bars"></i><span>Menu</span><i class="fa fa-angle-down"></i></div>
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav over ms-rounded inner maso-filters">
+                                    <li class="current-active active"><a data-filter="maso-item">All</a></li>
+                                    <li><a data-filter="cat1">Photos</a></li>
+                                    <li><a data-filter="cat2">Videos</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="maso-box row" data-lightbox-anima="show-scale">
+                            <div data-sort="1" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-1.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-1.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="2" class="maso-item col-md-4 cat2">
+                                <a class="img-box mfp-iframe i-bottom" href="https://www.youtube.com/watch?v=Wd7H311MrWA">
+                                    <i class="fa fa-film"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-9.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="3" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-2.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-2.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="4" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-3.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-3.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="5" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-4.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-4.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="6" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-5.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-5.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="7" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-6.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-6.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="8" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-7.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-7.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="9" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-8.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-8.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="10" class="maso-item col-md-4 cat2">
+                                <a class="img-box mfp-iframe i-bottom" href="https://www.youtube.com/watch?v=Wd7H311MrWA">
+                                    <i class="fa fa-film"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-10.jpg" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="list-nav">
+                            <a href="#" class="circle-button btn-sm btn load-more-maso" data-page-items="7">Load More <i class="fa fa-arrow-down"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="album-item">
+                    <div class="maso-list gallery maso-layout" data-trigger="manual">
+                        <div class="navbar navbar-inner">
+                            <div class="navbar-toggle"><i class="fa fa-bars"></i><span>Menu</span><i class="fa fa-angle-down"></i></div>
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav over ms-rounded inner maso-filters">
+                                    <li class="current-active active"><a data-filter="maso-item">All</a></li>
+                                    <li><a data-filter="cat1">Photos</a></li>
+                                    <li><a data-filter="cat2">Videos</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="maso-box row" data-lightbox-anima="show-scale">
+                            <div data-sort="1" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-1.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-1.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="2" class="maso-item col-md-4 cat2">
+                                <a class="img-box mfp-iframe i-bottom" href="https://www.youtube.com/watch?v=Wd7H311MrWA">
+                                    <i class="fa fa-film"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-9.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="3" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-2.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-2.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="4" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-3.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-3.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="5" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-4.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-4.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="6" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-5.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-5.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="7" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-6.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-6.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="8" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-7.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-7.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="9" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-8.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-8.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="10" class="maso-item col-md-4 cat2">
+                                <a class="img-box mfp-iframe i-bottom" href="https://www.youtube.com/watch?v=Wd7H311MrWA">
+                                    <i class="fa fa-film"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-10.jpg" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="list-nav">
+                            <a href="#" class="circle-button btn-sm btn load-more-maso" data-page-items="7">Load More <i class="fa fa-arrow-down"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="album-item">
+                    <div class="maso-list gallery maso-layout" data-trigger="manual">
+                        <div class="navbar navbar-inner">
+                            <div class="navbar-toggle"><i class="fa fa-bars"></i><span>Menu</span><i class="fa fa-angle-down"></i></div>
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav over ms-rounded inner maso-filters">
+                                    <li class="current-active active"><a data-filter="maso-item">All</a></li>
+                                    <li><a data-filter="cat1">Photos</a></li>
+                                    <li><a data-filter="cat2">Videos</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="maso-box row" data-lightbox-anima="show-scale">
+                            <div data-sort="1" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-1.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-1.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="2" class="maso-item col-md-4 cat2">
+                                <a class="img-box mfp-iframe i-bottom" href="https://www.youtube.com/watch?v=Wd7H311MrWA">
+                                    <i class="fa fa-film"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-9.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="3" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-2.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-2.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="4" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-3.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-3.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="5" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-4.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-4.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="6" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-5.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-5.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="7" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-6.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-6.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="8" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-7.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-7.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="9" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-8.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-8.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="10" class="maso-item col-md-4 cat2">
+                                <a class="img-box mfp-iframe i-bottom" href="https://www.youtube.com/watch?v=Wd7H311MrWA">
+                                    <i class="fa fa-film"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-10.jpg" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="list-nav">
+                            <a href="#" class="circle-button btn-sm btn load-more-maso" data-page-items="7">Load More <i class="fa fa-arrow-down"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="album-item">
+                    <div class="maso-list gallery maso-layout" data-trigger="manual">
+                        <div class="navbar navbar-inner">
+                            <div class="navbar-toggle"><i class="fa fa-bars"></i><span>Menu</span><i class="fa fa-angle-down"></i></div>
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav over ms-rounded inner maso-filters">
+                                    <li class="current-active active"><a data-filter="maso-item">All</a></li>
+                                    <li><a data-filter="cat1">Photos</a></li>
+                                    <li><a data-filter="cat2">Videos</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="maso-box row" data-lightbox-anima="show-scale">
+                            <div data-sort="1" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-1.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-1.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="2" class="maso-item col-md-4 cat2">
+                                <a class="img-box mfp-iframe i-bottom" href="https://www.youtube.com/watch?v=Wd7H311MrWA">
+                                    <i class="fa fa-film"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-9.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="3" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-2.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-2.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="4" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-3.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-3.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="5" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-4.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-4.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="6" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-5.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-5.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="7" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-6.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-6.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="8" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-7.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-7.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="9" class="maso-item col-md-4 cat1">
+                                <a class="img-box i-bottom" href="images/gallery/image-8.jpg">
+                                    <i class="fa fa-camera"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-8.jpg" />
+                                </a>
+                            </div>
+                            <div data-sort="10" class="maso-item col-md-4 cat2">
+                                <a class="img-box mfp-iframe i-bottom" href="https://www.youtube.com/watch?v=Wd7H311MrWA">
+                                    <i class="fa fa-film"></i>
+                                    <img alt="" src="~/templates/images/gallery/thumb-10.jpg" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="list-nav">
+                            <a href="#" class="circle-button btn-sm btn load-more-maso" data-page-items="7">Load More <i class="fa fa-arrow-down"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- INSERT OTHERS ALBUMS HERE -->
+            </div>
+        </div>
+    </div>
+</div>

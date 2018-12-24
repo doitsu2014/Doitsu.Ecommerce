@@ -1,0 +1,32 @@
+﻿@page ""
+@model IndexModel
+@{
+    ViewData["Title"] = "Trang Chủ";
+}
+<div class="header-title ken-burn" data-parallax="scroll" data-position="top" data-natural-height="705" data-natural-width="1620" data-image-src="templates/images/title-4.jpg">
+    <div class="container">
+        <div class="title-base">
+            <h1 class="text-xl">YGFL FAMILY'S LOVER</h1>
+            <hr />
+            <p><b>XEM</b> TẤT CẢ VIDEO Ở ĐÂY</p>
+        </div>
+    </div>
+</div>
+<div class="section-empty text-center">
+    <div class="container-fluid content">
+        <h2>Mới Nhất</h2>
+        <hr class="space s" />
+        <div class="grid-list gallery">
+            <div class="grid-box row" id="grid-box-product">
+            </div>
+            <ul class="pagination-sm pagination pagination-grid" id="pagination-product" data-page-items="3" data-pagination-anima="show-scale"></ul>
+        </div>
+        <hr class="space m" />
+        <hr class="h" />
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript" src="~/js/index.js"></script>
+}

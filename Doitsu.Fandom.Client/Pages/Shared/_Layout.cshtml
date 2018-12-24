@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"] - Doitsu.Fandom.Client</title>
+    <meta name="description" content="Nightlife, night club and bar / pub HTML template with dark / black design and style.">
+    <link rel="stylesheet" href="~/templates/scripts/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href='~/templates/scripts/flexslider/flexslider.css'>
+    <link rel="stylesheet" href="~/templates/css/content-box.css">
+    <link rel="stylesheet" href='~/templates/css/components.css'>
+    <link rel="stylesheet" href='~/templates/scripts/magnific-popup.css'>
+    <link rel="stylesheet" href='~/templates/scripts/social.stream.css'>
+    <link rel="stylesheet" href="~/templates/style.css">
+    <link rel="icon" href="~/templates/images/favicon.png">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/templates/scripts/script.js"></script>
+
+</head>
+<body>
+    <div id="preloader"></div>
+    <header class="fixed-top scroll-change" data-menu-anima="fade-left">
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="navbar-main navbar-middle">
+                <div class="container">
+                    <div class="scroll-hide">
+                        <div class="container">
+                            <a class="navbar-brand center" href="~/templates/#">
+                                <img alt="" src="~/templates/images/logo.png" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navbar-header">
+                        <a href="/" class="navbar-brand"><img alt="" src="~/templates/images/logo.png" /></a>
+                        <button type="button" class="navbar-toggle">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav no-margins">
+                            <li><a href="/">Trang chủ</a></li>
+                            <li><a href="/nghe-si">Nghệ sĩ</a></li>
+                            <li><a href="#">Liên hệ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    @RenderBody()
+    <div class="footer-section section-bg-animation header-animation">
+        <div id="anima-layer-a" class="anima-layer fog-1"></div>
+        <div id="anima-layer-b" class="anima-layer fog-2"></div>
+        <div class="container content overlay-content text-center">
+            <hr class="space" />
+            <hr class="h" />
+            <h1>GET IN TOUCH</h1>
+            <p class="text-bold">
+                47 Chandos Place, London, WC2N 4HS
+            </p>
+            <hr class="space s" />
+            <a class="anima-button circle-button btn-sm" href="contacts.html"><i class="fa fa-map-marker"></i>Locate us on map </a>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <hr class="space xs" />
+                    <div class="row copy-row">
+                        <div class="tag-row">
+                            <span>Copyright © 2016</span>
+                            <span>47 Chandos Place London WC2N 4HS</span>
+                            <span>020 7836 0291</span>
+                            <span>info@soundoflondon.com</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-right">
+                    <div class="btn-group social-group">
+                        <a target="_blank" href="~/templates/#"><i class="fa fa-facebook"></i></a>
+                        <a target="_blank" href="~/templates/#"><i class="fa fa-twitter"></i></a>
+                        <a target="_blank" href="~/templates/#"><i class="fa fa-instagram"></i></a>
+                        <a target="_blank" href="~/templates/#"><i class="fa fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <link rel="stylesheet" href="~/templates/scripts/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="~/templates/css/animations.css">
+        <script async src="~/templates/scripts/bootstrap/js/bootstrap.min.js"></script>
+        <script src="~/templates/scripts/imagesloaded.min.js"></script>
+        <script src='~/templates/scripts/parallax.min.js'></script>
+        <script src='~/templates/scripts/jquery.progress-counter.js'></script>
+        <script src='~/templates/scripts/isotope.min.js'></script>
+        <script src='~/templates/scripts/jquery.magnific-popup.min.js'></script>
+        <script src='~/templates/scripts/jquery.spritely.min.js'></script>
+        <script src="~/templates/scripts/smooth.scroll.min.js"></script>
+        <script src='~/templates/scripts/jquery.twbsPagination.min.js'></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>
+        <script src="~/js/configuration.js"></script>
+    </footer>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

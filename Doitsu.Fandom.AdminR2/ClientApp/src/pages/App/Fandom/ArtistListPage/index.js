@@ -6,7 +6,7 @@ import ArtistList from './ArtistList'
 class ArtistListPage extends React.Component {
     static defaultProps = {
         pathName: 'Danh sách nghệ sĩ',
-        roles: ['Administrator,BrandManager']
+        roles: ['Administrator','BrandManager']
     };
 
     render() {

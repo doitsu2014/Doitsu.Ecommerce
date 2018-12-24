@@ -37,7 +37,18 @@ const loadableRoutes = {
   /// Artist Edit
   '/artist/create': {
     component: loadable(() => import('pages/App/Fandom/ArtistEditPage'))
+  },
+  // Apps
+  '/album': {
+    component: loadable(() => import('pages/App/Fandom/ProductCollectionListPage'))
+  },
+  '/album/edit': {
+    component: loadable(() => import('pages/App/Fandom/ProductCollectionEditPage'))
+  },
+  '/album/create': {
+    component: loadable(() => import('pages/App/Fandom/ProductCollectionEditPage'))
   }
+
 }
 
 class Routes extends React.Component {

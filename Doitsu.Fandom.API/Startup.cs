@@ -40,16 +40,18 @@ namespace Doitsu.Ecommerce.API
             {
                 options.ForwardClientCertificate = false;
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
+          
             // Shows UseCors with named policy.
             app.UseCors("AllowSpecificOrigin");
             app.UseStaticFiles(new StaticFileOptions
@@ -60,6 +62,8 @@ namespace Doitsu.Ecommerce.API
             });
             app.UseAuthentication();
             app.UseMvc();
+
+
         }
     }
 }

@@ -21,7 +21,8 @@ namespace Doitsu.Fandom.API.Controllers
         {
             this.artistService = artistService;
         }
-        [Route("read")]
+
+        [AllowAnonymous,Route("read")]
         public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string name, [FromQuery]string code, [FromQuery]int? id)
         {
             var listArtist = this.artistService.GetActiveByQuery(limit, pageSize, currentPage, name, code, id);

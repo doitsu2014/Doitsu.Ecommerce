@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { Input, TreeSelect, Select, Button, Upload, Icon, message } from 'antd'
+import { Input, TreeSelect, Select, Button, Upload } from 'antd'
+import { Editor } from 'react-draft-wysiwyg'
 import {withRouter} from "react-router-dom"
 import UploadPictures from 'components/DoitsuComponents/UploadPictures'
 import './style.scss'
@@ -11,10 +12,6 @@ import { setLoading } from 'ducks/app'
 import { notification } from 'antd'
 import { push } from 'react-router-redux'
 
-
-const TreeNode = TreeSelect.TreeNode
-const Option = Select.Option
-const Dragger = Upload.Dragger
 const { TextArea } = Input
 
 const mapStateToProps = (state, props) => ({
@@ -25,6 +22,12 @@ const mapStateToProps = (state, props) => ({
 @connect(mapStateToProps)
 class ArtistEdit extends React.Component {
 
+  componentWillMount = () => {
+    const { isUpdate, isReloadInformation, id, location, dispatch } = this.props;
+    if(isUpdate && location.pathname === '/artist/edit' && isReloadInformation && id) {
+      this.reloadInformation(id);
+    }
+  }
   reloadInformation = (id) => {
     const { dispatch } = this.props;
     readArtist({ id: id, limit: 1 }).then((data) => {
@@ -36,6 +39,7 @@ class ArtistEdit extends React.Component {
         artistCode: artist.code,
         artistName: artist.name,
         artistAvatarUrl: artist.avatarUrl,
+        artistdescription: artist.description,
         uploadImages: {
           fileList: [{
             uid: artist.avatarUrl || "doitsuid" ,
@@ -54,7 +58,6 @@ class ArtistEdit extends React.Component {
 
   uploadImagesChange = (info) => {
     const status = info.file.status
-    console.log(info)
     if (status !== 'uploading') {
       console.log("Uploading: ", info)
     }
@@ -99,6 +102,7 @@ class ArtistEdit extends React.Component {
 
   submitEditArtist = () => {
     const {isUpdate, dispatch} = this.props;
+   
     dispatch(setLoading(true))
     if(!isUpdate) {
       create({...this.props, active: true})
@@ -168,22 +172,18 @@ class ArtistEdit extends React.Component {
   }
 
   render() {
-    const { uploadImages, isUpdate, isReloadInformation, id, artistCode, artistName, location, dispatch } = this.props;
-    if(isUpdate) 
-    {
-      if(location.pathname === '/artist/edit' && isReloadInformation && id) {
-        this.reloadInformation(id);
-      } else if(location.pathname === '/artist/create' ) {
-        dispatch(setArtistEditState({
-          isReloadInformation: false,
-          isUpdate: false,
-          id: -1,
-          artistCode: '',
-          artistName: '',
-          artistAvatarUrl: '',
-          uploadImages: {}
-          }));
-      }
+    const { uploadImages, isUpdate, isReloadInformation,artistDescription, id, artistCode, artistName, location, dispatch } = this.props;
+    if(isUpdate && location.pathname === '/artist/create' ) {
+      dispatch(setArtistEditState({
+        isReloadInformation: false,
+        isUpdate: false,
+        id: -1,
+        artistCode: '',
+        artistName: '',
+        artistAvatarUrl: '',
+        artistDescription: '',
+        uploadImages: {}
+      }));
     }
     return (
         <div className="card">
@@ -209,6 +209,12 @@ class ArtistEdit extends React.Component {
                     <div className="form-group">
                       <label htmlFor="artist-edit-name">Tên</label>
                       <Input id="artist-edit-name" name="artistName" onChange={this.onInputChange} value={artistName} placeholder="Tên nghệ sĩ" />
+                    </div>
+                  </div>
+                  <div className="col-lg-12">
+                    <div className="form-group">
+                      <label htmlFor="artist-edit-description">Mô tả</label>
+                      <TextArea rows={3} id="artist-edit-description" value={artistDescription} onChange={this.onInputChange} name="artistDescription" placeholder="Nhập mô tả về nghệ sĩ này"/>
                     </div>
                   </div>
                   <div className="col-lg-12">

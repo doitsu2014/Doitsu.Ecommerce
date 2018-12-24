@@ -6,45 +6,54 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAG/O4EBVkDE6MwW2p9KQM5wAAAAACAAAAAAAQZgAAAAEAACAAAADA1/0VKwyUBd8fUB3ISqgqhzfxgXuxDsWV3OhAS6QuOwAAAAAOgAAAAAIAACAAAAB3Rr9zEH7AEMH2/tAuGmqZQreko0N/5zYPAFAm2OIWLSAAAACqrjfFZAVZunIrvgcrjID+s/HlZjwBIuj5bD5YFaThMUAAAABerX11UctXZUIyp1Ct24pkt/Vm0bkUwOSKtyN/o3u+9LvexAU5AkmDixX73Zh3cuUdlXs06kdRs9CCdMoSAkSL</EncryptedPassword>
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAlYIKAJ+oVEiAfvXFonvwNwAAAAACAAAAAAAQZgAAAAEAACAAAAARZ41eo80TobYHum6YUdSZO0+W5CeK1yI0A/qMTAxcFwAAAAAOgAAAAAIAACAAAADs98EVYCZm+2TEU9ZqSc0RTtXct8PbfXFfPf2L1+j8cSAAAAD4tFltGAYsxLtQOe0dl/TVH5wOLU/rIopOsXsRbabV4UAAAAAtKcuYHgY6LkXQGMsxeLXK6mQ7KONnA9uReFEoD14RN4En2kArT3GDTfe4AEdrhc9aW77UUUL6RICSTfmLc8bE</EncryptedPassword>
     <_PublishTargetUrl>ftp://35.247.175.78:19999</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.Development.json">
-      <publishTime>10/27/2018 17:07:21</publishTime>
+      <publishTime>12/15/2018 22:45:12</publishTime>
     </File>
     <File Include="appsettings.json">
-      <publishTime>12/06/2018 19:40:19</publishTime>
+      <publishTime>12/15/2018 22:45:13</publishTime>
     </File>
     <File Include="AutoMapper.dll">
-      <publishTime>06/18/2018 13:00:14</publishTime>
+      <publishTime>11/17/2018 10:14:56</publishTime>
     </File>
     <File Include="Doitsu.DBManager.dll">
-      <publishTime>12/07/2018 22:00:41</publishTime>
+      <publishTime>12/15/2018 22:47:56</publishTime>
     </File>
     <File Include="Doitsu.DBManager.pdb">
-      <publishTime>12/07/2018 22:00:41</publishTime>
+      <publishTime>12/15/2018 22:47:56</publishTime>
     </File>
     <File Include="Doitsu.Fandom.API.deps.json">
-      <publishTime>12/07/2018 22:01:37</publishTime>
+      <publishTime>12/15/2018 22:48:34</publishTime>
     </File>
     <File Include="Doitsu.Fandom.API.dll">
-      <publishTime>12/07/2018 22:00:42</publishTime>
+      <publishTime>12/15/2018 22:47:57</publishTime>
     </File>
     <File Include="Doitsu.Fandom.API.pdb">
-      <publishTime>12/07/2018 22:00:42</publishTime>
+      <publishTime>12/15/2018 22:47:57</publishTime>
     </File>
     <File Include="Doitsu.Fandom.API.runtimeconfig.json">
-      <publishTime>12/07/2018 22:01:37</publishTime>
+      <publishTime>12/15/2018 22:48:34</publishTime>
+    </File>
+    <File Include="Doitsu.Fandom.API.xml">
+      <publishTime>12/15/2018 22:47:57</publishTime>
+    </File>
+    <File Include="Doitsu.Service.dll">
+      <publishTime>12/15/2018 22:20:28</publishTime>
+    </File>
+    <File Include="Doitsu.Service.pdb">
+      <publishTime>12/15/2018 22:20:28</publishTime>
     </File>
     <File Include="Doitsu.Utils.dll">
-      <publishTime>12/06/2018 19:41:21</publishTime>
+      <publishTime>12/15/2018 22:20:27</publishTime>
     </File>
     <File Include="Doitsu.Utils.pdb">
-      <publishTime>12/06/2018 19:41:21</publishTime>
+      <publishTime>12/15/2018 22:20:27</publishTime>
     </File>
     <File Include="dotnet-aspnet-codegenerator-design.dll">
-      <publishTime>06/07/2018 00:27:02</publishTime>
+      <publishTime>11/12/2018 17:42:52</publishTime>
     </File>
     <File Include="Microsoft.AspNetCore.Authentication.dll">
       <publishTime>07/26/2018 18:17:04</publishTime>
@@ -86,25 +95,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/25/2018 18:31:00</publishTime>
     </File>
     <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll">
-      <publishTime>06/07/2018 00:27:00</publishTime>
+      <publishTime>11/12/2018 17:42:08</publishTime>
     </File>
     <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Core.dll">
-      <publishTime>06/07/2018 00:26:58</publishTime>
+      <publishTime>11/12/2018 17:42:32</publishTime>
     </File>
     <File Include="Microsoft.VisualStudio.Web.CodeGeneration.dll">
-      <publishTime>06/07/2018 00:26:54</publishTime>
+      <publishTime>11/12/2018 17:42:44</publishTime>
     </File>
     <File Include="Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll">
-      <publishTime>06/07/2018 00:26:56</publishTime>
+      <publishTime>11/12/2018 17:42:40</publishTime>
     </File>
     <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll">
-      <publishTime>06/07/2018 00:27:02</publishTime>
+      <publishTime>11/12/2018 17:42:26</publishTime>
     </File>
     <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll">
-      <publishTime>06/07/2018 00:27:02</publishTime>
+      <publishTime>11/12/2018 17:42:12</publishTime>
     </File>
     <File Include="Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll">
-      <publishTime>06/07/2018 00:26:58</publishTime>
+      <publishTime>11/12/2018 17:42:48</publishTime>
+    </File>
+    <File Include="Newtonsoft.Json.dll">
+      <publishTime>11/27/2018 18:07:34</publishTime>
     </File>
     <File Include="NuGet.Frameworks.dll">
       <publishTime>12/01/2018 21:12:57</publishTime>
@@ -134,7 +146,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/01/2018 21:12:55</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>12/07/2018 22:01:37</publishTime>
+      <publishTime>12/15/2018 22:48:34</publishTime>
     </File>
     <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636791220015147211_6b1bd5ccb46c494e8f133dc6856504c1_.jpg">
       <publishTime>11/29/2018 21:00:01</publishTime>
@@ -180,6 +192,36 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636793639962799735_214d183c62b943c396068def23a609f6.jpg">
       <publishTime>12/02/2018 16:13:16</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636801559189438728_f5b625085fe54eed9e3f517bbaea4140.jpg">
+      <publishTime>12/11/2018 20:11:58</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636801559320378239_ae361167d6b14e74ad64868e60aab57d.jpg">
+      <publishTime>12/11/2018 20:12:12</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636801579806368481_b7e682d04ec646ef9cdda5557500778b.jpg">
+      <publishTime>12/11/2018 20:46:20</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636801580484211292_f54a8d68597e4be9962571404235fc68.jpg">
+      <publishTime>12/11/2018 20:47:28</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636801594545834984_1c618eae3b134b02b6c322cfb44e426e.jpg">
+      <publishTime>12/11/2018 21:10:54</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636801597298027347_511eec3e25bc482ca928a81291da0800.jpg">
+      <publishTime>12/11/2018 21:15:29</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636801600808908505_d97f8c61023f478587e673ff2c972b3f.jpg">
+      <publishTime>12/11/2018 21:21:20</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636801601672002695_ae03bf8c7754471f83cc17c98348074c.jpg">
+      <publishTime>12/11/2018 21:22:47</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636803255038311645_f8ca764cd4be4670ac4a2468d076235a.jpg">
+      <publishTime>12/13/2018 19:18:23</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636803271232127204_26631de0f7cb414fb411a8ffab306cf4.jpg">
+      <publishTime>12/13/2018 19:45:23</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -24,6 +24,7 @@ export const create = async (request) => {
         name: request.artistName,
         code: request.artistCode,
         avatarUrl: request.artistAvatarUrl,
+        description: request.artistDescription,
         active: request.active
     };
     try {
@@ -45,6 +46,7 @@ export const update = async (request) => {
         name: request.artistName,
         code: request.artistCode,
         avatarUrl: request.artistAvatarUrl,
+        description: request.artistDescription,
         active: request.active
     };
     try {

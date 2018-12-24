@@ -21,6 +21,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doitsu.Service", "..\Doitsu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{189D1EE8-E067-4949-AD07-4816EB228D5B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doitsu.Fandom.Client", "Doitsu.Fandom.Client\Doitsu.Fandom.Client.csproj", "{FA5D40A8-6B85-4862-825E-A1E34D238127}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doitsu.Fandom.ClientR", "Doitsu.Fandom.ClientR\Doitsu.Fandom.ClientR.csproj", "{8F3E97FB-2938-4983-A86E-2DE566A95745}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +59,14 @@ Global
 		{8EC77A5B-D904-4004-BF5E-E926F7868F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EC77A5B-D904-4004-BF5E-E926F7868F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EC77A5B-D904-4004-BF5E-E926F7868F6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA5D40A8-6B85-4862-825E-A1E34D238127}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA5D40A8-6B85-4862-825E-A1E34D238127}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA5D40A8-6B85-4862-825E-A1E34D238127}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA5D40A8-6B85-4862-825E-A1E34D238127}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F3E97FB-2938-4983-A86E-2DE566A95745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F3E97FB-2938-4983-A86E-2DE566A95745}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F3E97FB-2938-4983-A86E-2DE566A95745}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F3E97FB-2938-4983-A86E-2DE566A95745}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
