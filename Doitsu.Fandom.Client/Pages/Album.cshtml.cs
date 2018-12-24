@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Doitsu.Fandom.Client.Pages
 {
-    public class VideoModel : PageModel
+    public class AlbumModel : PageModel
     {
         public void OnGet()
         {

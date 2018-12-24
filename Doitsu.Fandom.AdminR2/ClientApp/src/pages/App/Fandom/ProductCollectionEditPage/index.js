@@ -8,7 +8,7 @@ import ProductCollectionEdit from './ProductCollectionEdit'
 class ProductCollectionEditPage extends React.Component {
     static defaultProps = {
         // pathName: this.pageTitle,
-        pathName: 'Chỉnh sửa nghệ sĩ',
+        pathName: 'Chỉnh sửa album',
         roles: ['Administrator', 'BrandManager']
     }
 

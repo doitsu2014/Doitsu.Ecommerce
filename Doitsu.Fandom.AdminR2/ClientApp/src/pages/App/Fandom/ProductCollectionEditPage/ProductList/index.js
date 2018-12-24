@@ -67,16 +67,8 @@ class ProductList extends React.Component {
                     productName: firstProduct.name,
                     productCode: firstProduct.code,
                     productResourceURL: firstProduct.resourceURL,
-                    productThumbnailURL: firstProduct.thumbnailURL,
                     productSlug: firstProduct.slug,
                     productIsAuthorized: firstProduct.isAuthorized,
-                    uploadImages: {
-                        fileList: [{
-                          uid: firstProduct.thumbnailURL || "doitsuid" ,
-                          url: firstProduct.thumbnailURL,
-                          status: "done"
-                       }]
-                    }
                 }));
             })
         }
@@ -306,18 +298,6 @@ class ProductList extends React.Component {
                 ),
             },
             {
-                title: 'Ảnh thumbnail',
-                dataIndex: 'thumbnailURL',
-                key: 'thumbnailURL',
-                render: text => (
-                    <a className="utils__link--underlined" href="javascript: void(0);">
-                        <div className="product-list__table-thumbnail">
-                            <img src={text} alt="" width="200" />
-                        </div>
-                    </a>
-                ),
-            },
-            {
                 title: 'Tùy chọn',
                 dataIndex: 'id',
                 key: 'editControls',
@@ -379,17 +359,6 @@ class ProductList extends React.Component {
                                     <Checkbox name="productIsAuthorized" onChange={this.handleProductEditCheckBoxChange} checked={productEditState.productIsAuthorized}>
                                     Có phân quyền không?
                                     </Checkbox>
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="drg-images">Ảnh preview</label>
-                                    <UploadPictures id="drg-images" 
-                                        {...productEditState.uploadImages}
-                                        handleChange={this.uploadImagesChange}
-                                        handlePreview={this.uploadImagesPreview}
-                                        handleCancel={this.uploadImagesCancel}
-                                        handleRemove={this.uploadImagesRemove}
-                                        handleUploadSuccess={this.uploadImagesUploadSuccess}
-                                    />
                                 </div>
                             </Modal>
                         </div>

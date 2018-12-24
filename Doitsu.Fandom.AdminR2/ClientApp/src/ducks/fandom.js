@@ -64,11 +64,6 @@ const initialState = {
             productCode: '',
             productResourceURL: '',
             productIsAuthorized: false,
-            uploadImages: {
-                previewVisible: false,
-                previewImage: '',
-                fileList: [],
-            }
         }
     },
     productCollectionListState: {
