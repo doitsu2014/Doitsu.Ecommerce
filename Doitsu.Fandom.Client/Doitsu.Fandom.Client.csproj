@@ -126,9 +126,4 @@
     <None Include="wwwroot\templates\style.css" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="Content\" />
-  </ItemGroup>
-
 </Project>

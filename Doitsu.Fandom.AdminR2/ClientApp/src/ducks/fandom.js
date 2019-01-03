@@ -12,6 +12,9 @@ const defaultPagination = {
 const REDUCER = 'fandom'
 const NS = `@@${REDUCER}/`
 
+// pictures uploader actions
+export const setPictureUploaderState = createAction(`${NS}SET_PIC_UPLOADER_STATE`);
+
 // Prepare artist actions
 export const setArtistListState = createAction(`${NS}SET_ARTIST_LIST_STATE`);
 export const setArtistEditUploadImagesState = createAction(`${NS}SET_ARTIST_EDIT_UPLOADIMAGES_STATE`);
@@ -24,8 +27,18 @@ export const setProductCollectionEditState = createAction(`${NS}SET_PRODUCT_COLL
 export const setProductListState = createAction(`${NS}SET_PRODUCT_LIST_STATE`);
 export const setProductEditState = createAction(`${NS}SET_PRODUCT_EDIT_STATE`);
 export const setProductEditUploadImagesState = createAction(`${NS}SET_PRODUCT_EDIT_UPLOAD_IMAGES_STATE`)
+// Prepare blog actions
+export const setBlogListState = createAction(`${NS}SET_BLOG_LIST_STATE`);
+export const setBlogEditState = createAction(`${NS}SET_BLOG_EDIT_STATE`);
 
 const initialState = {
+    pictureUploaderState: {
+        previewVisible: false,
+        previewImage: '',
+        previewImageName: '', 
+        fileList: []
+    },
+
     artistListState: {
         tableData: [],
         data:[],
@@ -93,10 +106,39 @@ const initialState = {
             previewImage: '',
             fileList: [],
         }
+    },
+    blogEditState: {
+        isUpdate: false,
+        isReloadInformation: false,
+        id: null,
+        code: '',
+        title: '',
+        content: '',
+        contentEditor: '',
+        slug: '',
+        blogCategoryId: null,
+        thumbnailURL: ''
+    },
+    blogListState: {
+        tableData: [],
+        data:[],
+        pager: {...defaultPagination},
+        filterDropdownVisible: false,
+        searchText: '',
+        filtered: false,
+        isFirstLoadTable: true,
+        addVideoModalVisible: false,
     }
 }
 
 export default createReducer({
+    // Picture Uploader State
+    [setPictureUploaderState]: (state, pictureUploaderState) => {
+        pictureUploaderState = Object.assign({}, state.pictureUploaderState, pictureUploaderState);
+        return { ...state, pictureUploaderState };
+    },
+
+    // Artist
     [setArtistListState]: (state, artistListState) => {
         artistListState = Object.assign({}, state.artistListState, artistListState)
         return { ...state, artistListState }
@@ -111,6 +153,7 @@ export default createReducer({
         let newState = { ...state, artistEditState };
         return newState;
     },
+    // Product Collect,ion
     [setProductCollectionListState]: (state, productCollectionListState) => {
         productCollectionListState = Object.assign({}, state.productCollectionListState, productCollectionListState)
         return { ...state, productCollectionListState }
@@ -126,6 +169,7 @@ export default createReducer({
         
         return newState;
     },
+    // Product
     [setProductListState]: (state, productListState) => {
         productListState = Object.assign({}, state.productListState, productListState)
         return { ...state, productListState }
@@ -139,6 +183,16 @@ export default createReducer({
     [setProductEditUploadImagesState]: (state, uploadImages) => {
         let newState = { ...state };
         newState.productListState.productEditState.uploadImages = {...uploadImages};
+        return newState;
+    },
+    // Blog
+    [setBlogListState]: (state, blogListState) => {
+        blogListState = Object.assign({}, state.blogListState, blogListState)
+        return { ...state, blogListState }
+    },
+    [setBlogEditState]:  (state, editState) => {
+        let blogEditState = {...state.blogEditState, ...editState };
+        let newState = { ...state, blogEditState };
         return newState;
     }
 }, initialState)

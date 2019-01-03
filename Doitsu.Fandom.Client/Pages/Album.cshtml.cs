@@ -9,9 +9,11 @@ namespace Doitsu.Fandom.Client.Pages
 {
     public class AlbumModel : PageModel
     {
-        public void OnGet()
-        {
+        public string Slug { get; set; }
 
+        public void OnGet(string slug)
+        {
+            Slug = slug;
         }
     }
 }

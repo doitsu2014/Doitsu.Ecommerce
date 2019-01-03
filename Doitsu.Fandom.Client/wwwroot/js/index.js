@@ -1,21 +1,21 @@
 ﻿let createGridItem = (album) => {
     let gridItem =
         `<div class="grid-item col-md-4">
-                    <div class="img-box scale adv-img adv-img-half-content" data-anima="fade-left" data-trigger="hover" data-anima-out="hide">
-                        <a href="/video/${album.slug}" class="img-box lightbox anima-scale-up anima">
-                            <img alt="" src="${album.thumbnailURL}">
-                        </a>
-                        <div class="caption anima anima-fade-bottom">
-                            <h2>${album.name}</h2>
-                        </div>
-                    </div>
-                    <div class="caption-bottom">
-                        <h2>${album.name}</h2>
-                    </div>
-                </div>`;
+            <div class="img-box scale adv-img adv-img-half-content" data-anima="fade-left" data-trigger="hover" data-anima-out="hide">
+                <a href="/album/${album.slug}" class="img-box  anima-scale-up anima">
+                    <img alt="" src="${album.thumbnailURL}">
+                </a>
+                <div class="caption anima anima-fade-bottom">
+                    <h2>${album.name}</h2>
+                </div>
+            </div>
+            <div class="caption-bottom">
+                <h2>${album.name}</h2>
+            </div>
+        </div>`;
     return gridItem;
 };
-const newProductCollectionInit = async () => {
+const newListProductCollectionInit = async () => {
     let res = await fetch(`${configuration.BASE_API_URL}product-collection/read`);
 
     let data = await res.json();
@@ -29,4 +29,4 @@ const newProductCollectionInit = async () => {
     framework_y_initPagination();
 };
 // execute directly
-newProductCollectionInit();
+newListProductCollectionInit();

@@ -47,6 +47,16 @@ const loadableRoutes = {
   },
   '/album/create': {
     component: loadable(() => import('pages/App/Fandom/ProductCollectionEditPage'))
+  },
+  // Apps
+  '/blog': {
+    component: loadable(() => import('pages/App/Fandom/BlogListPage'))
+  },
+  '/blog/edit': {
+    component: loadable(() => import('pages/App/Fandom/BlogEditPage'))
+  },
+  '/blog/create': {
+    component: loadable(() => import('pages/App/Fandom/BlogEditPage'))
   }
 
 }

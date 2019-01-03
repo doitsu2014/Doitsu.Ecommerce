@@ -36,6 +36,25 @@ export default [
         url: '/album/create',
       }
     ]
+  },
+  {
+    title: 'Quản lý bài viết',
+    key: 'blogManagement',
+    icon: 'icmn icmn-wordpress',
+    children: [
+      {
+        title: 'Danh sách bài viết',
+        icon: 'icmn icmn-list',
+        key: 'blogList',
+        url: '/blog',
+      },
+      {
+        title: 'Tạo mới bài viết',
+        icon: 'icmn icmn-plus',        
+        key: 'blogEdit',
+        url: '/blog/create',
+      }
+    ]
   }
   // {
   //   title: 'Empty Page',

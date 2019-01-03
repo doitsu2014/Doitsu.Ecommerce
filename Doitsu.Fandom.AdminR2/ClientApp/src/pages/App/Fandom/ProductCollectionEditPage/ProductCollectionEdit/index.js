@@ -25,7 +25,7 @@ const mapStateToProps = (state, props) => ({
 class ProductCollectionEdit extends React.Component {
 
   componentWillMount() {
-    const { isUpdate, isReloadInformation, id, location, dispatch, productCollectionType } = this.props;
+    const { isUpdate, isReloadInformation, id, location, dispatch } = this.props;
     // handle edit, create state
     (async () => {
       if(isUpdate && location.pathname === '/album/edit' && isReloadInformation && id) {
@@ -41,7 +41,6 @@ class ProductCollectionEdit extends React.Component {
       }));
       dispatch(setProductListState({ isFirstLoadTable: true }))
     })()
-
   }
 
   reloadInformation = (id) => {
@@ -61,11 +60,11 @@ class ProductCollectionEdit extends React.Component {
         productCollectionArtistId: productCollection.artistID,
         productCollectionType: productCollection.type,
         uploadImages: {
-          fileList: [{
+          fileList: productCollection.thumbnailURL ? [{
             uid: productCollection.thumbnailURL || "doitsuid" ,
             url: productCollection.thumbnailURL,
             status: "done"
-         }]
+         }] : []
         }
       }));
       

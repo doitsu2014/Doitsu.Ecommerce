@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using System.IO;
+using System.Net;
 using System.Text;
 
 namespace Doitsu.Ecommerce.API
@@ -26,6 +27,12 @@ namespace Doitsu.Ecommerce.API
         {
             RootConfig.Entry(services, Configuration);
 
+            // example trusted proxies
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
+            });
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin", builder =>
@@ -34,6 +41,8 @@ namespace Doitsu.Ecommerce.API
                     .AllowAnyMethod()
                     .AllowAnyHeader());
             });
+
+
 
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
             services.Configure<IISOptions>(options =>
@@ -59,6 +68,10 @@ namespace Doitsu.Ecommerce.API
                 FileProvider = new PhysicalFileProvider(
                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", Configuration.GetSection("ImageContainerPath").Value)),
                 RequestPath = $"/{Configuration.GetSection("ImageContainerPath").Value}"
+            });
+            app.UseForwardedHeaders(new ForwardedHeadersOptions()
+            {
+                ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor | Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto
             });
             app.UseAuthentication();
             app.UseMvc();

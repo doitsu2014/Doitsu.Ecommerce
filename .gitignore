@@ -17,3 +17,4 @@ obj/
 Doitsu.ImageServer/bin/
 Doitsu.ImageServer/wwwroot/
 bin/
+Doitsu.Fandom.API/wwwroot/resource-container/

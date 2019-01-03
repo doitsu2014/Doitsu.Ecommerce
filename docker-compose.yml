@@ -4,5 +4,15 @@ services:
   doitsu.fandom.api:
     image: ${DOCKER_REGISTRY-}doitsufandomapi
     build:
-      context: .
-      dockerfile: Doitsu.Fandom.API/Dockerfile
+      context: ./Doitsu.Fandom.API
+      dockerfile: Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_HTTPS_PORT=44389
+    ports:
+      - "54389:80"
+      - "44389:443"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro

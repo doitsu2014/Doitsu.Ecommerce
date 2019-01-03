@@ -819,8 +819,8 @@ window.onload = function () {
                     },
                     type: $(this).hasClass("mfp-iframe") ? "iframe" : "image"
                 }), e.preventDefault())
-            }), $(".grid-list.gallery .grid-box,.maso-list.gallery .maso-box, .lightbox,.box-lightbox,.popup-banner,.popup-trigger,.lightbox-trigger,.woocommerce-product-gallery__image a").executeFunction("magnificPopup", function () {
-                $(".grid-list.gallery .grid-box,.maso-list.gallery .maso-box,.lightbox,.woocommerce-product-gallery__image a").each(function () {
+            }), $(".grid-list .gallery .grid-box, .maso-list.gallery .maso-box, .lightbox,.box-lightbox,.popup-banner,.popup-trigger,.lightbox-trigger,.woocommerce-product-gallery__image a").executeFunction("magnificPopup", function () {
+                $(".grid-list .gallery .grid-box, .maso-list.gallery .maso-box, .lightbox,.woocommerce-product-gallery__image a").each(function () {
                     $(this).initMagnificPopup()
                 }), $('*[data-trigger="load"].popup-banner').each(function () {
                     var t = $(this).attr("data-expire");

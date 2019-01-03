@@ -4,5 +4,50 @@
     ViewData["Title"] = "Video";
 }
 
-<h1>Video</h1>
+<div class="header-title ken-burn" data-parallax="scroll" data-position="top" data-natural-height="705" data-natural-width="1620" data-image-src="templates/images/title-4.jpg">
+    <div class="container">
+        <div class="title-base">
+            <h1 class="text-xl">ABC XYZ 1234</h1>
+            <hr />
+            <p><b>XEM</b> TẤT CẢ VIDEO Ở ĐÂY</p>
+        </div>
+    </div>
+</div>
+<div class="section-empty text-center">
+    <div class="container content">
+        <hr class="space s" />
+        <div class="video-wrapper">
+            <!-- 21:9 aspect ratio -->
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+            </div>
+        </div>
+        <hr class="space m" />
+        <div class="tab-box text-left" data-tab-anima="fade-bottom">
+            <ul class="nav nav-tabs nav-center">
+                <li class="active"><a href="#">Mặc định</a></li>
+            </ul>
+            <div class="panel active">
+                <div class="row" id="album-list-video">
+                    <div class="col-md-1">
+                        <a href="#" class="btn btn-block episode" data-active="true">1</a>
+                    </div>
+                    <div class="col-md-1">
+                        <a href="#" class="btn btn-block episode" data-active="true">1</a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <hr class="space m" />
+        <hr class="h" />
+    </div>
+</div>
 
+@section Scripts
+    {
+    <script type="text/javascript" src="~/js/album.js"></script>
+    <script>
+        newProductCollectionInit('@Model.Slug')
+    </script>
+}

@@ -25,6 +25,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doitsu.Fandom.Client", "Doi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doitsu.Fandom.ClientR", "Doitsu.Fandom.ClientR\Doitsu.Fandom.ClientR.csproj", "{8F3E97FB-2938-4983-A86E-2DE566A95745}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7320593E-21CA-43E3-B822-A47B5CA7842F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doitsu.Fandom.Client_Homepage", "..\Doitsu.Fandom.Client_Homepage\Doitsu.Fandom.Client_Homepage.csproj", "{977E6AC3-55EE-4FC3-A782-63C70F63D0A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +71,14 @@ Global
 		{8F3E97FB-2938-4983-A86E-2DE566A95745}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F3E97FB-2938-4983-A86E-2DE566A95745}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F3E97FB-2938-4983-A86E-2DE566A95745}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7320593E-21CA-43E3-B822-A47B5CA7842F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7320593E-21CA-43E3-B822-A47B5CA7842F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7320593E-21CA-43E3-B822-A47B5CA7842F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7320593E-21CA-43E3-B822-A47B5CA7842F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{977E6AC3-55EE-4FC3-A782-63C70F63D0A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{977E6AC3-55EE-4FC3-A782-63C70F63D0A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{977E6AC3-55EE-4FC3-A782-63C70F63D0A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{977E6AC3-55EE-4FC3-A782-63C70F63D0A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

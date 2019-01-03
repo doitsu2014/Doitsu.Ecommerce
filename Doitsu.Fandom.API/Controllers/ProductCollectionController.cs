@@ -16,10 +16,24 @@ namespace Doitsu.Fandom.API.Controllers
     public class ProductCollectionController : ControllerBase
     {
         private IProductCollectionService productCollectionService;
-        public ProductCollectionController(IProductCollectionService productCollectionService)
+        private IProductService productService;
+        public ProductCollectionController(IProductCollectionService productCollectionService, IProductService productService)
         {
             this.productCollectionService = productCollectionService;
+            this.productService = productService;
         }
+        [AllowAnonymous, Route("read-by-slug")]
+        public ActionResult Get([FromQuery]string slug)
+        {
+            var productCollection = this.productCollectionService.GetBySlug(slug);
+            var listProducts = this.productService.GetActive(p=>p.CollectionId == productCollection.ID)
+                .OrderByDescending(p => p.CreatedTime)
+                .OrderBy(p=>p.Code)
+                .ToList();
+            productCollection.ListProducts = listProducts;
+            return Ok(BaseResponse<ProductCollectionViewModel>.PrepareDataSuccess(productCollection, "Get list artists successful!"));
+        }
+
         [AllowAnonymous, Route("read")]
         public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string code, [FromQuery]int? id)
         {
