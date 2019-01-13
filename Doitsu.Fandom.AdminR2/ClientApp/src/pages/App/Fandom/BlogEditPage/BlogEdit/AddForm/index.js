@@ -5,7 +5,7 @@ import PictureUploader  from 'components/DoitsuComponents/PictureUploader'
 
 import { push } from 'react-router-redux'
 // Import actions
-import { setBlogEditState, setPictureUploaderState } from 'ducks/fandom';
+import { setBlogEditState, setPictureUploaderState, setBlogListState } from 'ducks/fandom';
 import { setLoading } from 'ducks/app'
 // Import editor component
 import { Editor } from 'react-draft-wysiwyg'
@@ -47,13 +47,16 @@ class AddForm extends React.Component {
     form.setFieldsValue(blog);
     dispatch(setBlogEditState(blog));
 
-    // update editor state, convert content html to content editor 
-    const blocksFromHTML = convertFromHTML(blog.content);
-    const content = ContentState.createFromBlockArray(
-      blocksFromHTML.contentBlocks,
-      blocksFromHTML.entityMap
-    );
-    dispatch(setBlogEditState({editorState: EditorState.createWithContent(content)}));
+    // update editor state, convert content html to content editor
+    console.log("Blog Content", blog.content) 
+    if(blog.content) {
+      const blocksFromHTML = convertFromHTML(blog.content);
+      const content = ContentState.createFromBlockArray(
+        blocksFromHTML.contentBlocks,
+        blocksFromHTML.entityMap
+      );
+      dispatch(setBlogEditState({editorState: EditorState.createWithContent(content)}));
+    }
     
     dispatch(setPictureUploaderState({
       fileList: blog.thumbnailURL ? [{
@@ -91,13 +94,15 @@ class AddForm extends React.Component {
           blogProperties.thumbnailURL = fileList[0].url;
         }
         let editorState = this.props.editorState;
-        let content = convertToRaw(editorState.getCurrentContent());
-        blogProperties.content = draftToHtml(content);
+        if(editorState) {
+          let content = convertToRaw(editorState.getCurrentContent());
+          blogProperties.content = draftToHtml(content);
+        } else {
+          blogProperties.content = "";
+        }
         // done prepare
-
-        console.log(blogProperties);
-
         // time to call api create or update
+        dispatch(setBlogListState({isFirstLoadTable:true}))
         dispatch(setLoading(true));
         if(isUpdate) {
           updateBlog({...blogProperties, active: true})

@@ -55,6 +55,12 @@ export default [
         url: '/blog/create',
       }
     ]
+  },
+  {
+    title: 'Cấu hình chung',
+    key: 'generalSetting',
+    icon: 'icmn icmn-cog',
+    url: '/settings'
   }
   // {
   //   title: 'Empty Page',

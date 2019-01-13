@@ -11,7 +11,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.Development.json">
-      <publishTime>12/15/2018 22:45:12</publishTime>
+      <publishTime>12/22/2018 00:23:14</publishTime>
     </File>
     <File Include="appsettings.json">
       <publishTime>12/15/2018 22:45:13</publishTime>
@@ -20,37 +20,37 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/17/2018 10:14:56</publishTime>
     </File>
     <File Include="Doitsu.DBManager.dll">
-      <publishTime>12/15/2018 22:47:56</publishTime>
+      <publishTime>01/05/2019 23:52:18</publishTime>
     </File>
     <File Include="Doitsu.DBManager.pdb">
-      <publishTime>12/15/2018 22:47:56</publishTime>
+      <publishTime>01/05/2019 23:52:18</publishTime>
     </File>
     <File Include="Doitsu.Fandom.API.deps.json">
-      <publishTime>12/15/2018 22:48:34</publishTime>
+      <publishTime>01/05/2019 23:52:22</publishTime>
     </File>
     <File Include="Doitsu.Fandom.API.dll">
-      <publishTime>12/15/2018 22:47:57</publishTime>
+      <publishTime>01/05/2019 23:52:18</publishTime>
     </File>
     <File Include="Doitsu.Fandom.API.pdb">
-      <publishTime>12/15/2018 22:47:57</publishTime>
+      <publishTime>01/05/2019 23:52:18</publishTime>
     </File>
     <File Include="Doitsu.Fandom.API.runtimeconfig.json">
-      <publishTime>12/15/2018 22:48:34</publishTime>
+      <publishTime>01/05/2019 23:52:22</publishTime>
     </File>
     <File Include="Doitsu.Fandom.API.xml">
-      <publishTime>12/15/2018 22:47:57</publishTime>
+      <publishTime>01/05/2019 23:52:18</publishTime>
     </File>
     <File Include="Doitsu.Service.dll">
-      <publishTime>12/15/2018 22:20:28</publishTime>
+      <publishTime>01/05/2019 23:52:16</publishTime>
     </File>
     <File Include="Doitsu.Service.pdb">
-      <publishTime>12/15/2018 22:20:28</publishTime>
+      <publishTime>01/05/2019 23:52:16</publishTime>
     </File>
     <File Include="Doitsu.Utils.dll">
-      <publishTime>12/15/2018 22:20:27</publishTime>
+      <publishTime>01/05/2019 23:52:15</publishTime>
     </File>
     <File Include="Doitsu.Utils.pdb">
-      <publishTime>12/15/2018 22:20:27</publishTime>
+      <publishTime>01/05/2019 23:52:15</publishTime>
     </File>
     <File Include="dotnet-aspnet-codegenerator-design.dll">
       <publishTime>11/12/2018 17:42:52</publishTime>
@@ -146,7 +146,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/01/2018 21:12:55</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>12/15/2018 22:48:34</publishTime>
+      <publishTime>01/05/2019 23:52:22</publishTime>
     </File>
     <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636791220015147211_6b1bd5ccb46c494e8f133dc6856504c1_.jpg">
       <publishTime>11/29/2018 21:00:01</publishTime>
@@ -222,6 +222,171 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636803271232127204_26631de0f7cb414fb411a8ffab306cf4.jpg">
       <publishTime>12/13/2018 19:45:23</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636810355163349111_ab6766b7312b43c995b87ca64a17dcb6.jpg">
+      <publishTime>12/22/2018 00:31:56</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636811956304280698_2fa644fa7e904fe4af296c853fd7a724.jpg">
+      <publishTime>12/23/2018 21:00:30</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636811957905536021_50d700c2909c4ff5bacc2ecd33e68247.jpg">
+      <publishTime>12/23/2018 21:03:10</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636811959558205298_8d1eccf365224490b56ffafad4fa0a27.jpg">
+      <publishTime>12/23/2018 21:05:55</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636811965855783762_0a9aaa4057c64819997956e8dc8916e9.jpg">
+      <publishTime>12/23/2018 21:16:25</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636811967478362042_a9ff58942ee14f0b92b2a9cdb01fe3da.jpg">
+      <publishTime>12/23/2018 21:19:07</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636811968085517652_a490268d76274ec78286b187cff65eaa.jpg">
+      <publishTime>12/23/2018 21:20:08</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636812003150440967_fdc6f434184f475c89ebb61f401669a5.jpg">
+      <publishTime>12/23/2018 22:18:35</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636812005921107505_030bc53d568a484c871c041a693aaa2d.jpg">
+      <publishTime>12/23/2018 22:23:12</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636812007311960131_9002003a75ce413c838aab7c9b346e6b.jpg">
+      <publishTime>12/23/2018 22:25:31</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636812018131973386_0a564a94957a4b6081db574003b9c0cf.png">
+      <publishTime>12/23/2018 22:43:33</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636812825042942087_d3f890b7b6ee458eb207e54f1d3f686e.jpg">
+      <publishTime>12/24/2018 21:08:24</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636812825825103916_9bbefa0d4ffb410f938130ebf22e897f.jpg">
+      <publishTime>12/24/2018 21:09:42</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636812827563986621_30a88b4419fd4289b10e29133c0cef65.jpg">
+      <publishTime>12/24/2018 21:12:36</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636812829114674424_e5fb0f9574184919bdc7554519b82fee.jpg">
+      <publishTime>12/24/2018 21:15:11</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636812830145282664_346856219bcc44b8adce385a15572195.jpg">
+      <publishTime>12/24/2018 21:16:54</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636812830242553916_17f4e84f412041f38d4e72ecf982ed1b.jpg">
+      <publishTime>12/24/2018 21:17:04</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636812831339445240_07ce10a155d8439bb4c5023b987b276c.jpg">
+      <publishTime>12/24/2018 21:18:53</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636812831648500762_439bafbaf9e345438e7c3d7d5b69ff26.jpg">
+      <publishTime>12/24/2018 21:19:24</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636812831827589025_7999dceb1e444b0e91cc9494b33f0f07.jpg">
+      <publishTime>12/24/2018 21:19:42</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636812832718969351_2f769970209e4b8c96aa519329aca314.jpeg">
+      <publishTime>12/24/2018 21:21:11</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636812844817318155_7f5c6ab2aa44467a9e47a0080aa3c517.jpg">
+      <publishTime>12/24/2018 21:41:21</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636816008366129894_e285525c70e14b759f488d8c65f2ce15.jpg">
+      <publishTime>12/28/2018 13:33:56</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636816008994498192_0221735a7a0448a7b0d1061cf188de21.jpg">
+      <publishTime>12/28/2018 13:34:59</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636816009170782970_428318f3e53246258c925d6b0a8de7a6.jpg">
+      <publishTime>12/28/2018 13:35:17</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819581607621741_c4aaa1917779430e87cf41c254aa6756.jpg">
+      <publishTime>01/01/2019 16:49:20</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819582090178242_45d20ba3f09448c69dd10a32a1b04dea.jpg">
+      <publishTime>01/01/2019 16:50:09</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819582352500562_c5dbe5570ec2405799436ee310ad4b8f.jpg">
+      <publishTime>01/01/2019 16:50:35</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819583198330376_7562d604d35740f2a9686e0a85c348ef.jpg">
+      <publishTime>01/01/2019 16:51:59</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819585404191176_b6d675f0dc124c7296e8f31daeec5c71.jpg">
+      <publishTime>01/01/2019 16:55:40</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819588076886367_1adac26a9d2749ccbe53dcaac6ac9417.jpg">
+      <publishTime>01/01/2019 17:00:07</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819588462483728_8c7e78ea0bba4faaab758d72ef811ead.jpg">
+      <publishTime>01/01/2019 17:00:46</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819588654086732_43dc1014b948467689e6317b3de27d12.jpg">
+      <publishTime>01/01/2019 17:01:05</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819591807198247_c241726e45cf4b56a89f7db5d4a967d2.jpg">
+      <publishTime>01/01/2019 17:06:20</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819593444614746_daea1505816448b89f9da7a9cff2aa31.jpg">
+      <publishTime>01/01/2019 17:09:04</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819593917621347_365add2cff9643c385063393d8dc449e.jpg">
+      <publishTime>01/01/2019 17:09:51</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819595353943509_c40cd347f2954222bc4e5deb19d29666.jpg">
+      <publishTime>01/01/2019 17:12:15</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819595742760191_eb0e7565a30f4a3488bde04e9f793c24.jpeg">
+      <publishTime>01/01/2019 17:12:54</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819601634686272_797e8cb413d54a258606dacbb75a8ecc.jpg">
+      <publishTime>01/01/2019 17:22:43</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819603331602085_7a1cc52db42641c999a9efb229842c1c.jpg">
+      <publishTime>01/01/2019 17:25:33</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819603948842759_98340d161f514f0a8802618d670021a5.jpg">
+      <publishTime>01/01/2019 17:26:34</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819604251694192_e05b34abde6d40d19fff7f3dc2e2a928.jpg">
+      <publishTime>01/01/2019 17:27:05</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819605171941948_955639fdaa1243bf94b2c90b812c0660.jpg">
+      <publishTime>01/01/2019 17:28:37</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819606433872271_e60832e1db6a449799841c7f9150302e.jpg">
+      <publishTime>01/01/2019 17:30:43</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819609920328617_26b0dc3aca9f401ba8f4522881f648ee.jpg">
+      <publishTime>01/01/2019 17:36:32</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819619861539182_1e3ef64886d741a6af68686cde4865ce.jpg">
+      <publishTime>01/01/2019 17:53:06</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819658927613420_c5febc97d47f4752b33db5ade93c8a87.jpg">
+      <publishTime>01/01/2019 18:58:12</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819659200329474_1d388df20c484313a121c4c93e84bf54.jpg">
+      <publishTime>01/01/2019 18:58:40</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819791445166923_e48faebe090848638edbeda11607545f.jpg">
+      <publishTime>01/01/2019 22:39:04</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636819792855392847_7fe2b6b938e7470ab9bd59af4223f162.jpeg">
+      <publishTime>01/01/2019 22:41:25</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636820316864597649_39867a017548434c913817669a3d19cf.jpg">
+      <publishTime>01/02/2019 13:14:46</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636820320071780585_f31e64f923ff40c8b04aeeee64290051.jpg">
+      <publishTime>01/02/2019 13:20:07</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636821486452766132_6fce050903c74f859485e6e9ad02f74d.jpg">
+      <publishTime>01/03/2019 21:44:05</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636821487898056946_a749c3ac5dbb4b929cbff9b20bcf4e18.jpg">
+      <publishTime>01/03/2019 21:46:29</publishTime>
+    </File>
+    <File Include="wwwroot/resource-container/802e2ed1-848c-4f9c-befa-8b37fa8aa417/636821488471403590_d5584734d5174a4dbaddd7bb39f2c8bc.jpg">
+      <publishTime>01/03/2019 21:47:27</publishTime>
     </File>
   </ItemGroup>
 </Project>

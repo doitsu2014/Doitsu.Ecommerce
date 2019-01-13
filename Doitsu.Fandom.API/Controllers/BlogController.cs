@@ -35,9 +35,9 @@ namespace Doitsu.Fandom.API.Controllers
             return Ok(BaseResponse<int>.PrepareDataSuccess(result, "Cout blog success successful!"));
         }
         [AllowAnonymous, Route("read")]
-        public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string name, [FromQuery]int? collectionId, [FromQuery]int? id)
+        public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string name, [FromQuery]int? blogCategoryId, [FromQuery]int? id)
         {
-            var listBlog = this.blogService.GetActiveByQuery(limit, pageSize, currentPage, name, collectionId, id);
+            var listBlog = this.blogService.GetActiveByQuery(limit, pageSize, currentPage, name, blogCategoryId, id);
             return Ok(BaseResponse<IEnumerable<BlogViewModel>>.PrepareDataSuccess(listBlog, "Get list blogs successful!"));
         }
         [Route("create")]

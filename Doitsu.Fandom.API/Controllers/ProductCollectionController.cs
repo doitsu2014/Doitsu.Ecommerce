@@ -37,7 +37,7 @@ namespace Doitsu.Fandom.API.Controllers
         [AllowAnonymous, Route("read")]
         public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string code, [FromQuery]int? id)
         {
-            var listArtist = this.productCollectionService.GetActiveByQuery(limit, pageSize, currentPage,  code, id);
+            var listArtist = this.productCollectionService.GetActiveByQuery(limit, pageSize, currentPage, code, id);
             return Ok(BaseResponse<IEnumerable<ProductCollectionViewModel>>.PrepareDataSuccess(listArtist, "Get list artists successful!"));
         }
         [Route("create")]

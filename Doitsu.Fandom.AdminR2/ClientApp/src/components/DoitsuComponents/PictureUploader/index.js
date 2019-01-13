@@ -62,7 +62,7 @@ class UploadPictures extends React.Component {
   }
 
   handleRemove = (data) => {
-    let removedList = this.state.fileList.filter((v) => v.url != data.url).slice();
+    let removedList = this.props.fileList.filter((v) => v.url != data.url).slice();
     this.props.dispatch(setPictureUploaderState({
       fileList: removedList
     }));

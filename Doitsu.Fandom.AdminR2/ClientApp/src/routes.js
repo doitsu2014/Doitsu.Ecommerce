@@ -57,6 +57,9 @@ const loadableRoutes = {
   },
   '/blog/create': {
     component: loadable(() => import('pages/App/Fandom/BlogEditPage'))
+  },
+  '/settings': {
+    component: loadable(() => import('pages/App/Fandom/SettingsPage'))
   }
 
 }

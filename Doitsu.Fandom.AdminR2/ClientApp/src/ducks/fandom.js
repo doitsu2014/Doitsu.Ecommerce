@@ -30,6 +30,9 @@ export const setProductEditUploadImagesState = createAction(`${NS}SET_PRODUCT_ED
 // Prepare blog actions
 export const setBlogListState = createAction(`${NS}SET_BLOG_LIST_STATE`);
 export const setBlogEditState = createAction(`${NS}SET_BLOG_EDIT_STATE`);
+// Prepare setting slider actions
+export const setSettingSliderListState = createAction(`${NS}SET_SETTING_SLIDER_LIST_STATE`);
+
 
 const initialState = {
     pictureUploaderState: {
@@ -128,7 +131,17 @@ const initialState = {
         filtered: false,
         isFirstLoadTable: true,
         addVideoModalVisible: false,
-    }
+    },
+    settingSliderListState: {
+        tableData: [],
+        data:[],
+        pager: {...defaultPagination},
+        filterDropdownVisible: false,
+        searchText: '',
+        filtered: false,
+        isFirstLoadTable: true,
+        addVideoModalVisible: false,
+    },
 }
 
 export default createReducer({
@@ -194,7 +207,12 @@ export default createReducer({
         let blogEditState = {...state.blogEditState, ...editState };
         let newState = { ...state, blogEditState };
         return newState;
-    }
+    },
+    // Setting Slider
+    [setSettingSliderListState]: (state, settingSliderListState) => {
+        settingSliderListState = Object.assign({}, state.settingSliderListState, settingSliderListState)
+        return { ...state, settingSliderListState }
+    },
 }, initialState)
 
 

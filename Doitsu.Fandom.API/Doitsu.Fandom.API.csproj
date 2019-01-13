@@ -10,6 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Doitsu.Fandom.API\**" />
+    <Content Remove="Doitsu.Fandom.API\**" />
+    <EmbeddedResource Remove="Doitsu.Fandom.API\**" />
+    <None Remove="Doitsu.Fandom.API\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
     <Folder Include="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\" />
   </ItemGroup>
