@@ -61,20 +61,20 @@ namespace Doitsu.Ecommerce.API
                 app.UseDeveloperExceptionPage();
             }
           
-            // Shows UseCors with named policy.
-            app.UseCors("AllowSpecificOrigin");
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-                   Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", Configuration.GetSection("ImageContainerPath").Value)),
-                RequestPath = $"/{Configuration.GetSection("ImageContainerPath").Value}"
-            });
-            app.UseForwardedHeaders(new ForwardedHeadersOptions()
-            {
-                ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor | Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto
-            });
-            app.UseAuthentication();
-            app.UseMvc();
+                // Shows UseCors with named policy.
+                app.UseCors("AllowSpecificOrigin");
+                app.UseStaticFiles(new StaticFileOptions
+                {
+                    FileProvider = new PhysicalFileProvider(
+                       Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", Configuration.GetSection("ImageContainerPath").Value)),
+                    RequestPath = $"/{Configuration.GetSection("ImageContainerPath").Value}"
+                });
+                app.UseForwardedHeaders(new ForwardedHeadersOptions()
+                {
+                    ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor | Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto
+                });
+                app.UseAuthentication();
+                app.UseMvc();
 
 
         }

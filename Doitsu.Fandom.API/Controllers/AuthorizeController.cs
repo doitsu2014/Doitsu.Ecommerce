@@ -90,9 +90,9 @@ namespace Doitsu.Fandom.API.Controllers
 
                 return Ok(BaseResponse<dynamic>.PrepareDataSuccess(new { email = email }, $"You have been registered your account."));
             }
-            catch
+            catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex);
             }
         }
     }

@@ -7,7 +7,7 @@ class UploadPictures extends React.Component {
   static defaultProps = {
     uploadProps: {
       multiple: true,
-      action: `${config.baseAPIUrl}/image/uploads`,
+      action: `${config.baseAPIUrl}image/uploads`,
       headers: {
         'Authorization': window.localStorage.getItem('app.Authorization')
       },

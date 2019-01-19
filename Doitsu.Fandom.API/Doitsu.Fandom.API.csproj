@@ -14,11 +14,15 @@
     <Content Remove="Doitsu.Fandom.API\**" />
     <EmbeddedResource Remove="Doitsu.Fandom.API\**" />
     <None Remove="Doitsu.Fandom.API\**" />
+    <None Remove="Libs\Doitsu.DBManager.dll" />
+    <None Remove="Libs\Doitsu.Service.dll" />
+    <None Remove="Libs\Doitsu.Utils.dll" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\" />
     <Folder Include="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\" />
+    <Folder Include="Libs\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,12 +32,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.2105168" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Doitsu.Service\Doitsu.DBManager\Doitsu.DBManager.csproj" />
-    <ProjectReference Include="..\..\Doitsu.Service\Doitsu.Service\Doitsu.Service.csproj" />
-    <ProjectReference Include="..\..\Doitsu.Service\Doitsu.Utils\Doitsu.Utils.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,4 +44,9 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Doitsu_Service\Doitsu.DBManager\Doitsu.DBManager.csproj" />
+    <ProjectReference Include="..\..\Doitsu_Service\Doitsu.Service\Doitsu.Service.csproj" />
+    <ProjectReference Include="..\..\Doitsu_Service\Doitsu.Utils\Doitsu.Utils.csproj" />
+  </ItemGroup>
 </Project>
