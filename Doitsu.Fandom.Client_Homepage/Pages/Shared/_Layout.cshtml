@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta HTTP-EQUIV='Content-Type' content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Doitsu.Fandom.Client_Homepage</title>
+    <link rel="shortcut icon" href="images/common/favicon.ico">
+
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,700" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="~/common/fonts/RixSGod.css">
+
+    <!--Template CSS-->
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />*@
+    <link rel="stylesheet" type="text/css" href="~/common/css/main.css">
+    <!--Template Javascript-->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="~/common/js/ui.js"></script>
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <!--Wrap root-->
+    <div id="wrap">
+        <div class="blind">
+            <a href="#container">본문 이동</a>
+        </div>
+        <!--Overlay-->
+        <div id="overlay"></div>
+        <!--Header-->
+        <div id="header">
+            <h1><a href="#"><span class="logo_ygfamily">YG FAMILY</span></a></h1>
+            <div id="nav-icon"><span></span><span></span><span></span></div> <!-- //nav-icon -->
+            <div id="language" class="lang">
+                <ul>
+                    <li class="en"><a href="#" onclick="changeLanguage('en')" class="ir on">ENGLISH</a></li>
+                </ul>
+            </div>
+            <div id="nav">
+                <ul>
+                    <li class="nav_notice"><a href="#" class="">NOTICE</a></li>
+                    <li class="nav_network"><a href="#" class="">NEWS</a></li>
+                    <li class="nav_artists"><a href="#" class="ir">VIETSUB</a></li>
+                    <li class="nav_actors"><a href="#" class="ir">RECUITMENT</a></li>
+                    <li class="nav_talents"><a href="#" class="">DONATE</a></li>
+                    <li class="nav_media"><a href="#" class="">ABOUT US</a></li>
+                    <li class="nav_with"><a href="#" class="">DOWNLOAD</a></li>
+                    <li class="nav_audition"><a href="#" class="" target="_blank">CONTACT US</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--Container Body Something-->
+        <div id="container">
+            @RenderBody()
+        </div>
+        <!-- Footer -->
+        <div id="footer">
+            <div class="nav_menu">
+
+                <ul>
+                    <li><a href="company/introduction_sub01.html">ABOUT YG</a></li>
+                    <li><a href="http://recruit.ygfamily.com/" target="_blank">YG RECRUIT</a><span class="ico_recruit">채용중</span></li>
+                    <li><a href="company/recruit03-4-0.html">자회사 RECRUIT</a><span class="ico_recruit">채용중</span></li>
+                    <!--<li><a href="/customer/sitemap.asp">SITE MAP</a></li>-->
+                    <li><a href="customer/main2.html">CUSTOMER CENTER</a></li>
+                    <!--<li><a href="javascript:f_openWin('/customer/Pop_Singo_Reg.asp?LANGDIV=K','singo', 470, 700);">저작권 침해신고</a></li>-->
+                </ul>
+
+            </div>
+
+            <div class="family_site">
+                <div class="site_link">
+                    <ul>
+                        <li><a href="http://www.yg-life.com/" target="_blank">YG LIFE</a></li>
+                        <li><a href="http://www.ygstage.com/" target="_blank">YG STAGE</a></li>
+                        <li><a href="http://www.ygselect.com/" target="_blank">YG SELECT</a></li>
+                        <!--<li><a href="http://www.yg-music.net" target="_blank">YG MUSIC</a></li>-->
+                        <li><a href="http://www.yg-audition.com/" target="_blank">YG AUDITION</a></li>
+                        <li><a href="http://www.yg-with.com/" target="_blank">YG WITH</a></li>
+                        <li><span class="current">YG FAMILY SITE</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <div class="logo">
+                    <img src="images/common/logo_footer.gif" alt="YG">
+                </div>
+                <div class="text">
+                    <p>YG Entertainment의 모든 컨텐츠는 저작권의 보호를 받고 있습니다.<br>Copyright YG Entertainment All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/js/configuration.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="~/common/js/common.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="~/js/utils.js"></script>
+    <script type="text/javascript">
+        function changeLanguage(type) {
+            var languageConfiguration = {
+                LANGDIV: "E",
+                ATYPE: "",
+                ARTIDX: "",
+                PROIDX: "",
+                IDX: "",
+                page: ""
+            };
+            window.localStorage.setItem("languageConfiguration", JSON.stringify(languageConfiguration));
+        }
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
