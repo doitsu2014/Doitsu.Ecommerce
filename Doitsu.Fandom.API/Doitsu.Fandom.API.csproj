@@ -45,8 +45,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Doitsu_Service\Doitsu.DBManager\Doitsu.DBManager.csproj" />
     <ProjectReference Include="..\..\Doitsu_Service\Doitsu.Utils\Doitsu.Utils.csproj" />
     <ProjectReference Include="..\..\Doitsu_Service\Doitsu.Service.Core\Doitsu.Service.Core.csproj" />
+    <ProjectReference Include="..\..\Doitsu_Service\Doitsu.DBManager\Doitsu.DBManager.csproj" />
   </ItemGroup>
 </Project>
