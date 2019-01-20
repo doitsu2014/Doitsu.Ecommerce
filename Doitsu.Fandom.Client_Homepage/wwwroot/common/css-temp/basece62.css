@@ -1,0 +1,193 @@
+/*
+가이드 명칭 : YG CSS 가이드
+가이드 내용 : 사이트 레이아웃
+최초 제작자 : YG BMS
+최종 제작일 : 2017.08.
+수정 / 배포 : 담당자 문의 후 수정 가능. 재배포 절대 불가
+*/
+
+@charset "UTF-8";
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ * Common
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+* {
+	font-family: "RixSGo", sans-serif;
+}
+*, *:after, *:before {
+	-webkit-text-size-adjust: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+html * {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.win .entry-content {
+	transform: rotate(-0.0000000001deg);
+	text-shadow: 0 0 1px rgba(0,0,0,0.3);
+}
+body {
+	color: #282828;
+	font-size: 62.5%;
+	font-weight: 400;
+	letter-spacing: -0.025em;
+	line-height: 1.2;
+	vertical-align: middle;*/
+	-webkit-overflow-scrolling: touch;
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	overflow-x: hidden;
+	/*overflow-y: scroll;*/
+	word-wrap: break-word;
+	/*word-break: break-all;*/
+	word-break: keep-all;
+}
+html, body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, select, button {
+	margin: 0;
+	padding: 0;
+	/*vertical-align: top;*/
+}
+header, hgroup, footer, section, article, aside, nav, canvas, figure, figcaption {
+	display: block;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Titillium Web", "RixSGo", sans-serif;
+}
+h1 {
+	font-size: 3.6em;
+}
+h2 {
+	font-size: 3.0em;
+}
+h3 {
+	font-size: 2.4em;
+}
+h4 {
+	font-size: 1.8em;
+}
+h5 {
+	font-size: 1.4em;
+}
+h6 {
+	font-size: 1.2em;
+}
+img, fieldset {
+	max-width: 100%;
+	border: 0;
+	vertical-align: top;
+}
+ul, ol, dl {
+	list-style: none;
+}
+em, address {
+	font-style: normal;
+}
+a {
+	position: relative;
+	display: inline-block;
+	color: #282828;
+	text-decoration: none;
+	outline: 0;
+	selector-dummy:expression(this.hideFocus=true);
+}
+a:hover, a:active, a:focus {
+	color: #BE0028;
+	text-decoration: none;
+}
+button {
+	border-radius: 0;
+	cursor: pointer;
+}
+hr {
+	display: none;
+	/*border: solid #00f;
+	border-width: 1px 0 0;
+	clear: both;
+	height: 0;*/
+}
+/*
+body, h1, h2, h3, h4, h5, h6, input, textarea, select, button, table {
+	color: #666;
+	font-size: 12px;
+	line-height: 1.4;
+}
+*/
+/*/
+ * blind
+/*/
+.blind {
+	overflow: hidden;
+	visibility: hidden;
+	position: absolute;
+	top: -999em;
+	left: -999em;
+	font-size: 0;
+	line-height: 0;
+}
+/*/
+ * image replacement
+/*/
+.ir span {
+	display: block;
+	overflow: hidden;
+	position: relative;
+	z-index: -1;
+	font-size: 11px;
+	text-align: center;
+}
+/*/
+ * table
+/*/
+table {
+	width: 100%;
+}
+th, td {
+	word-wrap: break-word;
+	word-break: break-all;
+}
+/*/
+ * form
+/*/
+select {
+	height: 1.9em;
+}
+.input {
+	padding: .4em .4em .25em .4em;
+}
+.input_txt,
+.input_file {
+	padding: .4em .4em .25em .4em;
+	border: 1px solid #C8C8C8;
+}
+.input_chk, .input_rdo {
+	overflow: hidden;
+	width: 13px;
+}
+.fr_textarea {
+	padding: 5px;
+	border: 1px solid #C8C8C8;
+}
+.fr_btn {
+	border: 0;
+	background-color: transparent;
+}
+/*/
+ * color
+/*/
+.point_color1 {
+	color: #BE0028;
+}
+.scroll_box {
+	overflow: auto;
+	/*
+	scrollbar-face-color:#666;
+	scrollbar-highlight-color:#666;
+	scrollbar-3dlight-color:#666;
+	scrollbar-shadow-color:#666;
+	scrollbar-darkshadow-color:#666;
+	scrollbar-track-color:#fff;
+	scrollbar-arrow-color:#ddd;
+	*/
+}
