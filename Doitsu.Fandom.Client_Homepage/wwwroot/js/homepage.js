@@ -54,6 +54,9 @@ let createAlbum = (albumData) => {
 };
 
 // Init slider, notice, album
+
+
+
 (async () => {
     let res = await fetch(`${configuration.BASE_API_URL}settings/read-list-slider?isSlider=true`);
     let data = (await res.json()).data.filter(a => a.slug != '');
@@ -61,7 +64,20 @@ let createAlbum = (albumData) => {
         $("#slider-for-pc").append(createSlider(item))
     }
     $(".fotorama").fotorama();
+    res = await fetch(`${configuration.BASE_API_URL}blog/read?limit=2&blogCategoryId=${blogCategoryID.NOTICE}`);
+    data = (await res.json()).data.filter(a => a.slug != '');
+    for (let item of data) {
+        $("#notice-area").append(createNoticeReview(item))
+    }
+    res = await fetch(`${configuration.BASE_API_URL}product-collection/read?limit=1`);
+    data = (await res.json()).data.filter(a => a.slug != '');
+    for (let item of data) {
+        $("#album-area").append(createAlbum(item))
+    }
+
 })();
+/*
+
 (async () => {
     let res = await fetch(`${configuration.BASE_API_URL}blog/read?limit=2&blogCategoryId=${blogCategoryID.NOTICE}`);
     let data = (await res.json()).data.filter(a => a.slug != '');
@@ -75,4 +91,6 @@ let createAlbum = (albumData) => {
     for (let item of data) {
         $("#album-area").append(createAlbum(item))
     }
-})();
+    })();
+*/
+

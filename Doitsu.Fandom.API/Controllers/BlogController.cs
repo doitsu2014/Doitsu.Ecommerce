@@ -43,8 +43,15 @@ namespace Doitsu.Fandom.API.Controllers
         [Route("create")]
         public ActionResult Post([FromBody]BlogViewModel blogAPIVM)
         {
-            var blogVM = this.blogService.Create(blogAPIVM);
-            return Ok(BaseResponse<BlogViewModel>.PrepareDataSuccess(blogVM, "Create a blog successful!"));
+            try
+            {
+                var blogVM = this.blogService.Create(blogAPIVM);
+                return Ok(BaseResponse<BlogViewModel>.PrepareDataSuccess(blogVM, "Create a blog successful!"));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(BaseResponse<Exception>.PrepareDataFail(ex));
+            }
         }
         [Route("update")]
         public async Task<ActionResult> Put([FromBody]BlogViewModel blogAPIVM)

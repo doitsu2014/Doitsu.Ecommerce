@@ -11,4 +11,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\images\ygwith\ygflvn_logo_ver3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\images\ygwith\ygflvn_logo_ver3.png" />
+  </ItemGroup>
 </Project>
