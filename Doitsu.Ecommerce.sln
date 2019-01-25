@@ -17,8 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{189D1EE8-E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doitsu.Fandom.Client", "Doitsu.Fandom.Client\Doitsu.Fandom.Client.csproj", "{FA5D40A8-6B85-4862-825E-A1E34D238127}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7320593E-21CA-43E3-B822-A47B5CA7842F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doitsu.Service.Core", "..\Doitsu_Service\Doitsu.Service.Core\Doitsu.Service.Core.csproj", "{AC0F289C-B68C-4DCF-B964-7AD1D005D531}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doitsu.Fandom.Client_Homepage", "Doitsu.Fandom.Client_Homepage\Doitsu.Fandom.Client_Homepage.csproj", "{69D1E0BD-654F-4105-A42C-279D40C11911}"
@@ -26,6 +24,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doitsu.DBManager", "..\Doitsu_Service\Doitsu.DBManager\Doitsu.DBManager.csproj", "{F19E05EA-3DB9-4534-983E-21C3FD18B907}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doitsu.Utils", "..\Doitsu_Service\Doitsu.Utils\Doitsu.Utils.csproj", "{E897EEA6-62E0-43C7-933F-6EF2F3CCEABD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doitsu.Ecommerce.ClientHomePageR", "Doitsu.Ecommerce.ClientHomePageR\Doitsu.Ecommerce.ClientHomePageR.csproj", "{E5EBB1E4-B98C-430B-BEF6-0EFFF28CAC33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,6 @@ Global
 		{FA5D40A8-6B85-4862-825E-A1E34D238127}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA5D40A8-6B85-4862-825E-A1E34D238127}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA5D40A8-6B85-4862-825E-A1E34D238127}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7320593E-21CA-43E3-B822-A47B5CA7842F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7320593E-21CA-43E3-B822-A47B5CA7842F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7320593E-21CA-43E3-B822-A47B5CA7842F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7320593E-21CA-43E3-B822-A47B5CA7842F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AC0F289C-B68C-4DCF-B964-7AD1D005D531}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AC0F289C-B68C-4DCF-B964-7AD1D005D531}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC0F289C-B68C-4DCF-B964-7AD1D005D531}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -73,6 +69,10 @@ Global
 		{E897EEA6-62E0-43C7-933F-6EF2F3CCEABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E897EEA6-62E0-43C7-933F-6EF2F3CCEABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E897EEA6-62E0-43C7-933F-6EF2F3CCEABD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5EBB1E4-B98C-430B-BEF6-0EFFF28CAC33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5EBB1E4-B98C-430B-BEF6-0EFFF28CAC33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5EBB1E4-B98C-430B-BEF6-0EFFF28CAC33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5EBB1E4-B98C-430B-BEF6-0EFFF28CAC33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
