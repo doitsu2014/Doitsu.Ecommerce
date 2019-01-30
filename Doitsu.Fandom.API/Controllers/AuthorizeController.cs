@@ -7,17 +7,15 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Doitsu.DBManager.Fandom.Models.Entities;
 using Doitsu.Fandom.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
-//using Microsoft.AspNetCore.Mvc.Attributes;
+using Doitsu.Service.Core.IdentitiesExtension;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace Doitsu.Fandom.API.Controllers
 {
     [ApiController]
@@ -25,11 +23,17 @@ namespace Doitsu.Fandom.API.Controllers
     [Route("api/[controller]")]
     public class AuthorizeController : ControllerBase
     {
-        public UserManager<ApplicationUser> _userManager;
-        public AuthorizeController(UserManager<ApplicationUser> userManager)
+        public DoitsuUserIntManager _userManager;
+        public AuthorizeController(DoitsuUserIntManager userManager)
         {
             _userManager = userManager;
         }
+
+        //public UserManager<DoitsuUserInt> _userManager;
+        //public AuthorizeController(UserManager<DoitsuUserInt> userManager)
+        //{
+        //    _userManager = userManager;
+        //}
 
         [HttpPost("login")]
         [AllowAnonymous]
@@ -68,11 +72,11 @@ namespace Doitsu.Fandom.API.Controllers
                 var email = registerModel.Email;
                 var password = registerModel.Password;
                 var confirmPassword = registerModel.ConfirmPassword;
-                ApplicationUser newUser = new ApplicationUser()
+                DoitsuUserInt newUser = new DoitsuUserInt()
                 {
                     Email = email,
+                    UserName = email,
                     SecurityStamp = Guid.NewGuid().ToString(),
-                    UserName = email
                 };
                 await _userManager.CreateAsync(newUser, password);
                 await _userManager.AddToRoleAsync(newUser, "ActiveUser");

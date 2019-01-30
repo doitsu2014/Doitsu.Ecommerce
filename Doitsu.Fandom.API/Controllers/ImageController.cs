@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Doitsu.DBManager.Fandom.Models.ViewModels;
+using Doitsu.Fandom.DBManager.ViewModels;
 using Doitsu.Fandom.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;

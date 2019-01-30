@@ -1,5 +1,5 @@
 ﻿using Doitsu.DBManager.Fandom;
-using Doitsu.DBManager.Fandom.Models.ViewModels;
+using Doitsu.Fandom.DBManager.ViewModels;
 using Doitsu.DBManager.Fandom.Services;
 using Doitsu.Fandom.API.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -68,7 +68,7 @@ namespace Doitsu.Fandom.API.Controllers
                 }
                 else
                 {
-                    var originalModel = productCollectionService.FirstOrDefaultActive(b => b.ID == id);
+                    var originalModel = productCollectionService.FirstOrDefaultActive(b => b.Id == id);
                     originalModel.IsSlider = data.IsSlider;
                     productCollectionService.Update(originalModel);
                 }
