@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  doitsu.fandom.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "54389:80"
+
+  doitsu.fandom.adminr2:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "54390:80"
+

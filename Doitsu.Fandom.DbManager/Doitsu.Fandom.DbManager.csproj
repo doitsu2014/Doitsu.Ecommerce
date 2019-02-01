@@ -24,14 +24,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Doitsu_Service\Doitsu.Utils\Doitsu.Utils.csproj" />
-    <ProjectReference Include="..\..\Doitsu_Service\Doitsu.Service.Core\Doitsu.Service.Core.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Identity\" />
     <Folder Include="Identity\Migrations\" />
     <Folder Include="Identity\Context\" />
     <Folder Include="Services\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Libs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="TTFiles\RewritedEntities.tt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="TTFiles\RewritedEntities.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Doitsu_Service\Doitsu.Service.Core\Doitsu.Service.Core.csproj" />
+    <ProjectReference Include="..\..\Doitsu_Service\Doitsu.Utils\Doitsu.Utils.csproj" />
   </ItemGroup>
 </Project>

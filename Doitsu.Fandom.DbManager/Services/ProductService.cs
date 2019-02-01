@@ -11,7 +11,7 @@ namespace Doitsu.DBManager.Fandom.Services
 {
     public interface IProductService : IBaseService<Products, ProductViewModel>
     {
-        IEnumerable<ProductViewModel> GetActiveByQuery(int limit, int pageSize, int currentPage, string name, int? collectionId, int? id);
+        IQueryable<ProductViewModel> GetActiveByQuery(int limit, int pageSize, int currentPage, string name, int? collectionId, int? id);
         /// <summary>
         /// Count all product may be support to pagination
         /// </summary>
@@ -39,13 +39,14 @@ namespace Doitsu.DBManager.Fandom.Services
             return productVM;
          }
 
-        public IEnumerable<ProductViewModel> GetActiveByQuery(int limit, int pageSize, int currentPage, string name, int? collectionId, int? id)
+        public IQueryable<ProductViewModel> GetActiveByQuery(int limit, int pageSize, int currentPage, string name, int? collectionId, int? id)
         {
             IQueryable<Products> listQuery = GetActiveAsNoTracking(a =>
-                (id == null || a.Id == id.Value)
-                    && (name.IsNullOrEmpty() || a.Name.Contains(name, StringComparison.CurrentCultureIgnoreCase))
-                    && (collectionId == null || a.CollectionId == collectionId)
-                );
+                a.Active == true
+                && (id == null || a.Id == id.Value)
+                && (name.IsNullOrEmpty() || a.Name.Contains(name, StringComparison.CurrentCultureIgnoreCase))
+                && (collectionId == null || a.CollectionId == collectionId)
+            );
 
             listQuery = listQuery.OrderBy(a => a.Id);
             if (limit > 0)

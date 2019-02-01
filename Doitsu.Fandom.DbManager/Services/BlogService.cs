@@ -11,7 +11,7 @@ namespace Doitsu.DBManager.Fandom.Services
 {
     public interface IBlogService : IBaseService<Blogs, BlogViewModel>
     {
-        IEnumerable<BlogViewModel> GetActiveByQuery(int limit, int pageSize, int currentPage, string name = "", int? blogCategoryId = null, int? id = null, bool? isSlider = null);
+        IQueryable<BlogViewModel> GetActiveByQuery(int limit, int pageSize, int currentPage, string name = "", int? blogCategoryId = null, int? id = null, bool? isSlider = null);
         /// <summary>
         /// Count all product may be support to pagination
         /// </summary>
@@ -39,14 +39,15 @@ namespace Doitsu.DBManager.Fandom.Services
             return productVM;
         }
 
-        public IEnumerable<BlogViewModel> GetActiveByQuery(int limit, int pageSize, int currentPage, string name = "", int? blogCategoryId = null, int? id = null, bool? isSlider = null)
+        public IQueryable<BlogViewModel> GetActiveByQuery(int limit, int pageSize, int currentPage, string name = "", int? blogCategoryId = null, int? id = null, bool? isSlider = null)
         {
             IQueryable<Blogs> listQuery = GetActiveAsNoTracking(a =>
-                (id == null || a.Id == id.Value)
-                    && (isSlider == null || isSlider == a.IsSlider)
-                    && (name.IsNullOrEmpty() || a.Title.Contains(name, StringComparison.CurrentCultureIgnoreCase))
-                    && (blogCategoryId == null || a.BlogCategoryId == blogCategoryId)
-                );
+                a.Active == true
+                && (id == null || a.Id == id.Value)
+                && (isSlider == null || isSlider == a.IsSlider)
+                && (name.IsNullOrEmpty() || a.Title.Contains(name, StringComparison.CurrentCultureIgnoreCase))
+                && (blogCategoryId == null || a.BlogCategoryId == blogCategoryId)
+            );
 
             listQuery = listQuery
                 .OrderByDescending(a => a.PublishTime)

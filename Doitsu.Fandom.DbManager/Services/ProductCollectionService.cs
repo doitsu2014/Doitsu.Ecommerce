@@ -11,7 +11,7 @@ namespace Doitsu.DBManager.Fandom.Services
 {
     public interface IProductCollectionService : IBaseService<ProductCollections, ProductCollectionViewModel>
     {
-        IEnumerable<ProductCollectionViewModel> GetActiveByQuery(int limit, int pageSize, int currentPage, string name = "", int? id = null, bool? isSlider = null);
+        IQueryable<ProductCollectionViewModel> GetActiveByQuery(int limit, int pageSize, int currentPage, string name = "", int? id = null, bool? isSlider = null);
         ProductCollectionViewModel GetBySlug(string slug);
     }
     public class ProductCollectionService : BaseService<ProductCollections, ProductCollectionViewModel>, IProductCollectionService
@@ -19,10 +19,11 @@ namespace Doitsu.DBManager.Fandom.Services
         public ProductCollectionService(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
         {
         }
-        public IEnumerable<ProductCollectionViewModel> GetActiveByQuery(int limit, int pageSize, int currentPage, string name = "", int? id = null, bool? isSlider = null)
+        public IQueryable<ProductCollectionViewModel> GetActiveByQuery(int limit, int pageSize, int currentPage, string name = "", int? id = null, bool? isSlider = null)
         {
-            IQueryable<ProductCollections> listQuery = GetActiveAsNoTracking(a =>
-            (id == null || a.Id == id.Value)
+            IQueryable<ProductCollections> listQuery = GetAsNoTracking(a =>
+            a.Active == true
+            && (id == null || a.Id == id.Value)
             && (isSlider == null || isSlider == a.IsSlider)
             && (name.IsNullOrEmpty() || a.Name.Contains(name, StringComparison.CurrentCultureIgnoreCase)));
 
@@ -38,7 +39,7 @@ namespace Doitsu.DBManager.Fandom.Services
                 listQuery.Skip(pageSize * currentPage).Take(pageSize);
             }
 
-            var list = listQuery.ProjectTo<ProductCollectionViewModel>(this.Mapper.ConfigurationProvider).ToList();
+            var list = listQuery.ProjectTo<ProductCollectionViewModel>(this.Mapper.ConfigurationProvider);
             return list;
         }
 

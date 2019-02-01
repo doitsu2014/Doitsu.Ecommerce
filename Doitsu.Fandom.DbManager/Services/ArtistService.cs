@@ -13,7 +13,7 @@ namespace Doitsu.DBManager.Fandom.Services
 {
     public interface IArtistService : IBaseService<Artist, ArtistViewModel>
     {
-        IEnumerable<ArtistViewModel> GetActiveByQuery(int limit, int pageSize, int currentPage, string name, string code, int? id);
+        IQueryable<ArtistViewModel> GetActiveByQuery(int limit, int pageSize, int currentPage, string name, string code, int? id);
     }
 
     public class ArtistService : BaseService<Artist, ArtistViewModel>, IArtistService
@@ -22,10 +22,11 @@ namespace Doitsu.DBManager.Fandom.Services
         {
         }
 
-        public IEnumerable<ArtistViewModel> GetActiveByQuery(int limit, int pageSize, int currentPage, string name, string code, int? id)
+        public IQueryable<ArtistViewModel> GetActiveByQuery(int limit, int pageSize, int currentPage, string name, string code, int? id)
         {
-            IQueryable<Artist> listQuery = GetActiveAsNoTracking(a => 
-            (id == null || a.Id == id.Value)
+            IQueryable<Artist> listQuery = GetActiveAsNoTracking(a =>
+            a.Active == true
+            && (id == null || a.Id == id.Value)
             && (code.IsNullOrEmpty() || a.Code.Contains(code, StringComparison.CurrentCultureIgnoreCase))
             && (name.IsNullOrEmpty() || a.Name.Contains(name, StringComparison.CurrentCultureIgnoreCase)));
 
@@ -40,7 +41,7 @@ namespace Doitsu.DBManager.Fandom.Services
                 listQuery.Skip(pageSize * currentPage).Take(pageSize);
             }
 
-            var list = listQuery.ProjectTo<ArtistViewModel>(this.Mapper.ConfigurationProvider).ToList();
+            var list = listQuery.ProjectTo<ArtistViewModel>(this.Mapper.ConfigurationProvider);
             return list;
         }
     }

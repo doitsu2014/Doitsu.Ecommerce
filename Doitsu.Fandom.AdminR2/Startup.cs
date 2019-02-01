@@ -1,3 +1,4 @@
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,12 @@ namespace Doitsu.Fandom.AdminR2
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/build";
+            });
+
+            // 
+            services.AddNodeServices(options =>
+            {
+                options.ProjectPath = Path.Combine(Directory.GetCurrentDirectory(), "ClientApp");
             });
         }
 

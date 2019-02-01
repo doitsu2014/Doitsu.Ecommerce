@@ -37,8 +37,8 @@ namespace Doitsu.Fandom.API.Controllers
         [AllowAnonymous, Route("read")]
         public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string name, [FromQuery]int? collectionId, [FromQuery]int? id)
         {
-            var listProduct = this.productService.GetActiveByQuery(limit, pageSize, currentPage, name, collectionId, id);
-            return Ok(BaseResponse<IEnumerable<ProductViewModel>>.PrepareDataSuccess(listProduct, "Get list products successful!"));
+            var listProduct = this.productService.GetActiveByQuery(limit, pageSize, currentPage, name, collectionId, id).ToList();
+            return Ok(BaseResponse<List<ProductViewModel>>.PrepareDataSuccess(listProduct, "Get list products successful!"));
         }
         [Route("create")]
         public ActionResult Post([FromBody]ProductViewModel productAPIVM)
@@ -64,6 +64,8 @@ namespace Doitsu.Fandom.API.Controllers
         [Route("delete")]
         public async Task<ActionResult> Delete([FromQuery]ProductViewModel model)
         {
+            var originData = await productService.FindByIdAsync(model.Id);
+            originData.Active = false;
             await this.productService.DeactiveAsync(model.Id);
             return Ok(BaseResponse<ProductViewModel>.PrepareDataSuccess(model, "Delete the product successful!"));
         }

@@ -1,0 +1,88 @@
+.artists {
+    background-color: #222534;
+    padding: 60px 0;
+}
+
+.artists-slider {
+    text-align: center;
+}
+
+.single-artist .title {
+    z-index: 2;
+    bottom: 24px;
+    color: white;
+    background-color: rgba(240, 240, 216, 0.85);
+    position: relative;
+}
+
+.single-artist.active img{
+    border:3px solid #1BBB9A;
+}
+
+.artists {
+	background: #222534;
+	padding: 60px 0;
+}
+.artists .single-brand a{
+	display:inline-block;
+}
+.artists .single-brand img {
+	cursor: pointer;
+	width: 100%;
+	opacity: 1;
+}
+.artists .single-brand:hover img{
+	opacity:1;
+}
+.artists .single-brand img {
+	cursor: move;
+}
+.artists .owl-nav div {
+	width: 42px;
+	height: 42px;
+	line-height: 42px;
+	text-align: center;
+	border-radius: 3px;
+	display: inline-block;
+	color: #fff;
+	font-size: 22px;
+	background: transparent;
+	position: absolute;
+	top: 50%;
+	border: 1px solid #fff;
+	margin-top: -21px;
+	-webkit-transition:all 0.3s ease 0s;
+	-moz-transition:all 0.3s ease 0s;
+	transition:all 0.3s ease 0s;
+	border-radius:100%;
+	opacity:0;
+	visibility:hidden;
+}
+.artists .owl-nav div:hover{
+	background:#1BBB9A;
+	color:#fff;
+	border-color:transparent;
+}
+.artists:hover .owl-nav div{
+	opacity:1;
+	visibility:visible;
+}
+.artists .owl-nav div.owl-prev {
+	left: -100px;
+}
+.artists:hover .owl-nav div.owl-prev {
+	left: -54px;
+}
+.artists .owl-nav div.owl-next {
+	right: -100px;
+}
+.artists:hover .owl-nav div.owl-next {
+	right: -54px;
+}
+.tab-section-main {}
+
+.tab-section-main iframe {
+    display: block;
+    width: 100%;
+    height: auto;
+}

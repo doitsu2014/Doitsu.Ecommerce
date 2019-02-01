@@ -37,8 +37,8 @@ namespace Doitsu.Fandom.API.Controllers
         [AllowAnonymous, Route("read")]
         public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string code, [FromQuery]int? id)
         {
-            var listArtist = this.productCollectionService.GetActiveByQuery(limit, pageSize, currentPage, code, id);
-            return Ok(BaseResponse<IEnumerable<ProductCollectionViewModel>>.PrepareDataSuccess(listArtist, "Get list artists successful!"));
+            var listArtist = this.productCollectionService.GetActiveByQuery(limit, pageSize, currentPage, code, id).ToList();
+            return Ok(BaseResponse<List<ProductCollectionViewModel>>.PrepareDataSuccess(listArtist, "Get list artists successful!"));
         }
         [Route("create")]
         public ActionResult Post([FromBody]ProductCollectionViewModel productRequestVM)
@@ -55,6 +55,8 @@ namespace Doitsu.Fandom.API.Controllers
         [Route("delete")]
         public async Task<ActionResult> Delete([FromQuery]ProductCollectionViewModel model)
         {
+            var originData = await productCollectionService.FindByIdAsync(model.ID);
+            originData.Active = false;
             await this.productCollectionService.DeactiveAsync(model.ID);
             return Ok(BaseResponse<ProductCollectionViewModel>.PrepareDataSuccess(model, "Delete the artist successful!"));
         }

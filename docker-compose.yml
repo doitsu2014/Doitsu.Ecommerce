@@ -2,17 +2,14 @@ version: '3.4'
 
 services:
   doitsu.fandom.api:
-    image: ${DOCKER_REGISTRY-}doitsufandomapi
+    image: ${DOCKER_REGISTRY-}doitsufandom
     build:
-      context: ./Doitsu.Fandom.API
-      dockerfile: Dockerfile
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
-      - ASPNETCORE_HTTPS_PORT=44389
-    ports:
-      - "54389:80"
-      - "44389:443"
-    volumes:
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      context: .
+      dockerfile: Doitsu.Fandom.API/Dockerfile
+
+  doitsu.fandom.adminr2:
+    image: ${DOCKER_REGISTRY-}doitsufandom
+    build:
+      context: .
+      dockerfile: Doitsu.Fandom.AdminR2/Dockerfile
+

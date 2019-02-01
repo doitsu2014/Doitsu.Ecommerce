@@ -37,8 +37,8 @@ namespace Doitsu.Fandom.API.Controllers
         [AllowAnonymous, Route("read")]
         public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string name, [FromQuery]int? blogCategoryId, [FromQuery]int? id)
         {
-            var listBlog = this.blogService.GetActiveByQuery(limit, pageSize, currentPage, name, blogCategoryId, id);
-            return Ok(BaseResponse<IEnumerable<BlogViewModel>>.PrepareDataSuccess(listBlog, "Get list blogs successful!"));
+            var listBlog = this.blogService.GetActiveByQuery(limit, pageSize, currentPage, name, blogCategoryId, id).ToList();
+            return Ok(BaseResponse<List<BlogViewModel>>.PrepareDataSuccess(listBlog, "Get list blogs successful!"));
         }
         [Route("create")]
         public ActionResult Post([FromBody]BlogViewModel blogAPIVM)
@@ -71,6 +71,8 @@ namespace Doitsu.Fandom.API.Controllers
         [Route("delete")]
         public async Task<ActionResult> Delete([FromQuery]BlogViewModel model)
         {
+            var originData = await blogService.FindByIdAsync(model.Id);
+            originData.Active = false;
             await this.blogService.DeactiveAsync(model.Id);
             return Ok(BaseResponse<BlogViewModel>.PrepareDataSuccess(model, "Delete the blog successful!"));
         }
