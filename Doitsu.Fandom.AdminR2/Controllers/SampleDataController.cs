@@ -18,7 +18,7 @@ namespace Doitsu.Fandom.AdminR2.Controllers
         public IQueryable<WeatherForecast> WeatherForecasts(int startDateIndex)
         {
             var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            return (System.Linq.IQueryable<Doitsu.Fandom.AdminR2.Controllers.SampleDataController.WeatherForecast>)Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 DateFormatted = DateTime.Now.AddDays(index + startDateIndex).ToString("d"),
                 TemperatureC = rng.Next(-20, 55),

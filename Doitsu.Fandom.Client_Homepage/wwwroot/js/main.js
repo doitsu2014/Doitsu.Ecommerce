@@ -1,4 +1,4 @@
-/* =====================================
+﻿/* =====================================
 Template Name: Bizlamp
 Author Name: ThemeLamp
 Author URI: http://themelamp.com
@@ -385,8 +385,8 @@ Version:	1.0
 			time: 1000
 		});
 		
-		$('#accordion-one .single-faq').on('click', function() {
-            $("#accordion-one .single-faq, #accordion-one .single-faq a").removeClass("active");
+		$('#accordion-notices .single-faq').on('click', function() {
+            $("#accordion-notices .single-faq, #accordion-notices .single-faq a").removeClass("active");
             $(this).addClass("active");
 		});
 	

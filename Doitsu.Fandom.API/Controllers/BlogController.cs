@@ -73,7 +73,7 @@ namespace Doitsu.Fandom.API.Controllers
         {
             var originData = await blogService.FindByIdAsync(model.Id);
             originData.Active = false;
-            await this.blogService.DeactiveAsync(model.Id);
+            await this.blogService.UpdateAsync(model);
             return Ok(BaseResponse<BlogViewModel>.PrepareDataSuccess(model, "Delete the blog successful!"));
         }
     }

@@ -15,8 +15,7 @@ namespace Doitsu.Ecommerce.API
             WebHost.CreateDefaultBuilder(args)
             .UseKestrel()
             .UseContentRoot(Directory.GetCurrentDirectory())
-            //.UseIISIntegration()
-            .UseStartup<Startup>()
-            .Build();
+                .UseStartup<Startup>()
+                .Build();
     }
 }

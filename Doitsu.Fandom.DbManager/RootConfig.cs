@@ -1,4 +1,5 @@
 ﻿
+using System;
 using AutoMapper;
 using Doitsu.DBManager.Fandom.Services;
 using Doitsu.Fandom.DbManager.Identity.Context;
@@ -79,8 +80,8 @@ namespace Doitsu.Fandom.DBManager
                 cfg.CreateMap<ProductViewModel, Products>()
                     .ForMember(x => x.Artist, y => y.Ignore());
                 cfg.CreateMap<BlogViewModel, Blogs>()
-                    .ForMember(x => x.BlogCategory, y => y.Ignore());
-
+                    .ForMember(x => x.BlogCategory, y => y.Ignore())
+                    .ForMember(x => x.DraftTime, y => y.Condition(o=> o.DraftTime > DateTime.MinValue));
             });
             IMapper mapper = autoMapperConfig.CreateMapper();
             services.AddSingleton(mapper); 

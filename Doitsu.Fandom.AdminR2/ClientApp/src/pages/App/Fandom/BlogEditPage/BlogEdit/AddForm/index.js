@@ -30,7 +30,7 @@ const mapStateToProps = (state, props) => ({
 class AddForm extends React.Component {
   
   componentWillMount() {
-    const { isUpdate, isReloadInformation, id, location } = this.props;
+    const { isUpdate, isReloadInformation, id, location, dispatch} = this.props;
     // handle edit, create state
     (async () => {
       if(isUpdate && location.pathname === '/blog/edit' && isReloadInformation && id) {
@@ -48,7 +48,6 @@ class AddForm extends React.Component {
     dispatch(setBlogEditState(blog));
 
     // update editor state, convert content html to content editor
-    console.log("Blog Content", blog.content) 
     if(blog.content) {
       const blocksFromHTML = convertFromHTML(blog.content);
       const content = ContentState.createFromBlockArray(
@@ -84,7 +83,14 @@ class AddForm extends React.Component {
   }
   handleFormSubmit = (e) => {
     e.preventDefault();
-    let { dispatch, isUpdate } = this.props;
+    let { dispatch, isUpdate, location } = this.props;
+
+    if (location.pathname === '/blog/create' ) {
+      isUpdate = false;
+
+      dispatch(setBlogEditState({isUpdate}));
+    }
+
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         // prepare fields
@@ -136,6 +142,8 @@ class AddForm extends React.Component {
             dispatch(setLoading(false))
           });
         } else {
+          // if creating section, I think we should assurance the id always got 0 value
+          blogProperties.id = 0;
           createBlog({...blogProperties, active: true})
             .then((response) => {
               if(response.success) {

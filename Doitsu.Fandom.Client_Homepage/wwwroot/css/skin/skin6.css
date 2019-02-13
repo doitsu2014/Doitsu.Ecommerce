@@ -240,8 +240,9 @@
 
 .header .nav li:hover a,
 .header .nav li.active a,
-.blogs .post-tab .post-info p i  {
-	color: #FF9800;
+.blogs .post-tab .post-info p i,
+.hero-area .slider-text {
+    color: #FF9800;
 }
 
 .slicknav_btn {
@@ -265,6 +266,7 @@
 	border-bottom: 2px solid #FF9800;
 }
 
-.blogs .post-tab .nav li a.active{
+.blogs .post-tab .nav li a.active,
+.list-group-item-action:focus, .list-group-item-action:hover {
 	background: #FF9800;
 }

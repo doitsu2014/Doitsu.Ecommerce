@@ -36,9 +36,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="TTFiles\RewritedEntities.cs" />
+    <Compile Remove="Identity\Entities\FandomUser.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Doitsu_Service\Doitsu.Service.Core\Doitsu.Service.Core.csproj" />
-    <ProjectReference Include="..\..\Doitsu_Service\Doitsu.Utils\Doitsu.Utils.csproj" />
+    <None Update="Identity\Entities\FandomUser.cshtml">
+      <Generator>RazorTemplatePreprocessor</Generator>
+      <LastGenOutput>FandomUser.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Doitsu.Service.Core">
+      <HintPath>Libs\Doitsu.Service.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Doitsu.Utils">
+      <HintPath>Libs\Doitsu.Utils.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

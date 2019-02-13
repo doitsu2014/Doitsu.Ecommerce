@@ -44,6 +44,7 @@ namespace Doitsu.DBManager.Fandom.Services
             IQueryable<Blogs> listQuery = GetActiveAsNoTracking(a =>
                 a.Active == true
                 && (id == null || a.Id == id.Value)
+                && (a.Active == true)
                 && (isSlider == null || isSlider == a.IsSlider)
                 && (name.IsNullOrEmpty() || a.Title.Contains(name, StringComparison.CurrentCultureIgnoreCase))
                 && (blogCategoryId == null || a.BlogCategoryId == blogCategoryId)
