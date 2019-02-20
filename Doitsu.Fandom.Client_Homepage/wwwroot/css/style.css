@@ -346,7 +346,7 @@ input:-webkit-autofill:focus {
 }
 /* BreadCrumbs */
 .breadcrumbs {
-	background-image: url('images/breadcrumb-bg.jpg');
+	background-image: url('../images/breadcrumb-bg.jpg');
 	position: relative;
 	text-align: center;
 	padding: 166px 0 90px;
@@ -476,7 +476,7 @@ input:-webkit-autofill:focus {
 /* Multi Section */
 .multi-section {
 	background-color: #f8f8f8;
-	background-image: url('images/pattern.png');
+	background-image: url('../images/pattern.png');
 	background-repeat: repeat;
 }
 .multi-section .section-title {
@@ -1511,7 +1511,7 @@ input:-webkit-autofill:focus {
 }
 /* Hero Creative */
 .hero-area.creative{
-	background-image:url('images/homepage-creative.jpg');
+	background-image:url('../images/homepage-creative.jpg');
 }
 .hero-area.creative #particles2-js{
 	position:absolute;
@@ -1692,7 +1692,7 @@ input:-webkit-autofill:focus {
 =================================*/
 .services {
 	background: #f8f8f8;
-	background-image: url('images/pattern.png');
+	background-image: url('../images/pattern.png');
 	background-repeat: repeat;
 }
 /* Service Latest */
@@ -2592,7 +2592,7 @@ input:-webkit-autofill:focus {
 	09. Consulting CSS
 =================================*/
 .consulting {
-	background-image: url('images/call-bg.jpg');
+	background-image: url('../images/call-bg.jpg');
 	background-repeat: repeat;
 	background-size: cover;
 	background-position: center;
@@ -2995,7 +2995,7 @@ input:-webkit-autofill:focus {
 =================================*/
 .pricing-table {
 	background-color: #f8f8f8;
-	background-image: url('images/pattern.png');
+	background-image: url('../images/pattern.png');
 	background-repeat: repeat;
 }
 .pricing-table .single-table {
@@ -3118,7 +3118,7 @@ input:-webkit-autofill:focus {
 	13. Our Skill CSS
 =================================*/
 .our-skill {
-	background-image:url('images/skill-bg.jpg');
+	background-image:url('../images/skill-bg.jpg');
 }
 .our-skill .title {
 	margin-bottom: 20px;
@@ -4197,7 +4197,7 @@ input:-webkit-autofill:focus {
 =================================*/
 .newsletter {
 	position: relative;
-	background-image:url('images/call-bg.jpg');
+	background-image:url('../images/call-bg.jpg');
 	background-size: cover;
 	background-position: center center;
 	padding: 35px 0;

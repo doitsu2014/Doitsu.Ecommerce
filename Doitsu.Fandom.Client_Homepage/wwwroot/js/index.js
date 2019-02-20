@@ -51,16 +51,15 @@ async function configEvents() {
 
 }
 
-// Area to fetch the data from API and Transform to view
-const blogCategoryEnum = {
-    NOTICE: 1,
-    NEWS: 2
-};
+
 
 function createHeroSliderElement(slider) {
+    let blogTypeSubParam = slider.type == blogCategoryEnum.NOTICE ? 'notices' : 'news';
+    let sliderLink = `${blogTypeSubParam}/${slider.slug}`;
+    
     let heroSliderElement = 
     `
-        <div class="single-slider" style="background-image:url('${slider.thumbnailURL}')" onclick="location.href='${slider.slug}'">
+        <div class="single-slider" style="background-image:url('${slider.thumbnailURL}')" onclick="location.href='${sliderLink}'">
             <div class="shadow-wrap">
             </div>
         </div>
@@ -69,10 +68,13 @@ function createHeroSliderElement(slider) {
 }
 
 function createLatestElement(latestBlog) {
+    let blogTypeSubParam = latestBlog.blogCategoryID == blogCategoryEnum.NOTICE ? 'notices' : 'news';
+    let sliderLink = `${blogTypeSubParam}/${latestBlog.slug}`;
+    
     var draftTimeDate = new Date(latestBlog.draftTime);
     let lastestElement = 
     `
-        <a href="#" class="list-group-item list-group-item-action ">
+        <a href="${sliderLink}" class="list-group-item list-group-item-action ">
             <div class="d-flex w-100 justify-content-between">
                 <h6 class="mb-1">${latestBlog.title}</h6>
                 <small>${draftTimeDate.toLocaleDateString()}</small>

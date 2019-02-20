@@ -21,7 +21,6 @@ namespace Doitsu.Fandom.AdminR2
             WebHost.CreateDefaultBuilder(args)
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
                 .UseStartup<Startup>();
     }
 }

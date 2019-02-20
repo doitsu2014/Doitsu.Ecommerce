@@ -1,0 +1,51 @@
+﻿@page "/notices"
+<link href="css/notice.css" rel="stylesheet" />
+<!-- Breadcrumbs -->
+<section class="breadcrumbs overlay bg-image">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!-- Bread Title -->
+                <div class="bread-title">
+                    <h2 class="title-rotate">Notices</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End Breadcrumbs -->
+<!-- Blog Archive -->
+<section class="blogs archive list section">
+    <div class="container">
+        <div class="row" id="list-notices">
+            
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <!-- Pagination -->
+                <div class="pagination-main">
+                    <ul class="pagination">
+                        <li class="prev"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+                        <li><a href="#">1</a></li>
+                        <li class="active"><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li class="next"><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                    </ul>
+                </div>
+                <!--/ End Pagination -->
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End Blog Archive -->
+
+@section Scripts {
+    <script type="text/javascript" src="js/notice.js"></script>
+    <script type="text/javascript">
+        (function () {
+            fetchNoticesBlog();
+            configEvents();
+        })();
+    </script>
+}

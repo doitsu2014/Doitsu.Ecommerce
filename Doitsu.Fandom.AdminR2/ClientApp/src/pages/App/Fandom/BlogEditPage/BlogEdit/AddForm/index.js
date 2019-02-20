@@ -142,7 +142,7 @@ class AddForm extends React.Component {
             dispatch(setLoading(false))
           });
         } else {
-          // if creating section, I think we should assurance the id always got 0 value
+          // if creating section, I think we should assurance the id always got 0 value 
           blogProperties.id = 0;
           createBlog({...blogProperties, active: true})
             .then((response) => {

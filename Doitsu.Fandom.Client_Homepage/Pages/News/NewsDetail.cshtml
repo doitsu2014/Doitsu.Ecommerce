@@ -1,0 +1,121 @@
+﻿@page "/news/{slug}"
+
+<!-- Breadcrumbs -->
+<section class="breadcrumbs normal overlay bg-image">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!-- Bread Title -->
+                <div class="bread-title">
+                    <h2 class="title-normal">Focus our notices</h2>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End Breadcrumbs -->
+<!-- Blog Archive -->
+<section class="blogs archive single section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-12">
+                <div class="row">
+                    <div class="col-12" id="notice-detail">
+                        <!-- Single blog -->
+                        <!--/ End Single blog -->
+                    </div>
+                    <div class="col-12">
+                        <!-- Comments Form -->
+                        <div class="comments-form">
+                            <div class="bottom-title">
+                                <h2>Leave a comment</h2>
+                            </div>
+                            <!-- Comment Form -->
+                            <form class="form" method="post" action="http://themelamp.com/templates/trendbiz/mail/mail.php">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label>Your Name<span>*</span></label>
+                                            <input type="text" name="name" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label>Your Email<span>*</span></label>
+                                            <input type="email" name="email" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label>Your Website<span>*</span></label>
+                                            <input type="url" name="website" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Your Comment<span>*</span></label>
+                                            <textarea name="message" rows="6"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group button">
+                                            <button type="submit" class="btn primary animate">Submit Comment</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <!--/ End Comment Form -->
+                        </div>
+                        <!--/ End Comments Form -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-12">
+                <!-- Blog Sidebar -->
+                <div class="blog-sidebar">
+                    <!-- Post Tab -->
+                    <div class="single-sidebar post-tab">
+                        <!-- Tab Nav -->
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#list-recent-notices" role="tab">Recent</a></li>
+                        </ul>
+                        <!--/ End Tab Nav -->
+                        <div class="tab-content" id="myTabContent">
+                            <!-- Popular Posts -->
+                            <div class="tab-pane fade show active" id="list-recent-notices" role="tabpanel">
+                            </div>
+                            <!--/ End Popular Posts -->
+                        </div>
+                    </div>
+                    <!--/ End Post Tab -->
+                    <!-- Blog Tags -->
+                    <div class="single-sidebar tags">
+                        <h2>Popular Tags</h2>
+                        <ul>
+                            <li><a href="#">notices</a></li>
+                            <li><a href="#">news</a></li>
+                            <li><a href="#">album</a></li>
+                            <li><a href="#">vietsub</a></li>
+                        </ul>
+                    </div>
+                    <!--/ End Blog Tags -->
+                    <!-- Subscribe -->
+                    <div class="single-sidebar subscribe">
+                        <h2>Newsletter</h2>
+                        <p>Subscribe to our monthly newsletter. Every month we'll send you an awesome update!</p>
+                        <div class="single-widget subscribe">
+                            <form action="#">
+                                <input placeholder="Email Address" type="email">
+                                <button type="submit"><i class="fa fa-paper-plane"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <!--/ End Subscribe -->
+                </div>
+                <!--/ End Blog Sidebar -->
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End Blog Archive -->

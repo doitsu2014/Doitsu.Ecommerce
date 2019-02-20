@@ -3,20 +3,20 @@ version: '3.4'
 services:
   doitsu.fandom.api:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Staging
+      - ASPNETCORE_ENVIRONMENT=Production
     ports:
-      - "44300:80"
+      - "9092:80"
 
   doitsu.fandom.adminr2:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Staging
+      - ASPNETCORE_ENVIRONMENT=Production
     ports:
-      - "44400:80"
+      - "9091:80"
 
 
   doitsu.fandom.client_homepage:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Staging
+      - ASPNETCORE_ENVIRONMENT=Production
     ports:
-      - "44500:80"
+      - "9090:80"
 

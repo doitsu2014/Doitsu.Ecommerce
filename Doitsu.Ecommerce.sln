@@ -15,9 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doitsu.Fandom.Client_Homepa
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7924255F-BECA-41A7-B23D-B335ABCF8C6F}"
 EndProject
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "Doitsu.Utils", "..\Doitsu_Service\Doitsu.Utils\Doitsu.Utils.csproj", "{6D5DB783-4711-48B4-8FD0-88E848C8002D}"
+Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "Doitsu.Utils", "..\Doitsu_Service\Doitsu.Utils\Doitsu.Utils.csproj", "{1F36118B-74BA-4F55-8C4C-3C6AAE4A0BA7}"
 EndProject
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "Doitsu.Service.Core", "..\Doitsu_Service\Doitsu.Service.Core\Doitsu.Service.Core.csproj", "{23F77E5C-E6D3-4D65-B1FD-DD8998BBB0DC}"
+Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "Doitsu.Service.Core", "..\Doitsu_Service\Doitsu.Service.Core\Doitsu.Service.Core.csproj", "{CDDC0C23-7E60-4722-86D0-DF1F4EEA0301}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,14 +49,14 @@ Global
 		{7924255F-BECA-41A7-B23D-B335ABCF8C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7924255F-BECA-41A7-B23D-B335ABCF8C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7924255F-BECA-41A7-B23D-B335ABCF8C6F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6D5DB783-4711-48B4-8FD0-88E848C8002D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6D5DB783-4711-48B4-8FD0-88E848C8002D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6D5DB783-4711-48B4-8FD0-88E848C8002D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6D5DB783-4711-48B4-8FD0-88E848C8002D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{23F77E5C-E6D3-4D65-B1FD-DD8998BBB0DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23F77E5C-E6D3-4D65-B1FD-DD8998BBB0DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23F77E5C-E6D3-4D65-B1FD-DD8998BBB0DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23F77E5C-E6D3-4D65-B1FD-DD8998BBB0DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F36118B-74BA-4F55-8C4C-3C6AAE4A0BA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F36118B-74BA-4F55-8C4C-3C6AAE4A0BA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F36118B-74BA-4F55-8C4C-3C6AAE4A0BA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F36118B-74BA-4F55-8C4C-3C6AAE4A0BA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDDC0C23-7E60-4722-86D0-DF1F4EEA0301}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDDC0C23-7E60-4722-86D0-DF1F4EEA0301}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDDC0C23-7E60-4722-86D0-DF1F4EEA0301}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDDC0C23-7E60-4722-86D0-DF1F4EEA0301}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,5 +65,10 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CFEA7AA3-E480-4EDB-A44E-06CB427F6416}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
 	EndGlobalSection
 EndGlobal

@@ -1,10 +1,4 @@
 FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
-RUN apt-get update && \
-    apt-get install -y wget && \
-    apt-get install -y gnupg2 && \
-    apt-get install -y nano && \
-    wget -qO- https://deb.nodesource.com/setup_11.x | bash - && \
-    apt-get install -y build-essential nodejs
 
 WORKDIR /app
 EXPOSE 80
@@ -16,7 +10,12 @@ RUN dotnet restore Doitsu.Fandom.AdminR2/Doitsu.Fandom.AdminR2.csproj
 COPY . .
 
 WORKDIR /src/Doitsu.Fandom.AdminR2/ClientApp
-RUN npm rebuild node-sass
+RUN apt-get update && \
+    apt-get install -y wget && \
+    apt-get install -y gnupg2 && \
+    wget -qO- https://deb.nodesource.com/setup_11.x | bash - && \
+    apt-get install -y build-essential nodejs
+CMD ["npm", "install"]
 
 WORKDIR /src/Doitsu.Fandom.AdminR2
 RUN dotnet build Doitsu.Fandom.AdminR2.csproj -c Release -o /app

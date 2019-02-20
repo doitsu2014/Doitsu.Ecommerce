@@ -2,14 +2,20 @@ version: '3.4'
 
 services:
   doitsu.fandom.api:
-    image: ${DOCKER_REGISTRY-}doitsufandom
+    image: doitsu2014/doitsu.fandom.api
     build:
       context: .
       dockerfile: Doitsu.Fandom.API/Dockerfile
 
   doitsu.fandom.adminr2:
-    image: ${DOCKER_REGISTRY-}doitsufandom
+    image: doitsu2014/doitsu.fandom.adminr2
     build:
       context: .
       dockerfile: Doitsu.Fandom.AdminR2/Dockerfile
+
+  doitsu.fandom.client_homepage:
+    image: doitsu2014/doitsu.fandom.client_homepage
+    build:
+      context: .
+      dockerfile: Doitsu.Fandom.Client_Homepage/Dockerfile
 

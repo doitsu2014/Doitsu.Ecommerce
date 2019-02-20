@@ -17,7 +17,6 @@
     <None Remove="Libs\Doitsu.DBManager.dll" />
     <None Remove="Libs\Doitsu.Service.dll" />
     <None Remove="Libs\bootstrap.css.map" />
-    <None Remove="Dockerfile" />
     <None Remove="TTFiles\RewritedEntities.tt" />
     <None Remove="Libs\.DS_Store" />
     <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636793636713111839_82324c583ca945449fe49d8d03448375.jpg" />
@@ -53,6 +52,8 @@
   <ItemGroup>
     <Folder Include="wwwroot\" />
     <Folder Include="Libs\" />
+    <Folder Include="wwwroot\resource-container\6765a913-cbc3-4230-9cc8-a9eac4b7a3e9\" />
+    <Folder Include="wwwroot\resource-container\1\" />
   </ItemGroup>
 
   <ItemGroup>

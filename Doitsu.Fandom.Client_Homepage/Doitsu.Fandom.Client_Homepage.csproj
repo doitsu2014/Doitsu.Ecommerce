@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
 
@@ -13,16 +14,18 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\images\ygwith\ygflvn_logo_ver3.png" />
-    <Content Remove="wwwroot\css\animate.min.css" />
     <Content Remove="wwwroot\css\skin\skin9.css" />
     <Content Remove="wwwroot\css\skin\skin10.css" />
     <Content Remove="wwwroot\css\skin\skin11.css" />
     <Content Remove="wwwroot\css\skin\skin8.css" />
     <Content Remove="wwwroot\css\bootstrap.bundle.js" />
-    <Content Remove="wwwroot\css\bootstrap.css.map" />
-    <Content Remove="wwwroot\css\bootstrap.min.css" />
+    <Content Remove="wwwroot\img\notice image.png" />
+    <Content Remove="wwwroot\img\notice_image.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\css\" />
+    <Folder Include="Pages\Notice\" />
+    <Folder Include="Pages\News\" />
+    <Folder Include="wwwroot\css\images\" />
   </ItemGroup>
 </Project>
