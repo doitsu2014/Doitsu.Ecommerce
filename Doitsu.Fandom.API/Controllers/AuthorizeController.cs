@@ -35,7 +35,7 @@ namespace Doitsu.Fandom.API.Controllers
         //    _userManager = userManager;
         //}
 
-        [HttpPost("login")]
+        [HttpGet("login")]
         [AllowAnonymous]
         public async Task<ActionResult> Login([FromBody]LoginModel loginModel)
         {

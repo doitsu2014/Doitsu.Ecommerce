@@ -54,7 +54,9 @@ async function configEvents() {
 
 
 function createHeroSliderElement(slider) {
-    let blogTypeSubParam = slider.type == blogCategoryEnum.NOTICE ? 'notices' : 'news';
+    let blogTypeSubParam = slider.type == sliderTypeEnum.PRODUCT_COLLECTION ? 'album' 
+                                : slider.blogCategoryId == blogCategoryEnum.NOTICE ? 'notice' : 'news';
+    
     let sliderLink = `${blogTypeSubParam}/${slider.slug}`;
     
     let heroSliderElement = 
@@ -112,9 +114,9 @@ async function fetchLastestNewsBlog() {
         $('#list-news').append(ele);
     }
 }
-(function () {
-    fetchSliders();
-    fetchLastestNoticesBlog();
-    fetchLastestNewsBlog();
-    configEvents();
+(async function () {
+    await fetchSliders();
+    await fetchLastestNoticesBlog();
+    await fetchLastestNewsBlog();
+    await configEvents();
 })();

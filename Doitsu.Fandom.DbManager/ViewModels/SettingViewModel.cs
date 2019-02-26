@@ -18,6 +18,7 @@ namespace Doitsu.Fandom.DBManager.ViewModels
         /// References to SliderTypeEnum
         /// </summary>
         public int Type { get; set; }
+        public int BlogCategoryId { get; set; }
         public bool IsSlider { get; set; }
     }
 }

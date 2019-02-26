@@ -27,7 +27,7 @@
                         
                         <!--/ End Single blog -->
                     </div>
-                    <div class="col-12">
+                    <div class="col-12" hidden>
                         <!-- Comments Form -->
                         <div class="comments-form">
                             <div class="bottom-title">
@@ -73,50 +73,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-12">
-                <!-- Blog Sidebar -->
-                <div class="blog-sidebar">
-                    <!-- Post Tab -->
-                    <div class="single-sidebar post-tab">
-                        <!-- Tab Nav -->
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#list-recent-notices" role="tab">Recent</a></li>
-                        </ul>
-                        <!--/ End Tab Nav -->
-                        <div class="tab-content" id="myTabContent">
-                            <!-- Popular Posts -->
-                            <div class="tab-pane fade show active" id="list-recent-notices" role="tabpanel">
-                            </div>
-                            <!--/ End Popular Posts -->
-                        </div>
-                    </div>
-                    <!--/ End Post Tab -->
-                    <!-- Blog Tags -->
-                    <div class="single-sidebar tags">
-                        <h2>Popular Tags</h2>
-                        <ul>
-                            <li><a href="#">notices</a></li>
-                            <li><a href="#">news</a></li>
-                            <li><a href="#">album</a></li>
-                            <li><a href="#">vietsub</a></li>
-                        </ul>
-                    </div>
-                    <!--/ End Blog Tags -->
-                    <!-- Subscribe -->
-                    <div class="single-sidebar subscribe">
-                        <h2>Newsletter</h2>
-                        <p>Subscribe to our monthly newsletter. Every month we'll send you an awesome update!</p>
-                        <div class="single-widget subscribe">
-                            <form action="#">
-                                <input placeholder="Email Address" type="email">
-                                <button type="submit"><i class="fa fa-paper-plane"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                    <!--/ End Subscribe -->
-                </div>
-                <!--/ End Blog Sidebar -->
-            </div>
         </div>
     </div>
 </section>
@@ -128,7 +84,6 @@
         (function () {
             fetchRecentNoticesBlog();
             fetchNoticeBySlug('@RouteData.Values["slug"]');
-
             configEvents();
         })();
     </script>

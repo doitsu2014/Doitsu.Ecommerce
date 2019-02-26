@@ -1,5 +1,4 @@
-﻿
-function configEvents() {
+﻿function configEvents() {
     /*====================================
     11. Blog Image Gallery JS
     ======================================*/
@@ -16,17 +15,17 @@ function configEvents() {
     });
 }
 
-function createNoticeElement(latestBlog) {
+function createNewsElement(latestBlog) {
     var draftTimeDate = new Date(latestBlog.draftTime);
     let lastestElement = 
     `
-        <div class="col-12">
+        <div class="col-lg-6 col-md-6 col-12">
             <div class="single-blog">
                 <div class="blog-head">
                     <img src="${latestBlog.thumbnailURL}" alt="${latestBlog.title}">
                 </div>
                 <div class="blog-bottom">
-                    <h4><a href="/notices/${latestBlog.slug}">${latestBlog.title}</a></h4>
+                    <h4><a href="/news/${latestBlog.slug}">${latestBlog.title}</a></h4>
                     <hr/>
                     <div class="short-content">
                         <p>${latestBlog.content}</p>
@@ -41,7 +40,7 @@ function createNoticeElement(latestBlog) {
     return lastestElement;
 }
 
-function createRecentNoticeElement(latestBlog) {
+function createRandomElement(latestBlog) {
     var draftTimeDate = new Date(latestBlog.draftTime);
     let lastestElement = 
     `
@@ -50,7 +49,7 @@ function createRecentNoticeElement(latestBlog) {
                 <img src="${latestBlog.thumbnailURL}" alt="${latestBlog.title}">
             </div>
             <div class="post-info">
-                <h4><a href="/notices/${latestBlog.slug}">${latestBlog.title}</a></h4>
+                <h4><a href="/news/${latestBlog.slug}">${latestBlog.title}</a></h4>
                 <p><i class="fa fa-calendar"></i>${draftTimeDate.toLocaleDateString()}</p>
             </div>
         </div>
@@ -58,21 +57,21 @@ function createRecentNoticeElement(latestBlog) {
     return lastestElement;
 }
 
-function createSingleNoticeElement(notice) {
-    var draftTimeDate = new Date(notice.draftTime);
-    let lastestElement = 
+function createNewsDetailElement(news) {
+    var draftTimeDate = new Date(news.draftTime);
+    let newsDetailElement = 
     `
         <div class="single-blog">
             <div class="blog-head">
-                <img src="${notice.thumbnailURL}" alt="#">
+                <img src="${news.thumbnailURL}" alt="#">
             </div>
             <div class="blog-description">
-                <h1><a href="blog-single.html">${notice.title}</a></h1>
+                <h1><a href="blog-single.html">${news.title}</a></h1>
                 <ul class="blog-meta">
                     <li><i class="fa fa-calendar"></i>${draftTimeDate.toLocaleDateString()}</li>
                     <li><a href="#"><i class="fa fa-tags"></i>notices</a></li>
                 </ul>
-                <p>${notice.content}</p>
+                <p>${news.content}</p>
     
             </div>
             <div class="bottom-info">
@@ -98,30 +97,30 @@ function createSingleNoticeElement(notice) {
             </div>
         </div>  
     `;
-    return lastestElement;
+    return newsDetailElement;
 }
 
-async function fetchNoticesBlog() {
-    let res = await fetch(BASE_URL + BLOG_API_PARAM + `read?blogCategoryId=${blogCategoryEnum['NOTICE']}`);
+async function fetchNewsBlog() {
+    let res = await fetch(BASE_URL + BLOG_API_PARAM + `read?blogCategoryId=${blogCategoryEnum['NEWS']}`);
     let data = (await res.json()).data;
     for(let latestBlog of data) {
-        const ele = createNoticeElement(latestBlog);
-        $('#list-notices').append(ele);
+        const ele = createNewsElement(latestBlog);
+        $('#list-news-post').append(ele);
     }
 }
 
-async function fetchRecentNoticesBlog() {
-    let res = await fetch(BASE_URL + BLOG_API_PARAM + `read?blogCategoryId=${blogCategoryEnum['NOTICE']}&limit=5`);
+async function fetchRandomNewsBlog() {
+    let res = await fetch(BASE_URL + BLOG_API_PARAM + `read?blogCategoryId=${blogCategoryEnum['NEWS']}&limit=5`);
     let data = (await res.json()).data;
     for(let latestBlog of data) {
-        const ele = createRecentNoticeElement(latestBlog);
-        $('#list-recent-notices').append(ele);
+        const ele = createRandomElement(latestBlog);
+        $('#list-random-news-post').append(ele);
     }
 }
 
-async function fetchNoticeBySlug(slug) {
+async function fetchNewsBySlug(slug) {
     let res = await fetch(BASE_URL + BLOG_API_PARAM + `read-by-slug?slug=${slug}`);
     let data = (await res.json()).data;
-    const ele = createSingleNoticeElement(data);
-    $('#notice-detail').append(ele);
+    const ele = createNewsDetailElement(data);
+    $('#news-post').append(ele);
 }

@@ -22,7 +22,7 @@ namespace Doitsu.Fandom.API.Controllers
             this.productCollectionService = productCollectionService;
             this.productService = productService;
         }
-        [AllowAnonymous, Route("read-by-slug")]
+        [AllowAnonymous, HttpGet("read-by-slug")]
         public ActionResult Get([FromQuery]string slug)
         {
             var productCollection = this.productCollectionService.GetBySlug(slug);
@@ -34,25 +34,25 @@ namespace Doitsu.Fandom.API.Controllers
             return Ok(BaseResponse<ProductCollectionViewModel>.PrepareDataSuccess(productCollection, "Get list artists successful!"));
         }
 
-        [AllowAnonymous, Route("read")]
+        [AllowAnonymous, HttpGet("read")]
         public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string code, [FromQuery]int? id)
         {
             var listArtist = this.productCollectionService.GetActiveByQuery(limit, pageSize, currentPage, code, id).ToList();
             return Ok(BaseResponse<List<ProductCollectionViewModel>>.PrepareDataSuccess(listArtist, "Get list artists successful!"));
         }
-        [Route("create")]
+        [HttpPost("create")]
         public ActionResult Post([FromBody]ProductCollectionViewModel productRequestVM)
         {
             var productCollectionVM = this.productCollectionService.Create(productRequestVM);
             return Ok(BaseResponse<ProductCollectionViewModel>.PrepareDataSuccess(productCollectionVM, "Create a artist successful!"));
         }
-        [Route("update")]
+        [HttpPut("update")]
         public async Task<ActionResult> Put([FromBody]ProductCollectionViewModel productRequestVM)
         {
             var productCollectionVM = await this.productCollectionService.UpdateAsync(productRequestVM.ID, productRequestVM);
             return Ok(BaseResponse<ProductCollectionViewModel>.PrepareDataSuccess(productCollectionVM, "Update the artist successful!"));
         }
-        [Route("delete")]
+        [HttpDelete("delete")]
         public async Task<ActionResult> Delete([FromQuery]ProductCollectionViewModel model)
         {
             var originData = await productCollectionService.FindByIdAsync(model.ID);

@@ -8,3 +8,8 @@ var blogCategoryEnum = {
     NOTICE: 1,
     NEWS: 2
 };
+
+var sliderTypeEnum = {
+    BLOG: 1,
+    PRODUCT_COLLECTION: 2
+};

@@ -22,25 +22,25 @@ namespace Doitsu.Fandom.API.Controllers
             this.blogService = blogService;
         }
 
-        [AllowAnonymous, Route("read-by-slug")]
+        [AllowAnonymous, HttpGet("read-by-slug")]
         public ActionResult Get([FromQuery]string slug)
         {
             var blog = this.blogService.FindBySlug(slug);
             return Ok(BaseResponse<BlogViewModel>.PrepareDataSuccess(blog, "Get blog successful!"));
         }
-        [AllowAnonymous, Route("count")]
+        [AllowAnonymous, HttpGet("count")]
         public ActionResult Get([FromQuery]int? collectionId)
         {
             var result = this.blogService.CountBlogs(collectionId);
             return Ok(BaseResponse<int>.PrepareDataSuccess(result, "Cout blog success successful!"));
         }
-        [AllowAnonymous, Route("read")]
+        [AllowAnonymous, HttpGet("read")]
         public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string name, [FromQuery]int? blogCategoryId, [FromQuery]int? id)
         {
             var listBlog = this.blogService.GetActiveByQuery(limit, pageSize, currentPage, name, blogCategoryId, id).ToList();
             return Ok(BaseResponse<List<BlogViewModel>>.PrepareDataSuccess(listBlog, "Get list blogs successful!"));
         }
-        [Route("create")]
+        [HttpGet("create")]
         public ActionResult Post([FromBody]BlogViewModel blogAPIVM)
         {
             try
@@ -53,7 +53,7 @@ namespace Doitsu.Fandom.API.Controllers
                 return BadRequest(BaseResponse<Exception>.PrepareDataFail(ex));
             }
         }
-        [Route("update")]
+        [HttpPut("update")]
         public async Task<ActionResult> Put([FromBody]BlogViewModel blogAPIVM)
         {
             try
@@ -68,7 +68,7 @@ namespace Doitsu.Fandom.API.Controllers
                 throw;
             }
         }
-        [Route("delete")]
+        [HttpDelete("delete")]
         public async Task<ActionResult> Delete([FromQuery]BlogViewModel model)
         {
             var originData = await blogService.FindByIdAsync(model.Id);

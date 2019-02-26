@@ -23,25 +23,25 @@ namespace Doitsu.Fandom.API.Controllers
             this.artistService = artistService;
         }
 
-        [AllowAnonymous,Route("read")]
+        [AllowAnonymous,HttpGet("read")]
         public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string name, [FromQuery]string code, [FromQuery]int? id)
         {
             var listArtist = this.artistService.GetActiveByQuery(limit, pageSize, currentPage, name, code, id).ToList();
             return Ok(BaseResponse<List<ArtistViewModel>>.PrepareDataSuccess(listArtist, "Get list artists successful!"));
         }
-        [Route("create")]
+        [HttpPost("create")]
         public ActionResult Post([FromBody]ArtistViewModel artistAPIVM)
         {
             var artistVM = this.artistService.Create(artistAPIVM);
             return Ok(BaseResponse<ArtistViewModel>.PrepareDataSuccess(artistVM, "Create a artist successful!"));
         }
-        [Route("update")]
+        [HttpPut("update")]
         public async Task<ActionResult> Put([FromBody]ArtistViewModel artistAPIVM)
         {
             var artistVM = await this.artistService.UpdateAsync(artistAPIVM.ID, artistAPIVM);
             return Ok(BaseResponse<ArtistViewModel>.PrepareDataSuccess(artistVM, "Update the artist successful!"));
         }
-        [Route("delete")]
+        [HttpDelete("delete")]
         public async Task<ActionResult> Delete([FromQuery]ArtistViewModel model)
         {
             var originData = await artistService.FindByIdAsync(model.ID);

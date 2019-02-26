@@ -54,16 +54,19 @@
     <Folder Include="Libs\" />
     <Folder Include="wwwroot\resource-container\6765a913-cbc3-4230-9cc8-a9eac4b7a3e9\" />
     <Folder Include="wwwroot\resource-container\1\" />
+    <Folder Include="wwwroot\swagger\" />
+    <Folder Include="wwwroot\swagger\ui\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.4.2" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.4.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.2" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="NSwag.AspNetCore" Version="12.0.14" />
   </ItemGroup>
 
   <ItemGroup>

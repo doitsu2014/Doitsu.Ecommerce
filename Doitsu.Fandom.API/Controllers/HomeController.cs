@@ -11,6 +11,7 @@ namespace Doitsu.Fandom.API.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
+        [HttpGet]
         public ActionResult Get()
         {
             return Ok(new

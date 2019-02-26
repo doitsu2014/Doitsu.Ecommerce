@@ -19,7 +19,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <StartAction>Project</StartAction>
-    <LaunchUrl>api/values</LaunchUrl>
+    <LaunchUrl>/</LaunchUrl>
     <ApplicationURL>http://localhost:9092</ApplicationURL>
   </PropertyGroup>
 </Project>

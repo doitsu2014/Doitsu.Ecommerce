@@ -21,11 +21,15 @@
     <Content Remove="wwwroot\css\bootstrap.bundle.js" />
     <Content Remove="wwwroot\img\notice image.png" />
     <Content Remove="wwwroot\img\notice_image.png" />
+    <Content Remove="wwwroot\images\bread-crumb.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\css\" />
     <Folder Include="Pages\Notice\" />
     <Folder Include="Pages\News\" />
     <Folder Include="wwwroot\css\images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\images\bread-crumb.jpg" />
   </ItemGroup>
 </Project>

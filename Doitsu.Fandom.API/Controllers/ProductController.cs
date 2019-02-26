@@ -22,31 +22,31 @@ namespace Doitsu.Fandom.API.Controllers
             this.productService = productService;
         }
 
-        [AllowAnonymous, Route("read-by-slug")]
+        [AllowAnonymous, HttpGet("read-by-slug")]
         public ActionResult Get([FromQuery]string slug)
         {
             var product = this.productService.FindBySlug(slug);
             return Ok(BaseResponse<ProductViewModel>.PrepareDataSuccess(product, "Get product successful!"));
         }
-        [AllowAnonymous, Route("count")]
+        [AllowAnonymous, HttpGet("count")]
         public ActionResult Get([FromQuery]int? collectionId)
         {
             var result = this.productService.CountProducts(collectionId);
             return Ok(BaseResponse<int>.PrepareDataSuccess(result, "Cout product success successful!"));
         }
-        [AllowAnonymous, Route("read")]
+        [AllowAnonymous, HttpGet("read")]
         public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string name, [FromQuery]int? collectionId, [FromQuery]int? id)
         {
             var listProduct = this.productService.GetActiveByQuery(limit, pageSize, currentPage, name, collectionId, id).ToList();
             return Ok(BaseResponse<List<ProductViewModel>>.PrepareDataSuccess(listProduct, "Get list products successful!"));
         }
-        [Route("create")]
+        [HttpPost("create")]
         public ActionResult Post([FromBody]ProductViewModel productAPIVM)
         {
             var productVM = this.productService.Create(productAPIVM);
             return Ok(BaseResponse<ProductViewModel>.PrepareDataSuccess(productVM, "Create a product successful!"));
         }
-        [Route("update")]
+        [HttpPut("update")]
         public async Task<ActionResult> Put([FromBody]ProductViewModel productAPIVM)
         {
             try
@@ -61,7 +61,7 @@ namespace Doitsu.Fandom.API.Controllers
                 throw;
             }
         }
-        [Route("delete")]
+        [HttpDelete("delete")]
         public async Task<ActionResult> Delete([FromQuery]ProductViewModel model)
         {
             var originData = await productService.FindByIdAsync(model.Id);

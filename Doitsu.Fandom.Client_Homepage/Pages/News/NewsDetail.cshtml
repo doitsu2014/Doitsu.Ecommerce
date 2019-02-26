@@ -1,15 +1,14 @@
 ﻿@page "/news/{slug}"
 
 <!-- Breadcrumbs -->
-<section class="breadcrumbs normal overlay bg-image">
+<section class="breadcrumbs overlay bg-image">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <!-- Bread Title -->
                 <div class="bread-title">
-                    <h2 class="title-normal">Focus our notices</h2>
+                    <h2 class="title-rotate">Happy Reading</h2>
                 </div>
-
             </div>
         </div>
     </div>
@@ -20,10 +19,20 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-9 col-12">
+                <div class="row" id="news-post">
+                    
+                </div>
                 <div class="row">
-                    <div class="col-12" id="notice-detail">
-                        <!-- Single blog -->
-                        <!--/ End Single blog -->
+                    <div class="col-12">
+                        <!-- Blog Comments -->
+                        <div class="blog-comments">
+                            <div class="bottom-title">
+                                <h2>Comments</h2>
+                            </div>
+                            <div class="comments-body">
+                            </div>
+                        </div>
+                        <!--/ End Blog Comments -->
                     </div>
                     <div class="col-12">
                         <!-- Comments Form -->
@@ -78,25 +87,34 @@
                     <div class="single-sidebar post-tab">
                         <!-- Tab Nav -->
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#list-recent-notices" role="tab">Recent</a></li>
+                            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#list-random-news-post" role="tab">Random</a></li>
                         </ul>
                         <!--/ End Tab Nav -->
                         <div class="tab-content" id="myTabContent">
-                            <!-- Popular Posts -->
-                            <div class="tab-pane fade show active" id="list-recent-notices" role="tabpanel">
+                            <!-- Radom Posts -->
+                            <div class="tab-pane fade show active" id="list-random-news-post" role="tabpanel">
+
                             </div>
-                            <!--/ End Popular Posts -->
+                            <!--/ End Random Posts -->
                         </div>
                     </div>
                     <!--/ End Post Tab -->
+                    <!-- Blog Category -->
+                    <div class="single-sidebar categorys">
+                        <h2>Blog Categorys</h2>
+                        <ul>
+                            <li><a href="#">Album<span>?</span></a></li>
+                            <li><a href="#">News<span>?</span></a></li>
+                        </ul>
+                    </div>
+                    <!--/ End Blog Category -->
                     <!-- Blog Tags -->
                     <div class="single-sidebar tags">
                         <h2>Popular Tags</h2>
                         <ul>
-                            <li><a href="#">notices</a></li>
-                            <li><a href="#">news</a></li>
-                            <li><a href="#">album</a></li>
-                            <li><a href="#">vietsub</a></li>
+                            <li><a href="#">iKon</a></li>
+                            <li><a href="#">Black Pink</a></li>
+                            <li><a href="#">Big Bang</a></li>
                         </ul>
                     </div>
                     <!--/ End Blog Tags -->
@@ -119,3 +137,11 @@
     </div>
 </section>
 <!--/ End Blog Archive -->
+@section Scripts
+{
+    <script type="text/javascript" src="~/js/news.js"></script>
+    <script type="text/javascript">
+        fetchNewsBySlug('@RouteData.Values["slug"]');
+        fetchRandomNewsBlog();
+    </script>
+}

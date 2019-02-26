@@ -24,7 +24,7 @@ namespace Doitsu.Fandom.API.Controllers
             this.blogService = blogService;
         }
 
-        [Route("read-list-slider")]
+        [HttpGet("read-list-slider")]
         [AllowAnonymous]
         public ActionResult GetListSlider([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery] bool? isSlider)
         {
@@ -51,7 +51,7 @@ namespace Doitsu.Fandom.API.Controllers
             return Ok(BaseResponse<List<SliderViewModel>>.PrepareDataSuccess(result));
         }
 
-        [Route("update-is-slider")]
+        [HttpPut("update-is-slider")]
         public ActionResult Put(SliderViewModel data)
         {
             try
@@ -114,7 +114,9 @@ namespace Doitsu.Fandom.API.Controllers
             {
                 OriginalId = $"{typeOfSlider}-{b.Id}",
                 Type = typeOfSlider,
+                BlogCategoryId = b.BlogCategoryID.Value,
                 IsSlider = b.IsSlider,
+                
                 ThumbnailURL = b.ThumbnailURL,
                 Title = b.Title,
                 Slug = b.Slug

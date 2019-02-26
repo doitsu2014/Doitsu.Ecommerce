@@ -26,13 +26,6 @@ namespace Doitsu.Ecommerce.API
         public void ConfigureServices(IServiceCollection services)
         {
             RootConfig.Entry(services, Configuration);
-
-            // example trusted proxies
-            services.Configure<ForwardedHeadersOptions>(options =>
-            {
-                options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
-            });
-
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin", builder =>
@@ -41,15 +34,16 @@ namespace Doitsu.Ecommerce.API
                     .AllowAnyMethod()
                     .AllowAnyHeader());
             });
-
-
-
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
-            services.Configure<IISOptions>(options =>
-            {
-                options.ForwardClientCertificate = false;
-            });
 
+            // Swagger Configuration
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerDocument(c =>
+            {
+                c.DocumentName = "Doitsu Fandom Api";
+                c.Version = "1.0";
+                c.Title = "Doitsu Fandom Api";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,22 +55,30 @@ namespace Doitsu.Ecommerce.API
                 app.UseDeveloperExceptionPage();
             }
           
-                // Shows UseCors with named policy.
-                app.UseCors("AllowSpecificOrigin");
-                app.UseStaticFiles(new StaticFileOptions
-                {
-                    FileProvider = new PhysicalFileProvider(
-                       Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", Configuration.GetSection("ImageContainerPath").Value)),
-                    RequestPath = $"/{Configuration.GetSection("ImageContainerPath").Value}"
-                });
-                app.UseForwardedHeaders(new ForwardedHeadersOptions()
-                {
-                    ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor | Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto
-                });
-                app.UseAuthentication();
-                app.UseMvc();
+            // Shows UseCors with named policy.
+            app.UseCors("AllowSpecificOrigin");
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                   Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", Configuration.GetSection("ImageContainerPath").Value)),
+                RequestPath = $"/{Configuration.GetSection("ImageContainerPath").Value}"
+            });
+            app.UseForwardedHeaders(new ForwardedHeadersOptions()
+            {
+                ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor | Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto
+            });
+            app.UseAuthentication();
+            app.UseMvc();
 
+            
 
+            // Swagger configuration
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // specifying the Swagger JSON endpoint.
+            app.UseSwagger();
+            app.UseSwaggerUi3();
+            
+            
         }
     }
 }

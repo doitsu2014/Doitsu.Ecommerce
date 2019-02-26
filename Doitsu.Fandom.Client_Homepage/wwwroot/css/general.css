@@ -1,0 +1,21 @@
+﻿.breadcrumbs {
+    background-image: url(/images/bread-crumb.jpg);
+    padding: 150px 0;
+}
+
+    .breadcrumbs::before {
+        background: rgba(106, 104, 113, 0);
+    }
+
+    .breadcrumbs .bread-title h2 {
+        color: rgba(237, 239, 231, 0.8);
+    }
+
+.title-normal {
+    transform: scale(2);
+}
+
+
+.title-rotate {
+    transform: rotate(-14deg) scale(2);
+}
