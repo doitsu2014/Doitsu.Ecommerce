@@ -38,15 +38,15 @@ namespace Doitsu.Fandom.API.Controllers
         [HttpPut("update")]
         public async Task<ActionResult> Put([FromBody]ArtistViewModel artistAPIVM)
         {
-            var artistVM = await this.artistService.UpdateAsync(artistAPIVM.ID, artistAPIVM);
+            var artistVM = await this.artistService.UpdateAsync(artistAPIVM.Id, artistAPIVM);
             return Ok(BaseResponse<ArtistViewModel>.PrepareDataSuccess(artistVM, "Update the artist successful!"));
         }
         [HttpDelete("delete")]
         public async Task<ActionResult> Delete([FromQuery]ArtistViewModel model)
         {
-            var originData = await artistService.FindByIdAsync(model.ID);
+            var originData = await artistService.FindByIdAsync(model.Id);
             originData.Active = false;
-            await this.artistService.UpdateAsync(model.ID, originData);
+            await this.artistService.UpdateAsync(model.Id, originData);
             return Ok(BaseResponse<ArtistViewModel>.PrepareDataSuccess(model, "Delete the artist successful!"));
         }
     }

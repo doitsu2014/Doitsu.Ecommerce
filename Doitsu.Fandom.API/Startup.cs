@@ -49,7 +49,6 @@ namespace Doitsu.Ecommerce.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -63,22 +62,15 @@ namespace Doitsu.Ecommerce.API
                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", Configuration.GetSection("ImageContainerPath").Value)),
                 RequestPath = $"/{Configuration.GetSection("ImageContainerPath").Value}"
             });
-            app.UseForwardedHeaders(new ForwardedHeadersOptions()
-            {
-                ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor | Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto
-            });
+   
             app.UseAuthentication();
             app.UseMvc();
-
             
-
             // Swagger configuration
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
             // specifying the Swagger JSON endpoint.
             app.UseSwagger();
             app.UseSwaggerUi3();
-            
-            
         }
     }
 }

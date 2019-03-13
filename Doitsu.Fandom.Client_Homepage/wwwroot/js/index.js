@@ -58,10 +58,11 @@ function createHeroSliderElement(slider) {
                                 : slider.blogCategoryId == blogCategoryEnum.NOTICE ? 'notice' : 'news';
     
     let sliderLink = `${blogTypeSubParam}/${slider.slug}`;
-    
+    //style="background-image:url('${slider.thumbnailURL}')"
     let heroSliderElement = 
     `
-        <div class="single-slider" style="background-image:url('${slider.thumbnailURL}')" onclick="location.href='${sliderLink}'">
+        <div class="single-slider"  onclick="location.href='${sliderLink}'">
+            <img src="${slider.thumbnailURL}"/>
             <div class="shadow-wrap">
             </div>
         </div>

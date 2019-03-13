@@ -17,5 +17,12 @@
     <None Include="docker-compose.production.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
     </None>
+    <None Include="server-compose.yml" />
+    <None Include="docker-compose %28copy%29.override.yml">
+      <DependentUpon>server-compose.yml</DependentUpon>
+    </None>
+    <None Include="docker-compose %28copy%29.production.yml">
+      <DependentUpon>server-compose.yml</DependentUpon>
+    </None>
   </ItemGroup>
 </Project>

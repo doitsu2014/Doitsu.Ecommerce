@@ -1,0 +1,127 @@
+﻿@page "/artist/{artistCode}"
+@section Styles {
+    <link href="~/css/artists.css" rel="stylesheet" />
+}
+<!-- Artists -->
+<div class="artists overlay section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="artists-slider" id="artists-slider">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/ End Artists -->
+<!-- About Us -->
+<section id="about-us" class="about-us section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-12">
+                <div class="about-main">
+                    <div class="tab-main">
+                        <div class="nav-main">
+                            <!-- Tab Nav -->
+                            <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" id="linkTab1">
+                                        <i class="fa fa-home"></i>Main
+                                    </a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab2" role="tab" id="linkTab2"><i class="fa fa-database"></i>Album</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab3" role="tab" id="linkTab3"><i class="fa fa-info-circle "></i>About</a></li>
+                                @*<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab4" role="tab" id="linkTab4"><i class="fa fa-trophy"></i>Awards</a></li>*@
+                            </ul>
+                            <!--/ End Tab Nav -->
+                        </div>
+                        <div class="tab-content" id="myTabContent">
+                            <!-- Tab One -->
+                            <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                                <div class="text-content">
+                                    <div class="tab-section-main">
+                                        <iframe style="overflow: hidden; height: 2952px;" src="http://yg-ikon.com/music/newkids-repackage/release/index.html?_=201901"
+                                                allowtransparency="true" id="artist_main" name="ikon" scrolling="no" frameborder="0" height="2954" width="100%"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/ End Tab One -->
+                            <!-- Tab Two -->
+                            <div class="tab-pane fade" id="tab2" role="tabpanel">
+                                <!-- Portfolio -->
+                                <div class="container-fluid portfolio" style="position:relative">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="section-title">
+                                                <h2><span></span>Show list album</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                    </div>
+                                    <div class="portfolio-inner">
+                                        <div id="artist-album">
+                                        </div>
+                                        <!-- Load More Button -->
+                                        @*<div id="loadMore" class="cbp-l-loadMore-button">
+                                            <div class="load-button">
+                                                <a href="more-portfolio/portfolio.html" class="cbp-l-loadMore-link btn" rel="nofollow">
+                                                    <span class="icon"><i class="fa fa-angle-down"></i></span>
+                                                    <span class="cbp-l-loadMore-defaultText">Load More</span>
+                                                    <span class="cbp-l-loadMore-loadingText">Loading...</span>
+                                                    <span class="cbp-l-loadMore-noMoreLoading">No more project</span>
+                                                </a>
+                                            </div>
+                                        </div>*@
+                                        <!--/ End Load More Button -->
+                                    </div>
+                                </div>
+                                <!--/ End portfolio -->
+                            </div>
+                            <!--/ End Tab Two -->
+                            <!-- Tab Two -->
+                            <div class="tab-pane fade" id="tab3" role="tabpanel">
+                                <div class="text-content" id="artist-description">
+
+                                </div>
+                            </div>
+                            <!--/ End Tab Two -->
+
+                            <!-- Tab Two -->
+                            <div class="tab-pane fade" id="tab4" role="tabpanel">
+                                <div class="text-content">
+                                    <p>
+                                        We are creative company here are many variation generators on the Internet tend to chunks as necessary,
+                                        making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words,
+                                        combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable
+                                        dictionary of over Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tincidunt mauris ac
+                                        aliquet congue. Donec vestibulum consequat cursus. Aliquam pellentesque nulla dolor in imperdiet augue
+                                        elementum ut. Praesen
+                                    </p>
+                                    <p>
+                                        All riation generators on the Internet tend to chunks as necessary, making this the first true generator
+                                        on the Internet the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary It
+                                        uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures
+                                    </p>
+                                </div>
+                            </div>
+                            <!--/ End Tab Two -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End About Us -->
+
+@section Scripts {
+    <script type="text/javascript" src="~/js/artist.js"></script>
+    <script type="text/javascript">
+        (async () => {
+            await initComponents('@RouteData.Values["artistCode"]');
+            await initEvents();
+        })();</script>
+}

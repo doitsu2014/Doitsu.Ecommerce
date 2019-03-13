@@ -1,0 +1,55 @@
+﻿@page "/artist"
+@section Styles {
+    <link href="~/css/artists.css" rel="stylesheet" />
+}
+<section class="breadcrumbs overlay bg-image">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!-- Bread Title -->
+                <div class="bread-title">
+                    <h2 class="title-rotate">Artists</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Portfolio -->
+<section id="portfolio" class="portfolio section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title"> 
+                    <h2><span class="title-bg">YGFL</span>Members Preview</h2>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-inner">
+            <div id="portfolio-items">
+
+            </div>
+            @*<div id="loadMore" class="cbp-l-loadMore-button">
+                <div class="load-button">
+                    <a href="more-portfolio/portfolio.html" class="cbp-l-loadMore-link btn" rel="nofollow">
+                        <i class="fa fa-angle-down"></i>
+                        <span class="cbp-l-loadMore-defaultText">Load More</span>
+                        <span class="cbp-l-loadMore-loadingText">Loading...</span>
+                        <span class="cbp-l-loadMore-noMoreLoading">No more project</span>
+                    </a>
+                </div>
+            </div>*@
+            <!--/ End Load More -->
+        </div>
+    </div>
+</section>
+<!--/ End portfolio -->
+
+@section Scripts {
+    <script type="text/javascript" src="~/js/artist.js"></script>
+    <script type="text/javascript">
+        (async () => {
+            await initComponents(null);
+            await initEvents();
+        })();
+    </script>
+}

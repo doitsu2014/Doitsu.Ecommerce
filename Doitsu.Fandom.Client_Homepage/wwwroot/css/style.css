@@ -6196,7 +6196,7 @@ input:-webkit-autofill:focus {
 	26. Footer CSS
 =================================*/
 .footer{
-	background-color: #222534;
+	background-color: #ffffff;
 }
 .footer .footer-top {
 	padding: 70px 0 100px;
@@ -6214,7 +6214,7 @@ input:-webkit-autofill:focus {
 	position: relative;
 }
 .footer .footer-top .list li {
-	color: #ccc;
+	color: #000;
 	position: relative;
 	margin-bottom: 10px;
 }
@@ -6222,7 +6222,7 @@ input:-webkit-autofill:focus {
 	margin-bottom:0px;
 }
 .footer .footer-top li a {
-	color: #ccc;
+	color: #000;
 	font-weight: 400;
 }
 .footer .footer-top .about img{
@@ -6230,7 +6230,7 @@ input:-webkit-autofill:focus {
 }
 .footer .footer-top .about p {
 	margin-bottom: 10px;
-	color: #ccc;
+	color: #000;
 }
 .footer .footer-top .about p a {
 	color: #1BBC9B;
@@ -6317,7 +6317,7 @@ input:-webkit-autofill:focus {
 	color: #1BBC9B;
 }
 .footer .footer-top .address .list li a {
-	color: #ccc;
+	color: #000;
 }
 .footer .footer-bottom {
 	padding: 20px 0;
@@ -6325,16 +6325,16 @@ input:-webkit-autofill:focus {
 	border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 .footer .copyright p {
-	color: #ddd;
+	color: #000;
 	margin: 0;
 	text-transform: capitalize;
 }
 .footer .copyright p a {
 	color: #1BBC9B;
 }
-.footer .copyright p a:hover{
-	color:#fff;
-}
+    .footer .copyright p a:hover {
+        color: #b51212;
+    }
 .footer .copyright span{
 	margin:0px 5px;
 }

@@ -45,10 +45,11 @@
     <link rel="stylesheet" href="~/css/style.css">
 
     <link rel="stylesheet" href="~/css/responsive.css">
+    @RenderSection("Styles", required: false)
+
     <!-- Trendbiz Color -->
     <link rel="stylesheet" href="~/css/skin/skin6.css">
     <link rel="stylesheet" href="~/css/general.css">
-
 </head>
 <body id="bg">
     <div id="layout">
@@ -75,12 +76,11 @@
                                         <div class="nav-inner">
                                             <ul class="nav main-menu navbar-nav">
                                                 <li class="nav_notice"><a href="/notices" class="">NOTICE</a></li>
-                                                <li class="nav_network"><a href="/news" class="">NEWS</a></li>
-                                                <li class="nav_artists"><a href="#" class="ir">VIETSUB</a></li>
+                                                <li class="nav_network"><a href="/news" class="">BLOGS</a></li>
+                                                <li class="nav_artists"><a href="/vietsub" class="ir">ARTIST</a></li>
                                                 <li class="nav_actors"><a href="#" class="ir">RECUITMENT</a></li>
                                                 <li class="nav_talents"><a href="#" class="">DONATE</a></li>
                                                 <li class="nav_media"><a href="#" class="">ABOUT US</a></li>
-                                                <li class="nav_with"><a href="#" class="">DOWNLOAD</a></li>
                                                 <li class="nav_audition"><a href="#" class="">CONTACT US</a></li>
                                             </ul>
                                         </div>

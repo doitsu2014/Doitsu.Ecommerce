@@ -33,7 +33,12 @@ namespace Doitsu.Fandom.API.Controllers
             productCollection.ListProducts = listProducts;
             return Ok(BaseResponse<ProductCollectionViewModel>.PrepareDataSuccess(productCollection, "Get list artists successful!"));
         }
-
+        [AllowAnonymous, HttpGet("read-by-artist-code")]
+        public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string artistCode)
+        {
+            var listArtist = this.productCollectionService.GetActiveByQueryArtistCode(limit, pageSize, currentPage, artistCode).ToList();
+            return Ok(BaseResponse<List<ProductCollectionViewModel>>.PrepareDataSuccess(listArtist, "Get list artists by artist code successful!"));
+        }
         [AllowAnonymous, HttpGet("read")]
         public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string code, [FromQuery]int? id)
         {

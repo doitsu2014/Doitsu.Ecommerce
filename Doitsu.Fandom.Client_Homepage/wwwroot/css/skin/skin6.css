@@ -72,7 +72,7 @@
 .breadcrumbs .bread-list li:hover a,
 .breadcrumbs .bread-list li a i,
 .mail-success h2 span {
-	color: #FF9800;
+	color: #000000;
 }
 
 .section-title h2::before,
@@ -196,7 +196,7 @@
 .trendbiz-option .o-icon,
 .mail-success .btn,
 .shop.single .product-gallery .zoom {
-	background: #FF9800;
+	background: #000000;
 }
 
 .portfolio #loadMore .btn .icon {
@@ -206,18 +206,18 @@
 .header .social li .title::before,
 .about-us .tab-main .nav-tabs,
 .shop .product-tabs .nav {
-	border-bottom-color: #FF9800;
+	border-bottom-color: #000000;
 }
 
 .header .nav li .dropdown,
 .header .shopping .shopping-item,
 .about-us .nav-tabs .nav-link::before {
-	border-top-color: #FF9800;
+	border-top-color: #000000;
 }
 
 .blogs.single blockquote,
 .shop .product-head .sale::before {
-	border-left-color: #FF9800;
+	border-left-color: #000000;
 }
 
 .hero-area .owl-dots .owl-dot span::before,
@@ -235,38 +235,44 @@
 .shipping-tax .form-group input:hover,
 .shipping-tax .nice-select:hover,
 .discount-main form .form-group input:hover {
-	border-color: #FF9800;
+	border-color: #ffffff;
 }
 
 .header .nav li:hover a,
 .header .nav li.active a,
 .blogs .post-tab .post-info p i,
 .hero-area .slider-text {
-    color: #FF9800;
+    color: #ffffff;
 }
 
 .slicknav_btn {
-	background: #FF9800;
+	background: #000000;
 }
 
 .slicknav_nav a:hover {
-	background: #FF9800;
+	background: #000000;
 
 }
 
 .artists .owl-nav div:hover {
-	background: #FF9800;
+	background: #000000;
 }
-
 .single-artist.active img {
-	border-color: #FF9800;
+	border-color: #000000;
+}
+.single-artist:hover img {
+    border: 3px solid #ffffff;
 }
 .blogs .post-tab .nav 
 {
-	border-bottom: 2px solid #FF9800;
+	border-bottom: 2px solid #000000;
 }
 
 .blogs .post-tab .nav li a.active,
 .list-group-item-action:focus, .list-group-item-action:hover {
-	background: #FF9800;
+	background: #000000;
+}
+
+.list-group-item-action:focus, .list-group-item-action:hover {
+    color:#ffffff;
 }
