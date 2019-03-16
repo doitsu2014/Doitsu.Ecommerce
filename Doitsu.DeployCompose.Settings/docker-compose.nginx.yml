@@ -1,0 +1,6 @@
+nginx:                                                                                                                                             
+  image: "nginx:1.9"                                                                                                                               
+  ports:                                                                                                                                           
+    - 80:80                                                                                                                                        
+  volumes:                                                                                                                                         
+    - ./config:/etc/nginx/conf.d  

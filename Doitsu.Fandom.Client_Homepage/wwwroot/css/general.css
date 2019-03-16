@@ -19,3 +19,14 @@
 .title-rotate {
     transform: rotate(-14deg) scale(2);
 }
+
+.blogs.archive {
+    padding: 0px;
+    background-color: #fff;
+}
+    .blogs.archive .page-header {
+        border-top: 1px solid #282828;
+    }
+        .blogs.archive .page-header h5 {
+            padding: 40px 0 0;
+        }

@@ -91,7 +91,7 @@ const createAlbumPortfolioElement = (album) => {
                     <div class="portfolio-hover">
                         <h4><a href="portfolio-single.html">${album.name}</a></h4>
                         <div class="p-button">
-                            <a href="/vietsub/${album.code}" class="btn"><i class="fa fa-link"></i></a>
+                            <a href="/artist/${album.code}" class="btn"><i class="fa fa-link"></i></a>
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ const createArtistPortfolioElement = (artistPortfolio) => {
                     <div class="portfolio-hover">
                         <h4><a href="portfolio-single.html">${artistPortfolio.name}</a></h4>
                         <div class="p-button">
-                            <a href="/vietsub/${artistPortfolio.code}" class="btn"><i class="fa fa-link"></i></a>
+                            <a href="/artist/${artistPortfolio.code}" class="btn"><i class="fa fa-link"></i></a>
                         </div>
                     </div>
                 </div>
@@ -120,7 +120,7 @@ const createArtistSliderElement = (artistSlider, isActive) => {
     console.log(artistSlider);
     const artistSliderElement = 
         `<div class="single-artist ${isActive ? "active" : ""}">
-            <a href="/vietsub/${artistSlider.code}">
+            <a href="/artist/${artistSlider.code}">
                 <img src="${artistSlider.avatarUrl}" alt="${artistSlider.name}">
                 <div class="title">
                     <p>${artistSlider.name}</p>
