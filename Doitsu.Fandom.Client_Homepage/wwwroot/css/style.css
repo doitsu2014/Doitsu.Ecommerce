@@ -6205,7 +6205,7 @@ input:-webkit-autofill:focus {
 	margin-top:30px;
 }
 .footer .footer-top h2 {
-	color: #fff;
+	color: #000;
 	font-size: 18px;
 	text-transform: capitalize;
 	display: block;
@@ -6258,7 +6258,7 @@ input:-webkit-autofill:focus {
 	line-height: 30px;
 	text-align: center;
 	background: transparent;
-	color: #fff;
+	color: #000;
 	border-radius: 100%;
 	border: 1px solid #fff;
 }

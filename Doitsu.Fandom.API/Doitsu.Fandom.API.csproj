@@ -11,51 +11,23 @@
 
   <ItemGroup>
     <Compile Remove="Doitsu.Fandom.API\**" />
+    <Compile Remove="wwwroot\swagger\**" />
     <Content Remove="Doitsu.Fandom.API\**" />
+    <Content Remove="wwwroot\swagger\**" />
     <EmbeddedResource Remove="Doitsu.Fandom.API\**" />
+    <EmbeddedResource Remove="wwwroot\swagger\**" />
     <None Remove="Doitsu.Fandom.API\**" />
+    <None Remove="wwwroot\swagger\**" />
     <None Remove="Libs\Doitsu.DBManager.dll" />
     <None Remove="Libs\Doitsu.Service.dll" />
     <None Remove="Libs\bootstrap.css.map" />
     <None Remove="TTFiles\RewritedEntities.tt" />
     <None Remove="Libs\.DS_Store" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636793636713111839_82324c583ca945449fe49d8d03448375.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636801601672002695_ae03bf8c7754471f83cc17c98348074c.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636803255038311645_f8ca764cd4be4670ac4a2468d076235a.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636803271232127204_26631de0f7cb414fb411a8ffab306cf4.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636810355163349111_ab6766b7312b43c995b87ca64a17dcb6.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636811956304280698_2fa644fa7e904fe4af296c853fd7a724.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636811957905536021_50d700c2909c4ff5bacc2ecd33e68247.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636811959558205298_8d1eccf365224490b56ffafad4fa0a27.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636811965855783762_0a9aaa4057c64819997956e8dc8916e9.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636811967478362042_a9ff58942ee14f0b92b2a9cdb01fe3da.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636811968085517652_a490268d76274ec78286b187cff65eaa.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636812003150440967_fdc6f434184f475c89ebb61f401669a5.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636812005921107505_030bc53d568a484c871c041a693aaa2d.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636812007311960131_9002003a75ce413c838aab7c9b346e6b.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636812018131973386_0a564a94957a4b6081db574003b9c0cf.png" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636812825042942087_d3f890b7b6ee458eb207e54f1d3f686e.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636812825825103916_9bbefa0d4ffb410f938130ebf22e897f.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636812827563986621_30a88b4419fd4289b10e29133c0cef65.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636812829114674424_e5fb0f9574184919bdc7554519b82fee.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636812830145282664_346856219bcc44b8adce385a15572195.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636812830242553916_17f4e84f412041f38d4e72ecf982ed1b.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636812831339445240_07ce10a155d8439bb4c5023b987b276c.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636812831648500762_439bafbaf9e345438e7c3d7d5b69ff26.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636812831827589025_7999dceb1e444b0e91cc9494b33f0f07.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636812832718969351_2f769970209e4b8c96aa519329aca314.jpeg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636812844817318155_7f5c6ab2aa44467a9e47a0080aa3c517.jpg" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636835134064262810_688d75daf92a4b308beda6bcfd3ede05.png" />
-    <Content Remove="wwwroot\resource-container\802e2ed1-848c-4f9c-befa-8b37fa8aa417\636835135535588010_0543c1591d9149f4ab6706196688a962.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
     <Folder Include="Libs\" />
-    <Folder Include="wwwroot\resource-container\6765a913-cbc3-4230-9cc8-a9eac4b7a3e9\" />
-    <Folder Include="wwwroot\resource-container\1\" />
-    <Folder Include="wwwroot\swagger\" />
-    <Folder Include="wwwroot\swagger\ui\" />
+    <Folder Include="wwwroot\resource-container\" />
   </ItemGroup>
 
   <ItemGroup>

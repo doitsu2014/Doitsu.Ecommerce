@@ -1,4 +1,4 @@
-﻿var BASE_URL = 'http://localhost:9092/';
+﻿var BASE_URL = 'https://localhost:44389/';
 //var BASE_URL = 'http://fandom.api.doitsu.tech/';
 var SETTING_API_PARAM = 'api/settings/';
 var ARTIST_API_PARAM = 'api/artist/';
