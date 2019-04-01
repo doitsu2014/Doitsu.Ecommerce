@@ -33,6 +33,7 @@ namespace Doitsu.Fandom.DbManager.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //optionsBuilder.UseSqlServer("Server=45.76.151.204;Database=Doitsu.Fandom;Trusted_Connection=False;User Id=sa;Password=zaQ@1234");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

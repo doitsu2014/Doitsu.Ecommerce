@@ -5,7 +5,7 @@ import {notification} from 'antd'
 
 export const getAuthorize = async (username, password) => {
     const url = configuration.baseAPIUrl + "authorize/login";
-    console.log()
+
     try {
         let response = await axios.post(url, {
             Email: username,

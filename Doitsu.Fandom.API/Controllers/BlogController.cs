@@ -40,7 +40,7 @@ namespace Doitsu.Fandom.API.Controllers
             var listBlog = this.blogService.GetActiveByQuery(limit, pageSize, currentPage, name, blogCategoryId, id).ToList();
             return Ok(BaseResponse<List<BlogViewModel>>.PrepareDataSuccess(listBlog, "Get list blogs successful!"));
         }
-        [HttpGet("create")]
+        [HttpPost("create")]
         public ActionResult Post([FromBody]BlogViewModel blogAPIVM)
         {
             try
@@ -64,12 +64,11 @@ namespace Doitsu.Fandom.API.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-                throw;
+                return BadRequest(ex);
             }
         }
         [HttpDelete("delete")]
-        public async Task<ActionResult> Delete([FromQuery]BlogViewModel model)
+        public async Task<ActionResult> Delete([FromBody]BlogViewModel model)
         {
             var originData = await blogService.FindByIdAsync(model.Id);
             originData.Active = false;

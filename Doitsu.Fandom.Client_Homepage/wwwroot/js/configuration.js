@@ -1,5 +1,5 @@
-﻿var BASE_URL = 'http://localhost:9092/';
-//var BASE_URL = 'http://fandom.api.doitsu.tech/';
+﻿// var BASE_URL = 'http://localhost:9092/';
+var BASE_URL = 'http://api.ygfl.vn/';
 var SETTING_API_PARAM = 'api/settings/';
 var ARTIST_API_PARAM = 'api/artist/';
 var BLOG_API_PARAM = 'api/blog/';

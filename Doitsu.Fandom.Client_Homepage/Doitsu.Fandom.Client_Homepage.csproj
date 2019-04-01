@@ -23,6 +23,10 @@
     <Content Remove="wwwroot\img\notice_image.png" />
     <Content Remove="wwwroot\images\slider\bread-crumb.jpg" />
     <Content Remove="wwwroot\images\bread-crumb.jpg" />
+    <Content Remove="wwwroot\img\favicon-2.png" />
+    <Content Remove="wwwroot\img\favicon-2 %28copy%29.png" />
+    <Content Remove="wwwroot\img\favicon-3.png" />
+    <Content Remove="wwwroot\images\favicon-2.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\css\" />
@@ -33,5 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\images\slider\bread-crumb.jpg" />
+    <None Include="wwwroot\img\favicon-2.png" />
+    <None Include="wwwroot\images\favicon-2.png" />
   </ItemGroup>
 </Project>

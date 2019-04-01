@@ -236,7 +236,7 @@ class AddForm extends React.Component {
               getFieldDecorator('slug', 
               {
                 rules: [this.createRuleIsRequried("Bạn chưa nhập đường dẫn SEO!")
-                  ,this.createRuleRegExp("^[\\w\\d-]{1,50}$", "Đường dẫn của bạn chứa ký tự lạ")]
+                  ,this.createRuleRegExp("^[\\w\\d-]{1,25}$", "Đường dẫn của bạn chứa ký tự lạ")]
               })(<Input name="slug" placeholder="Đường dẫn SEO cho bài viết, ví dụ: tin-tuc-01" onChange={this.handleInputChange} />)
             }
           </div>

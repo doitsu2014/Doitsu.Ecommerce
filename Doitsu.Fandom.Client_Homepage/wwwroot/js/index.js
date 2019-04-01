@@ -54,11 +54,10 @@ async function configEvents() {
 
 
 function createHeroSliderElement(slider) {
-    let blogTypeSubParam = slider.type == sliderTypeEnum.PRODUCT_COLLECTION ? 'album' 
-                                : slider.blogCategoryId == blogCategoryEnum.NOTICE ? 'notice' : 'news';
+    let blogTypeSubParam = slider.type == sliderTypeEnum.PRODUCT_COLLECTION ? 'albums' 
+                                : slider.blogCategoryId == blogCategoryEnum.NOTICE ? 'notices' : 'news';
     
     let sliderLink = `${blogTypeSubParam}/${slider.slug}`;
-    //style="background-image:url('${slider.thumbnailURL}')"
     let heroSliderElement = 
     `
         <div class="single-slider"  onclick="location.href='${sliderLink}'">

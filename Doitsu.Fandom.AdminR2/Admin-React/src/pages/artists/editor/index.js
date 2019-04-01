@@ -1,0 +1,236 @@
+import React from 'react'
+import { create, readArtist } from 'services/artist'
+import UploadPictures from 'components/DoitsuComponents/UploadPictures'
+import { Input, Form, Button, Spin, notification } from 'antd'
+import { FormUtils } from 'utils'
+import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
+
+import './style.module.scss'
+
+const { TextArea } = Input
+const FormItem = Form.Item
+
+@Form.create()
+@connect(({ artist }) => ({ artist }))
+class ArtistEditor extends React.Component {
+  state = {
+    defaultFileUpload: null,
+    avatarUrl: '',
+    spinning: false,
+  }
+
+  async componentWillMount() {
+    const { artist } = this.props
+    if (artist.trackingId === -1) {
+      // create
+      // do nothing
+    } else {
+      // update
+      // fetch data
+      console.log(`Fetching artist if: ${artist.trackingId}`)
+      const response = await readArtist({
+        limit: 1,
+        id: artist.trackingId,
+      })
+
+      if (response) {
+        const { form } = this.props
+        const artistObject = response.data[0]
+        const defaultFileUpload = {
+          uid: response.data.length,
+          url: artistObject.avatarUrl,
+        }
+        console.log('Artist Editor: ', defaultFileUpload)
+        // init default image
+        this.setState(
+          {
+            defaultFileUpload,
+            avatarUrl: artistObject.avatarUrl,
+          },
+          () => {
+            // set to form
+            // note: you must be render state first.
+            form.setFieldsValue(artistObject)
+          },
+        )
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    const { dispatch } = this.props
+    dispatch({
+      type: 'artist/SET_STATE',
+      payload: {
+        trackingId: -1,
+      },
+    })
+  }
+
+  handleUPOnSuccessCallback = fileList => {
+    if (fileList[0] && fileList[0].response && fileList[0].response.data[0]) {
+      const image = fileList[0].response.data[0]
+      this.setState({
+        avatarUrl: image.url || image.thumbUrl,
+      })
+    }
+  }
+
+  handleFormSubmit = () => {
+    const { avatarUrl } = this.state
+    const { form, artist, dispatch } = this.props
+    form.validateFieldsAndScroll(async (err, values) => {
+      if (!err) {
+        this.setState({ spinning: true })
+        const createModel = { ...values, avatarUrl, active: true }
+        if (artist.trackingId !== -1) {
+          console.log('Update artist')
+        } else {
+          try {
+            const response = await create({ ...createModel, active: true })
+            console.log('Create artist response', response)
+            this.setState({ spinning: false })
+            if (response.success) {
+              notification.open({
+                type: 'success',
+                message: `Created new artist ${values.name}`,
+                description: 'Successfully',
+              })
+              dispatch(push('/artists/list'))
+            } else {
+              notification.open({
+                type: 'error',
+                message: 'Created new artist ${values.name}',
+                description: `Fail: ${response.message}`,
+              })
+            }
+          } catch (error) {
+            notification.open({
+              type: 'error',
+              message: 'System exception',
+              description: `Bug description: ${error.message}`,
+            })
+            this.setState({ spinning: false })
+          }
+        }
+      }
+    })
+    // if(!isUpdate) {
+
+    // } else {
+    //   update({...this.props, active: true})
+    //     .then((response) => {
+    //       if(response.success) {
+    //         notification.open({
+    //           type: 'success',
+    //           message: 'chỉnh sửa nghệ sĩ',
+    //           description:
+    //             'Thành công',
+    //         })
+    //       }else {
+    //         notification.open({
+    //           type: 'error',
+    //           message: 'Chỉnh sửa nghệ sĩ',
+    //           description:
+    //             `Thất bại: ${response.message}`,
+    //         })
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       notification.open({
+    //         type: 'error',
+    //         message: 'Hệ thống',
+    //         description:
+    //           `Có lỗi xảy ra: ${error.message}`,
+    //       })
+    //     });
+    // }
+  }
+
+  render() {
+    const { form, artist } = this.props
+    const { spinning, defaultFileUpload } = this.state
+    console.log('Artist Editor: ', defaultFileUpload)
+    return (
+      <Spin spinning={spinning} tips={artist.trackingId === -1 ? 'Creating' : 'Editing'}>
+        <h5 className="text-black mb-3">
+          <strong>Main Parameters</strong>
+        </h5>
+        <hr />
+        <Form layout="vertical">
+          <div className="row">
+            <div className="col-lg-4">
+              <div className="row">
+                <div className="col-lg-12">
+                  <div className="form-group form-upload">
+                    <FormItem label="Avatar Url">
+                      {form.getFieldDecorator('avatarUrl')(
+                        <UploadPictures
+                          onSuccessCallback={this.handleUPOnSuccessCallback}
+                          defaultImage={defaultFileUpload}
+                        />,
+                      )}
+                    </FormItem>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-8">
+              <div className="row">
+                <div className="col-lg-6">
+                  <div className="form-group">
+                    <FormItem label="Artist Code">
+                      {form.getFieldDecorator('code', {
+                        rules: [
+                          FormUtils.CreateRuleIsRequried('Required code.\n'),
+                          FormUtils.CreateRuleRegExp(
+                            '^[\\w\\d]{1,255}$',
+                            'You should input for 255 characters Alphabe or Numeric.',
+                          ),
+                        ],
+                      })(<Input placeholder="Artist Code" />)}
+                    </FormItem>
+                  </div>
+                </div>
+                <div className="col-lg-6">
+                  <div className="form-group">
+                    <FormItem label="Artist Name">
+                      {form.getFieldDecorator('name', {
+                        rules: [FormUtils.CreateRuleIsRequried('Required name.\n')],
+                      })(<Input placeholder="Artist Name" />)}
+                    </FormItem>
+                  </div>
+                </div>
+                <div className="col-lg-12">
+                  <div className="form-group">
+                    <FormItem label="Description">
+                      {form.getFieldDecorator('description')(
+                        <TextArea rows={15} placeholder="description" />,
+                      )}
+                    </FormItem>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-lg-12">
+              <div className="row float-right">
+                <div className="form-group">
+                  <Button type="default" className="mr-2">
+                    Cancel
+                  </Button>
+                  <Button type="primary" onClick={this.handleFormSubmit}>
+                    {artist.trackingId === -1 ? 'Create new' : 'Edit'}
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Form>
+      </Spin>
+    )
+  }
+}
+
+export default ArtistEditor

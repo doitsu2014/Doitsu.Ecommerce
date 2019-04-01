@@ -3,9 +3,11 @@ using Doitsu.Fandom.DBManager;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System.IO;
 using System.Net;
@@ -34,6 +36,11 @@ namespace Doitsu.Ecommerce.API
                     .AllowAnyMethod()
                     .AllowAnyHeader());
             });
+
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+            });
+
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
 
             // Swagger Configuration
@@ -41,13 +48,13 @@ namespace Doitsu.Ecommerce.API
             services.AddSwaggerDocument(c =>
             {
                 c.DocumentName = "Doitsu Fandom Api";
-                c.Version = "1.0";
+                c.Version = "1.6";
                 c.Title = "Doitsu Fandom Api";
             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -62,7 +69,12 @@ namespace Doitsu.Ecommerce.API
                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", Configuration.GetSection("ImageContainerPath").Value)),
                 RequestPath = $"/{Configuration.GetSection("ImageContainerPath").Value}"
             });
-   
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+
             app.UseAuthentication();
             app.UseMvc();
             
@@ -71,6 +83,7 @@ namespace Doitsu.Ecommerce.API
             // specifying the Swagger JSON endpoint.
             app.UseSwagger();
             app.UseSwaggerUi3();
+
         }
     }
 }

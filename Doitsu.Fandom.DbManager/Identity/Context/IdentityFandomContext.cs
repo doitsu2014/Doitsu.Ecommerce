@@ -24,7 +24,7 @@ namespace Doitsu.Fandom.DbManager.Identity.Context
         public IdentityFandomContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<IdentityFandomContext>();
-            optionsBuilder.UseSqlServer("Server=35.240.248.28;Database=Doitsu.Fandom;Trusted_Connection=False;User Id=sa;Password=zaQ@1234");
+            optionsBuilder.UseSqlServer("Server=45.76.151.204;Database=Doitsu_Fandom_Dev;Trusted_Connection=False;User Id=sa;Password=zaQ@1234");
             return new IdentityFandomContext(optionsBuilder.Options);
         }
     }

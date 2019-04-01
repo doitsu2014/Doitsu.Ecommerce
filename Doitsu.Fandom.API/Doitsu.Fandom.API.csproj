@@ -23,11 +23,14 @@
     <None Remove="Libs\bootstrap.css.map" />
     <None Remove="TTFiles\RewritedEntities.tt" />
     <None Remove="Libs\.DS_Store" />
+    <Compile Remove="Models\LogglyModel.cs" />
+    <Content Remove="appsettings.Development.json" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Libs\" />
     <Folder Include="wwwroot\resource-container\" />
+    <Folder Include="Logs\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,9 +45,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="appsettings.Development.json">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
     <Content Update="appsettings.json">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
@@ -60,5 +60,8 @@
     <Reference Include="Doitsu.Utils">
       <HintPath>..\Doitsu.Fandom.DbManager\Libs\Doitsu.Utils.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="appsettings.Development.json" />
   </ItemGroup>
 </Project>

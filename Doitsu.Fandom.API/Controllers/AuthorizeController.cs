@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Doitsu.Service.Core.IdentitiesExtension;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 namespace Doitsu.Fandom.API.Controllers
@@ -24,8 +26,10 @@ namespace Doitsu.Fandom.API.Controllers
     public class AuthorizeController : ControllerBase
     {
         public DoitsuUserIntManager _userManager;
-        public AuthorizeController(DoitsuUserIntManager userManager)
+        private ILogger logger;
+        public AuthorizeController(DoitsuUserIntManager userManager, ILogger<AuthorizeController> logger)
         {
+            this.logger = logger;
             _userManager = userManager;
         }
 
@@ -51,7 +55,8 @@ namespace Doitsu.Fandom.API.Controllers
                 }
                 catch (Exception ex)
                 {
-                    return BadRequest(ex);
+                    logger.LogWarning(StatusCodes.Status500InternalServerError, ex, "Login exception");
+                    return StatusCode(StatusCodes.Status500InternalServerError);
                 }
             }
             return Unauthorized();
