@@ -28,27 +28,39 @@ namespace Doitsu.Fandom.API.Controllers
         [AllowAnonymous]
         public ActionResult GetListSlider([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery] bool? isSlider)
         {
-            var listProductCollection =
-                productCollectionService.GetActiveByQuery(limit, pageSize, currentPage, isSlider: isSlider)
-                .ToList()
-                .Select(pc => ConvertProductCollectionToSlider(pc));
+            try
+            {
+                var listProductCollection =
+                    productCollectionService.GetActiveByQuery(limit, pageSize, currentPage, isSlider: isSlider)
+                    .ToList()
+                    .Select(pc => ConvertProductCollectionToSlider(pc));
 
-            var listBlog = blogService
-                .GetActiveByQuery(limit, pageSize, currentPage, isSlider: isSlider)
-                .ToList()
-                .Select(b => ConvertBlogToSlider(b));
+                var listBlog = blogService
+                    .GetActiveByQuery(limit, pageSize, currentPage, isSlider: isSlider)
+                    .ToList()
+                    .Select(b => ConvertBlogToSlider(b));
 
-            var result = new List<SliderViewModel>();
+                var result = new List<SliderViewModel>();
 
-            //Add range list product collection
-            result.AddRange(listProductCollection);
-            //Add rang list blog
-            result.AddRange(listBlog);
+                //Add range list product collection
+                result.AddRange(listProductCollection);
+                //Add rang list blog
+                result.AddRange(listBlog);
 
-            //Order
-            result = result.OrderByDescending(x => x.IsSlider).ToList();
+                if (result.Count <= 0)
+                {
+                    return NoContent();
+                }
 
-            return Ok(BaseResponse<List<SliderViewModel>>.PrepareDataSuccess(result));
+                //Order
+                result = result.OrderByDescending(x => x.IsSlider).ToList();
+                return Ok(BaseResponse<List<SliderViewModel>>.PrepareDataSuccess(result));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return BadRequest();
+            }
         }
 
         [HttpPut("update-is-slider")]
@@ -72,12 +84,13 @@ namespace Doitsu.Fandom.API.Controllers
                     originalModel.IsSlider = data.IsSlider;
                     productCollectionService.Update(originalModel);
                 }
+                return Ok(BaseResponse<string>.PrepareDataSuccess("You already updated slider"));
+
             }
             catch (Exception ex)
             {
                 return BadRequest(BaseResponse<Exception>.PrepareDataFail(ex));
             }
-            return Ok(BaseResponse<string>.PrepareDataSuccess("You already updated slider"));
         }
 
         /// <summary>
@@ -116,7 +129,7 @@ namespace Doitsu.Fandom.API.Controllers
                 Type = typeOfSlider,
                 BlogCategoryId = b.BlogCategoryID.Value,
                 IsSlider = b.IsSlider,
-                
+
                 ThumbnailURL = b.ThumbnailURL,
                 Title = b.Title,
                 Slug = b.Slug

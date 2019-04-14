@@ -20,45 +20,26 @@ export async function getLeftMenuData() {
       ],
     },
     {
-      title: 'Quản lý album',
-      key: 'albumManagement',
-      icon: 'icmn icmn-folder-open',
-      children: [
-        {
-          title: 'Danh sách album',
-          icon: 'icmn icmn-list',
-          key: 'albumList',
-          url: '/album',
-        },
-        {
-          title: 'Tạo mới album',
-          icon: 'icmn icmn-folder-plus',
-          key: 'albumEdit',
-          url: '/album/create',
-        },
-      ],
-    },
-    {
-      title: 'Quản lý bài viết',
+      title: 'Blog management',
       key: 'blogManagement',
       icon: 'icmn icmn-wordpress',
       children: [
         {
-          title: 'Danh sách bài viết',
+          title: 'Blog list',
           icon: 'icmn icmn-list',
           key: 'blogList',
-          url: '/blog',
+          url: '/blogs/list',
         },
         {
-          title: 'Tạo mới bài viết',
+          title: 'Create',
           icon: 'icmn icmn-plus',
           key: 'blogEdit',
-          url: '/blog/create',
+          url: '/blogs/create',
         },
       ],
     },
     {
-      title: 'Cấu hình chung',
+      title: 'Setting',
       key: 'generalSetting',
       icon: 'icmn icmn-cog',
       url: '/settings',

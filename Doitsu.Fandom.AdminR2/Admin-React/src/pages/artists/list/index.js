@@ -30,9 +30,11 @@ class ArtistList extends React.Component {
   }
 
   loadArtist = async () => {
+    this.setState({ loading: true })
     const response = await readArtist()
     this.setState({
       data: response.data,
+      loading: false,
     })
   }
 

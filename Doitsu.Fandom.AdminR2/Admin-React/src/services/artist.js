@@ -17,40 +17,27 @@ export const readArtist = async (request = {}) => {
 
 export const create = async request => {
   const url = `${Configuration.URL.BASE}/${Configuration.URL.ARTIST}/create`
-  try {
-    const response = await axios.post(url, request, {
-      headers: { Authorization: `Bearer ${Utils.GetCurrentUser().token}` },
-    })
-    return response.data
-  } catch (e) {
-    return []
-  }
+  const response = await axios.post(url, request, {
+    headers: { Authorization: `Bearer ${Utils.GetCurrentUser().token}` },
+  })
+  return response.data
 }
 
 export const update = async request => {
   const url = `${Configuration.URL.BASE}/${Configuration.URL.ARTIST}/update`
-  try {
-    const response = await axios.put(url, request, {
-      headers: { Authorization: `Bearer ${Utils.GetCurrentUser().token}` },
-    })
-    return response.data
-  } catch (e) {
-    return []
-  }
+  const response = await axios.put(url, request, {
+    headers: { Authorization: `Bearer ${Utils.GetCurrentUser().token}` },
+  })
+  return response.data
 }
 
 export const deleteArtist = async request => {
   const url = `${Configuration.URL.BASE}/${Configuration.URL.ARTIST}/delete`
-
-  try {
-    const response = await axios.delete(url, {
-      params: {
-        id: request.id,
-      },
-      headers: { Authorization: `Bearer ${Utils.GetCurrentUser().token}` },
-    })
-    return response.data
-  } catch (e) {
-    return null
-  }
+  const response = await axios.delete(url, {
+    params: {
+      id: request.id,
+    },
+    headers: { Authorization: `Bearer ${Utils.GetCurrentUser().token}` },
+  })
+  return response.data
 }

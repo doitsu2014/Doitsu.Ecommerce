@@ -9,6 +9,7 @@ export default class Configuration {
     AUTHORIZE: 'authorize',
     ARTIST: 'artist',
     BLOG: 'blog',
+    BLOG_CATEGORY: 'blogcategory',
     PRODUCT: 'product',
     PRODUCT_COLLECTION: 'product-collection',
     SETTINGS: 'settings',

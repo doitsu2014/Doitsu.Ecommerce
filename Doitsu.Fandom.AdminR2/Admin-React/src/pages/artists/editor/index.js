@@ -1,12 +1,10 @@
 import React from 'react'
-import { create, readArtist } from 'services/artist'
+import { create, readArtist, update } from 'services/artist'
 import UploadPictures from 'components/DoitsuComponents/UploadPictures'
 import { Input, Form, Button, Spin, notification } from 'antd'
 import { FormUtils } from 'utils'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
-
-import './style.module.scss'
 
 const { TextArea } = Input
 const FormItem = Form.Item
@@ -28,7 +26,6 @@ class ArtistEditor extends React.Component {
     } else {
       // update
       // fetch data
-      console.log(`Fetching artist if: ${artist.trackingId}`)
       const response = await readArtist({
         limit: 1,
         id: artist.trackingId,
@@ -41,7 +38,6 @@ class ArtistEditor extends React.Component {
           uid: response.data.length,
           url: artistObject.avatarUrl,
         }
-        console.log('Artist Editor: ', defaultFileUpload)
         // init default image
         this.setState(
           {
@@ -84,74 +80,52 @@ class ArtistEditor extends React.Component {
       if (!err) {
         this.setState({ spinning: true })
         const createModel = { ...values, avatarUrl, active: true }
-        if (artist.trackingId !== -1) {
-          console.log('Update artist')
-        } else {
-          try {
-            const response = await create({ ...createModel, active: true })
-            console.log('Create artist response', response)
-            this.setState({ spinning: false })
-            if (response.success) {
-              notification.open({
-                type: 'success',
-                message: `Created new artist ${values.name}`,
-                description: 'Successfully',
-              })
-              dispatch(push('/artists/list'))
-            } else {
-              notification.open({
-                type: 'error',
-                message: 'Created new artist ${values.name}',
-                description: `Fail: ${response.message}`,
-              })
-            }
-          } catch (error) {
-            notification.open({
-              type: 'error',
-              message: 'System exception',
-              description: `Bug description: ${error.message}`,
-            })
-            this.setState({ spinning: false })
-          }
-        }
-      }
-    })
-    // if(!isUpdate) {
+        const notifyInfor = {}
 
-    // } else {
-    //   update({...this.props, active: true})
-    //     .then((response) => {
-    //       if(response.success) {
-    //         notification.open({
-    //           type: 'success',
-    //           message: 'chỉnh sửa nghệ sĩ',
-    //           description:
-    //             'Thành công',
-    //         })
-    //       }else {
-    //         notification.open({
-    //           type: 'error',
-    //           message: 'Chỉnh sửa nghệ sĩ',
-    //           description:
-    //             `Thất bại: ${response.message}`,
-    //         })
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       notification.open({
-    //         type: 'error',
-    //         message: 'Hệ thống',
-    //         description:
-    //           `Có lỗi xảy ra: ${error.message}`,
-    //       })
-    //     });
-    // }
-  }
+        try {
+          if (artist.trackingId !== -1) {
+            const response = await update({ ...createModel, active: true })
+            notifyInfor.message = `Update artist ${values.name}`
+            if (response.success) {
+              notifyInfor.type = 'success'
+              notifyInfor.description = `Successfully`
+            } else {
+              notifyInfor.type = 'error'
+              notifyInfor.description = `Fail: ${response.message}`
+            }
+          } else {
+            const response = await create({ ...createModel, active: true })
+            notifyInfor.message = `Creat artist ${values.name}`
+            if (response.success) {
+              notifyInfor.type = 'success'
+              notifyInfor.description = `Successfully`
+            } else {
+              notifyInfor.type = 'error'
+              notifyInfor.description = `Fail: ${response.message}`
+            }
+          } // end else tracking id !== 1
+        } catch (error) {
+          notifyInfor.type = 'error'
+          notifyInfor.message = `System exception`
+          notifyInfor.description = `Bug description: ${error.message}`
+        } finally {
+          // turn off spin
+          this.setState({ spinning: false })
+          // notify
+          notification.open(notifyInfor)
+          // if success dispatch to artist
+          if (notifyInfor.type === 'success') {
+            console.log('push artists/list')
+            dispatch(push('/artists/list'))
+          }
+        } // end finally
+      } // end if error
+    }) // end form validate
+  } // end handle submit
 
   render() {
     const { form, artist } = this.props
     const { spinning, defaultFileUpload } = this.state
-    console.log('Artist Editor: ', defaultFileUpload)
     return (
       <Spin spinning={spinning} tips={artist.trackingId === -1 ? 'Creating' : 'Editing'}>
         <h5 className="text-black mb-3">
@@ -159,6 +133,7 @@ class ArtistEditor extends React.Component {
         </h5>
         <hr />
         <Form layout="vertical">
+          <FormItem>{form.getFieldDecorator('id')(<Input name="id" type="hidden" />)}</FormItem>
           <div className="row">
             <div className="col-lg-4">
               <div className="row">

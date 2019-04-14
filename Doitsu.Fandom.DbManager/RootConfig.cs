@@ -64,10 +64,12 @@ namespace Doitsu.Fandom.DBManager
             services.AddScoped(typeof(IArtistService), typeof(ArtistService));
             services.AddScoped(typeof(IProductCollectionService), typeof(ProductCollectionService));
             services.AddScoped(typeof(IBlogService), typeof(BlogService));
+            services.AddScoped(typeof(IBlogCategoryService), typeof(BlogCategoryService));
             #endregion
 
             #region Mapper Config
-            var autoMapperConfig = new MapperConfiguration(cfg => {
+            var autoMapperConfig = new MapperConfiguration(cfg =>
+            {
                 cfg.CreateMissingTypeMaps = true;
                 cfg.CreateMap<ArtistViewModel, Artist>()
                     .ForMember(x => x.Blogs, y => y.Ignore())
@@ -81,10 +83,15 @@ namespace Doitsu.Fandom.DBManager
                     .ForMember(x => x.Artist, y => y.Ignore());
                 cfg.CreateMap<BlogViewModel, Blogs>()
                     .ForMember(x => x.BlogCategory, y => y.Ignore())
-                    .ForMember(x => x.DraftTime, y => y.Condition(o=> o.DraftTime > DateTime.MinValue));
+                    .ForMember(x => x.DraftTime, y => y.Condition(o => o.DraftTime > DateTime.MinValue));
+
+                cfg.CreateMap<BlogCategoryViewModel, BlogCategories>()
+                    .ForMember(x => x.Blogs, y => y.Ignore());
+
+                cfg.CreateMap<BlogCategories, BlogCategoryViewModel>();
             });
             IMapper mapper = autoMapperConfig.CreateMapper();
-            services.AddSingleton(mapper); 
+            services.AddSingleton(mapper);
             #endregion
         }
 
@@ -95,6 +102,6 @@ namespace Doitsu.Fandom.DBManager
             config.AllowNullDestinationValues = false;
         }
     }
-    
+
 
 }

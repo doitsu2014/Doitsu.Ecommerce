@@ -28,18 +28,21 @@ namespace Doitsu.Fandom.API.Controllers
             var blog = this.blogService.FindBySlug(slug);
             return Ok(BaseResponse<BlogViewModel>.PrepareDataSuccess(blog, "Get blog successful!"));
         }
+        
         [AllowAnonymous, HttpGet("count")]
         public ActionResult Get([FromQuery]int? collectionId)
         {
             var result = this.blogService.CountBlogs(collectionId);
             return Ok(BaseResponse<int>.PrepareDataSuccess(result, "Cout blog success successful!"));
         }
+        
         [AllowAnonymous, HttpGet("read")]
         public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string name, [FromQuery]int? blogCategoryId, [FromQuery]int? id)
         {
             var listBlog = this.blogService.GetActiveByQuery(limit, pageSize, currentPage, name, blogCategoryId, id).ToList();
             return Ok(BaseResponse<List<BlogViewModel>>.PrepareDataSuccess(listBlog, "Get list blogs successful!"));
         }
+        
         [HttpPost("create")]
         public ActionResult Post([FromBody]BlogViewModel blogAPIVM)
         {
@@ -53,6 +56,7 @@ namespace Doitsu.Fandom.API.Controllers
                 return BadRequest(BaseResponse<Exception>.PrepareDataFail(ex));
             }
         }
+        
         [HttpPut("update")]
         public async Task<ActionResult> Put([FromBody]BlogViewModel blogAPIVM)
         {
@@ -67,13 +71,21 @@ namespace Doitsu.Fandom.API.Controllers
                 return BadRequest(ex);
             }
         }
+        
         [HttpDelete("delete")]
-        public async Task<ActionResult> Delete([FromBody]BlogViewModel model)
+        public async Task<ActionResult> Delete([FromQuery]BlogViewModel model)
         {
-            var originData = await blogService.FindByIdAsync(model.Id);
-            originData.Active = false;
-            await this.blogService.UpdateAsync(model);
-            return Ok(BaseResponse<BlogViewModel>.PrepareDataSuccess(model, "Delete the blog successful!"));
+            try
+            {
+                var originData = await blogService.FirstOrDefaultAsync(x => x.Id == model.Id);
+                originData.Active = false;
+                await this.blogService.UpdateAsync(originData);
+                return Ok(BaseResponse<BlogViewModel>.PrepareDataSuccess(originData, "Delete the blog successful!"));
+            } 
+            catch (Exception ex)
+            {
+                return BadRequest(ex);           
+            }
         }
     }
 }

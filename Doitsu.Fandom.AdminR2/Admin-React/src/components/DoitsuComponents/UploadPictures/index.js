@@ -19,16 +19,20 @@ export default class UploadPictures extends React.Component {
     previewVisible: false,
     previewImage: '',
     fileList: [],
+    isBindingDefault: false,
   }
 
   componentWillReceiveProps() {
     const { defaultImage } = this.props
-    const { fileList } = this.state
-    console.log('Upload Picture: ', defaultImage)
-    if (defaultImage) {
+    const { fileList, isBindingDefault } = this.state
+    // this is default field
+    // so if is empty system will bind
+    // another case will not bind
+    if (defaultImage && !isBindingDefault) {
       fileList.push(defaultImage)
       this.setState({
         fileList,
+        isBindingDefault: true,
       })
     }
   }

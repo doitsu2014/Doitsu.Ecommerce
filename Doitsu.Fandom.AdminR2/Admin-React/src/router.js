@@ -41,6 +41,29 @@ const routes = [
     component: loadable(() => import('pages/artists/update')),
     exact: true,
   },
+  {
+    path: '/blogs/list',
+    component: loadable(() => import('pages/blogs/list')),
+    exact: true,
+  },
+
+  {
+    path: '/blogs/create',
+    component: loadable(() => import('pages/blogs/create')),
+    exact: true,
+  },
+
+  {
+    path: '/blogs/update',
+    component: loadable(() => import('pages/blogs/update')),
+    exact: true,
+  },
+
+  {
+    path: '/settings',
+    component: loadable(() => import('pages/settings')),
+    exact: true,
+  },
   // Dashboards
   // {
   //   path: '/dashboard/alpha',
@@ -280,7 +303,7 @@ class Router extends React.Component {
       <ConnectedRouter history={history}>
         <IndexLayout>
           <Switch>
-            <Route exact path="/" render={() => <Redirect to="/dashboard/alpha" />} />
+            <Route exact path="/" render={() => <Redirect to="/artists/list" />} />
             {routes.map(route => (
               <Route
                 path={route.path}
