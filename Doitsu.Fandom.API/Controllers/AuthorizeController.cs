@@ -33,12 +33,6 @@ namespace Doitsu.Fandom.API.Controllers
             _userManager = userManager;
         }
 
-        //public UserManager<DoitsuUserInt> _userManager;
-        //public AuthorizeController(UserManager<DoitsuUserInt> userManager)
-        //{
-        //    _userManager = userManager;
-        //}
-
         [HttpPost("login")]
         [AllowAnonymous]
         public async Task<ActionResult> Login([FromBody]LoginModel loginModel)
@@ -49,8 +43,6 @@ namespace Doitsu.Fandom.API.Controllers
                 try
                 {
                     var result = await user.AuthorizeAsync(_userManager, user);
-
-                    // return basic user info (without password) and token to store client side
                     return Ok(result);
                 }
                 catch (Exception ex)

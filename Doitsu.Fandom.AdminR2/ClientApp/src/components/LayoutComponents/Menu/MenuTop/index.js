@@ -2,188 +2,160 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Menu } from 'antd'
 import { Link, withRouter } from 'react-router-dom'
-import { reduce } from 'lodash'
-import { setLayoutState } from 'ducks/app'
-import { default as menuData } from './menuData'
-import './style.scss'
+import store from 'store'
+import _ from 'lodash'
+import styles from './style.module.scss'
 
-const SubMenu = Menu.SubMenu
-const Divider = Menu.Divider
+const { SubMenu, Divider } = Menu
 
-const mapStateToProps = ({ app, routing }, props) => {
-  const { layoutState } = app
-  return {
-    pathname: routing.location.pathname,
-    collapsed: layoutState.menuCollapsed,
-    theme: layoutState.themeLight ? 'light' : 'dark',
-    settingsOpened: layoutState.settingsOpened,
-  }
-}
+const mapStateToProps = ({ menu, settings }) => ({
+  menuData: menu.menuTopData,
+  isLightTheme: settings.isLightTheme,
+  isSettingsOpen: settings.isSettingsOpen,
+})
 
-@connect(mapStateToProps)
 @withRouter
+@connect(mapStateToProps)
 class MenuTop extends React.Component {
   state = {
-    pathname: this.props.pathname,
-    collapsed: this.props.collapsed,
-    theme: this.props.theme,
-    selectedKeys: '',
-    openKeys: [''],
-    settingsOpened: this.props.settingsOpened,
+    selectedKeys: store.get('app.menu.selectedKeys') || [],
+  }
+
+  componentWillMount() {
+    this.setSelectedKeys(this.props)
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.setSelectedKeys(newProps)
+  }
+
+  setSelectedKeys = props => {
+    const { menuData } = this.props
+    const flattenItems = (items, key) =>
+      items.reduce((flattenedItems, item) => {
+        flattenedItems.push(item)
+        if (Array.isArray(item[key])) {
+          return flattenedItems.concat(flattenItems(item[key], key))
+        }
+        return flattenedItems
+      }, [])
+    const selectedItem = _.find(flattenItems(menuData, 'children'), [
+      'url',
+      props.location.pathname,
+    ])
+    this.setState({
+      selectedKeys: selectedItem ? [selectedItem.key] : [],
+    })
   }
 
   handleClick = e => {
-    const { dispatch, isMobile } = this.props
-    if (isMobile) {
-      // collapse menu on isMobile state
-      dispatch(setLayoutState({ menuMobileOpened: false }))
-    }
+    const { dispatch, isSettingsOpen } = this.props
+    store.set('app.menu.selectedKeys', [e.key])
     if (e.key === 'settings') {
-      // prevent click and toggle settings block on theme settings link
-      dispatch(setLayoutState({ settingsOpened: !this.state.settingsOpened }))
+      dispatch({
+        type: 'settings/CHANGE_SETTING',
+        payload: {
+          setting: 'isSettingsOpen',
+          value: !isSettingsOpen,
+        },
+      })
       return
     }
-    // set current selected keys
     this.setState({
-      selectedKeys: e.key,
-      openKeys: e.keyPath,
+      selectedKeys: [e.key],
     })
   }
 
-  onOpenChange = openKeys => {
-    this.setState({
-      openKeys,
-    })
-  }
-
-  getPath(data, id, parents = []) {
-    const { selectedKeys } = this.state
-    let items = reduce(
-      data,
-      (result, entry) => {
-        if (result.length) {
-          return result
-        } else if (entry.url === id && selectedKeys === '') {
-          return [entry].concat(parents)
-        } else if (entry.key === id && selectedKeys !== '') {
-          return [entry].concat(parents)
-        } else if (entry.children) {
-          let nested = this.getPath(entry.children, id, [entry].concat(parents))
-          return nested ? nested : result
+  generateMenuItems = () => {
+    const { menuData = [] } = this.props
+    const generateItem = item => {
+      const { key, title, url, icon, pro, disabled } = item
+      if (item.divider) {
+        return <Divider key={Math.random()} />
+      }
+      if (item.url) {
+        return (
+          <Menu.Item key={key} disabled={disabled}>
+            {item.target ? (
+              <a href={url} target={item.target} rel="noopener noreferrer">
+                {icon && <span className={`${icon} ${styles.icon}`} />}
+                <span className={styles.title}>{title}</span>
+                {pro && <span className="badge badge-primary ml-2">PRO</span>}
+              </a>
+            ) : (
+              <Link to={url}>
+                {icon && <span className={`${icon} ${styles.icon}`} />}
+                <span className={styles.title}>{title}</span>
+                {pro && <span className="badge badge-primary ml-2">PRO</span>}
+              </Link>
+            )}
+          </Menu.Item>
+        )
+      }
+      return (
+        <Menu.Item key={key} disabled={disabled}>
+          {icon && <span className={`${icon} ${styles.icon}`} />}
+          <span className={styles.title}>{title}</span>
+          {pro && <span className="badge badge-primary ml-2">PRO</span>}
+        </Menu.Item>
+      )
+    }
+    const generateSubmenu = items =>
+      items.map(menuItem => {
+        if (menuItem.children) {
+          const subMenuTitle = (
+            <span className={styles.menu} key={menuItem.key}>
+              <span className={styles.title}>{menuItem.title}</span>
+              {menuItem.icon && <span className={`${menuItem.icon} ${styles.icon}`} />}
+            </span>
+          )
+          return (
+            <SubMenu title={subMenuTitle} key={menuItem.key}>
+              {generateSubmenu(menuItem.children)}
+            </SubMenu>
+          )
         }
-        return result
-      },
-      [],
-    )
-    return items.length > 0 ? items : false
-  }
-
-  getActiveMenuItem = (props, items) => {
-    const { selectedKeys, pathname } = this.state
-    let { collapsed } = props
-    let [activeMenuItem, ...path] = this.getPath(items, !selectedKeys ? pathname : selectedKeys)
-
-    this.setState({
-      selectedKeys: activeMenuItem ? activeMenuItem.key : '',
-      collapsed,
-    })
-  }
-
-  generateMenuPartitions(items) {
-    return items.map(menuItem => {
+        return generateItem(menuItem)
+      })
+    return menuData.map(menuItem => {
       if (menuItem.children) {
-        let subMenuTitle = (
-          <span className="menuTop__title-wrap" key={menuItem.key}>
-            <span className="menuTop__item-title">{menuItem.title}</span>
-            {menuItem.icon && <span className={menuItem.icon + ' menuTop__icon'} />}
+        const subMenuTitle = (
+          <span className={styles.menu} key={menuItem.key}>
+            <span className={styles.title}>{menuItem.title}</span>
+            {menuItem.icon && <span className={`${menuItem.icon} ${styles.icon}`} />}
           </span>
         )
         return (
           <SubMenu title={subMenuTitle} key={menuItem.key}>
-            {this.generateMenuPartitions(menuItem.children)}
+            {generateSubmenu(menuItem.children)}
           </SubMenu>
         )
       }
-      return this.generateMenuItem(menuItem)
+      return generateItem(menuItem)
     })
   }
 
-  generateMenuItem(item) {
-    const { key, title, url, icon, disabled } = item
-    const { dispatch } = this.props
-    return item.divider ? (
-      <Divider key={Math.random()} />
-    ) : item.url ? (
-      <Menu.Item key={key} disabled={disabled}>
-        <Link
-          to={url}
-          onClick={
-            this.props.isMobile
-              ? () => {
-                  dispatch(setLayoutState({ menuCollapsed: false }))
-                }
-              : undefined
-          }
-        >
-          <span className="menuTop__item-title">{title}</span>
-          {icon && <span className={icon + ' menuTop__icon'} />}
-        </Link>
-      </Menu.Item>
-    ) : (
-      <Menu.Item key={key} disabled={disabled}>
-        <span className="menuTop__item-title">{title}</span>
-        {icon && <span className={icon + ' menuTop__icon'} />}
-      </Menu.Item>
-    )
-  }
-
-  componentWillMount() {
-    this.getActiveMenuItem(this.props, menuData)
-  }
-
-  componentWillReceiveProps(newProps) {
-    this.setState(
-      {
-        pathname: newProps.pathname,
-        theme: newProps.theme,
-        settingsOpened: newProps.settingsOpened,
-      },
-      () => {
-        if (!newProps.isMobile) {
-          this.getActiveMenuItem(newProps, menuData)
-        }
-      },
-    )
-  }
-
   render() {
-    const { selectedKeys, openKeys, theme } = this.state
-    const menuItems = this.generateMenuPartitions(menuData)
+    const { selectedKeys } = this.state
+    const { isLightTheme } = this.props
     return (
-      <div className="menuTop">
-        <div className="menuTop__logo">
-          <div className="menuTop__logoContainer">
-            <img src="resources/images/logo-inverse.png" alt="" />
+      <div>
+        <div className={styles.logo}>
+          <div className={styles.logoContainer}>
+            <img src="resources/images/logo-inverse.png" alt="logo" />
           </div>
         </div>
         <Menu
-          theme={theme}
+          theme={isLightTheme ? 'light' : 'dark'}
           onClick={this.handleClick}
-          selectedKeys={[selectedKeys]}
-          openKeys={openKeys}
-          onOpenChange={this.onOpenChange}
+          selectedKeys={selectedKeys}
           mode="horizontal"
-          className="menuTop__navigation"
         >
-          <Menu.Item key={'settings'}>
-            <span className="menuTop__item-title">Settings</span>
-            <span className={'icmn icmn-cog menuTop__icon utils__spin-delayed--pseudo-selector'} />
-          </Menu.Item>
-          {menuItems}
+          {this.generateMenuItems()}
         </Menu>
       </div>
     )
   }
 }
 
-export { MenuTop, menuData }
+export default MenuTop

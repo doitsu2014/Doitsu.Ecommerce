@@ -25,26 +25,60 @@ namespace Doitsu.Fandom.API.Controllers
         [AllowAnonymous, HttpGet("read-by-slug")]
         public ActionResult Get([FromQuery]string slug)
         {
-            var product = this.productService.FindBySlug(slug);
-            return Ok(BaseResponse<ProductViewModel>.PrepareDataSuccess(product, "Get product successful!"));
+            try
+            {
+                var product = this.productService.FindBySlug(slug);
+                return Ok(BaseResponse<ProductViewModel>.PrepareDataSuccess(product, "Get product successful!"));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+
+            }
         }
         [AllowAnonymous, HttpGet("count")]
         public ActionResult Get([FromQuery]int? collectionId)
         {
-            var result = this.productService.CountProducts(collectionId);
-            return Ok(BaseResponse<int>.PrepareDataSuccess(result, "Cout product success successful!"));
+            try
+            {
+                var result = this.productService.CountProducts(collectionId);
+                return Ok(BaseResponse<int>.PrepareDataSuccess(result, "Cout product success successful!"));
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+
+            }
         }
+
         [AllowAnonymous, HttpGet("read")]
         public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string name, [FromQuery]int? collectionId, [FromQuery]int? id)
         {
-            var listProduct = this.productService.GetActiveByQuery(limit, pageSize, currentPage, name, collectionId, id).ToList();
-            return Ok(BaseResponse<List<ProductViewModel>>.PrepareDataSuccess(listProduct, "Get list products successful!"));
+            try
+            {
+                var listProduct = this.productService.GetActiveByQuery(limit, pageSize, currentPage, name, collectionId, id).ToList();
+                return Ok(BaseResponse<List<ProductViewModel>>.PrepareDataSuccess(listProduct, "Get list products successful!"));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+
+            }
         }
         [HttpPost("create")]
         public ActionResult Post([FromBody]ProductViewModel productAPIVM)
         {
-            var productVM = this.productService.Create(productAPIVM);
-            return Ok(BaseResponse<ProductViewModel>.PrepareDataSuccess(productVM, "Create a product successful!"));
+            try
+            {
+                var productVM = this.productService.Create(productAPIVM);
+                return Ok(BaseResponse<ProductViewModel>.PrepareDataSuccess(productVM, "Create a product successful!"));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+
+            }
         }
         [HttpPut("update")]
         public async Task<ActionResult> Put([FromBody]ProductViewModel productAPIVM)
@@ -57,17 +91,25 @@ namespace Doitsu.Fandom.API.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-                throw;
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+
             }
         }
         [HttpDelete("delete")]
         public async Task<ActionResult> Delete([FromQuery]ProductViewModel model)
         {
-            var originData = await productService.FindByIdAsync(model.Id);
-            originData.Active = false;
-            await this.productService.DeactiveAsync(model.Id);
-            return Ok(BaseResponse<ProductViewModel>.PrepareDataSuccess(model, "Delete the product successful!"));
+            try
+            {
+                var originData = await productService.FindByIdAsync(model.Id);
+                originData.Active = false;
+                await this.productService.DeactiveAsync(model.Id);
+                return Ok(BaseResponse<ProductViewModel>.PrepareDataSuccess(model, "Delete the product successful!"));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+
+            }
         }
     }
 }

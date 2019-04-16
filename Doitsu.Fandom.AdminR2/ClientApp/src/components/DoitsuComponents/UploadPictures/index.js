@@ -1,47 +1,67 @@
 import React from 'react'
 import './style.scss'
-import { Upload, Icon, Modal, message } from 'antd'
-import  config  from 'configuration.js'
+import { Upload, Icon, Modal } from 'antd'
+import config from 'Configuration'
+import Utils from 'utils'
 
-class UploadPictures extends React.Component {
-  static defaultProps = {
+export default class UploadPictures extends React.Component {
+  state = {
     uploadProps: {
       multiple: true,
-      action: `${config.baseAPIUrl}image/uploads`,
+      action: `${config.URL.BASE}/${config.URL.IMAGE}/uploads`,
       headers: {
-        'Authorization': window.localStorage.getItem('app.Authorization')
+        Authorization: `Bearer ${Utils.GetCurrentUser().token}`,
       },
-      name:"files",
-      listType:"picture-card",
-      className:"upload-pictures"
+      name: 'files',
+      listType: 'picture-card',
+      className: 'upload-pictures',
     },
     previewVisible: false,
     previewImage: '',
     fileList: [],
-    handleChange: {},
-    handleCancel: {},
-    handlePreview : {},
-    handleUploadSuccess: {},  
-    handleRemove:{}
+    isBindingDefault: false,
   }
-  render() {
-    let { 
-      previewVisible, 
-      previewImage, 
-      previewImageName, 
-      fileList, 
-      uploadProps, 
-      handleChange,
-      handleCancel, 
-      handlePreview, 
-      handleUploadSuccess,
-      handleRemove
-    } = this.props
 
+  componentWillReceiveProps() {
+    const { defaultImage } = this.props
+    const { fileList, isBindingDefault } = this.state
+    // this is default field
+    // so if is empty system will bind
+    // another case will not bind
+    if (defaultImage && !isBindingDefault) {
+      fileList.push(defaultImage)
+      this.setState({
+        fileList,
+        isBindingDefault: true,
+      })
+    }
+  }
+
+  handleCancel = () => this.setState({ previewVisible: false })
+
+  handlePreview = file => {
+    this.setState({
+      previewImage: file.url || file.thumbUrl,
+      previewVisible: true,
+    })
+  }
+
+  handleChange = ({ fileList }) => {
+    this.setState({
+      fileList,
+    })
+    const { onSuccessCallback } = this.props
+    if (fileList) {
+      onSuccessCallback(fileList)
+    }
+  }
+
+  render() {
+    const { previewVisible, previewImage, previewImageName, fileList, uploadProps } = this.state
     const uploadButton = (
       <div>
         <Icon type="cloud-upload" />
-        <div className="ant-upload-text">Đăng hình</div>
+        <div className="ant-upload-text">Upload file</div>
       </div>
     )
 
@@ -49,20 +69,16 @@ class UploadPictures extends React.Component {
       <div className="clearfix">
         <Upload
           {...uploadProps}
-          fileList= {fileList}
-          onSuccess={handleUploadSuccess}
-          onRemove={handleRemove}
-          onPreview={handlePreview}
-          onChange={handleChange}
+          fileList={fileList}
+          onPreview={this.handlePreview}
+          onChange={this.handleChange}
         >
-        {fileList.length >= 1 ? null : uploadButton}
+          {fileList.length >= 1 ? null : uploadButton}
         </Upload>
-        <Modal visible={previewVisible} footer={null} onCancel={handleCancel}>
+        <Modal visible={previewVisible} footer={null} onCancel={this.andleCancel}>
           <img alt={previewImageName} style={{ width: '100%' }} src={previewImage} />
         </Modal>
       </div>
     )
   }
 }
-
-export default UploadPictures;

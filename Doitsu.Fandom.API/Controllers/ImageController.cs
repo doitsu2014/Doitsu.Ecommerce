@@ -37,18 +37,18 @@ namespace Doitsu.Fandom.API.Controllers
                 string webRootPath = _hostingEnvironment.WebRootPath;
                 string container = _configuration.GetSection("ImageContainerPath").Value;
                 string userId = User.Claims.FirstOrDefault(p => p.Type == ClaimTypes.NameIdentifier)?.Value;
-                string folderName = Path.Combine(container,userId);
+                string folderName = Path.Combine(container, userId);
                 string uploadPath = Path.Combine(webRootPath, folderName);
 
                 List<ImageViewModel> result = new List<ImageViewModel>();
 
                 foreach (var file in files)
                 {
-                    string fileName = $"{DateTime.UtcNow.ToVietnamDateTime().Ticks.ToString()}_{Guid.NewGuid().ToString().Replace("-","")}{Path.GetExtension(file.FileName)}";
+                    string fileName = $"{DateTime.UtcNow.ToVietnamDateTime().Ticks.ToString()}_{Guid.NewGuid().ToString().Replace("-", "")}{Path.GetExtension(file.FileName)}";
 
                     if (file.Length > 0)
                     {
-                        if(!Directory.Exists(uploadPath))
+                        if (!Directory.Exists(uploadPath))
                         {
                             Directory.CreateDirectory(uploadPath);
                         }
@@ -64,9 +64,9 @@ namespace Doitsu.Fandom.API.Controllers
                     url.Scheme = scheme;
                     url.Host = requestHost.Host;
 
-                    if(port != 0)
+                    if (port != 0)
                     {
-                        url.Port = port; 
+                        url.Port = port;
                     }
                     url.Path += Path.Combine(folderName, fileName);
 
@@ -84,7 +84,8 @@ namespace Doitsu.Fandom.API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(BaseResponse<dynamic>.PrepareDataFail(new { data = ex.Data, message = ex.Message, stackTrace = ex.StackTrace }));
+
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
             }
         }
 

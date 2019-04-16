@@ -14,12 +14,7 @@ namespace Doitsu.Fandom.API.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            return Ok(new
-            {
-                Welcome="Chào mừng bạn đến với API của chúng tôi!",
-                APIVer="1.0",
-                Description="API này dành cho dự án Doitsu.Fandom.\n Chân thành cảm ơn và chúc các bạn may mắn"
-            });
+            return Redirect("/swagger/index.html");
         }
     }
 }

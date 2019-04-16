@@ -1,5 +1,6 @@
 ﻿
 using Doitsu.Fandom.DBManager;
+using Doitsu.Service.Core.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +29,7 @@ namespace Doitsu.Ecommerce.API
         public void ConfigureServices(IServiceCollection services)
         {
             RootConfig.Entry(services, Configuration);
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin", builder =>
@@ -60,7 +62,9 @@ namespace Doitsu.Ecommerce.API
             {
                 app.UseDeveloperExceptionPage();
             }
-          
+
+            app.UseMiddleware<ApiLoggingMiddleware>();
+
             // Shows UseCors with named policy.
             app.UseCors("AllowSpecificOrigin");
             app.UseStaticFiles(new StaticFileOptions
@@ -75,9 +79,10 @@ namespace Doitsu.Ecommerce.API
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
 
+
             app.UseAuthentication();
             app.UseMvc();
-            
+
             // Swagger configuration
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
             // specifying the Swagger JSON endpoint.

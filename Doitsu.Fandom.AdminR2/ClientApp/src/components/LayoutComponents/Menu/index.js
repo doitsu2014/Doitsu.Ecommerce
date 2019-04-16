@@ -1,55 +1,62 @@
 import 'rc-drawer/assets/index.css'
 import React from 'react'
 import DrawerMenu from 'rc-drawer'
-import { MenuLeft } from './MenuLeft'
-import { MenuTop } from './MenuTop'
 import { connect } from 'react-redux'
-import { setLayoutState } from 'ducks/app'
-import './style.scss'
+import { withRouter } from 'react-router-dom'
+import MenuLeft from './MenuLeft'
+import MenuTop from './MenuTop'
 
-const mapStateToProps = ({ app }, props) => ({
-  open: app.layoutState.menuMobileOpened,
-  isMenuTop: app.layoutState.isMenuTop,
+const mapStateToProps = ({ settings }) => ({
+  isMenuTop: settings.isMenuTop,
+  isMobileMenuOpen: settings.isMobileMenuOpen,
+  isMobileView: settings.isMobileView,
+  isLightTheme: settings.isLightTheme,
 })
 
+@withRouter
 @connect(mapStateToProps)
 class AppMenu extends React.Component {
-  state = {
-    open: this.props.open,
-    isMenuTop: this.props.isMenuTop,
-  }
-
   toggleOpen = () => {
-    const { dispatch } = this.props
-    const { open } = this.state
-    dispatch(setLayoutState({ menuMobileOpened: !open }))
-  }
-
-  componentWillReceiveProps({ open, isMenuTop }) {
-    this.setState({
-      open,
-      isMenuTop,
+    const { dispatch, isMobileMenuOpen } = this.props
+    document
+      .querySelector('#root')
+      .setAttribute(
+        'style',
+        !isMobileMenuOpen ? 'overflow: hidden; width: 100%; height: 100%;' : '',
+      )
+    dispatch({
+      type: 'settings/CHANGE_SETTING',
+      payload: {
+        setting: 'isMobileMenuOpen',
+        value: !isMobileMenuOpen,
+      },
     })
   }
 
   render() {
-    const { isMobile } = this.props
-    const { open, isMenuTop } = this.state
-    return isMobile ? (
-      <DrawerMenu
-        getContainer={null}
-        level={null}
-        open={open}
-        onMaskClick={this.toggleOpen}
-        onHandleClick={this.toggleOpen}
-      >
-        <MenuLeft {...this.props} />
-      </DrawerMenu>
-    ) : isMenuTop ? (
-      <MenuTop {...this.props} />
-    ) : (
-      <MenuLeft {...this.props} />
-    )
+    const { isMenuTop, isMobileMenuOpen, isMobileView, isLightTheme } = this.props
+    const BootstrappedMenu = () => {
+      if (isMobileView) {
+        return (
+          <DrawerMenu
+            getContainer={null}
+            level={null}
+            open={isMobileMenuOpen}
+            onMaskClick={this.toggleOpen}
+            onHandleClick={this.toggleOpen}
+            className={isLightTheme ? 'drawer-light' : ''}
+          >
+            <MenuLeft />
+          </DrawerMenu>
+        )
+      }
+      if (isMenuTop) {
+        return <MenuTop />
+      }
+      return <MenuLeft />
+    }
+
+    return BootstrappedMenu()
   }
 }
 

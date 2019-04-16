@@ -1,17 +1,14 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import classNames from 'classnames'
+import styles from './style.module.scss'
 
-const mapStateToProps = (state, props) => ({
-  isHideLogin: state.app.isHideLogin,
-})
-
-@connect(mapStateToProps)
-class Loader extends React.Component {
-  render() {
-    const { isHideLogin } = this.props
-    if (!isHideLogin) return null
-    return <div className="utils__loadingPage" />
-  }
-}
+const Loader = ({ spinning = true, fullScreen }) => (
+  <div
+    className={classNames(styles.loader, {
+      [styles.hidden]: !spinning,
+      [styles.fullScreen]: fullScreen,
+    })}
+  />
+)
 
 export default Loader

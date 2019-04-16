@@ -25,8 +25,15 @@ namespace Doitsu.Fandom.API.Controllers
         [AllowAnonymous, HttpGet("read")]
         public ActionResult Get()
         {
-            var blogCategories = this.blogCategoryService.GetAllActive();
-            return Ok(BaseResponse<IQueryable<BlogCategoryViewModel>>.PrepareDataSuccess(blogCategories, "Get blog successful!"));
+            try
+            {
+                var blogCategories = this.blogCategoryService.GetAllActive();
+                return Ok(BaseResponse<IQueryable<BlogCategoryViewModel>>.PrepareDataSuccess(blogCategories, "Get blog successful!"));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+            }
         }
     }
 }

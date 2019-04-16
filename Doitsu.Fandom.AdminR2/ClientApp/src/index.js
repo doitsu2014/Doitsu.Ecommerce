@@ -1,52 +1,39 @@
-﻿import React from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
-import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
-import { Helmet } from 'react-helmet'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import createHistory from 'history/createHashHistory'
+import { logger } from 'redux-logger'
 import thunk from 'redux-thunk'
-import 'es6-promise/auto'
-import 'setimmediate'
+import { routerMiddleware } from 'connected-react-router'
+import { createStore, applyMiddleware, compose } from 'redux'
+import createSagaMiddleware from 'redux-saga'
+import { createHashHistory } from 'history'
+import reducers from 'redux/reducers'
+import sagas from 'redux/sagas'
+import Router from 'router'
+import Localization from 'components/LayoutComponents/Localization'
+import * as serviceWorker from './serviceWorker'
 
-import { LocaleProvider } from 'antd'
-import enGB from 'antd/lib/locale-provider/en_GB'
-import registerServiceWorker from 'registerServiceWorker'
+// app styles
+import './global.scss'
 
-import Layout from 'components/LayoutComponents/Layout'
-import reducer from 'ducks'
-
-import 'resources/_antd.less' // redefinition AntDesign variables
-import 'bootstrap/dist/css/bootstrap.min.css' // bootstrap styles
-
-import 'resources/AntStyles/AntDesign/antd.cleanui.scss'
-import 'resources/CleanStyles/Core/core.cleanui.scss'
-import 'resources/CleanStyles/Vendors/vendors.cleanui.scss'
-
-const history = createHistory()
-const router = routerMiddleware(history)
-const middlewares = [router, thunk]
-const isLogger = false
-if (isLogger && process.env.NODE_ENV === 'development') {
-  const { logger } = require('redux-logger')
+const history = createHashHistory()
+const sagaMiddleware = createSagaMiddleware()
+const routeMiddleware = routerMiddleware(history)
+const middlewares = [thunk, sagaMiddleware, routeMiddleware]
+if (process.env.NODE_ENV === 'development' && true) {
   middlewares.push(logger)
 }
-const store = createStore(reducer, composeWithDevTools(applyMiddleware(...middlewares)))
+const store = createStore(reducers(history), compose(applyMiddleware(...middlewares)))
+sagaMiddleware.run(sagas)
 
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <LocaleProvider locale={enGB}>
-        <div>
-          <Helmet titleTemplate="Trang quản trị YGFL" />
-          <Layout />
-        </div>
-      </LocaleProvider>
-    </ConnectedRouter>
+    <Localization>
+      <Router history={history} />
+    </Localization>
   </Provider>,
   document.getElementById('root'),
 )
-registerServiceWorker()
 
-export default history
+serviceWorker.register()
+export { store, history }

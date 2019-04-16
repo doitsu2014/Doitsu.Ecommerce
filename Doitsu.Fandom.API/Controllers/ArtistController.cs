@@ -19,29 +19,27 @@ namespace Doitsu.Fandom.API.Controllers
     public class ArtistController : ControllerBase
     {
         private IArtistService artistService;
-        private ILogger logger;
 
-        public ArtistController(IArtistService artistService, ILogger<ArtistController> logger)
+        public ArtistController(IArtistService artistService)
         {
-            this.logger = logger;
             this.artistService = artistService;
-            logger.LogInformation("Touching: ArtistController {DateTime.UtcNow.AddHours(7).ToLongTimeString()}");
         }
 
-        [AllowAnonymous,HttpGet("read")]
+        [AllowAnonymous, HttpGet("read")]
         public ActionResult Get([FromQuery]string name, [FromQuery]string code, [FromQuery]int? id, [FromQuery]int limit = 0, [FromQuery]int pageSize = 0, [FromQuery]int currentPage = 0)
         {
             try
             {
-                logger.LogInformation("Read artists: limit - {limit}");
-
                 var listArtist = this.artistService.GetActiveByQuery(limit, pageSize, currentPage, name, code, id).ToList();
+                if (listArtist.Count <= 0)
+                {
+                    return NoContent();
+                }
                 return Ok(BaseResponse<List<ArtistViewModel>>.PrepareDataSuccess(listArtist, "Get list artists successful!"));
             }
             catch (Exception ex)
             {
-                logger.LogError(StatusCodes.Status500InternalServerError, ex, "Read list artists exception");
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
             }
         }
         [HttpPost("create")]
@@ -49,30 +47,41 @@ namespace Doitsu.Fandom.API.Controllers
         {
             try
             {
-                logger.LogInformation("Create artist: {artistAPIVM}");
-
                 var artistVM = this.artistService.Create(artistAPIVM);
                 return Ok(BaseResponse<ArtistViewModel>.PrepareDataSuccess(artistVM, "Create a artist successful!"));
             }
             catch (Exception ex)
             {
-                logger.LogError(StatusCodes.Status500InternalServerError, ex, "Create artist exception");
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
             }
         }
         [HttpPut("update")]
         public async Task<ActionResult> Put([FromBody]ArtistViewModel artistAPIVM)
         {
-            var artistVM = await this.artistService.UpdateAsync(artistAPIVM.Id, artistAPIVM);
-            return Ok(BaseResponse<ArtistViewModel>.PrepareDataSuccess(artistVM, "Update the artist successful!"));
+            try
+            {
+                var artistVM = await this.artistService.UpdateAsync(artistAPIVM.Id, artistAPIVM);
+                return Ok(BaseResponse<ArtistViewModel>.PrepareDataSuccess(artistVM, "Update the artist successful!"));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+            }
         }
         [HttpDelete("delete")]
         public async Task<ActionResult> Delete([FromQuery]ArtistViewModel model)
         {
-            var originData = await artistService.FindByIdAsync(model.Id);
-            originData.Active = false;
-            await this.artistService.UpdateAsync(model.Id, originData);
-            return Ok(BaseResponse<ArtistViewModel>.PrepareDataSuccess(model, "Delete the artist successful!"));
+            try
+            {
+                var originData = await artistService.FindByIdAsync(model.Id);
+                originData.Active = false;
+                await this.artistService.UpdateAsync(model.Id, originData);
+                return Ok(BaseResponse<ArtistViewModel>.PrepareDataSuccess(model, "Delete the artist successful!"));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+            }
         }
     }
 }

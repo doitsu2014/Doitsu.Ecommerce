@@ -1,233 +1,264 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Menu, Layout } from 'antd'
 import { Link, withRouter } from 'react-router-dom'
-import { reduce } from 'lodash'
-import { setLayoutState } from 'ducks/app'
+import { Menu, Layout } from 'antd'
+import store from 'store'
 import { Scrollbars } from 'react-custom-scrollbars'
-import { default as menuData } from './menuData'
-import './style.scss'
+import _ from 'lodash'
+import styles from './style.module.scss'
 
 const { Sider } = Layout
-const SubMenu = Menu.SubMenu
-const Divider = Menu.Divider
+const { SubMenu, Divider } = Menu
 
-const mapStateToProps = ({ app, routing }, props) => {
-  const { layoutState } = app
-  return {
-    pathname: routing.location.pathname,
-    collapsed: layoutState.menuCollapsed,
-    theme: layoutState.themeLight ? 'light' : 'dark',
-    settingsOpened: layoutState.settingsOpened,
-  }
-}
+const mapStateToProps = ({ menu, settings }) => ({
+  menuData: menu.menuLeftData,
+  isMenuCollapsed: settings.isMenuCollapsed,
+  isMobileView: settings.isMobileView,
+  isSettingsOpen: settings.isSettingsOpen,
+  isLightTheme: settings.isLightTheme,
+  isMobileMenuOpen: settings.isMobileMenuOpen,
+})
 
-@connect(mapStateToProps)
 @withRouter
+@connect(mapStateToProps)
 class MenuLeft extends React.Component {
   state = {
-    pathname: this.props.pathname,
-    collapsed: this.props.collapsed,
-    theme: this.props.theme,
-    selectedKeys: '',
-    openKeys: [''],
-    settingsOpened: this.props.settingsOpened,
+    selectedKeys: store.get('app.menu.selectedKeys') || [],
+    openedKeys: store.get('app.menu.openedKeys') || [],
+  }
+
+  componentWillMount() {
+    this.setSelectedKeys(this.props)
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.isMenuCollapsed && !newProps.isMobileView) {
+      this.setState({
+        openedKeys: [],
+      })
+    }
+    this.setSelectedKeys(newProps)
+  }
+
+  setSelectedKeys = props => {
+    const { menuData } = this.props
+    const flattenItems = (items, key) =>
+      items.reduce((flattenedItems, item) => {
+        flattenedItems.push(item)
+        if (Array.isArray(item[key])) {
+          return flattenedItems.concat(flattenItems(item[key], key))
+        }
+        return flattenedItems
+      }, [])
+    const selectedItem = _.find(flattenItems(menuData, 'children'), [
+      'url',
+      props.location.pathname,
+    ])
+    this.setState({
+      selectedKeys: selectedItem ? [selectedItem.key] : [],
+    })
+  }
+
+  onCollapse = (value, type) => {
+    const { dispatch, isMenuCollapsed } = this.props
+    if (type === 'responsive' && isMenuCollapsed) {
+      return
+    }
+
+    dispatch({
+      type: 'settings/CHANGE_SETTING',
+      payload: {
+        setting: 'isMenuCollapsed',
+        value: !isMenuCollapsed,
+      },
+    })
+
+    this.setState({
+      openedKeys: [],
+    })
+  }
+
+  onOpenChange = openedKeys => {
+    store.set('app.menu.openedKeys', openedKeys)
+    this.setState({
+      openedKeys,
+    })
   }
 
   handleClick = e => {
-    const { dispatch, isMobile } = this.props
-    if (isMobile) {
-      // collapse menu on isMobile state
-      dispatch(setLayoutState({ menuMobileOpened: false }))
-    }
+    const { dispatch, isSettingsOpen } = this.props
+    store.set('app.menu.selectedKeys', [e.key])
+    // custom action on settings menu item
     if (e.key === 'settings') {
-      // prevent click and toggle settings block on theme settings link
-      dispatch(setLayoutState({ settingsOpened: !this.state.settingsOpened }))
+      dispatch({
+        type: 'settings/CHANGE_SETTING',
+        payload: {
+          setting: 'isSettingsOpen',
+          value: !isSettingsOpen,
+        },
+      })
       return
     }
-    // set current selected keys
     this.setState({
-      selectedKeys: e.key,
+      selectedKeys: [e.key],
+      // openKeys: e.keyPath,
     })
   }
 
-  onOpenChange = openKeys => {
-    this.setState({
-      openKeys: openKeys,
-    })
-  }
-
-  getPath(data, id, parents = []) {
-    const { selectedKeys } = this.state
-    let items = reduce(
-      data,
-      (result, entry) => {
-        if (result.length) {
-          return result
-        } else if (entry.url === id && selectedKeys === '') {
-          return [entry].concat(parents)
-        } else if (entry.key === id && selectedKeys !== '') {
-          return [entry].concat(parents)
-        } else if (entry.children) {
-          let nested = this.getPath(entry.children, id, [entry].concat(parents))
-          return nested ? nested : result
-        }
-        return result
-      },
-      [],
-    )
-    return items.length > 0 ? items : false
-  }
-
-  getActiveMenuItem = (props, items) => {
-    const { selectedKeys, pathname } = this.state
-    let { collapsed } = props
-    let [activeMenuItem, ...path] = this.getPath(items, !selectedKeys ? pathname : selectedKeys)
-
-    if (collapsed) {
-      path = ['']
+  generateMenuItems = () => {
+    const { menuData = [] } = this.props
+    const generateItem = item => {
+      const { key, title, url, icon, disabled, pro } = item
+      if (item.divider) {
+        return <Divider key={Math.random()} />
+      }
+      if (item.url) {
+        return (
+          <Menu.Item key={key} disabled={disabled}>
+            {item.target ? (
+              <a href={url} target={item.target} rel="noopener noreferrer">
+                {icon && <span className={`${icon} ${styles.icon} icon-collapsed-hidden`} />}
+                <span className={styles.title}>{title}</span>
+                {pro && (
+                  <span className="badge badge-primary badge-collapsed-hidden ml-2">PRO</span>
+                )}
+              </a>
+            ) : (
+              <Link to={url}>
+                {icon && <span className={`${icon} ${styles.icon} icon-collapsed-hidden`} />}
+                <span className={styles.title}>{title}</span>
+                {pro && (
+                  <span className="badge badge-primary badge-collapsed-hidden ml-2">PRO</span>
+                )}
+              </Link>
+            )}
+          </Menu.Item>
+        )
+      }
+      return (
+        <Menu.Item key={key} disabled={disabled}>
+          {icon && <span className={`${icon} ${styles.icon} icon-collapsed-hidden`} />}
+          <span className={styles.title}>{title}</span>
+          {pro && <span className="badge badge-primary badge-collapsed-hidden ml-2">PRO</span>}
+        </Menu.Item>
+      )
     }
 
-    this.setState({
-      selectedKeys: activeMenuItem ? activeMenuItem.key : '',
-      openKeys: activeMenuItem ? path.map(entry => entry.key) : [],
-      collapsed,
-    })
-  }
+    const generateSubmenu = items =>
+      items.map(menuItem => {
+        if (menuItem.children) {
+          const subMenuTitle = (
+            <span key={menuItem.key}>
+              <span className={styles.title}>{menuItem.title}</span>
+              {menuItem.icon && <span className={`${menuItem.icon} ${styles.icon}`} />}
+            </span>
+          )
+          return (
+            <SubMenu title={subMenuTitle} key={menuItem.key}>
+              {generateSubmenu(menuItem.children)}
+            </SubMenu>
+          )
+        }
+        return generateItem(menuItem)
+      })
 
-  generateMenuPartitions(items) {
-    return items.map(menuItem => {
+    return menuData.map(menuItem => {
       if (menuItem.children) {
-        let subMenuTitle = (
-          <span className="menuLeft__title-wrap" key={menuItem.key}>
-            <span className="menuLeft__item-title">{menuItem.title}</span>
-            {menuItem.icon && <span className={menuItem.icon + ' menuLeft__icon'} />}
+        const subMenuTitle = (
+          <span key={menuItem.key}>
+            <span className={styles.title}>{menuItem.title}</span>
+            {menuItem.icon && <span className={`${menuItem.icon} ${styles.icon}`} />}
           </span>
         )
         return (
           <SubMenu title={subMenuTitle} key={menuItem.key}>
-            {this.generateMenuPartitions(menuItem.children)}
+            {generateSubmenu(menuItem.children)}
           </SubMenu>
         )
       }
-      return this.generateMenuItem(menuItem)
+      return generateItem(menuItem)
     })
   }
 
-  generateMenuItem(item) {
-    const { key, title, url, icon, disabled } = item
-    const { dispatch } = this.props
-    return item.divider ? (
-      <Divider key={Math.random()} />
-    ) : item.url ? (
-      <Menu.Item key={key} disabled={disabled}>
-        <Link
-          to={url}
-          onClick={
-            this.props.isMobile
-              ? () => {
-                  dispatch(setLayoutState({ menuCollapsed: false }))
-                }
-              : undefined
-          }
-        >
-          <span className="menuLeft__item-title">{title}</span>
-          {icon && <span className={icon + ' menuLeft__icon'} />}
-        </Link>
-      </Menu.Item>
-    ) : (
-      <Menu.Item key={key} disabled={disabled}>
-        <span className="menuLeft__item-title">{title}</span>
-        {icon && <span className={icon + ' menuLeft__icon'} />}
-      </Menu.Item>
-    )
-  }
-
-  onCollapse = (value, type) => {
-    const { dispatch } = this.props
-    const { collapsed } = this.state
-    if (type === 'responsive' && collapsed) {
-      return
-    }
-    dispatch(setLayoutState({ menuCollapsed: !collapsed }))
-  }
-
-  componentDidMount() {
-    this.getActiveMenuItem(this.props, menuData)
-  }
-
-  componentWillReceiveProps(newProps) {
-    this.setState(
-      {
-        selectedKeys: '',
-        pathname: newProps.pathname,
-        theme: newProps.theme,
-        settingsOpened: newProps.settingsOpened,
-      },
-      () => {
-        if (!newProps.isMobile) {
-          this.getActiveMenuItem(newProps, menuData)
-        }
-      },
-    )
-  }
-
   render() {
-    const { collapsed, selectedKeys, openKeys, theme } = this.state
-    const { isMobile } = this.props
-    const menuItems = this.generateMenuPartitions(menuData)
-    const paramsMobile = {
-      width: 256,
-      collapsible: false,
-      collapsed: false,
-      onCollapse: this.onCollapse,
-    }
-    const paramsDesktop = {
-      width: 256,
-      collapsible: true,
-      collapsed: collapsed,
-      onCollapse: this.onCollapse,
-      breakpoint: 'lg',
-    }
-    const params = isMobile ? paramsMobile : paramsDesktop
+    const { selectedKeys, openedKeys } = this.state
+    const { isMobileView, isMenuCollapsed, isLightTheme } = this.props
+    const menuSettings = isMobileView
+      ? {
+          width: 256,
+          collapsible: false,
+          collapsed: false,
+          onCollapse: this.onCollapse,
+        }
+      : {
+          width: 256,
+          collapsible: true,
+          collapsed: isMenuCollapsed,
+          onCollapse: this.onCollapse,
+          breakpoint: 'lg',
+        }
+
+    const menu = this.generateMenuItems()
+
     return (
-      <Sider {...params} className="menuLeft">
-        <div className="menuLeft__logo">
-          {params.collapsed ? (
-            <div className="menuLeft__logoContainer menuLeft__logoContainer--collapsed">
-              <img src="resources/images/logoygfl.png" alt=""/>
-            </div>
-          ) : (
-            <div className="menuLeft__logoContainer">
-              <img src="resources/images/logoygfl.png" alt="" />
-            </div>
-          )}
+      <Sider
+        {...menuSettings}
+        className={isLightTheme ? `${styles.menu} ${styles.light}` : styles.menu}
+      >
+        <div className={styles.logo}>
+          <div className={styles.logoContainer}>
+            <img
+              src={`resources/images/ygfl-logo-inverse${
+                menuSettings.collapsed ? '-mobile' : ''
+              }.png`}
+              alt=""
+            />
+          </div>
         </div>
         <Scrollbars
+          className={isMobileView ? styles.scrollbarMobile : styles.scrollbarDesktop}
+          renderThumbVertical={({ style, ...props }) => (
+            <div
+              {...props}
+              style={{
+                ...style,
+                width: '4px',
+                borderRadius: 'inherit',
+                backgroundColor: '#c5cdd2',
+                left: '1px',
+              }}
+            />
+          )}
           autoHide
-          style={{ height: isMobile ? 'calc(100vh - 64px)' : 'calc(100vh - 112px)' }}
         >
           <Menu
-            theme={theme}
+            theme={isLightTheme ? 'light' : 'dark'}
             onClick={this.handleClick}
-            selectedKeys={[selectedKeys]}
-            openKeys={openKeys}
+            selectedKeys={selectedKeys}
+            openKeys={openedKeys}
             onOpenChange={this.onOpenChange}
             mode="inline"
-            className="menuLeft__navigation"
+            className={styles.navigation}
           >
-            {/* <Menu.Item key={'settings'}>
-              <span className="menuLeft__item-title">Theme Settings</span>
-              <span
-                className={'icmn icmn-cog menuLeft__icon utils__spin-delayed--pseudo-selector'}
-              />
-            </Menu.Item> */}
-            {menuItems}
+            {menu}
           </Menu>
+          <div className={styles.buyPro}>
+            <p>
+              <strong>More components, more styles, more themes, and premium support!</strong>
+            </p>
+            <a
+              href="https://themeforest.net/item/clean-ui-react-admin-template/21938700"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-sm btn-danger"
+            >
+              Buy Pro 24$
+            </a>
+          </div>
         </Scrollbars>
       </Sider>
     )
   }
 }
 
-export { MenuLeft, menuData }
+export default MenuLeft

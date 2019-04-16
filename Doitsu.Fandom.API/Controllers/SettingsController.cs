@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace Doitsu.Fandom.API.Controllers
 {
@@ -58,8 +59,7 @@ namespace Doitsu.Fandom.API.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-                return BadRequest();
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
             }
         }
 
@@ -89,7 +89,8 @@ namespace Doitsu.Fandom.API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(BaseResponse<Exception>.PrepareDataFail(ex));
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+
             }
         }
 

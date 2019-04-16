@@ -1,80 +1,90 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { logout } from 'ducks/app'
 import { Menu, Dropdown, Avatar, Badge } from 'antd'
+import { FormattedMessage } from 'react-intl'
+import styles from './style.module.scss'
 
-const mapDispatchToProps = dispatch => ({
-  logout: event => {
-    event.preventDefault()
-    dispatch(logout())
-  },
-})
-
-const mapStateToProps = (state, props) => ({
-  userState: state.app.userState,
-})
-
-@connect(mapStateToProps, mapDispatchToProps)
+@connect(({ user }) => ({ user }))
 class ProfileMenu extends React.Component {
   state = {
-    count: 7,
+    count: 0,
+  }
+
+  logout = () => {
+    const { dispatch } = this.props
+    dispatch({
+      type: 'user/LOGOUT',
+    })
   }
 
   addCount = () => {
+    let { count } = this.state
+    count += 1
     this.setState({
-      count: this.state.count + 1,
+      count,
     })
   }
 
   render() {
+    const { user } = this.props
     const { count } = this.state
-    const { userState, logout } = this.props
     const menu = (
       <Menu selectable={false}>
         <Menu.Item>
-          <div className="rfq__widget__system-status__item">
-            <strong>Xin chào, {userState.email}</strong>
-            <div>
-              <strong>Chức vụ:</strong> {userState.role}
-              <br />
-            </div>
+          <strong>
+            <FormattedMessage id="topBar.profileMenu.hello" />, {user.name || 'Anonymous'}
+          </strong>
+          <div>
+            <strong className="mr-1">
+              <FormattedMessage id="topBar.profileMenu.billingPlan" />:{' '}
+            </strong>
+            Professional
+          </div>
+          <div>
+            <strong>
+              <FormattedMessage id="topBar.profileMenu.role" />:{' '}
+            </strong>
+            {user.roles.join(', ')}
           </div>
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item>
-          <div className="rfq__widget__system-status__item">
-            <strong>Số điện thoại:</strong> 
+          <div>
+            <strong>
+              <FormattedMessage id="topBar.profileMenu.email" />:{' '}
+            </strong>
+            {user.email}
+            <br />
+            <strong>
+              <FormattedMessage id="topBar.profileMenu.phone" />:{' '}
+            </strong>
+            {user.phone || '-'}
           </div>
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item>
           <a href="javascript: void(0);">
-            <i className="topbar__dropdownMenuIcon icmn-user" /> Chỉnh sửa thông tin (chưa hoàn thành)
+            <i className={`${styles.menuIcon} icmn-user`} />
+            <FormattedMessage id="topBar.profileMenu.editProfile" />
           </a>
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item>
-          <a href="javascript: void(0);" onClick={logout}>
-            <i className="topbar__dropdownMenuIcon icmn-exit" /> Đăng xuất
+          <a href="javascript: void(0);" onClick={this.logout}>
+            <i className={`${styles.menuIcon} icmn-exit`} />
+            <FormattedMessage id="topBar.profileMenu.logout" />
           </a>
         </Menu.Item>
       </Menu>
     )
     return (
-      <div className="topbar__dropdown d-inline-block">
-        <Dropdown
-          overlay={menu}
-          trigger={['click']}
-          placement="bottomRight"
-          onVisibleChange={this.addCount}
-        >
-          <a className="ant-dropdown-link" href="/">
-            <Badge count={count}>
-              <Avatar className="topbar__avatar" shape="square" size="large" icon="user" />
-            </Badge>
-          </a>
-        </Dropdown>
-      </div>
+      <Dropdown overlay={menu} trigger={['click']} onVisibleChange={this.addCount}>
+        <div className={styles.dropdown}>
+          <Badge count={count}>
+            <Avatar className={styles.avatar} shape="square" size="large" icon="user" />
+          </Badge>
+        </div>
+      </Dropdown>
     )
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Line } from 'peity-react'
-import './style.scss'
+import { FormattedMessage } from 'react-intl'
+import style from './style.module.scss'
 
 class BitcoinPrice extends React.Component {
   state = {
@@ -10,8 +11,8 @@ class BitcoinPrice extends React.Component {
   render() {
     const { chartsData } = this.state
     return (
-      <div className="bitcoinPrice d-inline-block mr-4">
-        Bitcoin Price:
+      <div className={style.bitcoinPrice}>
+        <FormattedMessage id="topBar.bitcoin" />:
         <span style={{ margin: '0 8px', position: 'relative', top: '3px' }}>
           <Line values={chartsData} />
         </span>

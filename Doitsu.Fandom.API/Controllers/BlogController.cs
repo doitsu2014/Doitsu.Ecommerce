@@ -25,24 +25,45 @@ namespace Doitsu.Fandom.API.Controllers
         [AllowAnonymous, HttpGet("read-by-slug")]
         public ActionResult Get([FromQuery]string slug)
         {
-            var blog = this.blogService.FindBySlug(slug);
-            return Ok(BaseResponse<BlogViewModel>.PrepareDataSuccess(blog, "Get blog successful!"));
+            try
+            {
+                var blog = this.blogService.FindBySlug(slug);
+                return Ok(BaseResponse<BlogViewModel>.PrepareDataSuccess(blog, "Get blog successful!"));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+            }
         }
-        
+
         [AllowAnonymous, HttpGet("count")]
         public ActionResult Get([FromQuery]int? collectionId)
         {
-            var result = this.blogService.CountBlogs(collectionId);
-            return Ok(BaseResponse<int>.PrepareDataSuccess(result, "Cout blog success successful!"));
+            try
+            {
+                var result = this.blogService.CountBlogs(collectionId);
+                return Ok(BaseResponse<int>.PrepareDataSuccess(result, "Cout blog success successful!"));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+            }
         }
-        
+
         [AllowAnonymous, HttpGet("read")]
         public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string name, [FromQuery]int? blogCategoryId, [FromQuery]int? id)
         {
-            var listBlog = this.blogService.GetActiveByQuery(limit, pageSize, currentPage, name, blogCategoryId, id).ToList();
-            return Ok(BaseResponse<List<BlogViewModel>>.PrepareDataSuccess(listBlog, "Get list blogs successful!"));
+            try
+            {
+                var listBlog = this.blogService.GetActiveByQuery(limit, pageSize, currentPage, name, blogCategoryId, id).ToList();
+                return Ok(BaseResponse<List<BlogViewModel>>.PrepareDataSuccess(listBlog, "Get list blogs successful!"));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+            }
         }
-        
+
         [HttpPost("create")]
         public ActionResult Post([FromBody]BlogViewModel blogAPIVM)
         {
@@ -53,10 +74,10 @@ namespace Doitsu.Fandom.API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(BaseResponse<Exception>.PrepareDataFail(ex));
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
             }
         }
-        
+
         [HttpPut("update")]
         public async Task<ActionResult> Put([FromBody]BlogViewModel blogAPIVM)
         {
@@ -68,10 +89,10 @@ namespace Doitsu.Fandom.API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
             }
         }
-        
+
         [HttpDelete("delete")]
         public async Task<ActionResult> Delete([FromQuery]BlogViewModel model)
         {
@@ -81,10 +102,10 @@ namespace Doitsu.Fandom.API.Controllers
                 originData.Active = false;
                 await this.blogService.UpdateAsync(originData);
                 return Ok(BaseResponse<BlogViewModel>.PrepareDataSuccess(originData, "Delete the blog successful!"));
-            } 
+            }
             catch (Exception ex)
             {
-                return BadRequest(ex);           
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
             }
         }
     }

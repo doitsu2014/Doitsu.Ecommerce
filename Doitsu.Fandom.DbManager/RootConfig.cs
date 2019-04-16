@@ -48,12 +48,11 @@ namespace Doitsu.Fandom.DBManager
                 .AddEntityFrameworkStores<IdentityFandomContext>()
                 .AddDefaultTokenProviders();
 
+            // Inject DbContext
+            // Inject Identity Manager
+            // Inject UOW
             services.AddScoped(typeof(DbContext), typeof(FandomDbContext));
-            //services.AddScoped(typeof(IdentityDbContext<DoitsuUserInt, IdentityRole<int>, int>), typeof(IdentityFandomContext));
-            //services.AddScoped(typeof(UserManager<DoitsuUserInt>), typeof(DoitsuUserIntManager));
             services.AddScoped(typeof(DoitsuUserIntManager));
-            //services.AddScoped(typeof(UserManager<IdentityUser<int>>), typeof(DoitsuUserIntManager));
-
             services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
 
             DoitsuJWTServiceBuilder.BuildJWTService(services);

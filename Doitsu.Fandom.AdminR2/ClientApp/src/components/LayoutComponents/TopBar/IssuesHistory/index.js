@@ -1,68 +1,71 @@
 import React from 'react'
 import { Menu, Dropdown } from 'antd'
+import { FormattedMessage } from 'react-intl'
+import { Link } from 'react-router-dom'
+import styles from './style.module.scss'
 
 class IssuesHistory extends React.Component {
   render() {
     const menu = (
       <Menu selectable={false}>
         <Menu.Item>
-          <a href="javascript: void(0);">Current search</a>
+          <Link to="/">Current search</Link>
         </Menu.Item>
         <Menu.Item>
-          <a href="javascript: void(0);">Search for issues</a>
-        </Menu.Item>
-        <Menu.Divider />
-        <span className="topbar__dropdownTitle">
-          <strong>Opened</strong>
-        </span>
-        <Menu.Item>
-          <a href="javascript: void(0);">
-            <i className="topbar__dropdownMenuIcon icmn-checkmark" /> CLNUI-253 Project implemen...
-          </a>
-        </Menu.Item>
-        <Menu.Item>
-          <a href="javascript: void(0);">
-            <i className="topbar__dropdownMenuIcon icmn-checkmark" /> CLNUI-234 Active history
-            iss...
-          </a>
-        </Menu.Item>
-        <Menu.Item>
-          <a href="javascript: void(0);">
-            <i className="topbar__dropdownMenuIcon icmn-clock" /> CLNUI-424 Ionicons intergrat...
-          </a>
-        </Menu.Item>
-        <Menu.Item>
-          <a href="javascript: void(0);">More...</a>
+          <Link to="/">Search for issues</Link>
         </Menu.Item>
         <Menu.Divider />
-        <span className="topbar__dropdownTitle">
-          <strong>Filters</strong>
-        </span>
-        <Menu.Item>
-          <a href="javascript: void(0);">My open issues</a>
-        </Menu.Item>
-        <Menu.Item>
-          <a href="javascript: void(0);">Reported by me</a>
-        </Menu.Item>
+        <Menu.ItemGroup title="Opened">
+          <Menu.Item>
+            <Link to="/">
+              <i className={`${styles.menuIcon} icmn-checkmark`} />
+              CLNUI-253 Project implemen...
+            </Link>
+          </Menu.Item>
+          <Menu.Item>
+            <Link to="/">
+              <i className={`${styles.menuIcon} icmn-checkmark`} />
+              CLNUI-234 Active history iss...
+            </Link>
+          </Menu.Item>
+          <Menu.Item>
+            <Link to="/">
+              <i className={`${styles.menuIcon} icmn-clock`} />
+              CLNUI-424 Ionicons intergrat...
+            </Link>
+          </Menu.Item>
+          <Menu.Item>
+            <Link to="/">More...</Link>
+          </Menu.Item>
+        </Menu.ItemGroup>
+        <Menu.Divider />
+        <Menu.ItemGroup title="Filters">
+          <Menu.Item>
+            <Link to="/">My open issues</Link>
+          </Menu.Item>
+          <Menu.Item>
+            <Link to="/">Reported by me</Link>
+          </Menu.Item>
+        </Menu.ItemGroup>
         <Menu.Divider />
         <Menu.Item>
-          <a href="javascript: void(0);">
-            <i className="topbar__dropdownMenuIcon icmn-cog" /> Settings
-          </a>
+          <Link to="/">
+            <i className={`${styles.menuIcon} icmn-cog`} /> Settings
+          </Link>
         </Menu.Item>
       </Menu>
     )
     return (
-      <div className="topbar__dropdown d-inline-block mr-4">
-        <Dropdown overlay={menu} trigger={['click']} placement="bottomLeft">
-          <a className="ant-dropdown-link" href="/">
-            <i className="icmn-folder-open mr-2 topbar__dropdownIcon" />
-            <span className="d-none d-xl-inline">
-              <strong>Issues History</strong>
-            </span>
-          </a>
-        </Dropdown>
-      </div>
+      <Dropdown overlay={menu} trigger={['click']} placement="bottomLeft">
+        <div className={styles.dropdown}>
+          <i className={`${styles.icon} icmn-folder-open`} />
+          <span className="d-none d-xl-inline">
+            <strong>
+              <FormattedMessage id="topBar.issuesHistory" />
+            </strong>
+          </span>
+        </div>
+      </Dropdown>
     )
   }
 }

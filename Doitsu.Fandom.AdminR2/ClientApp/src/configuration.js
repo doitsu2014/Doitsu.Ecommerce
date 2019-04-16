@@ -1,9 +1,18 @@
-const isProduction = process.env.NODE_ENV === 'production';
-console.log("NODE_ENV: ", process.env.NODE_ENV);
+export default class Configuration {
+  static IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
-const config = {
-    //"baseAPIUrl": isProduction ? "http://fandom.api.doitsu.tech/api/" :  "http://localhost:9092/api/"
-    "baseAPIUrl": isProduction ? "http://api.ygfl.vn/api/" :  "http://localhost:9092/api/"
-};
-
-export default config
+  static URL = {
+    BASE:
+      process.env.NODE_ENV === 'production'
+        ? 'http://api.ygfl.vn/api'
+        : 'http://localhost:9092/api',
+    AUTHORIZE: 'authorize',
+    ARTIST: 'artist',
+    BLOG: 'blog',
+    BLOG_CATEGORY: 'blogcategory',
+    PRODUCT: 'product',
+    PRODUCT_COLLECTION: 'product-collection',
+    SETTINGS: 'settings',
+    IMAGE: 'image',
+  }
+}

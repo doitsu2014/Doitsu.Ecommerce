@@ -32,6 +32,7 @@ namespace Doitsu.Ecommerce.API
             })
             .ConfigureLogging((hostingContext, logging) =>
             {
+                logging.ClearProviders();
                 logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
                 logging.AddConsole();
                 logging.AddDebug();
