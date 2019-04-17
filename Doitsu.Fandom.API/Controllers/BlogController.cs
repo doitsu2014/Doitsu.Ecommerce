@@ -16,7 +16,7 @@ namespace Doitsu.Fandom.API.Controllers
     [ApiController]
     public class BlogController : ControllerBase
     {
-        private IBlogService blogService;
+        private readonly IBlogService blogService;
         public BlogController(IBlogService blogService)
         {
             this.blogService = blogService;

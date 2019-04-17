@@ -2,8 +2,8 @@ import React from 'react'
 import { EditorState, convertToRaw, ContentState, convertFromHTML } from 'draft-js'
 import { Editor } from 'react-draft-wysiwyg'
 import draftToHtml from 'draftjs-to-html'
-
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
+import './style.editor.css'
 import styles from './style.module.scss'
 
 export default class EditorWysiwygCTHTML extends React.Component {
@@ -29,24 +29,19 @@ export default class EditorWysiwygCTHTML extends React.Component {
     const { defaultHtml } = this.props
     const { isBindingDefault } = this.state
     let bindingValue
-    console.log(isBindingDefault);
+    console.log(isBindingDefault)
+    console.log(defaultHtml)
     if (!isBindingDefault) {
-      if (!defaultHtml) {
-        bindingValue = EditorState.createEmpty()
-        this.setState({
-          editorState: bindingValue,
-        })
-      } else {
-        try {
-          bindingValue = EditorState.createWithContent(convertFromHTML(defaultHtml))
-        } catch (e) {
-          console.log("Empty state make Empty Editor State");
-          bindingValue = EditorState.createEmpty()
-        }
+      try {
+        const contentState = convertFromHTML(defaultHtml)
+        bindingValue = EditorState.createWithContent(contentState)
         this.setState({
           editorState: bindingValue,
           isBindingDefault: true,
         })
+      } catch (e) {
+        console.log(e)
+        bindingValue = EditorState.createEmpty()
       }
     }
   }
@@ -68,11 +63,10 @@ export default class EditorWysiwygCTHTML extends React.Component {
     return (
       <div>
         <Editor
-          className={styles.editor}
+          wrapperClassName={styles.wrapper_class}
+          editorClassName={styles.editor_class}
+          toolbarClassName={styles.toolbar_class}
           editorState={editorState}
-          
-          wrapperClassName={styles.editor_wrapper}
-          editorClassName={styles.editor}
           onEditorStateChange={this.onEditorStateChange}
         />
       </div>

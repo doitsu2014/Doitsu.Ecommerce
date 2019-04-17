@@ -1,9 +1,12 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import ArtistEditor from 'pages/artists/editor'
+import { connect } from 'react-redux'
 
+@connect(({ artist }) => ({ artist }))
 export default class UpdateArtistPage extends React.Component {
   render() {
+    const { artist } = this.props
     return (
       <div>
         <Helmet title="Update artist page" />
@@ -14,7 +17,7 @@ export default class UpdateArtistPage extends React.Component {
             </div>
           </div>
           <div className="card-body">
-            <ArtistEditor />
+            <ArtistEditor defaultTrackingId={artist.trackingId} />
           </div>
         </div>
       </div>

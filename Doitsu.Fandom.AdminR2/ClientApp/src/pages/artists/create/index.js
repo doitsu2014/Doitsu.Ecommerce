@@ -1,11 +1,14 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import ArtistEditor from 'pages/artists/editor'
+import { connect } from 'react-redux'
 
+@connect(({ artist }) => ({ artist }))
 export default class CreateArtistPage extends React.Component {
   componentWillMount() {}
 
   render() {
+    const defaultArtistId = -1
     return (
       <div>
         <Helmet title="Create artist page" />
@@ -16,7 +19,7 @@ export default class CreateArtistPage extends React.Component {
             </div>
           </div>
           <div className="card-body">
-            <ArtistEditor />
+            <ArtistEditor defaultTrackingId={defaultArtistId} />
           </div>
         </div>
       </div>

@@ -1,0 +1,8 @@
+.public-DraftStyleDefault-block {
+    margin: 0px;
+}
+
+.rdw-embedded-modal, .rdw-link-modal,
+.rdw-colorpicker-modal {
+    height: auto;
+}

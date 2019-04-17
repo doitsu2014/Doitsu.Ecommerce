@@ -1,9 +1,12 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import BlogEditor from 'pages/blogs/editor'
+import { connect } from 'react-redux'
 
+@connect(({ blogState }) => ({ blogState }))
 export default class UpdateBlogPage extends React.Component {
   render() {
+    const { blogState } = this.props
     return (
       <div>
         <Helmet title="Update blog page" />
@@ -14,7 +17,7 @@ export default class UpdateBlogPage extends React.Component {
             </div>
           </div>
           <div className="card-body">
-            <BlogEditor />
+            <BlogEditor defaultTrackingId={blogState.trackingId} />
           </div>
         </div>
       </div>

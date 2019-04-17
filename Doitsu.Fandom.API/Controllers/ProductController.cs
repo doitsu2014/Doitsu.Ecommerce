@@ -16,7 +16,7 @@ namespace Doitsu.Fandom.API.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private IProductService productService;
+        private readonly IProductService productService;
         public ProductController(IProductService productService)
         {
             this.productService = productService;

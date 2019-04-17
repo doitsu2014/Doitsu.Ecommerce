@@ -25,8 +25,8 @@ namespace Doitsu.Fandom.API.Controllers
     [Route("api/[controller]")]
     public class AuthorizeController : ControllerBase
     {
-        public DoitsuUserIntManager _userManager;
-        private ILogger logger;
+        private readonly DoitsuUserIntManager _userManager;
+        private readonly ILogger logger;
         public AuthorizeController(DoitsuUserIntManager userManager, ILogger<AuthorizeController> logger)
         {
             this.logger = logger;

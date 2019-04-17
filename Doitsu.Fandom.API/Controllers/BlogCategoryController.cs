@@ -16,7 +16,7 @@ namespace Doitsu.Fandom.API.Controllers
     [ApiController]
     public class BlogCategoryController : ControllerBase
     {
-        private IBlogCategoryService blogCategoryService;
+        private readonly IBlogCategoryService blogCategoryService;
         public BlogCategoryController(IBlogCategoryService blogService)
         {
             this.blogCategoryService = blogService;

@@ -2,31 +2,33 @@ import React from 'react'
 import { create, read, update } from 'services/blog'
 import readBlogCategory from 'services/blogCategory'
 import UploadPictures from 'components/DoitsuComponents/UploadPictures'
+import CKEditorCustom from 'components/DoitsuComponents/CKEditor'
 import { Input, Form, Button, Spin, notification, Radio, DatePicker } from 'antd'
 import { FormUtils } from 'utils'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import moment from 'moment'
 
-import EditorWysiwygCTHTML from 'components/DoitsuComponents/EditorWysiwygCTHTML'
+// import EditorWysiwygCTHTML from 'components/DoitsuComponents/EditorWysiwygCTHTML'
 
 const FormItem = Form.Item
 const RadioGroup = Radio.Group
+const BlogEditorDefaultState = {
+  defaultFileUpload: null,
+  thumbnailURL: '',
+  spinning: false,
+  defaultEditorStateHtml: null,
+  editorStateHtml: null,
+  blogCategoryOptions: [],
+}
+
 @Form.create()
 @connect(({ blogState }) => ({ blogState }))
 class BlogEditor extends React.Component {
-  state = {
-    defaultFileUpload: null,
-    thumbnailURL: '',
-    spinning: false,
-    defaultEditorStateHtml: null,
-    editorStateHtml: null,
-    blogCategoryOptions: [],
-  }
+  state = BlogEditorDefaultState
 
-  async componentWillMount() {
-    const { blogState } = this.props
-
+  async componentDidMount() {
+    const { form, defaultTrackingId } = this.props
     // binding blogCategories
     const blogCategoryData = (await readBlogCategory()).data
     const blogCategoryOptions = blogCategoryData.map(x => ({
@@ -35,19 +37,19 @@ class BlogEditor extends React.Component {
     }))
     this.setState({ blogCategoryOptions })
 
-    if (blogState.trackingId === -1) {
+    if (defaultTrackingId === -1) {
       // create
       // do nothing
+      form.resetFields()
     } else {
       // update
       // fetch data
       const response = await read({
         limit: 1,
-        id: blogState.trackingId,
+        id: defaultTrackingId,
       })
 
       if (response) {
-        const { form } = this.props
         const blogStateObject = response.data[0]
 
         // beautify data
@@ -75,16 +77,6 @@ class BlogEditor extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    const { dispatch } = this.props
-    dispatch({
-      type: 'blog/SET_STATE',
-      payload: {
-        trackingId: -1,
-      },
-    })
-  }
-
   handleUPOnSuccessCallback = fileList => {
     if (fileList[0] && fileList[0].response && fileList[0].response.data[0]) {
       const image = fileList[0].response.data[0]
@@ -96,7 +88,7 @@ class BlogEditor extends React.Component {
 
   handleFormSubmit = () => {
     const { thumbnailURL, editorStateHtml } = this.state
-    const { form, blogState, dispatch } = this.props
+    const { form, dispatch, defaultTrackingId } = this.props
     form.validateFieldsAndScroll(async (err, values) => {
       if (!err) {
         // start loading
@@ -108,7 +100,7 @@ class BlogEditor extends React.Component {
         const notifyInfor = {}
         try {
           // if trackd id !== -1 is update blog
-          if (blogState.trackingId !== -1) {
+          if (defaultTrackingId !== -1) {
             const response = await update({ ...createModel })
             notifyInfor.message = `Update blog ${values.title}`
 
@@ -161,10 +153,10 @@ class BlogEditor extends React.Component {
   }
 
   render() {
-    const { form, blogState } = this.props
+    const { form, defaultTrackingId } = this.props
     const { spinning, defaultFileUpload, defaultEditorStateHtml, blogCategoryOptions } = this.state
     return (
-      <Spin spinning={spinning} tips={blogState.trackingId === -1 ? 'Creating' : 'Editing'}>
+      <Spin spinning={spinning} tips={defaultTrackingId === -1 ? 'Creating' : 'Editing'}>
         <h5 className="text-black mb-3">
           <strong>Main Parameters</strong>
         </h5>
@@ -231,11 +223,18 @@ class BlogEditor extends React.Component {
                 <div className="col-lg-12">
                   <div className="form-group">
                     <FormItem label="Content">
-                      {form.getFieldDecorator('content')(
+                      {/* {form.getFieldDecorator('content')(
                         <EditorWysiwygCTHTML
                           name="content"
                           defaultHtml={defaultEditorStateHtml}
                           onChangeHtml={this.handleEditorChange}
+                        />,
+                      )} */}
+                      {form.getFieldDecorator('content')(
+                        <CKEditorCustom
+                          name="content"
+                          defaultData={defaultEditorStateHtml}
+                          onChangeData={this.handleEditorChange}
                         />,
                       )}
                     </FormItem>
@@ -267,7 +266,7 @@ class BlogEditor extends React.Component {
                     Cancel
                   </Button>
                   <Button type="primary" onClick={this.handleFormSubmit}>
-                    {blogState.trackingId === -1 ? 'Create' : 'Edit'}
+                    {defaultTrackingId === -1 ? 'Create' : 'Edit'}
                   </Button>
                 </div>
               </div>

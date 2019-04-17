@@ -18,7 +18,7 @@ namespace Doitsu.Fandom.API.Controllers
     [ApiController]
     public class ArtistController : ControllerBase
     {
-        private IArtistService artistService;
+        private readonly IArtistService artistService;
 
         public ArtistController(IArtistService artistService)
         {

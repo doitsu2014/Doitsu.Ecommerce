@@ -19,8 +19,8 @@ class ArtistEditor extends React.Component {
   }
 
   async componentWillMount() {
-    const { artist } = this.props
-    if (artist.trackingId === -1) {
+    const { defaultTrackingId } = this.props
+    if (defaultTrackingId === -1) {
       // create
       // do nothing
     } else {
@@ -28,7 +28,7 @@ class ArtistEditor extends React.Component {
       // fetch data
       const response = await readArtist({
         limit: 1,
-        id: artist.trackingId,
+        id: defaultTrackingId,
       })
 
       if (response) {
@@ -75,7 +75,7 @@ class ArtistEditor extends React.Component {
 
   handleFormSubmit = () => {
     const { avatarUrl } = this.state
-    const { form, artist, dispatch } = this.props
+    const { form, defaultTrackingId, dispatch } = this.props
     form.validateFieldsAndScroll(async (err, values) => {
       if (!err) {
         this.setState({ spinning: true })
@@ -83,7 +83,7 @@ class ArtistEditor extends React.Component {
         const notifyInfor = {}
 
         try {
-          if (artist.trackingId !== -1) {
+          if (defaultTrackingId !== -1) {
             const response = await update({ ...createModel, active: true })
             notifyInfor.message = `Update artist ${values.name}`
             if (response.success) {
@@ -124,10 +124,10 @@ class ArtistEditor extends React.Component {
   } // end handle submit
 
   render() {
-    const { form, artist } = this.props
+    const { form, defaultTrackingId } = this.props
     const { spinning, defaultFileUpload } = this.state
     return (
-      <Spin spinning={spinning} tips={artist.trackingId === -1 ? 'Creating' : 'Editing'}>
+      <Spin spinning={spinning} tips={defaultTrackingId === -1 ? 'Creating' : 'Editing'}>
         <h5 className="text-black mb-3">
           <strong>Main Parameters</strong>
         </h5>
@@ -196,7 +196,7 @@ class ArtistEditor extends React.Component {
                     Cancel
                   </Button>
                   <Button type="primary" onClick={this.handleFormSubmit}>
-                    {artist.trackingId === -1 ? 'Create new' : 'Edit'}
+                    {defaultTrackingId === -1 ? 'Create new' : 'Edit'}
                   </Button>
                 </div>
               </div>

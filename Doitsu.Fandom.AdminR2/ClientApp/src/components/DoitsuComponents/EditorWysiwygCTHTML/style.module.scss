@@ -1,9 +1,13 @@
 @import 'assets/styles/mixins.scss';
-.editor {
+.wrapper_class {
   padding: 1rem;
   border-radius: 5px;
   border: 1px solid $gray-border;
 }
-.editor_toolbar {
+.toolbar_class {
   background-color: black;
+  height: auto;
+}
+.editor_class {
+  padding: 1em 0;
 }

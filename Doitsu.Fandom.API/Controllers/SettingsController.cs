@@ -16,8 +16,8 @@ namespace Doitsu.Fandom.API.Controllers
     [ApiController]
     public class SettingsController : ControllerBase
     {
-        private IProductCollectionService productCollectionService;
-        private IBlogService blogService;
+        private readonly IProductCollectionService productCollectionService;
+        private readonly IBlogService blogService;
 
         public SettingsController(IProductCollectionService productCollectionService, IBlogService blogService)
         {
