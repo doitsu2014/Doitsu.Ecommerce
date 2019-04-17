@@ -14,7 +14,7 @@ namespace Doitsu.Fandom.API.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            return Redirect("/swagger/index.html");
+            return Redirect($"/swagger/index.html");
         }
     }
 }

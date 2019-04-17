@@ -11,7 +11,7 @@ namespace Doitsu.DBManager.Fandom.Services
 {
     public interface IBlogService : IBaseService<Blogs, BlogViewModel>
     {
-        IQueryable<BlogViewModel> GetActiveByQuery(int limit, int pageSize, int currentPage, string name = "", int? blogCategoryId = null, int? id = null, bool? isSlider = null);
+        IQueryable<BlogViewModel> GetActiveByQuery(int limit, int currentPage, string name = "", int? blogCategoryId = null, int? id = null, bool? isSlider = null);
         /// <summary>
         /// Count all product may be support to pagination
         /// </summary>
@@ -39,12 +39,11 @@ namespace Doitsu.DBManager.Fandom.Services
             return productVM;
         }
 
-        public IQueryable<BlogViewModel> GetActiveByQuery(int limit, int pageSize, int currentPage, string name = "", int? blogCategoryId = null, int? id = null, bool? isSlider = null)
+        public IQueryable<BlogViewModel> GetActiveByQuery(int limit, int currentPage, string name = "", int? blogCategoryId = null, int? id = null, bool? isSlider = null)
         {
             IQueryable<Blogs> listQuery = GetActiveAsNoTracking(a =>
-                a.Active == true
+                a.Active
                 && (id == null || a.Id == id.Value)
-                && (a.Active == true)
                 && (isSlider == null || isSlider == a.IsSlider)
                 && (name.IsNullOrEmpty() || a.Title.Contains(name, StringComparison.CurrentCultureIgnoreCase))
                 && (blogCategoryId == null || a.BlogCategoryId == blogCategoryId)
@@ -53,18 +52,20 @@ namespace Doitsu.DBManager.Fandom.Services
             listQuery = listQuery
                 .OrderByDescending(a => a.PublishTime)
                 .OrderByDescending(a => a.DraftTime);
-            if (limit > 0)
+
+
+            if (limit > 0 && currentPage > 0)
+            {
+                listQuery.Skip(limit * currentPage).Take(limit);
+            }
+            else if (limit > 0)
             {
                 listQuery = listQuery.Take(limit);
-            }
-
-            if (pageSize > 0 && currentPage > 0)
-            {
-                listQuery.Skip(pageSize * currentPage).Take(pageSize);
             }
 
             var list = listQuery.ProjectTo<BlogViewModel>(this.Mapper.ConfigurationProvider);
             return list;
         }
+
     }
 }

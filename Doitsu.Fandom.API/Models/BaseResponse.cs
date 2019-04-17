@@ -6,11 +6,6 @@ using System.Threading.Tasks;
 
 namespace Doitsu.Fandom.API.Models
 {
-    public enum ServerErrCodeEnum
-    {
-        InternalServerError= -1,
-        Ok = 1
-    }
 
     public class BaseResponse<T>
     {
@@ -30,6 +25,10 @@ namespace Doitsu.Fandom.API.Models
         public bool Success { get; set; }
         [JsonProperty("data")]
         public T Data { get; set; }
+        [JsonProperty("totalFullData")]
+        public int TotalFullData { get; set; }
+        [JsonProperty("totalAvailData")]
+        public int TotalAvailData { get; set; }
 
         public static BaseResponse<T> PrepareData(T data, bool success = false, string message = "" )
         {

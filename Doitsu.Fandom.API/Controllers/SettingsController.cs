@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace Doitsu.Fandom.API.Controllers
 {
@@ -27,18 +29,17 @@ namespace Doitsu.Fandom.API.Controllers
 
         [HttpGet("read-list-slider")]
         [AllowAnonymous]
-        public ActionResult GetListSlider([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery] bool? isSlider)
+        public async Task<ActionResult> GetListSlider([FromQuery]int limit,  [FromQuery]int currentPage, [FromQuery] bool? isSlider)
         {
             try
             {
-                var listProductCollection =
-                    productCollectionService.GetActiveByQuery(limit, pageSize, currentPage, isSlider: isSlider)
-                    .ToList()
+                var listProductCollection = (await
+                    productCollectionService.GetActiveByQuery(limit, currentPage, isSlider: isSlider)
+                    .ToListAsync())
                     .Select(pc => ConvertProductCollectionToSlider(pc));
 
-                var listBlog = blogService
-                    .GetActiveByQuery(limit, pageSize, currentPage, isSlider: isSlider)
-                    .ToList()
+                var listBlog = (await blogService.GetActiveByQuery(limit, currentPage, isSlider: isSlider)
+                    .ToListAsync())
                     .Select(b => ConvertBlogToSlider(b));
 
                 var result = new List<SliderViewModel>();

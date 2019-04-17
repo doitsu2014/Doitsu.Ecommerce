@@ -101,12 +101,35 @@ function createNewsDetailElement(news) {
 }
 
 async function fetchNewsBlog() {
-    let res = await fetch(BASE_URL + BLOG_API_PARAM + `read?blogCategoryId=${blogCategoryEnum['NEWS']}`);
-    let data = (await res.json()).data;
-    for(let latestBlog of data) {
-        const ele = createNewsElement(latestBlog);
-        $('#list-news-post').append(ele);
-    }
+    //let res = await fetch(BASE_URL + BLOG_API_PARAM + `read?blogCategoryId=${blogCategoryEnum['NEWS']}`);
+    //let data = (await res.json()).data;
+    //for(let latestBlog of data) {
+    //    const ele = createNewsElement(latestBlog);
+    //    $('#list-news-post').append(ele);
+    //}
+    const dataContainer = $('#list-news-post-container');
+    const limit = 4;
+    $('#list-news-post').pagination({
+        dataSource: `${BASE_URL}${BLOG_API_PARAM}read?blogCategoryId=${blogCategoryEnum['NEWS']}&limit=${limit}`,
+        locator: 'data',
+        totalNumberLocator: function (response) {
+            return response.totalFullData;
+        },
+        pageSize: limit,
+        ajax: {
+            beforeSend: function () {
+                dataContainer.html('Loading data from api ...');
+            }
+        },
+        callback: function (data, pagination) {
+            // template method of yourself
+            dataContainer.html("");
+            for(let latestBlog of data) {
+                const ele = createNewsElement(latestBlog);
+                dataContainer.append(ele);
+            }
+        }
+    })
 }
 
 async function fetchRandomNewsBlog() {

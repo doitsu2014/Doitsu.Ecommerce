@@ -8,6 +8,7 @@ using Doitsu.Fandom.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Doitsu.Fandom.API.Controllers
 {
@@ -51,12 +52,20 @@ namespace Doitsu.Fandom.API.Controllers
         }
 
         [AllowAnonymous, HttpGet("read")]
-        public ActionResult Get([FromQuery]int limit, [FromQuery]int pageSize, [FromQuery]int currentPage, [FromQuery]string name, [FromQuery]int? blogCategoryId, [FromQuery]int? id)
+        public async Task<ActionResult> Get([FromQuery]int currentPage, [FromQuery]string name, [FromQuery]int? blogCategoryId, [FromQuery]int? id, [FromQuery]int limit = 100)
         {
             try
             {
-                var listBlog = this.blogService.GetActiveByQuery(limit, pageSize, currentPage, name, blogCategoryId, id).ToList();
-                return Ok(BaseResponse<List<BlogViewModel>>.PrepareDataSuccess(listBlog, "Get list blogs successful!"));
+                var listBlog = await this.blogService
+                    .GetActiveByQuery(limit, currentPage, name, blogCategoryId, id)
+                    .ToListAsync();
+                var totalFullData = this.blogService.CountBlogs(blogCategoryId);
+                var totalAvailData = listBlog.Count;
+                var result = BaseResponse<List<BlogViewModel>>.PrepareDataSuccess(listBlog, "Get list blogs successful!");
+                result.TotalFullData = totalFullData;
+                result.TotalAvailData = totalAvailData;
+
+                return Ok(result);
             }
             catch (Exception ex)
             {

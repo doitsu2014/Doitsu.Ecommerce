@@ -12,57 +12,57 @@ namespace Doitsu.DBManager.Fandom.Services
 {
     public interface IProductCollectionService : IBaseService<ProductCollections, ProductCollectionViewModel>
     {
-        IQueryable<ProductCollectionViewModel> GetActiveByQuery(int limit, int pageSize, int currentPage, string name = "", int? id = null, bool? isSlider = null);
+        IQueryable<ProductCollectionViewModel> GetActiveByQuery(int limit, int currentPage, string name = "", int? id = null, bool? isSlider = null);
         ProductCollectionViewModel GetBySlug(string slug);
-        IQueryable<ProductCollectionViewModel> GetActiveByQueryArtistCode(int limit, int pageSize, int currentPage, string artistCode = "");
+        IQueryable<ProductCollectionViewModel> GetActiveByQueryArtistCode(int limit, int currentPage, string artistCode = "");
     }
     public class ProductCollectionService : BaseService<ProductCollections, ProductCollectionViewModel>, IProductCollectionService
     {
-        private IArtistService artistService;
-        public ProductCollectionService(IUnitOfWork unitOfWork, IMapper mapper, IArtistService artistService) : base(unitOfWork, mapper)
+        public ProductCollectionService(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
         {
-            this.artistService = artistService;
         }
-        public IQueryable<ProductCollectionViewModel> GetActiveByQuery(int limit, int pageSize, int currentPage, string name = "", int? id = null, bool? isSlider = null)
+        public IQueryable<ProductCollectionViewModel> GetActiveByQuery(int limit, int currentPage, string name = "", int? id = null, bool? isSlider = null)
         {
             IQueryable<ProductCollections> listQuery = GetAsNoTracking(a =>
-            a.Active == true
+            a.Active
             && (id == null || a.Id == id.Value)
             && (isSlider == null || isSlider == a.IsSlider)
             && (name.IsNullOrEmpty() || a.Name.Contains(name, StringComparison.CurrentCultureIgnoreCase)));
 
             listQuery = listQuery
                 .OrderByDescending(a => a.CreatedTime);
-            if (limit > 0)
+           
+            if (limit > 0 && currentPage > 0)
+            {
+                listQuery.Skip(limit * currentPage).Take(limit);
+            }
+            else if (limit > 0)
             {
                 listQuery = listQuery.Take(limit);
             }
 
-            if (pageSize > 0 && currentPage > 0)
-            {
-                listQuery.Skip(pageSize * currentPage).Take(pageSize);
-            }
 
             var list = listQuery.ProjectTo<ProductCollectionViewModel>(this.Mapper.ConfigurationProvider);
             return list;
         }
 
-        public IQueryable<ProductCollectionViewModel> GetActiveByQueryArtistCode(int limit, int pageSize, int currentPage, string artistCode)
+        public IQueryable<ProductCollectionViewModel> GetActiveByQueryArtistCode(int limit, int currentPage, string artistCode = "")
         {
             IQueryable<ProductCollections> listQuery = GetAsNoTracking(a =>
-                a.Active == true
+                a.Active
                 && (a.Artist.Code.Equals(artistCode, StringComparison.CurrentCultureIgnoreCase)));
 
             listQuery = listQuery
                 .OrderByDescending(a => a.CreatedTime);
-            if (limit > 0)
+            
+
+            if (limit > 0 && currentPage > 0)
+            {
+                listQuery.Skip(limit * currentPage).Take(limit);
+            }
+            else if (limit > 0)
             {
                 listQuery = listQuery.Take(limit);
-            }
-
-            if (pageSize > 0 && currentPage > 0)
-            {
-                listQuery.Skip(pageSize * currentPage).Take(pageSize);
             }
 
             var list = listQuery.ProjectTo<ProductCollectionViewModel>(this.Mapper.ConfigurationProvider);
