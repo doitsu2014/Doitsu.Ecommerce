@@ -11,22 +11,6 @@
             <div class="col-lg-9 col-12" id="list-news-post">
                 <div class="row" id="list-news-post-container">
                 </div>
-                @*<div class="row">
-                    <div class="col-12">
-                        <!-- Pagination -->
-                        <div class="pagination-main">
-                            <ul class="pagination">
-                                <li class="prev"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
-                                <li><a href="#">1</a></li>
-                                <li class="active"><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li class="next"><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
-                            </ul>
-                        </div>
-                        <!--/ End Pagination -->
-                    </div>
-                </div>*@
             </div>
             <div class="col-lg-3 col-12">
                 <!-- Blog Sidebar -->
@@ -78,10 +62,8 @@
 </section>
 <!--/ End Blog Archive -->
 @section Scripts
-{
+    {
     <script type="text/javascript" src="~/js/news.js"></script>
-    <script type="text/javascript">
-        fetchNewsBlog();
-        fetchRandomNewsBlog();
-    </script>
+    <script type="text/javascript">fetchNewsBlog();
+        fetchRandomNewsBlog();</script>
 }

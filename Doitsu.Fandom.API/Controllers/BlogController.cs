@@ -52,20 +52,34 @@ namespace Doitsu.Fandom.API.Controllers
         }
 
         [AllowAnonymous, HttpGet("read")]
-        public async Task<ActionResult> Get([FromQuery]int currentPage, [FromQuery]string name, [FromQuery]int? blogCategoryId, [FromQuery]int? id, [FromQuery]int limit = 100)
+        public async Task<ActionResult> Get([FromQuery]int currentPage, [FromQuery]string name, [FromQuery]int? blogCategoryId, [FromQuery]int? id, [FromQuery]bool isShortTerm = false, [FromQuery]int limit = 100)
         {
             try
             {
-                var listBlog = await this.blogService
-                    .GetActiveByQuery(limit, currentPage, name, blogCategoryId, id)
-                    .ToListAsync();
-                var totalFullData = this.blogService.CountBlogs(blogCategoryId);
-                var totalAvailData = listBlog.Count;
-                var result = BaseResponse<List<BlogViewModel>>.PrepareDataSuccess(listBlog, "Get list blogs successful!");
-                result.TotalFullData = totalFullData;
-                result.TotalAvailData = totalAvailData;
-
-                return Ok(result);
+                if (!isShortTerm)
+                {
+                    var listBlog = await this.blogService
+                        .GetActiveByQuery(limit, currentPage, name, blogCategoryId, id)
+                        .ToListAsync();
+                    var result = BaseResponse<List<BlogViewModel>>.PrepareDataSuccess(listBlog, "Get list blogs successful!");
+                    var totalFullData = this.blogService.CountBlogs(blogCategoryId);
+                    var totalAvailData = listBlog.Count;
+                    result.TotalFullData = totalFullData;
+                    result.TotalAvailData = totalAvailData;
+                    return Ok(result);
+                }
+                else
+                {
+                    var listBlog = await this.blogService
+                        .GetActiveShortTermByQuery(limit, currentPage, name, blogCategoryId, id)
+                        .ToListAsync();
+                    var result = BaseResponse<List<BlogShortTermViewModel>>.PrepareDataSuccess(listBlog, "Get list short term blog successful!");
+                    var totalFullData = this.blogService.CountBlogs(blogCategoryId);
+                    var totalAvailData = listBlog.Count;
+                    result.TotalFullData = totalFullData;
+                    result.TotalAvailData = totalAvailData;
+                    return Ok(result);
+                }
             }
             catch (Exception ex)
             {

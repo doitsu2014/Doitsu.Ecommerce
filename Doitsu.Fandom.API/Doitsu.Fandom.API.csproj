@@ -7,6 +7,7 @@
     <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
+    <ReleaseVersion>1.8</ReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>

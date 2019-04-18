@@ -7,6 +7,7 @@
     <DockerLaunchBrowser>True</DockerLaunchBrowser>
     <DockerServiceUrl>http://localhost:{ServicePort}</DockerServiceUrl>
     <DockerServiceName>doitsu.fandom.api</DockerServiceName>
+    <ReleaseVersion>1.8</ReleaseVersion>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.staging.yml">

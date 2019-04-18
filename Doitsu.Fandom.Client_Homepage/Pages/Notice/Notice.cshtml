@@ -7,23 +7,9 @@
         <div class="row page-header">
             <h5><i class="fa fa-play"></i> Top Notice</h5>
         </div>
-        <div class="row" id="list-notices">
-
-        </div>
         <div class="row">
-            <div class="col-12">
-                <!-- Pagination -->
-                <div class="pagination-main">
-                    <ul class="pagination">
-                        <li class="prev"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
-                        <li><a href="#">1</a></li>
-                        <li class="active"><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li class="next"><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
-                    </ul>
-                </div>
-                <!--/ End Pagination -->
+            <div class="col-12" id="list-notices">
+                <div id="list-notices-container"></div>
             </div>
         </div>
     </div>
@@ -32,10 +18,8 @@
 
 @section Scripts {
     <script type="text/javascript" src="js/notice.js"></script>
-    <script type="text/javascript">
-        (function () {
+    <script type="text/javascript">(function () {
             fetchNoticesBlog();
             configEvents();
-        })();
-    </script>
+        })();</script>
 }

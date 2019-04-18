@@ -102,12 +102,35 @@ function createSingleNoticeElement(notice) {
 }
 
 async function fetchNoticesBlog() {
-    let res = await fetch(BASE_URL + BLOG_API_PARAM + `read?blogCategoryId=${blogCategoryEnum['NOTICE']}`);
-    let data = (await res.json()).data;
-    for(let latestBlog of data) {
-        const ele = createNoticeElement(latestBlog);
-        $('#list-notices').append(ele);
-    }
+    const dataContainer = $('#list-notices-container');
+    const limit = 2;
+    $('#list-notices').pagination({
+        dataSource: `${BASE_URL}${BLOG_API_PARAM}read?blogCategoryId=${blogCategoryEnum['NOTICE']}`,
+        locator: 'data',
+        totalNumberLocator: function (response) {
+            return response.totalFullData;
+        },
+        pageSize: limit,
+        ajax: {
+            beforeSend: function () {
+                dataContainer.html('<div class="col-12 text-center"><div class="lds-heart"><div></div></div></div>');
+            }
+        },
+        alias: {
+            pageNumber: 'currentPage',
+            pageSize: 'limit'
+        },
+        callback: function (data, pagination) {
+            // template method of yourself
+            
+            dataContainer.html("");
+            for(let latestBlog of data) {
+                const ele = createNoticeElement(latestBlog);
+                dataContainer.append(ele);
+            }
+        },
+        className: 'paginationjstre'
+    })
 }
 
 async function fetchRecentNoticesBlog() {

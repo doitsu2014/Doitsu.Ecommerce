@@ -83,10 +83,8 @@ namespace Doitsu.Fandom.DBManager
                 cfg.CreateMap<BlogViewModel, Blogs>()
                     .ForMember(x => x.BlogCategory, y => y.Ignore())
                     .ForMember(x => x.DraftTime, y => y.Condition(o => o.DraftTime > DateTime.MinValue));
-
                 cfg.CreateMap<BlogCategoryViewModel, BlogCategories>()
                     .ForMember(x => x.Blogs, y => y.Ignore());
-
                 cfg.CreateMap<BlogCategories, BlogCategoryViewModel>();
             });
             IMapper mapper = autoMapperConfig.CreateMapper();

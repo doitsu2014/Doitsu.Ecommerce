@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+    <ReleaseVersion>1.8</ReleaseVersion>
   </PropertyGroup>
 
 
@@ -27,6 +28,7 @@
     <Content Remove="wwwroot\img\favicon-2 %28copy%29.png" />
     <Content Remove="wwwroot\img\favicon-3.png" />
     <Content Remove="wwwroot\images\favicon-2.png" />
+    <Content Remove="wwwroot\static-images\favicon-3.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\css\" />
@@ -34,10 +36,12 @@
     <Folder Include="Pages\News\" />
     <Folder Include="wwwroot\css\images\" />
     <Folder Include="Pages\Vietsub\" />
+    <Folder Include="wwwroot\static-images\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\images\slider\bread-crumb.jpg" />
     <None Include="wwwroot\img\favicon-2.png" />
     <None Include="wwwroot\images\favicon-2.png" />
+    <None Include="wwwroot\static-images\favicon-3.png" />
   </ItemGroup>
 </Project>

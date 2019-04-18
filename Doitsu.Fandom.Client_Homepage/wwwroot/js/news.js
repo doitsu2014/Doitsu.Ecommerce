@@ -101,16 +101,10 @@ function createNewsDetailElement(news) {
 }
 
 async function fetchNewsBlog() {
-    //let res = await fetch(BASE_URL + BLOG_API_PARAM + `read?blogCategoryId=${blogCategoryEnum['NEWS']}`);
-    //let data = (await res.json()).data;
-    //for(let latestBlog of data) {
-    //    const ele = createNewsElement(latestBlog);
-    //    $('#list-news-post').append(ele);
-    //}
     const dataContainer = $('#list-news-post-container');
-    const limit = 4;
+    const limit = 2;
     $('#list-news-post').pagination({
-        dataSource: `${BASE_URL}${BLOG_API_PARAM}read?blogCategoryId=${blogCategoryEnum['NEWS']}&limit=${limit}`,
+        dataSource: `${BASE_URL}${BLOG_API_PARAM}read?blogCategoryId=${blogCategoryEnum['NEWS']}`,
         locator: 'data',
         totalNumberLocator: function (response) {
             return response.totalFullData;
@@ -118,17 +112,23 @@ async function fetchNewsBlog() {
         pageSize: limit,
         ajax: {
             beforeSend: function () {
-                dataContainer.html('Loading data from api ...');
+                dataContainer.html('<div class="col-12 text-center"><div class="lds-heart"><div></div></div></div>');
             }
+        },
+        alias: {
+            pageNumber: 'currentPage',
+            pageSize: 'limit'
         },
         callback: function (data, pagination) {
             // template method of yourself
+            
             dataContainer.html("");
             for(let latestBlog of data) {
                 const ele = createNewsElement(latestBlog);
                 dataContainer.append(ele);
             }
-        }
+        },
+        className: 'paginationjstre'
     })
 }
 

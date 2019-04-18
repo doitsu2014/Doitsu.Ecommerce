@@ -37,7 +37,7 @@ namespace Doitsu.DBManager.Fandom.Services
             var productE = GetActiveAsNoTracking(p => p.Slug.Equals(slug, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
             var productVM = EToVM(productE);
             return productVM;
-         }
+        }
 
         public IQueryable<ProductViewModel> GetActiveByQuery(int limit, int pageSize, int currentPage, string name, int? collectionId, int? id)
         {
@@ -48,7 +48,9 @@ namespace Doitsu.DBManager.Fandom.Services
                 && (collectionId == null || a.CollectionId == collectionId)
             );
 
-            listQuery = listQuery.OrderBy(a => a.Id);
+            listQuery = listQuery
+                .OrderByDescending(a => a.CreatedTime);
+
             if (limit > 0)
             {
                 listQuery = listQuery.Take(limit);

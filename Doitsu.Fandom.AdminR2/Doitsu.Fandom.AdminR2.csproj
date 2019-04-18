@@ -10,6 +10,7 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <UserSecretsId>6b6b5185-b228-439e-9f07-07ddbd94aa6d</UserSecretsId>
     <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+    <ReleaseVersion>1.8</ReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>
