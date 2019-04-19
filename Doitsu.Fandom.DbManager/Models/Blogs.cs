@@ -7,6 +7,7 @@ namespace Doitsu.Fandom.DbManager.Models
     {
         public Blogs()
         {
+            BlogTag = new HashSet<BlogTag>();
             BlogVideos = new HashSet<BlogVideos>();
         }
 
@@ -30,6 +31,7 @@ namespace Doitsu.Fandom.DbManager.Models
 
         public virtual Artist Artist { get; set; }
         public virtual BlogCategories BlogCategory { get; set; }
+        public virtual ICollection<BlogTag> BlogTag { get; set; }
         public virtual ICollection<BlogVideos> BlogVideos { get; set; }
     }
 }

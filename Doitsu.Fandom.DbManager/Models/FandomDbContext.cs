@@ -24,21 +24,27 @@ namespace Doitsu.Fandom.DbManager.Models
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<BlogCategories> BlogCategories { get; set; }
+        public virtual DbSet<BlogTag> BlogTag { get; set; }
         public virtual DbSet<BlogVideos> BlogVideos { get; set; }
         public virtual DbSet<Blogs> Blogs { get; set; }
         public virtual DbSet<Categories> Categories { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<ProductCollections> ProductCollections { get; set; }
         public virtual DbSet<Products> Products { get; set; }
+        public virtual DbSet<Tag> Tag { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("Server=45.76.151.204;Database=Doitsu.Fandom;Trusted_Connection=False;User Id=sa;Password=zaQ@1234");
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=45.76.151.204;Database=Doitsu_Fandom_Dev;Trusted_Connection=False;User Id=sa;Password=zaQ@1234");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("ProductVersion", "2.2.1-servicing-10028");
+            modelBuilder.HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
 
             modelBuilder.Entity<Artist>(entity =>
             {
@@ -142,6 +148,23 @@ namespace Doitsu.Fandom.DbManager.Models
                 entity.Property(e => e.Name).HasMaxLength(500);
 
                 entity.Property(e => e.UpdatedTime).HasDefaultValueSql("(getdate())");
+            });
+
+            modelBuilder.Entity<BlogTag>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.HasOne(d => d.Blog)
+                    .WithMany(p => p.BlogTag)
+                    .HasForeignKey(d => d.BlogId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__BlogTag__BlogId__17F790F9");
+
+                entity.HasOne(d => d.Tag)
+                    .WithMany(p => p.BlogTag)
+                    .HasForeignKey(d => d.TagId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__BlogTag__TagId__18EBB532");
             });
 
             modelBuilder.Entity<BlogVideos>(entity =>
@@ -272,6 +295,15 @@ namespace Doitsu.Fandom.DbManager.Models
                 entity.HasOne(d => d.Collection)
                     .WithMany(p => p.Products)
                     .HasForeignKey(d => d.CollectionId);
+            });
+
+            modelBuilder.Entity<Tag>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.Title)
+                    .IsRequired()
+                    .HasMaxLength(128);
             });
         }
     }

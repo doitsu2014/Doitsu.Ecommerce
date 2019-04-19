@@ -35,6 +35,7 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Libs\" />
     <Folder Include="Models\RedefinedEntities\" />
+    <Folder Include="DatabaseUpdater\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="TTFiles\RewritedEntities.tt" />

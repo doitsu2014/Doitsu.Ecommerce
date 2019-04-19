@@ -28,7 +28,7 @@
     <Content Remove="wwwroot\img\favicon-2 %28copy%29.png" />
     <Content Remove="wwwroot\img\favicon-3.png" />
     <Content Remove="wwwroot\images\favicon-2.png" />
-    <Content Remove="wwwroot\static-images\favicon-3.png" />
+    <Content Remove="wwwroot\static-images\favicon.ico" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\css\" />
@@ -42,6 +42,5 @@
     <None Include="wwwroot\images\slider\bread-crumb.jpg" />
     <None Include="wwwroot\img\favicon-2.png" />
     <None Include="wwwroot\images\favicon-2.png" />
-    <None Include="wwwroot\static-images\favicon-3.png" />
   </ItemGroup>
 </Project>

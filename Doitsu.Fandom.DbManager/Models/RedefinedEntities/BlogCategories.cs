@@ -2,10 +2,9 @@
 using Doitsu.Service.Core;
 using Doitsu.Service.Core.ModelBase;
 
-namespace Doitsu.Fandom.DbManager.Models.RedefinedEntities
+namespace Doitsu.Fandom.DbManager.Models
 {
     public partial class BlogCategories : IActivable
     {
-        public virtual bool Active { get; set; }
     }
 }

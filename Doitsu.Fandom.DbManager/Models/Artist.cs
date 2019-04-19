@@ -18,6 +18,9 @@ namespace Doitsu.Fandom.DbManager.Models
         public string AvatarUrl { get; set; }
         public bool Active { get; set; }
         public string Description { get; set; }
+        public string MainBannerUrl { get; set; }
+        public string MainVideoUrl { get; set; }
+        public string MainContent { get; set; }
 
         public virtual ICollection<Blogs> Blogs { get; set; }
         public virtual ICollection<ProductCollections> ProductCollections { get; set; }

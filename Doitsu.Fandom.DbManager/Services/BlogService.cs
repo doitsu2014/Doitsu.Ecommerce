@@ -30,7 +30,10 @@ namespace Doitsu.DBManager.Fandom.Services
 
         public int CountBlogs(int? blogCategoryId)
         {
-            var result = GetActiveAsNoTracking(p => blogCategoryId == null || blogCategoryId == p.BlogCategoryId).Count();
+            var result = GetActiveAsNoTracking(
+                p => blogCategoryId == null
+                || blogCategoryId == p.BlogCategoryId)
+                .Count();
             return result;
         }
 
