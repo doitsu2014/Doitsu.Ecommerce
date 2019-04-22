@@ -24,11 +24,11 @@ namespace Doitsu.Fandom.API.Controllers
         }
 
         [AllowAnonymous, HttpGet("read-by-slug")]
-        public ActionResult Get([FromQuery]string slug)
+        public async Task<ActionResult> GetAsync([FromQuery]string slug)
         {
             try
             {
-                var blog = this.blogService.FindBySlug(slug);
+                var blog = await this.blogService.FindBySlugAsync(slug);
                 return Ok(BaseResponse<BlogViewModel>.PrepareDataSuccess(blog, "Get blog successful!"));
             }
             catch (Exception ex)
@@ -88,11 +88,11 @@ namespace Doitsu.Fandom.API.Controllers
         }
 
         [HttpPost("create")]
-        public ActionResult Post([FromBody]BlogViewModel blogAPIVM)
+        public async Task<ActionResult> Post([FromBody]BlogViewModel blogAPIVM)
         {
             try
             {
-                var blogVM = this.blogService.Create(blogAPIVM);
+                var blogVM = await this.blogService.CreateBlogWithConstraintAsync(blogAPIVM);
                 return Ok(BaseResponse<BlogViewModel>.PrepareDataSuccess(blogVM, "Create a blog successful!"));
             }
             catch (Exception ex)
@@ -106,7 +106,7 @@ namespace Doitsu.Fandom.API.Controllers
         {
             try
             {
-                var blogVM = await this.blogService.UpdateAsync(blogAPIVM.Id, blogAPIVM);
+                var blogVM = await this.blogService.UpdateBlogWithConstraintAsync(blogAPIVM);
                 return Ok(BaseResponse<BlogViewModel>.PrepareDataSuccess(blogVM, "Update the blog successful!"));
 
             }

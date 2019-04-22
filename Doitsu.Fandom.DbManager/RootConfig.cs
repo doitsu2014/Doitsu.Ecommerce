@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Doitsu.Fandom.DbManager.ViewModels;
+using System.Linq;
 
 namespace Doitsu.Fandom.DBManager
 {
@@ -64,6 +66,8 @@ namespace Doitsu.Fandom.DBManager
             services.AddScoped(typeof(IProductCollectionService), typeof(ProductCollectionService));
             services.AddScoped(typeof(IBlogService), typeof(BlogService));
             services.AddScoped(typeof(IBlogCategoryService), typeof(BlogCategoryService));
+            services.AddScoped(typeof(ITagService), typeof(TagService));
+            services.AddScoped(typeof(IBlogTagService), typeof(BlogTagService));
             #endregion
 
             #region Mapper Config
@@ -82,10 +86,24 @@ namespace Doitsu.Fandom.DBManager
                     .ForMember(x => x.Artist, y => y.Ignore());
                 cfg.CreateMap<BlogViewModel, Blogs>()
                     .ForMember(x => x.BlogCategory, y => y.Ignore())
-                    .ForMember(x => x.DraftTime, y => y.Condition(o => o.DraftTime > DateTime.MinValue));
+                    .ForMember(x => x.DraftTime, y => y.Condition(o => o.DraftTime > DateTime.MinValue))
+                    .ForMember(x => x.BlogTag, y => y.Condition(o => o.DraftTime > DateTime.MinValue));
+                cfg.CreateMap<Blogs, BlogViewModel>()
+                    .ForMember(x => x.Tags, y => y.MapFrom(z => z.BlogTag.Where(x => x.Active).Select(bt => bt.Tag.Title)));
                 cfg.CreateMap<BlogCategoryViewModel, BlogCategories>()
                     .ForMember(x => x.Blogs, y => y.Ignore());
+
                 cfg.CreateMap<BlogCategories, BlogCategoryViewModel>();
+
+                cfg.CreateMap<BlogTagViewModel, BlogTag>()
+                    .ForMember(x => x.Tag, y => y.Ignore())
+                    .ForMember(x => x.Blog, y => y.Ignore());
+
+                cfg.CreateMap<TagViewModel, Tag>()
+                    .ForMember(x => x.BlogTag, y => y.Ignore());
+
+
+
             });
             IMapper mapper = autoMapperConfig.CreateMapper();
             services.AddSingleton(mapper);

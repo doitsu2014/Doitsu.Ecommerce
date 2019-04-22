@@ -1,4 +1,4 @@
-﻿use Doitsu_Fandom_Dev
+﻿use Doitsu_Fandom_Sandbox
 
 -- Create a new table called '[Tag]' in schema '[dbo]'
 -- Drop the table if it already exists
@@ -8,19 +8,15 @@ GO
 -- Create the table in the specified schema
 CREATE TABLE [dbo].[Tag]
 (
-    [Id] INT NOT NULL PRIMARY KEY, -- Primary Key column
+    [Id] INT NOT NULL PRIMARY KEY IDENTITY, -- Primary Key column
     [Title] NVARCHAR(128) NOT NULL,
+    [Active] BIT NOT NULL
     -- Specify more columns here
 );
 GO
--- Add a new column '[Active]' to table '[Tag]' in schema '[dbo]'
 ALTER TABLE [dbo].[Tag]
-    ADD [Active] BIT NOT NULL
+    ADD CONSTRAINT DF_Tag_Active DEFAULT 0 FOR Active
 GO
-ALTER TABLE [dbo].[BlogTag]
-    ADD CONSTRAINT DF_Tag_Active DEFAULT 1 FOR Active
-GO
-
 
 -- Create a new table called '[BlogTag]' in schema '[dbo]'
 -- Drop the table if it already exists
@@ -30,15 +26,19 @@ GO
 -- Create the table in the specified schema
 CREATE TABLE [dbo].[BlogTag]
 (
-    [Id] INT NOT NULL PRIMARY KEY, -- Primary Key column
+    [Id] INT NOT NULL PRIMARY KEY IDENTITY, -- Primary Key column
     [BlogId] INT NOT NULL FOREIGN KEY REFERENCES Blogs(Id),
     [TagId] INT NOT NULL FOREIGN KEY REFERENCES Tag(Id),
+    [Active] BIT NOT NULL
     -- Specify more columns here
 );
 GO
 ALTER TABLE [dbo].[BlogTag]
-    ADD [Active] BIT NOT NULL
+    ADD CONSTRAINT DF_BlogTag_Active DEFAULT 0 FOR Active
 GO
-ALTER TABLE [dbo].[BlogTag]
-    ADD CONSTRAINT DF_BlogTag_Active DEFAULT 1 FOR Active
+
+-- Index Tag
+-- Create a nonclustered index with or without a unique constraint
+-- Or create a clustered index on table '[Tag]' in schema '[dbo]' in database '[Doitsu_]'
+CREATE /*UNIQUE or CLUSTERED*/ INDEX IX_Title ON [Tag] ([Title] DESC) /*Change sort order as needed*/
 GO

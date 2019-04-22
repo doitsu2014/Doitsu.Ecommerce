@@ -12,6 +12,7 @@ namespace Doitsu.Fandom.DbManager.Models
 
         public int Id { get; set; }
         public string Title { get; set; }
+        public bool Active { get; set; }
 
         public virtual ICollection<BlogTag> BlogTag { get; set; }
     }

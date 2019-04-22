@@ -6,43 +6,27 @@ using Doitsu.Service.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Doitsu.Fandom.DbManager.ViewModels;
+using System.Threading.Tasks;
+using Serilog;
+using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace Doitsu.DBManager.Fandom.Services
 {
     public interface IBlogService : IBaseService<Blogs, BlogViewModel>
     {
-        IQueryable<BlogViewModel> GetActiveByQuery(int limit, int currentPage, string name = "", int? blogCategoryId = null, int? id = null, bool? isSlider = null);
-        IQueryable<BlogShortTermViewModel> GetActiveShortTermByQuery(int limit, int currentPage, string name = "", int? blogCategoryId = null, int? id = null, bool? isSlider = null);
-
         /// <summary>
-        /// Count all product may be support to pagination
+        /// Gets the active by query.
         /// </summary>
-        /// <param name="blogCategoryId"></param>
-        /// <returns></returns>
-        int CountBlogs(int? blogCategoryId);
-        BlogViewModel FindBySlug(string slug);
-    }
-    public class BlogService : BaseService<Blogs, BlogViewModel>, IBlogService
-    {
-        public BlogService(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
-        {
-        }
-
-        public int CountBlogs(int? blogCategoryId)
-        {
-            var result = GetActiveAsNoTracking(
-                p => blogCategoryId == null
-                || blogCategoryId == p.BlogCategoryId)
-                .Count();
-            return result;
-        }
-
-        public BlogViewModel FindBySlug(string slug)
-        {
-            var productE = GetActiveAsNoTracking(p => p.Slug.Equals(slug, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
-            var productVM = EToVM(productE);
-            return productVM;
-        }
+        /// <returns>The active by query.</returns>
+        /// <param name="limit">Limit.</param>
+        /// <param name="currentPage">Current page.</param>
+        /// <param name="name">Name.</param>
+        /// <param name="blogCategoryId">Blog category identifier.</param>
+        /// <param name="id">Identifier.</param>
+        /// <param name="isSlider">Is slider.</param>
+        IQueryable<BlogViewModel> GetActiveByQuery(int limit, int currentPage, string name = "", int? blogCategoryId = null, int? id = null, bool? isSlider = null);
 
         /// <summary>
         /// Gets the active short term by query.
@@ -54,6 +38,62 @@ namespace Doitsu.DBManager.Fandom.Services
         /// <param name="blogCategoryId">Blog category identifier.</param>
         /// <param name="id">Identifier.</param>
         /// <param name="isSlider">Is slider.</param>
+        IQueryable<BlogShortTermViewModel> GetActiveShortTermByQuery(int limit, int currentPage, string name = "", int? blogCategoryId = null, int? id = null, bool? isSlider = null);
+
+        /// <summary>
+        /// Creates the blog with constraint.
+        /// </summary>
+        /// <returns>The blog with constraint.</returns>
+        /// <param name="blogVM">Blog vm.</param>
+        Task<BlogViewModel> CreateBlogWithConstraintAsync(BlogViewModel blogVM);
+
+        /// <summary>
+        /// Updates the blog with constraint async.
+        /// </summary>
+        /// <returns>The blog with constraint async.</returns>
+        /// <param name="blogVM">Blog vm.</param>
+        Task<BlogViewModel> UpdateBlogWithConstraintAsync(BlogViewModel blogVM);
+
+        /// <summary>
+        /// Count all product may be support to pagination
+        /// </summary>
+        /// <param name="blogCategoryId"></param>
+        /// <returns></returns>
+        int CountBlogs(int? blogCategoryId);
+
+        /// <summary>
+        /// Finds the by slug async
+        /// </summary>
+        /// <returns>The blog VM.</returns>
+        /// <param name="slug">Slug.</param>
+        Task<BlogViewModel> FindBySlugAsync(string slug);
+    }
+    public class BlogService : BaseService<Blogs, BlogViewModel>, IBlogService
+    {
+        private readonly ITagService tagService;
+        private readonly IBlogTagService blogTagService;
+
+        public BlogService(IUnitOfWork unitOfWork, IMapper mapper, ITagService tagService, IBlogTagService blogTagService) : base(unitOfWork, mapper)
+        {
+            this.tagService = tagService;
+            this.blogTagService = blogTagService;
+        }
+
+        public int CountBlogs(int? blogCategoryId)
+        {
+            var result = GetActiveAsNoTracking(
+                p => blogCategoryId == null
+                || blogCategoryId == p.BlogCategoryId)
+                .Count();
+            return result;
+        }
+
+        public async Task<BlogViewModel> FindBySlugAsync(string slug)
+        {
+            var productVM = await GetActiveAsNoTracking(p => p.Slug.Equals(slug, StringComparison.InvariantCultureIgnoreCase)).ProjectTo<BlogViewModel>(this.Mapper.ConfigurationProvider).FirstOrDefaultAsync();
+            return productVM;
+        }
+
         public IQueryable<BlogShortTermViewModel> GetActiveShortTermByQuery(int limit, int currentPage, string name = "", int? blogCategoryId = null, int? id = null, bool? isSlider = null)
         {
             IQueryable<Blogs> listQuery = GetActiveAsNoTracking(a =>
@@ -80,16 +120,7 @@ namespace Doitsu.DBManager.Fandom.Services
             var list = listQuery.ProjectTo<BlogShortTermViewModel>(this.Mapper.ConfigurationProvider);
             return list;
         }
-        /// <summary>
-        /// Gets the active by query.
-        /// </summary>
-        /// <returns>The active by query.</returns>
-        /// <param name="limit">Limit.</param>
-        /// <param name="currentPage">Current page. User always pass param current page as the normally number, but in database is not the same, you have to minus to make normal</param>
-        /// <param name="name">Name.</param>
-        /// <param name="blogCategoryId">Blog category identifier.</param>
-        /// <param name="id">Identifier.</param>
-        /// <param name="isSlider">Is slider.</param>
+
         public IQueryable<BlogViewModel> GetActiveByQuery(int limit, int currentPage, string name = "", int? blogCategoryId = null, int? id = null, bool? isSlider = null)
         {
             IQueryable<Blogs> listQuery = GetActiveAsNoTracking(a =>
@@ -118,5 +149,102 @@ namespace Doitsu.DBManager.Fandom.Services
             return list;
         }
 
+        public async Task<BlogViewModel> CreateBlogWithConstraintAsync(BlogViewModel blogVM)
+        {
+            // begin transaction
+            using (var transaction = this.UnitOfWork.CreateTransac())
+            {
+                try
+                {
+                    // after binding tag from db
+                    // Create blog and binding blog tag
+                    var createBlogResult = await CreateAsync(blogVM);
+
+                    // finding tag title and make sure create new tag if it does exist
+                    List<TagViewModel> listTagVM = new List<TagViewModel>();
+                    foreach (var title in blogVM.Tags)
+                    {
+                        var blogTagVM = new BlogTagViewModel()
+                        {
+                            BlogId = createBlogResult.Id,
+                            Active = true
+                        };
+                        var existTag = await tagService.FirstOrDefaultActiveAsync(x => x.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
+                        if (existTag == null)
+                        {
+                            // if title does not exist, create new tag with this title and add to list
+                            var result = await tagService.CreateAsync(new TagViewModel() { Title = title, Active = true });
+                            blogTagVM.TagId = result.Id;
+                            await blogTagService.CreateAsync(blogTagVM);
+                        }
+                        else
+                        {
+                            // if title does exist tag add to list tag VM
+                            blogTagVM.TagId = existTag.Id;
+                            await blogTagService.CreateAsync(blogTagVM);
+                        }
+                    }
+                    transaction.Commit();
+                    return createBlogResult;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
+        public async Task<BlogViewModel> UpdateBlogWithConstraintAsync(BlogViewModel blogVM)
+        {
+            // begin transaction
+            using (var transaction = this.UnitOfWork.CreateTransac())
+            {
+                try
+                {
+                    // after binding tag from db
+                    // Update blog and binding blog tag
+                    var updateBlogResult = await UpdateAsync(blogVM.Id, blogVM);
+
+                    // Remove all list blog tag
+                    var listCurrentBlogTagVM = await blogTagService.GetActive(x => x.BlogId == blogVM.Id).ToListAsync();
+                    foreach (var currentBTVM in listCurrentBlogTagVM)
+                    {
+                        await blogTagService.DeleteByObjAsync(currentBTVM);
+                    }
+                    // finding tag title and make sure create new tag if it does exist
+                    List<TagViewModel> listTagVM = new List<TagViewModel>();
+                    foreach (var title in blogVM.Tags)
+                    {
+                        var blogTagVM = new BlogTagViewModel()
+                        {
+                            BlogId = updateBlogResult.Id,
+                            Active = true
+                        };
+                        var existTag = await tagService.FirstOrDefaultActiveAsync(x => x.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
+                        if (existTag == null)
+                        {
+                            // if title does not exist, create new tag with this title and add to list
+                            var result = await tagService.CreateAsync(new TagViewModel() { Title = title, Active = true });
+                            blogTagVM.TagId = result.Id;
+                            await blogTagService.CreateAsync(blogTagVM);
+                        }
+                        else
+                        {
+                            // if title does exist tag add to list tag VM
+                            blogTagVM.TagId = existTag.Id;
+                            await blogTagService.CreateAsync(blogTagVM);
+                        }
+                    }
+                    transaction.Commit();
+                    return updateBlogResult;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
     }
 }

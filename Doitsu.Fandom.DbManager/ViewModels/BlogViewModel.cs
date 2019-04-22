@@ -14,6 +14,7 @@ namespace Doitsu.Fandom.DBManager.ViewModels
         public string Title { get; set; }
         public string Content { get; set; }
         public string Slug { get; set; }
+
         public bool IsSlider { get; set; }
 
         public int? BlogType { get; set; }
@@ -23,6 +24,7 @@ namespace Doitsu.Fandom.DBManager.ViewModels
         public DateTime DraftTime { get; set; }
         public DateTime? PublishTime { get; set; }
         public DateTime? UpdateTime { get; set; }
+        public List<string> Tags { get; set; }
 
         public bool IsPublished { get; set; }
         public string PublisherEmail { get; set; }

@@ -35,11 +35,6 @@ namespace Doitsu.Fandom.DbManager.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=45.76.151.204;Database=Doitsu_Fandom_Dev;Trusted_Connection=False;User Id=sa;Password=zaQ@1234");
-            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -152,19 +147,17 @@ namespace Doitsu.Fandom.DbManager.Models
 
             modelBuilder.Entity<BlogTag>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.HasOne(d => d.Blog)
                     .WithMany(p => p.BlogTag)
                     .HasForeignKey(d => d.BlogId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__BlogTag__BlogId__17F790F9");
+                    .HasConstraintName("FK__BlogTag__BlogId__2DE6D218");
 
                 entity.HasOne(d => d.Tag)
                     .WithMany(p => p.BlogTag)
                     .HasForeignKey(d => d.TagId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__BlogTag__TagId__18EBB532");
+                    .HasConstraintName("FK__BlogTag__TagId__2EDAF651");
             });
 
             modelBuilder.Entity<BlogVideos>(entity =>
@@ -299,7 +292,8 @@ namespace Doitsu.Fandom.DbManager.Models
 
             modelBuilder.Entity<Tag>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.HasIndex(e => e.Title)
+                    .HasName("IX_Title");
 
                 entity.Property(e => e.Title)
                     .IsRequired()

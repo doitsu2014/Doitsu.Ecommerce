@@ -57,6 +57,20 @@ function createRandomElement(latestBlog) {
     return lastestElement;
 }
 
+function createDetailTags(listTag) {
+    const ul = $("<ul></ul>");
+    ul.append('<li class="tag-title">Tags:</li>');
+    for(const tag of listTag) {
+        ul.append(`<li><a href="/news">${tag}</a></li>`);
+    }
+    return ul.html();
+}
+
+function createDetailContent(content) {
+    const contentObj = $(content);
+    return contentObj.html();
+}
+
 function createNewsDetailElement(news) {
     var draftTimeDate = new Date(news.draftTime);
     let newsDetailElement = 
@@ -71,7 +85,7 @@ function createNewsDetailElement(news) {
                     <li><i class="fa fa-calendar"></i>${draftTimeDate.toLocaleDateString()}</li>
                     <li><a href="#"><i class="fa fa-tags"></i>notices</a></li>
                 </ul>
-                <p>${news.content}</p>
+                <p>${createDetailContent(news.content)}</p>
     
             </div>
             <div class="bottom-info">
@@ -79,8 +93,7 @@ function createNewsDetailElement(news) {
                     <div class="col-lg-7 col-md-7 col-12">
                         <div class="tags">
                             <ul>
-                                <li class="tag-title">Tags:</li>
-                                <li><a href="thong-bao">notices</a></li>
+                                ${createDetailTags(news.tags)}
                             </ul>
                         </div>
                     </div>

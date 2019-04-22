@@ -84,17 +84,17 @@ function createLatestElement(latestBlog) {
 
         </a>
     `;
-    /*<p class="mb-1">Short Content</p>
-            <small>Artist Name</small>*/
     return lastestElement;
 }
 
 async function fetchSliders() {
     let res = await fetch(BASE_URL + SETTING_API_PARAM + 'read-list-slider?isSlider=true');
-    let data = (await res.json()).data;
-    for(let slider of data) {
-        const ele = createHeroSliderElement(slider);
-        $('#hero-slider-mapping').append(ele);
+    if (res.status === 200) {
+        let data = (await res.json()).data;
+        for(let slider of data) {
+            const ele = createHeroSliderElement(slider);
+            $('#hero-slider-mapping').append(ele);
+        }
     }
 }
 

@@ -17,27 +17,24 @@ const defaultPagination = {
 class BlogList extends React.Component {
   state = {
     data: [],
-    pager: { ...defaultPagination },
+    pagination: { ...defaultPagination },
     filterDropdownVisible: false,
     searchText: '',
     filtered: false,
     loading: false,
   }
 
-  async componentDidMount() {
-    this.loadBlogs()
+  componentDidMount() {
+    this.resetListBlog();
   }
 
-  loadBlogs = async () => {
-    this.setState({ loading: true })
-
-    const response = await read()
-    this.setState({
-      data: response.data,
-      loading: false,
+  resetListBlog = () => {
+    this.fetch({
+      currentPage: 1,
+      limit: 10 
     })
   }
-
+  
   onInputChange = e => {
     this.setState({ searchText: e.target.value })
   }
@@ -53,20 +50,31 @@ class BlogList extends React.Component {
     })
   }
 
-  handleTableChange = pagination => {
-    const { pager } = this.state
-    if (pager) {
-      const pagerData = { ...pager }
-      if (pagerData.pageSize !== pagination.pageSize) {
-        pagerData.pageSize = pagination.pageSize
-        pagerData.current = 1
-      } else {
-        pagerData.current = pagination.current
-      }
-      this.setState({
-        ...pagerData,
-      })
-    }
+  handleTableChange = (curPagi, curFilters, curSorter) => {
+    const { pagination } = this.state;
+    pagination.current = curPagi.current;
+    this.setState({
+      pagination
+    });
+    this.fetch({
+      limit: curPagi.pageSize,
+      currentPage: curPagi.current,
+      sortField: curSorter.field,
+      sortOrder: curSorter.order,
+      ...curFilters,
+    });
+  }
+
+  fetch = async (params = {}) => {
+    this.setState({ loading: true });
+    const response = await read(params)
+    const { pagination } = this.state;
+    pagination.total = response.totalFullData;
+    this.setState({
+      data: response.data,
+      loading: false,
+      ...pagination
+    })
   }
 
   handleRemoveList = async e => {
@@ -80,7 +88,7 @@ class BlogList extends React.Component {
           message: 'Remove blog',
           description: 'Successfully',
         })
-        await this.loadBlogs()
+        this.resetListBlog();
       } else {
         notification.open({
           type: 'success',
@@ -90,7 +98,6 @@ class BlogList extends React.Component {
       }
       this.setState({ loading: false })
     } catch (exception) {
-      console.error('Blog List - handleRemoveList: ', exception)
       notification.open({
         type: 'error',
         message: 'Remove blog',
@@ -113,7 +120,7 @@ class BlogList extends React.Component {
   }
 
   render() {
-    const { pager, data, filterDropdownVisible, searchText, filtered, loading } = this.state
+    const { pagination, data, filterDropdownVisible, searchText, filtered, loading } = this.state
     const columns = [
       {
         title: 'ID',
@@ -124,7 +131,7 @@ class BlogList extends React.Component {
             {`#${text}`}
           </a>
         ),
-        sorter: (a, b) => a.id - b.id,
+        curSorter: (a, b) => a.id - b.id,
       },
       {
         title: 'Title',
@@ -210,7 +217,7 @@ class BlogList extends React.Component {
             scroll={{ x: 1200 }}
             columns={columns}
             dataSource={data}
-            pagination={pager}
+            pagination={pagination}
             loading={loading}
             onChange={this.handleTableChange}
             rowKey="id"

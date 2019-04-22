@@ -3,12 +3,13 @@ import { create, read, update } from 'services/blog'
 import readBlogCategory from 'services/blogCategory'
 import UploadPictures from 'components/DoitsuComponents/UploadPictures'
 import CKEditorCustom from 'components/DoitsuComponents/CKEditor'
+import TagEditor from 'components/DoitsuComponents/TagEditor'
 import { Input, Form, Button, Spin, notification, Radio, DatePicker } from 'antd'
 import { FormUtils } from 'utils'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import moment from 'moment'
-
+import khongDau from 'khong-dau'
 // import EditorWysiwygCTHTML from 'components/DoitsuComponents/EditorWysiwygCTHTML'
 
 const FormItem = Form.Item
@@ -20,6 +21,7 @@ const BlogEditorDefaultState = {
   defaultEditorStateHtml: null,
   editorStateHtml: null,
   blogCategoryOptions: [],
+  blogTagsState: [],
 }
 
 @Form.create()
@@ -27,54 +29,58 @@ const BlogEditorDefaultState = {
 class BlogEditor extends React.Component {
   state = BlogEditorDefaultState
 
-  async componentDidMount() {
-    const { form, defaultTrackingId } = this.props
-    // binding blogCategories
-    const blogCategoryData = (await readBlogCategory()).data
-    const blogCategoryOptions = blogCategoryData.map(x => ({
-      label: x.name,
-      value: x.id,
-    }))
-    this.setState({ blogCategoryOptions })
+  constructor(props) {
+    super(props)
+    ;(async () => {
+      const { form, defaultTrackingId } = this.props
+      // binding blogCategories
+      const blogCategoryData = (await readBlogCategory()).data || []
+      const blogCategoryOptions = blogCategoryData.map(x => ({
+        label: x.name,
+        value: x.id,
+      }))
+      console.log(blogCategoryOptions)
+      this.setState({ blogCategoryOptions })
 
-    if (defaultTrackingId === -1) {
-      // create
-      // do nothing
-      form.resetFields()
-    } else {
-      // update
-      // fetch data
-      const response = await read({
-        limit: 1,
-        id: defaultTrackingId,
-      })
+      if (defaultTrackingId === -1) {
+        // create
+        // do nothing
+        form.resetFields()
+      } else {
+        // update
+        // fetch data
+        const response = await read({
+          limit: 1,
+          id: defaultTrackingId,
+        })
 
-      if (response) {
-        const blogStateObject = response.data[0]
+        if (response) {
+          const blogStateObject = response.data[0]
 
-        // beautify data
-        blogStateObject.draftTime = moment(blogStateObject.draftTime)
+          // beautify data
+          blogStateObject.draftTime = moment(blogStateObject.draftTime)
 
-        const defaultFileUpload = {
-          uid: response.data.length,
-          url: blogStateObject.thumbnailURL,
+          const defaultFileUpload = {
+            uid: response.data.length,
+            url: blogStateObject.thumbnailURL,
+          }
+          // init default image
+          this.setState(
+            {
+              defaultFileUpload,
+              thumbnailURL: blogStateObject.thumbnailURL,
+              defaultEditorStateHtml: blogStateObject.content,
+            },
+            () => {
+              // set to form
+              // note: you must be render state first.
+              form.setFieldsValue(blogStateObject)
+            },
+          )
+          // init default editor content
         }
-        // init default image
-        this.setState(
-          {
-            defaultFileUpload,
-            thumbnailURL: blogStateObject.thumbnailURL,
-            defaultEditorStateHtml: blogStateObject.content,
-          },
-          () => {
-            // set to form
-            // note: you must be render state first.
-            form.setFieldsValue(blogStateObject)
-          },
-        )
-        // init default editor content
       }
-    }
+    })()
   }
 
   handleUPOnSuccessCallback = fileList => {
@@ -177,6 +183,10 @@ class BlogEditor extends React.Component {
                             'Code should be 1 ~ 23 characters, and match with alphabe, decimal',
                           ),
                         ],
+                        getValueFromEvent: e => {
+                          const value = e.target.value || ''
+                          return value.toUpperCase()
+                        },
                       })(<Input name="code" placeholder="Mã bài viết, ví dụ: B01" />)}
                     </FormItem>
                   </div>
@@ -185,6 +195,13 @@ class BlogEditor extends React.Component {
                   <div className="form-group form-upload">
                     <FormItem label="Title">
                       {form.getFieldDecorator('title', {
+                        getValueFromEvent: e => {
+                          const slug = khongDau(e.target.value, ['chuyen', 'url']) || ''
+                          form.setFieldsValue({
+                            slug: slug.toLowerCase(),
+                          })
+                          return e.target.value
+                        },
                         rules: [FormUtils.CreateRuleIsRequried('Required title. ')],
                       })(<Input name="title" placeholder="Blog title" />)}
                     </FormItem>
@@ -197,7 +214,7 @@ class BlogEditor extends React.Component {
                         rules: [
                           FormUtils.CreateRuleIsRequried('Required seo name. '),
                           FormUtils.CreateRuleRegExp(
-                            '^[\\w\\d-]{0,25}$',
+                            '^[\\w\\d-]+$',
                             'SEO invalid, should like pattern: seo-name-01 and the length should not over 25.',
                           ),
                         ],
@@ -223,13 +240,6 @@ class BlogEditor extends React.Component {
                 <div className="col-lg-12">
                   <div className="form-group">
                     <FormItem label="Content">
-                      {/* {form.getFieldDecorator('content')(
-                        <EditorWysiwygCTHTML
-                          name="content"
-                          defaultHtml={defaultEditorStateHtml}
-                          onChangeHtml={this.handleEditorChange}
-                        />,
-                      )} */}
                       {form.getFieldDecorator('content')(
                         <CKEditorCustom
                           name="content"
@@ -237,6 +247,13 @@ class BlogEditor extends React.Component {
                           onChangeData={this.handleEditorChange}
                         />,
                       )}
+                    </FormItem>
+                  </div>
+                </div>
+                <div className="col-lg-12">
+                  <div className="form-group">
+                    <FormItem label="Tags">
+                      {form.getFieldDecorator('tags')(<TagEditor />)}
                     </FormItem>
                   </div>
                 </div>
@@ -252,11 +269,15 @@ class BlogEditor extends React.Component {
                     </FormItem>
                   </div>
                 </div>
-                <FormItem label="Draft Time">
-                  {form.getFieldDecorator('draftTime', {
-                    rules: [FormUtils.CreateRuleIsRequried('Select draft time')],
-                  })(<DatePicker />)}
-                </FormItem>
+                <div className="col-lg-6">
+                  <div className="form-group">
+                    <FormItem label="Draft Time">
+                      {form.getFieldDecorator('draftTime', {
+                        rules: [FormUtils.CreateRuleIsRequried('Select draft time')],
+                      })(<DatePicker />)}
+                    </FormItem>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="col-lg-12">

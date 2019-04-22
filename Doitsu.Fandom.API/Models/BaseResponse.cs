@@ -11,14 +11,15 @@ namespace Doitsu.Fandom.API.Models
     {
         public BaseResponse()
         {
-
         }
+
         public BaseResponse(T data, bool success = false, string message = "")
         {
             this.Message = message;
             this.Success = success;
             this.Data = data;
         }
+
         [JsonProperty("message")]
         public string Message { get; set; }
         [JsonProperty("success")]
@@ -30,7 +31,7 @@ namespace Doitsu.Fandom.API.Models
         [JsonProperty("totalAvailData")]
         public int TotalAvailData { get; set; }
 
-        public static BaseResponse<T> PrepareData(T data, bool success = false, string message = "" )
+        public static BaseResponse<T> PrepareData(T data, bool success = false, string message = "")
         {
             return new BaseResponse<T>(data, success, message);
         }

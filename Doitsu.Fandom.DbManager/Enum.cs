@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Doitsu.DBManager.Fandom
 {
+
     /// <summary>
     /// This enum to support show to view
     /// Artist is the mark to mapping albums to artist detail

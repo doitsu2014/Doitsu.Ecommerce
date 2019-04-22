@@ -32,14 +32,14 @@
                     </div>
                     <!--/ End Post Tab -->
                     <!-- Blog Tags -->
-                    <div class="single-sidebar tags">
-                        <h2>Popular Tags</h2>
-                        <ul>
-                            <li><a href="#">Notice</a></li>
-                            <li><a href="#">News</a></li>
-                            <li><a href="#">Recuitment</a></li>
-                            <li><a href="#">About Us</a></li>
-                        </ul>
+                    <div class="single-sidebar tags popular-tags">
+                        @*<h2>Popular Tags</h2>
+                            <ul>
+                                <li><a href="#">Notice</a></li>
+                                <li><a href="#">News</a></li>
+                                <li><a href="#">Recuitment</a></li>
+                                <li><a href="#">About Us</a></li>
+                            </ul>*@
                     </div>
                     <!--/ End Blog Tags -->
                     <!-- Subscribe -->
@@ -64,6 +64,9 @@
 @section Scripts
     {
     <script type="text/javascript" src="~/js/news.js"></script>
+    <script type="text/javascript" src="~/js/tag.js"></script>
     <script type="text/javascript">fetchNewsBlog();
-        fetchRandomNewsBlog();</script>
+        fetchRandomNewsBlog();
+        fetchPopularTag();</script>
+
 }

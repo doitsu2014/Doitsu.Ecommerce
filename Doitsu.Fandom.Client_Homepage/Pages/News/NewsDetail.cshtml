@@ -1,5 +1,4 @@
 ﻿@page "/news/{slug}"
-
 <!-- Blog Archive -->
 <section class="blogs archive single section">
     <div class="container">
@@ -9,7 +8,7 @@
         <div class="row">
             <div class="col-lg-9 col-12">
                 <div class="row" id="news-post">
-                    
+
                 </div>
                 <div class="row">
                     <div class="col-12">
@@ -88,23 +87,9 @@
                         </div>
                     </div>
                     <!--/ End Post Tab -->
-                    <!-- Blog Category -->
-                    <div class="single-sidebar categorys">
-                        <h2>Blog Categorys</h2>
-                        <ul>
-                            <li><a href="#">Album<span>?</span></a></li>
-                            <li><a href="#">News<span>?</span></a></li>
-                        </ul>
-                    </div>
-                    <!--/ End Blog Category -->
                     <!-- Blog Tags -->
-                    <div class="single-sidebar tags">
-                        <h2>Popular Tags</h2>
-                        <ul>
-                            <li><a href="#">iKon</a></li>
-                            <li><a href="#">Black Pink</a></li>
-                            <li><a href="#">Big Bang</a></li>
-                        </ul>
+                    <div class="single-sidebar tags popular-tags">
+
                     </div>
                     <!--/ End Blog Tags -->
                     <!-- Subscribe -->
@@ -127,10 +112,12 @@
 </section>
 <!--/ End Blog Archive -->
 @section Scripts
-{
+    {
     <script type="text/javascript" src="~/js/news.js"></script>
+    <script type="text/javascript" src="~/js/tag.js"></script>
     <script type="text/javascript">
         fetchNewsBySlug('@RouteData.Values["slug"]');
         fetchRandomNewsBlog();
+        fetchPopularTag();
     </script>
 }
