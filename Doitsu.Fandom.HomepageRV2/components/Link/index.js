@@ -11,7 +11,7 @@ function NextComposed(props) {
 
   return (
       <NextLink href={href} prefetch={prefetch} as={as}>
-        {children || <a {...other}/>}
+        {children}
       </NextLink>
   );
 }

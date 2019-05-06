@@ -24,17 +24,37 @@ export default class Utils {
   /**
    * This function to have user build a URLSearchParams from their obj
    * and it can handle some case like a property is undefined and a property is null,...
-   * 
+   *
    * They have to pass a object
    */
   static buildSearchParams = function(obj = undefined) {
     const params = new URLSearchParams();
-    if(!obj) return params;
-    
+    if (!obj) return params;
+
     Object.keys(obj).forEach((val, i) => {
-      if(obj[val] != null && obj[val] != undefined) params.set(val, obj[val]);
-    })
-    
+      if (obj[val] != null && obj[val] != undefined) params.set(val, obj[val]);
+    });
+
     return params;
+  };
+  
+  /** 
+   * A utils function to help dev build a short content from a long content
+   * 
+   * content {string}: default is empty string
+   * lenght {int}: default is 25
+  */
+  static buildShortContent(content = "", length = 24) {
+    try {
+      if ((typeof content !== "string")) {
+        return "";
+      }
+      content = content.replace(/<[^>]*>/g, "");
+      content = content.substr(0, length).concat(" ...");
+      return content;
+    } catch (e) {
+      console.error(e);
+      return content;
+    }
   }
 }

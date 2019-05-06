@@ -57,7 +57,10 @@ class Header extends React.Component {
               noWrap
               className={classes.toolbarTitle}
             >
-              <img src="/static/logo.png" />
+              <img style={({
+                width: "216px",
+                height: "auto"
+              })} src="/static/logo.png" />
             </Typography>
             <IconButton>
               <SearchIcon />

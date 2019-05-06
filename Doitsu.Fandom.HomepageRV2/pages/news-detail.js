@@ -1,14 +1,23 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import htmlToReact from "html-to-react";
-import BlogService from "../services/BlogService"
+import BlogService from "../services/BlogService";
 
+import Paper from "@material-ui/core/Paper";
+import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import CardBlogDetail from "../components/CardBlogDetail";
+import Link from "../components/Link";
 
-
-const htmlToReactParser = new htmlToReact.Parser();
-const styles = (theme) => {
-
-}
+const styles = theme => ({
+  root: {
+    justifyContent: "center",
+    flexWrap: "wrap"
+  },
+  breadcrumbs: {
+    padding: `${theme.spacing(2)}px 0`
+  }
+});
 
 class NewsDetail extends Component {
   static async getInitialProps(context) {
@@ -19,20 +28,38 @@ class NewsDetail extends Component {
   }
 
   render() {
-    const { news } = this.props;
+    const { news, classes } = this.props;
     return (
       <React.Fragment>
-        {
-          news ? (
-            <div>
-              <h1>{news.title}</h1>
-              <img width="100%" src={news.thumbnailURL} />
-              <div>{htmlToReactParser.parse(news.content)}</div>
-            </div>
-          ) : (
-            <div>404 not found</div>
-          )
-        }
+        <div className={classes.root}>
+          <Breadcrumbs aria-label="Breadcrumb" className={classes.breadcrumbs}>
+            <Link href="/">
+              {/* <Typography variant="h6">Home</Typography> */}
+              Home
+            </Link>
+            <Link href="/news">
+              <Typography variant="h6">News</Typography>
+            </Link>
+            <Typography variant="h6" color="textPrimary">
+              {news.slug}
+            </Typography>
+          </Breadcrumbs>
+
+          <Grid container spacing={2}>
+            <Grid item sm={12} lg={8}>
+              {news ? (
+                <CardBlogDetail blog={news} />
+              ) : (
+                <Paper>
+                  <Typography variant="h5" component="h3">
+                    404 Not Found
+                  </Typography>
+                </Paper>
+              )}
+            </Grid>
+            <Grid item sm={12} lg={4} />
+          </Grid>
+        </div>
       </React.Fragment>
     );
   }
