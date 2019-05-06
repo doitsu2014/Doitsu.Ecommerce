@@ -29,7 +29,7 @@ namespace Doitsu.Fandom.API.Controllers
 
         [HttpGet("read-list-slider")]
         [AllowAnonymous]
-        public async Task<ActionResult> GetListSlider([FromQuery]int limit,  [FromQuery]int currentPage, [FromQuery] bool? isSlider)
+        public async Task<ActionResult> GetListSlider([FromQuery] bool? isSlider, [FromQuery]int limit = 5, [FromQuery]int currentPage = 0)
         {
             try
             {

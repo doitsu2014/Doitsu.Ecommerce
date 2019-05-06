@@ -56,30 +56,17 @@ namespace Doitsu.Fandom.API.Controllers
         {
             try
             {
-                if (!isShortTerm)
-                {
-                    var listBlog = await this.blogService
-                        .GetActiveByQuery(limit, currentPage, name, blogCategoryId, id)
-                        .ToListAsync();
-                    var result = BaseResponse<List<BlogViewModel>>.PrepareDataSuccess(listBlog, "Get list blogs successful!");
-                    var totalFullData = this.blogService.CountBlogs(blogCategoryId);
-                    var totalAvailData = listBlog.Count;
-                    result.TotalFullData = totalFullData;
-                    result.TotalAvailData = totalAvailData;
-                    return Ok(result);
-                }
-                else
-                {
-                    var listBlog = await this.blogService
-                        .GetActiveShortTermByQuery(limit, currentPage, name, blogCategoryId, id)
-                        .ToListAsync();
-                    var result = BaseResponse<List<BlogShortTermViewModel>>.PrepareDataSuccess(listBlog, "Get list short term blog successful!");
-                    var totalFullData = this.blogService.CountBlogs(blogCategoryId);
-                    var totalAvailData = listBlog.Count;
-                    result.TotalFullData = totalFullData;
-                    result.TotalAvailData = totalAvailData;
-                    return Ok(result);
-                }
+
+                var listBlog = await this.blogService
+                    .GetActiveByQuery(limit, currentPage, name, blogCategoryId, id)
+                    .ToListAsync();
+                var result = BaseResponse<List<BlogViewModel>>.PrepareDataSuccess(listBlog, "Get list blogs successful!");
+                var totalFullData = this.blogService.CountBlogs(blogCategoryId);
+                var totalAvailData = listBlog.Count;
+                result.TotalFullData = totalFullData;
+                result.TotalAvailData = totalAvailData;
+                return Ok(result);
+
             }
             catch (Exception ex)
             {

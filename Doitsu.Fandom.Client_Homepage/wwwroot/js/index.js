@@ -72,7 +72,6 @@ function createHeroSliderElement(slider) {
 function createLatestElement(latestBlog) {
     let blogTypeSubParam = latestBlog.blogCategoryID == blogCategoryEnum.NOTICE ? 'notices' : 'news';
     let sliderLink = `${blogTypeSubParam}/${latestBlog.slug}`;
-    
     var draftTimeDate = new Date(latestBlog.draftTime);
     let lastestElement = 
     `
@@ -81,7 +80,6 @@ function createLatestElement(latestBlog) {
                 <h6 class="mb-1">${latestBlog.title}</h6>
                 <small>${draftTimeDate.toLocaleDateString()}</small>
             </div>
-
         </a>
     `;
     return lastestElement;

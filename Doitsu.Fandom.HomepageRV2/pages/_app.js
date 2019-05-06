@@ -1,0 +1,56 @@
+import React from "react";
+import App, { Container } from "next/app";
+import Head from "next/head";
+import { ThemeProvider } from "@material-ui/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import theme from "../src/theme";
+
+import NProgress from "nprogress";
+import Router from "next/router";
+
+// layout component
+import MainLayout from "../layouts/MainLayout";
+
+function GetCustomNProgress() {
+  NProgress.configure({
+    parent: "#main-content"
+  });
+  return NProgress;
+}
+
+Router.events.on("routeChangeStart", url => {
+  GetCustomNProgress().start();
+});
+Router.events.on("routeChangeComplete", () => GetCustomNProgress().done());
+Router.events.on("routeChangeError", () => GetCustomNProgress().done());
+
+class FandomApp extends App {
+  componentDidMount() {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector("#jss-server-side");
+    if (jssStyles) {
+      jssStyles.parentNode.removeChild(jssStyles);
+    }
+  }
+
+  render() {
+    const { Component, pageProps } = this.props;
+
+    return (
+      <Container>
+        <Head>
+          <title>Fandom Homepage</title>
+        </Head>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <MainLayout>
+            <Component {...pageProps} />
+          </MainLayout>
+        </ThemeProvider>
+      </Container>
+    );
+  }
+}
+
+export default FandomApp;

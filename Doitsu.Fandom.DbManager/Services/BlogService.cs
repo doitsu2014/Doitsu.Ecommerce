@@ -124,8 +124,7 @@ namespace Doitsu.DBManager.Fandom.Services
         public IQueryable<BlogViewModel> GetActiveByQuery(int limit, int currentPage, string name = "", int? blogCategoryId = null, int? id = null, bool? isSlider = null)
         {
             IQueryable<Blogs> listQuery = GetActiveAsNoTracking(a =>
-                a.Active
-                && (id == null || a.Id == id.Value)
+                (id == null || a.Id == id.Value)
                 && (isSlider == null || isSlider == a.IsSlider)
                 && (name.IsNullOrEmpty() || a.Title.Contains(name, StringComparison.CurrentCultureIgnoreCase))
                 && (blogCategoryId == null || a.BlogCategoryId == blogCategoryId)

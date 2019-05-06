@@ -16,4 +16,9 @@ services:
       - ASPNETCORE_ENVIRONMENT=Production
     ports:
       - "9090:80"
+  doitsu.fandom.homepagerv2:
+    environment:
+      NODE_ENV: production
+    ports:
+      - 10090:3000
 
