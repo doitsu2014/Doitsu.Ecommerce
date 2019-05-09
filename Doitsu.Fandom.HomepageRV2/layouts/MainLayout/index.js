@@ -8,6 +8,8 @@ import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import Breadcrumbs from "../../components/Breadcrumbs";
 
 const styles = globalTheme => ({
   layout: {
@@ -31,22 +33,11 @@ class MainLayout extends React.Component {
         <Container className={classes.layout}>
           <Header />
           <main id="main-content" className={classes.mainContent}>
+            <Breadcrumbs />
             {children}
           </main>
           {/* Footer */}
-          <footer className={classes.footer}>
-            <Typography variant="h6" align="center" gutterBottom>
-              Footer
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              align="center"
-              color="textSecondary"
-              component="p"
-            >
-              Something here to give the footer a purpose!
-            </Typography>
-          </footer>
+          <Footer/>
           {/* End footer */}
         </Container>
       </React.Fragment>

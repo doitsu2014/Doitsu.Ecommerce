@@ -30,8 +30,8 @@ class BlogEditor extends React.Component {
   state = BlogEditorDefaultState
 
   constructor(props) {
-    super(props)
-    ;(async () => {
+    super(props);
+    (async () => {
       const { form, defaultTrackingId } = this.props
       // binding blogCategories
       const blogCategoryData = (await readBlogCategory()).data || []

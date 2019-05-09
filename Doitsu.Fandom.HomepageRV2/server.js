@@ -7,12 +7,15 @@ const next = require('next');
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
-const serverPort = process.env.PORT || 3001
+const serverPort = process.env.PORT || 3002
 app
   .prepare()
   .then(() => {
     const server = express()
 
+    server.use(
+      express.static(__dirname + '/staic')
+    );
     server.get('/news/:slug', (req, res) => {
       const actualPage = '/news-detail'
       const queryParams = { slug: req.params.slug }

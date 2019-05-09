@@ -10,10 +10,9 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
-import Icon from "@material-ui/core/Icon";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import Link from "../Link"
-import Utils from "../../utils"
+
+import HTMLRParser from "html-react-parser";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -35,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function CardBlogDetail(props) {
-  const { blog, fakeRedirectLink, originRedirectLink } = props;
+  const { blog } = props;
   const classes = useStyles();
 
   return (
@@ -60,9 +59,27 @@ function CardBlogDetail(props) {
         title={blog.title}
       />
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-            {blog.content}
-        </Typography>
+        {HTMLRParser(`<div>${blog.content}</div>`, {
+          replace: function(domNode) {
+            if (domNode.name && domNode.name === "oembed") {
+              return React.createElement(
+                "iframe",
+                {
+                  style: {
+                    width: "100%",height: "600px"
+                  },
+                  frameBorder: "0",
+                  allow: "autoplay; encrypted-media",
+                  allowFullScreen: true,
+                  title: "video",
+                  src: `${domNode.attribs && domNode.attribs.url}`
+                },
+                "replaced"
+              );
+            }
+          }
+        })}
+        {/* {blog.content} */}
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="Add to favorites">
@@ -71,7 +88,6 @@ function CardBlogDetail(props) {
         <IconButton aria-label="Share">
           <ShareIcon />
         </IconButton>
-        
       </CardActions>
     </Card>
   );

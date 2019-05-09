@@ -80,28 +80,22 @@ const styles = theme => ({
 
 class Index extends React.Component {
   static async getInitialProps() {
-    const getNoticeBaseRes = await BlogService.get(Utils.BLOG_CATEGORY_CONSTS.NOTICE);
-    const getNewsBaseRes = await BlogService.get(Utils.BLOG_CATEGORY_CONSTS.NEWS);
+    const getNoticeBaseRes = await BlogService.get(Utils.BLOG_CATEGORY_CONSTS.NOTICE, 5);
+    const getNewsBaseRes = await BlogService.get(Utils.BLOG_CATEGORY_CONSTS.NEWS, 5);
     const getSliderSettings = await SettingsService.get();
-
+    
     const noticeItems = (getNoticeBaseRes.data || [])
     const newsItems =  (getNewsBaseRes.data || [])
-
+    const sliderSettings = (getSliderSettings.data || []).slice(0,5).map(e => ({
+      imgPath: e.thumbnailURL,
+      label: e.title,
+      type: e.type,
+      category: e.blogCategoryId
+    }));
     return {
       noticeItems,
       newsItems,
-      steps: [
-        {
-          imgPath:
-            "http://api.ygfl.vn/resource-container/1/636890212100747761_d6cdcf71a63540928446a50cd7a438cd.jpg",
-          label: "blue-img"
-        },
-        {
-          imgPath:"http://api.ygfl.vn/resource-container/1/636920728574450155_e0412a14b8e04e4897011a6d94bf7d3b.jpg",
-          label: "new-01",
-          href: "abc"
-        }
-      ],
+      steps: sliderSettings,
       featuredPosts: [
         {
           title: "Advertiser 01",
@@ -136,11 +130,10 @@ class Index extends React.Component {
         {/* Main featured post */}
         <Carousel steps={steps} className={classes.mainSlider} />
         <Grid container className={classes.mainBoard}>
-          <Grid item md={6} className={classes.mainBoardColumn}>
+          <Grid item lg={6} xs={12} className={classes.mainBoardColumn}>
             <div className={classes.mainBoardTitleContainer}>
               <Typography
                 align="left"
-                component="h2"
                 variant="h5"
                 className={classes.mainBoardTitle}
               >
@@ -148,7 +141,7 @@ class Index extends React.Component {
               </Typography>
               <Typography
                 align="right"
-                href="/notices"
+                href="/notice"
                 component={props => {
                   const { children, href } = props;
                   return (
@@ -164,11 +157,10 @@ class Index extends React.Component {
             </div>
             <ListBlog items={noticeItems} type="notice" />
           </Grid>
-          <Grid item md={6} className={classes.mainBoardColumn}>
+          <Grid item lg={6} xs={12} className={classes.mainBoardColumn}>
             <div className={classes.mainBoardTitleContainer}>
               <Typography
                 align="left"
-                component="h2"
                 variant="h5"
                 className={classes.mainBoardTitle}
               >

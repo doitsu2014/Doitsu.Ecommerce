@@ -9,12 +9,12 @@ import Link from "../Link";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+const AutoPlaySwipeableViews = SwipeableViews;
+// autoPlay(SwipeableViews);
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-    marginTop: theme.spacing(2)
+    flexGrow: 1
   },
   header: {
     display: "flex",
@@ -22,6 +22,12 @@ const styles = theme => ({
     height: 50,
     paddingLeft: theme.spacing(4),
     backgroundColor: theme.palette.background.default
+  },
+  carouselItemWrapper: {
+    position: "relative"
+  },
+  imgWrapper: {
+  
   },
   img: {
     height: "auto",
@@ -69,9 +75,9 @@ class Carousel extends React.Component {
           enableMouseEvents
         >
           {steps.map((step, index) => (
-            <div key={index}>
+            <div key={index} className={classes.carouselItemWrapper}>
               {Math.abs(activeStep - index) <= 2 ? (
-                <Link href="/about">
+                <Link href="/about" className={classes.imgWrapper}>
                   <img
                     className={classes.img}
                     src={step.imgPath}

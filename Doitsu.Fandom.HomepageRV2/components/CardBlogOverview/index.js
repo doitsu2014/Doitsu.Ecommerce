@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -12,12 +12,11 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import Icon from "@material-ui/core/Icon";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import Link from "../Link"
-import Utils from "../../utils"
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-
-import htmlToReact from "html-to-react";
-const htmlToReactParser = new htmlToReact.Parser();
+import Link from "../Link";
+import Utils from "../../utils";
+import { relative } from "path";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -28,20 +27,28 @@ const useStyles = makeStyles(theme => ({
     paddingTop: "56.25%" // 16:9
   },
   seeDetail: {
-    marginLeft: "auto"
+    marginLeft: "auto",
+    position: "relative"
   },
   expandOpen: {
     transform: "rotate(180deg)"
   },
   avatar: {
     backgroundColor: theme.palette.secondary.dark
+  },
+  fabProgress: {
+    color: theme.palette.secondary.main,
+    position: "absolute",
+    top: 0,
+    left: 0,
+    zIndex: 1
   }
 }));
 
 function CardBlog(props) {
   const { blog, fakeRedirectLink, originRedirectLink, isShort } = props;
   const classes = useStyles();
-
+  const [loading, setLoading] = useState(false);
   return (
     <Card className={classes.card}>
       <CardHeader
@@ -65,7 +72,7 @@ function CardBlog(props) {
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-            {isShort ? Utils.buildShortContent(blog.content, 60) : blog.content}
+          {isShort ? Utils.buildShortContent(blog.content, 60) : blog.content}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -75,11 +82,22 @@ function CardBlog(props) {
         <IconButton aria-label="Share">
           <ShareIcon />
         </IconButton>
-        <Link as={fakeRedirectLink} href={originRedirectLink}>
-          <IconButton arial-label="See" className={classes.seeDetail}>
-            <Icon>play_arrow</Icon>
-          </IconButton>
-        </Link>
+        <div className={classes.seeDetail}>
+          <Link
+            as={fakeRedirectLink}
+            href={originRedirectLink}
+            onClick={() => {
+              setLoading(!loading);
+            }}
+          >
+            <IconButton arial-label="See">
+              <Icon>play_arrow</Icon>
+            </IconButton>
+            {loading && (
+              <CircularProgress size={48} className={classes.fabProgress} />
+            )}
+          </Link>
+        </div>
       </CardActions>
     </Card>
   );

@@ -20,6 +20,10 @@ const styles = theme => ({
   }
 });
 
+/**
+ * This component to render list blog to index page
+ * like list notice or list news
+ */
 class ListBlog extends React.Component {
   render() {
     const { classes, type, items } = this.props;

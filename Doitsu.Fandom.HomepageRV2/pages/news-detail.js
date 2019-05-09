@@ -32,21 +32,8 @@ class NewsDetail extends Component {
     return (
       <React.Fragment>
         <div className={classes.root}>
-          <Breadcrumbs aria-label="Breadcrumb" className={classes.breadcrumbs}>
-            <Link href="/">
-              {/* <Typography variant="h6">Home</Typography> */}
-              Home
-            </Link>
-            <Link href="/news">
-              <Typography variant="h6">News</Typography>
-            </Link>
-            <Typography variant="h6" color="textPrimary">
-              {news.slug}
-            </Typography>
-          </Breadcrumbs>
-
           <Grid container spacing={2}>
-            <Grid item sm={12} lg={8}>
+            <Grid item xs={12} lg={8}>
               {news ? (
                 <CardBlogDetail blog={news} />
               ) : (

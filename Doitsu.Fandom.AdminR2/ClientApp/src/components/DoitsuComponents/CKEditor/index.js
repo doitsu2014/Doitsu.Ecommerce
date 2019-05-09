@@ -8,8 +8,7 @@ import './style.editor.css'
 class CKEditorCustom extends Component {
   onInit = editor => {
     console.log('Editor is ready to use!', editor)
-
-    // Insert the toolbar before the editable area.
+    editor.config.set( 'mediaEmbed.previewsInData', true )
     editor.ui
       .getEditableElement()
       .parentElement.insertBefore(editor.ui.view.toolbar.element, editor.ui.getEditableElement())
