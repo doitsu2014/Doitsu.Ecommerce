@@ -22,8 +22,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Breadcrumbs({ router }) {
+  const url = router.asPath.replace(/[?].*/g, "");
   const classes = useStyles();
-  const data = [...new Set(router.asPath.split("/"))].map(sub => ({
+  const data = [...new Set(url.split("/"))].map(sub => ({
     face: (sub || "Home").toUpperCase(),
     origin: sub
   }));

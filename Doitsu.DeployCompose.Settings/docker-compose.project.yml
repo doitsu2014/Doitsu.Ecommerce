@@ -1,21 +1,27 @@
 fandom_api:
-    image: "hub.doitsu.tech:5000/fandom_api:latest"
+    image: "doitsu.azurecr.io/ygfl_api:latest"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
     ports:
       - "9092:80"
       
 fandom_adminr2:
-    image: "hub.doitsu.tech:5000/fandom_adminr2:latest"
+    image: "doitsu.azurecr.io/ygfl_admin:latest"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
     ports:
       - "9091:80"
       
 fandom_homepage:
-    image: "hub.doitsu.tech:5000/fandom_homepage:latest"
+    image: "doitsu.azurecr.io/ygfl_homepage:latest"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
     ports:
       - "9090:80"
       
+fandom_homepage_v2:
+    image: "doitsu.azurecr.io/ygfl_homepage_v2"
+    environment:
+      NODE_ENV: production
+    ports:
+      - 10090:3000

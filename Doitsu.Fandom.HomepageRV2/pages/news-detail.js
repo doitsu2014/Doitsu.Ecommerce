@@ -1,18 +1,23 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import BlogService from "../services/BlogService";
+import TagService from "../services/TagService";
 
 import Paper from "@material-ui/core/Paper";
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+
 import CardBlogDetail from "../components/CardBlogDetail";
-import Link from "../components/Link";
+import TagBox from "../components/TagBox";
+import ListBlogWithAvatar from "../components/ListBlogWithAvatar";
+
+import Utils from "../utils";
 
 const styles = theme => ({
   root: {
     justifyContent: "center",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    marginBottom: theme.spacing(2)
   },
   breadcrumbs: {
     padding: `${theme.spacing(2)}px 0`
@@ -22,13 +27,18 @@ const styles = theme => ({
 class NewsDetail extends Component {
   static async getInitialProps(context) {
     const { slug } = context.query;
-    const baseRes = await BlogService.getBySlug(slug);
-    const news = baseRes.data;
-    return { news };
+    const getBlogBySlug = await BlogService.getBySlug(slug);
+    const getNewsBaseRes = await BlogService.get(Utils.BLOG_CATEGORY_CONSTS.NEWS,5);
+    const getPopularTag = await TagService.getPopular();
+
+    const tags = getPopularTag.data;
+    const news = getBlogBySlug.data;
+    const top5News = getNewsBaseRes.data;
+    return { news, top5News, tags };
   }
 
   render() {
-    const { news, classes } = this.props;
+    const { news, classes, top5News, tags } = this.props;
     return (
       <React.Fragment>
         <div className={classes.root}>
@@ -44,7 +54,10 @@ class NewsDetail extends Component {
                 </Paper>
               )}
             </Grid>
-            <Grid item sm={12} lg={4} />
+            <Grid item sm={12} lg={4}>
+              <ListBlogWithAvatar type="latest-news" blogs={top5News} />
+              <TagBox tags={tags} />
+            </Grid>
           </Grid>
         </div>
       </React.Fragment>

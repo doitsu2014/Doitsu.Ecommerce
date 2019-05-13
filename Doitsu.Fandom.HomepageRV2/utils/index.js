@@ -50,7 +50,7 @@ export default class Utils {
         return "";
       }
       content = content.replace(/<[^>]*>/g, "");
-      content = content.substr(0, length).concat(" ...");
+      if(content.length > length) content = content.substr(0, length).concat(" ...");
       return content;
     } catch (e) {
       console.error(e);

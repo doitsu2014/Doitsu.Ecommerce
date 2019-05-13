@@ -57,12 +57,7 @@ function CardBlog(props) {
             YG
           </Avatar>
         }
-        action={
-          <IconButton>
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title={isShort ? Utils.buildShortContent(blog.title, 30) : blog.title}
+        title={isShort ? Utils.buildShortContent(blog.title, 35) : blog.title}
         subheader={blog.draftTime}
       />
       <CardMedia
@@ -91,7 +86,7 @@ function CardBlog(props) {
             }}
           >
             <IconButton arial-label="See">
-              <Icon>play_arrow</Icon>
+              <Icon>send</Icon>
             </IconButton>
             {loading && (
               <CircularProgress size={48} className={classes.fabProgress} />

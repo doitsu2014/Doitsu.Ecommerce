@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   },
   inforText: {
     overflow: "hidden",
-    fontSize: "1rem",
+    fontSize: "0.8rem",
     flexShrink: 0,
     margin: "auto",
     display: "inline-block"

@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Link from "next/link";
 import BlogService from "../services/BlogService";
-import Settings from "../services/SettingsService";
 import Utils from "../utils";
 
 import Grid from "@material-ui/core/Grid";
@@ -80,8 +79,8 @@ const styles = theme => ({
 
 class Index extends React.Component {
   static async getInitialProps() {
-    const getNoticeBaseRes = await BlogService.get(Utils.BLOG_CATEGORY_CONSTS.NOTICE, 5);
-    const getNewsBaseRes = await BlogService.get(Utils.BLOG_CATEGORY_CONSTS.NEWS, 5);
+    const getNoticeBaseRes = await BlogService.get(Utils.BLOG_CATEGORY_CONSTS.NOTICE, 3);
+    const getNewsBaseRes = await BlogService.get(Utils.BLOG_CATEGORY_CONSTS.NEWS, 3);
     const getSliderSettings = await SettingsService.get();
     
     const noticeItems = (getNoticeBaseRes.data || [])
@@ -92,6 +91,7 @@ class Index extends React.Component {
       type: e.type,
       category: e.blogCategoryId
     }));
+
     return {
       noticeItems,
       newsItems,
@@ -125,6 +125,7 @@ class Index extends React.Component {
       featuredPosts,
       steps
     } = this.props;
+
     return (
       <div>
         {/* Main featured post */}
