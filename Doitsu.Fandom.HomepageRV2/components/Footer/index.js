@@ -50,8 +50,8 @@ function Footer() {
             1st Vietnam fanpage of YG Family has YG Vietsub which is the most
             subscribed channel on Youtube of YG's Lovers in this country
           </Typography>
-          <Typography>
-            <IconButton>
+          <Typography component="p">
+            <IconButton href="https://www.facebook.com/ygfl.vn/">
               <SvgIcon>
                 <path
                   fill="#000000"
@@ -61,7 +61,6 @@ function Footer() {
             </IconButton>
           </Typography>
         </Grid>
-
         <Grid item xs={12} md={4} className={classes.panel}>
           <Typography variant="h6" className={classes.panelHeader}>
             Our Information
@@ -72,9 +71,7 @@ function Footer() {
           </Typography>
           <Typography>
             <Icon>contact_mail</Icon>{" "}
-            <span className={classes.inforText}>
-              ygflofficial@gmail.com
-            </span>
+            <span className={classes.inforText}>ygflofficial@gmail.com</span>
           </Typography>
         </Grid>
       </Grid>

@@ -34,7 +34,7 @@ class News extends Component {
   static async getInitialProps(context) {
     const params = context.query;
     const currentPage = params.page || 1;
-    const limitGetBlogByCategory = 2;
+    const limitGetBlogByCategory = 10;
     const getBlogByCategory = await BlogService.get(
       Utils.BLOG_CATEGORY_CONSTS.NEWS,
       limitGetBlogByCategory,

@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import htmlToReact from "html-to-react";
-import BlogService from "../services/BlogService"
 
+import HTMLRParser from "html-react-parser";
+import BlogService from "../services/BlogService";
 
-
-const htmlToReactParser = new htmlToReact.Parser();
-const styles = (theme) => {
-
-}
+const styles = theme => ({
+  noticeContent: {
+    "& image": {
+      maxWidth: "100%"
+    }
+  }
+});
 
 class NewsDetail extends Component {
   static async getInitialProps(context) {
@@ -19,20 +21,40 @@ class NewsDetail extends Component {
   }
 
   render() {
-    const { news } = this.props;
+    const { classes, news } = this.props;
     return (
       <React.Fragment>
-        {
-          news ? (
-            <div>
-              <h1>{news.title}</h1>
-              <img width="100%" src={news.thumbnailURL} />
-              <div>{htmlToReactParser.parse(news.content)}</div>
+        {news ? (
+          <div className={classes.root}>
+            <h1>{news.title}</h1>
+            <img width="100%" src={news.thumbnailURL} />
+            <div className={classes.noticeContent}>
+              {HTMLRParser(`<div>${news.content}</div>`, {
+                replace: function(domNode) {
+                  if (domNode.name && domNode.name === "oembed") {
+                    return React.createElement(
+                      "iframe",
+                      {
+                        style: {
+                          width: "100%",
+                          height: "600px"
+                        },
+                        frameBorder: "0",
+                        allow: "autoplay; encrypted-media",
+                        allowFullScreen: true,
+                        title: "video",
+                        src: `${domNode.attribs && domNode.attribs.url}`
+                      },
+                      "replaced"
+                    );
+                  }
+                }
+              })}
             </div>
-          ) : (
-            <div>404 not found</div>
-          )
-        }
+          </div>
+        ) : (
+          <div>404 not found</div>
+        )}
       </React.Fragment>
     );
   }

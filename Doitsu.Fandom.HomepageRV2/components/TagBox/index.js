@@ -45,7 +45,7 @@ function TagBox(props) {
           {(tags || []).map(val => {
             return (
               <Link key={val.id} href="#" className={classes.chip}>
-                <Chip label={val.title} clickable={val.title ? 1:0} />
+                <Chip label={val.title} clickable />
               </Link>
             );
           })}

@@ -7,8 +7,10 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import Typography from "@material-ui/core/Typography";
 import Link from "../Link";
 import Icon from "@material-ui/core/Icon";
+import Utils from "../../utils";
 
 const styles = theme => ({
   root: {
@@ -26,16 +28,26 @@ const styles = theme => ({
  */
 class ListBlog extends React.Component {
   render() {
-    const { classes, type, items } = this.props;
+    const {
+      classes,
+      type,
+      items,
+      isShortContent,
+      limitShortContent
+    } = this.props;
     return (
       <List component="nav" className={classes.root}>
         {items && items.length > 0
           ? items.map((e, i) => {
-              const draftTimeNormalize = (new Date(e.draftTime)).toLocaleDateString();
+              const draftTimeNormalize = new Date(
+                e.draftTime
+              ).toLocaleDateString();
               return (
-                <Link key={i} 
+                <Link
+                  key={i}
                   as={`/${type}/${e.slug}`}
-                  href={`/${type}-detail?slug=${e.slug}`}>
+                  href={`/${type}-detail?slug=${e.slug}`}
+                >
                   <ListItem
                     button
                     classes={{
@@ -53,14 +65,38 @@ class ListBlog extends React.Component {
                       </Icon>
                     </ListItemIcon>
                     <ListItemText
-                      inset
                       primary={e.title}
                       primaryTypographyProps={{
                         align: "justify"
                       }}
-                      secondary={draftTimeNormalize}
+                      secondary={
+                        <React.Fragment>
+                          <Typography
+                            component="span"
+                            variant="body2"
+                            className={classes.inline}
+                            color="textSecondary"
+                          >
+                            {isShortContent || false
+                              ? `- ${Utils.buildShortContent(
+                                  e.content,
+                                  limitShortContent || 20
+                                )}`
+                              : ``}
+                          </Typography>
+                          <Typography
+                            component="p"
+                            variant="body2"
+                            className={classes.inline}
+                            color="textPrimary"
+                            align="right"
+                          >
+                            {`${draftTimeNormalize}`}
+                          </Typography>
+                        </React.Fragment>
+                      }
                       secondaryTypographyProps={{
-                        align: "right"
+                        align: "justify"
                       }}
                     />
                   </ListItem>

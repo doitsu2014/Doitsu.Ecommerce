@@ -59,7 +59,7 @@ function ListBlogWithAvatar({ blogs, type }) {
       <List className={classes.root}>
         {(blogs || []).map(blog => {
           return (
-            <Link href={`${currentType.originPrefix}?slug=${blog.slug}`} as={`${currentType.fakePrefix}/${blog.slug}`}>
+            <Link key={blog.id} href={`${currentType.originPrefix}?slug=${blog.slug}`} as={`${currentType.fakePrefix}/${blog.slug}`}>
               <ListItem alignItems="flex-start" button>
                 <ListItemAvatar className={classes.listItemAvatar}>
                   <div
@@ -85,7 +85,6 @@ function ListBlogWithAvatar({ blogs, type }) {
                       {`- ${Utils.buildShortContent(blog.content, 30)}`}
                     </React.Fragment>
                   }
-                  clickable
                 />
               </ListItem>
               <Divider variant="inset" component="li" />

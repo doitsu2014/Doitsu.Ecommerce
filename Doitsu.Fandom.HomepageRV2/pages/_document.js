@@ -1,14 +1,15 @@
-import React from 'react';
-import Document, { Head, Main, NextScript } from 'next/document';
-import { ServerStyleSheets } from '@material-ui/styles';
-import flush from 'styled-jsx/server';
-import theme from '../src/theme';
+import React from "react";
+import Document, { Head, Main, NextScript } from "next/document";
+import { ServerStyleSheets } from "@material-ui/styles";
+import flush from "styled-jsx/server";
+import theme from "../src/theme";
 
 class FandomDocument extends Document {
   render() {
     return (
       <html lang="en" dir="ltr">
         <Head>
+          <link rel="shortcut icon" href="/static/favicon.ico" />
           <meta charSet="utf-8" />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
@@ -21,9 +22,12 @@ class FandomDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
           />
-            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
-           {/* Import CSS for nprogress */}
-           <link rel='stylesheet' type='text/css' href='/static/nprogress.css' />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          />
+          {/* Import CSS for nprogress */}
+          <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
         </Head>
         <body>
           <Main />
@@ -63,7 +67,7 @@ FandomDocument.getInitialProps = async ctx => {
 
   ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: App => props => sheets.collect(<App {...props} />),
+      enhanceApp: App => props => sheets.collect(<App {...props} />)
     });
 
   const initialProps = await Document.getInitialProps(ctx);
@@ -76,7 +80,7 @@ FandomDocument.getInitialProps = async ctx => {
         {sheets.getStyleElement()}
         {flush() || null}
       </React.Fragment>
-    ),
+    )
   };
 };
 

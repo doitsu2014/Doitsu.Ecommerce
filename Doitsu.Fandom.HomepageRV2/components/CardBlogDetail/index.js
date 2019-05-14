@@ -10,8 +10,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Chip from "@material-ui/core/Chip";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-
 import Link from "../Link";
 
 import HTMLRParser from "html-react-parser";
@@ -91,7 +89,7 @@ function CardBlogDetail(props) {
           {(blog.tags || []).map((tag, ind) => {
             return (
               <Link key={ind} href="#" className={classes.detailSingleTag}>
-                <Chip label={tag} clickable={tag ? 1:0} />
+                <Chip label={tag} clickable />
               </Link>
             );
           })}
