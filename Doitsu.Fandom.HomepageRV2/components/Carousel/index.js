@@ -27,7 +27,6 @@ const styles = theme => ({
     position: "relative"
   },
   imgWrapper: {
-  
   },
   img: {
     height: "auto",
@@ -36,8 +35,8 @@ const styles = theme => ({
     overflow: "hidden"
   },
   mobileStepper: {
-    backgroundColor: theme.palette.secondary.light,
-    color: theme.palette.secondary.contrastText
+    backgroundColor: theme.palette.background.default,
+    color: theme.palette.primary.contrastText
   }
 });
 
@@ -77,10 +76,10 @@ class Carousel extends React.Component {
           {steps.map((step, index) => (
             <div key={index} className={classes.carouselItemWrapper}>
               {Math.abs(activeStep - index) <= 2 ? (
-                <Link href="/about" className={classes.imgWrapper}>
+                <Link href={step.href} className={classes.imgWrapper}>
                   <img
                     className={classes.img}
-                    src={step.imgPath}
+                    src={`${step.imgPath}?width=1024&height=576`}
                     alt={step.label}
                   />
                 </Link>
@@ -95,7 +94,7 @@ class Carousel extends React.Component {
           className={classes.mobileStepper}
           nextButton={
             <Button
-              color="primary"
+              color="secondary"
               size="small"
               onClick={this.handleNext}
               disabled={activeStep === maxSteps - 1}
@@ -111,7 +110,7 @@ class Carousel extends React.Component {
           backButton={
             <Button
               size="small"
-              color="primary"
+              color="secondary"
               onClick={this.handleBack}
               disabled={activeStep === 0}
             >

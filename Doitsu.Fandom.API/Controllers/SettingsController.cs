@@ -33,17 +33,20 @@ namespace Doitsu.Fandom.API.Controllers
         {
             try
             {
-                var listProductCollection = (await
+                var taskGetListProductCollection = (
                     productCollectionService.GetActiveByQuery(limit, currentPage, isSlider: isSlider)
-                    .ToListAsync())
-                    .Select(pc => ConvertProductCollectionToSlider(pc));
+                    .ToListAsync());
 
-                var listBlog = (await blogService.GetActiveByQuery(limit, currentPage, isSlider: isSlider)
-                    .ToListAsync())
+
+                var taskGetListBlog = (blogService.GetActiveByQuery(limit, currentPage, isSlider: isSlider)
+                    .ToListAsync());
+
+                var listProductCollection = (await taskGetListProductCollection)
+                    .Select(pc => ConvertProductCollectionToSlider(pc));
+                var listBlog = (await taskGetListBlog)
                     .Select(b => ConvertBlogToSlider(b));
 
                 var result = new List<SliderViewModel>();
-
                 //Add range list product collection
                 result.AddRange(listProductCollection);
                 //Add rang list blog
@@ -56,6 +59,7 @@ namespace Doitsu.Fandom.API.Controllers
 
                 //Order
                 result = result.OrderByDescending(x => x.IsSlider).ToList();
+
                 return Ok(BaseResponse<List<SliderViewModel>>.PrepareDataSuccess(result));
             }
             catch (Exception ex)

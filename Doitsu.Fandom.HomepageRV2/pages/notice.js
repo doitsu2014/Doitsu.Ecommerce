@@ -12,7 +12,9 @@ import BlogService from "../services/BlogService";
 import Utils from "../utils";
 
 const styles = theme => ({
-  root: {},
+  root: {
+    padding: theme.spacing(0,2)
+  },
   navButtons: {},
   navButtonsEnd: {
     display: "flex",
@@ -57,7 +59,7 @@ class Notice extends Component {
       isBeginPage
     } = this.props;
     return (
-      <div>
+      <div className={classes.root}>
         <Grid container>
           <Grid item xs={12}>
             <ListBlog items={notices} type="notice" isShortContent={true} limitShortContent={200} />

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Doitsu.Fandom.DBManager.ViewModels;
@@ -12,6 +11,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using SixLabors.ImageSharp;
+using System.Net.Http;
+using SixLabors.ImageSharp.PixelFormats;
+using System.Drawing;
 
 namespace Doitsu.Fandom.API.Controllers
 {
@@ -28,6 +31,30 @@ namespace Doitsu.Fandom.API.Controllers
             _hostingEnvironment = hostingEnvironment;
             _configuration = configuration;
         }
+
+
+        //[HttpPost("read")]
+        //public async Task<ActionResult> Read(string url, int width = 1080, int height = 720)
+        //{
+        //    using (var client = new HttpClient())
+        //    {
+        //        var response = await client.GetAsync(url);
+        //        var inputStream = await response.Content.ReadAsStreamAsync();
+
+
+        //        var image = Image.Load(inputStream);
+
+        //        return Ok();
+        //    }
+        //}
+
+        //private Image<Rgba32> CropImage(Image<Rgba32> source, int sourceX, int sourceY, int sourceWidth, int sourceHeight)
+        //{
+
+        //    source.
+
+        //    return cropped;
+        //}
 
         [HttpPost("uploads")]
         public async Task<ActionResult> UploadsFileAsync(List<IFormFile> files)

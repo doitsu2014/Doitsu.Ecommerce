@@ -44,6 +44,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="NSwag.AspNetCore" Version="12.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="SixLabors.ImageSharp.Web" Version="1.0.0-beta0007" />
   </ItemGroup>
 
   <ItemGroup>

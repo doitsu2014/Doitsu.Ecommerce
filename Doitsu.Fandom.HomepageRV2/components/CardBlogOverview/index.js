@@ -62,7 +62,7 @@ function CardBlog(props) {
       />
       <CardMedia
         className={classes.media}
-        image={blog.thumbnailURL}
+        image={`${blog.thumbnailURL}?width=512&height=288`}
         title={blog.title}
       />
       <CardContent>

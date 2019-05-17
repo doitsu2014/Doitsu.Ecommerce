@@ -13,7 +13,9 @@ import TagBox from "../components/TagBox";
 import Link from "../components/Link";
 
 const styles = theme => ({
-  root: {},
+  root: {
+    padding: theme.spacing(2,1)
+  },
   sideTitle: {},
   navButtons: {},
   navButtonsEnd: {
@@ -68,7 +70,7 @@ class News extends Component {
     } = this.props;
     return (
       <React.Fragment>
-        <Grid container spacing={4}>
+        <Grid container spacing={4} className={classes.root}>
           {/** show news blogs */}
           <Grid item lg={8} sm={12}>
             <Grid container spacing={2}>

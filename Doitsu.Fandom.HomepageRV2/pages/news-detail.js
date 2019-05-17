@@ -17,7 +17,8 @@ const styles = theme => ({
   root: {
     justifyContent: "center",
     flexWrap: "wrap",
-    marginBottom: theme.spacing(2)
+    marginBottom: theme.spacing(2),
+    padding: theme.spacing(0, 2),
   },
   breadcrumbs: {
     padding: `${theme.spacing(2)}px 0`

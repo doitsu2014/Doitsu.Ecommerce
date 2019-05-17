@@ -9,7 +9,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using SixLabors.ImageSharp.Web.Caching;
+using SixLabors.ImageSharp.Web.Commands;
+using SixLabors.ImageSharp.Web.DependencyInjection;
+using SixLabors.ImageSharp.Web.Middleware;
+using SixLabors.ImageSharp.Web.Processors;
+using SixLabors.ImageSharp.Web.Providers;
+using SixLabors.Memory;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -29,6 +37,26 @@ namespace Doitsu.Ecommerce.API
         public void ConfigureServices(IServiceCollection services)
         {
             RootConfig.Entry(services, Configuration);
+
+            services.AddImageSharpCore()
+                .SetRequestParser<QueryCollectionRequestParser>()
+                .SetMemoryAllocatorFromMiddlewareOptions()
+                .SetCache(provider => new PhysicalFileSystemCache(
+                    provider.GetRequiredService<IHostingEnvironment>(),
+                    provider.GetRequiredService<MemoryAllocator>(),
+                    provider.GetRequiredService<IOptions<ImageSharpMiddlewareOptions>>())
+                {
+                    Settings =
+                    {
+                        [PhysicalFileSystemCache.Folder] = PhysicalFileSystemCache.DefaultCacheFolder
+                    }
+                })
+                .SetCacheHash<CacheHash>()
+                .AddProvider<PhysicalFileSystemProvider>()
+                .AddProcessor<ResizeWebProcessor>()
+                .AddProcessor<FormatWebProcessor>()
+                .AddProcessor<BackgroundColorWebProcessor>();
+
 
             services.AddCors(options =>
             {
@@ -67,6 +95,9 @@ namespace Doitsu.Ecommerce.API
 
             // Shows UseCors with named policy.
             app.UseCors("AllowSpecificOrigin");
+
+            app.UseDefaultFiles();
+            app.UseImageSharp();
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(

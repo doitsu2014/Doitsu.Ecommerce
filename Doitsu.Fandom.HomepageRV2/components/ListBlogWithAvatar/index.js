@@ -65,7 +65,7 @@ function ListBlogWithAvatar({ blogs, type }) {
                   <div
                     className={classes.imagePreview}
                     style={{
-                      backgroundImage: `url('${blog.thumbnailURL}')`,
+                      backgroundImage: `url('${blog.thumbnailURL}?width=256&height=144')`,
                       backgroundSize: "cover",
                     }}
                   />

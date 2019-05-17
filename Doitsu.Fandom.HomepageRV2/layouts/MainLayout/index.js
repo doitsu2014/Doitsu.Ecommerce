@@ -10,18 +10,13 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import { ThemeProvider } from "@material-ui/styles";
 
-const styles = globalTheme => ({
+const styles = theme => ({
   layout: {
-    backgroundColor: globalTheme.palette.background.default,
-    [globalTheme.breakpoints.up(1100 + globalTheme.spacing(6))]: {
-    }
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(0)
   },
-  footer: {
-    backgroundColor: globalTheme.palette.background.paper,
-    marginTop: globalTheme.spacing(8),
-    padding: `${globalTheme.spacing(6)}px 0`
-  }
 });
 
 class MainLayout extends React.Component {

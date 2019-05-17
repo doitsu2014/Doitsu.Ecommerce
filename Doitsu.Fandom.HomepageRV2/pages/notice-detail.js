@@ -5,6 +5,9 @@ import HTMLRParser from "html-react-parser";
 import BlogService from "../services/BlogService";
 
 const styles = theme => ({
+  root: {
+    padding: theme.spacing(0,2)
+  },
   noticeContent: {
     "& image": {
       maxWidth: "100%"
@@ -26,8 +29,8 @@ class NewsDetail extends Component {
       <React.Fragment>
         {news ? (
           <div className={classes.root}>
-            <h1>{news.title}</h1>
-            <img width="100%" src={news.thumbnailURL} />
+            <h2>{news.title}</h2>
+            <img width="100%" src={`${news.thumbnailURL}?width=768&height=432`} />
             <div className={classes.noticeContent}>
               {HTMLRParser(`<div>${news.content}</div>`, {
                 replace: function(domNode) {

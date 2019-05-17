@@ -19,6 +19,10 @@ const styles = theme => ({
   listItemButton: {
     backgroundColor: theme.palette.primary.main,
     minHeight: 100
+  },
+  flexRight: {
+    display:"flex",
+    justifyContent: "flex-end"
   }
 });
 
@@ -67,6 +71,7 @@ class ListBlog extends React.Component {
                     <ListItemText
                       primary={e.title}
                       primaryTypographyProps={{
+                        variant: "body2",
                         align: "justify"
                       }}
                       secondary={
@@ -85,9 +90,8 @@ class ListBlog extends React.Component {
                               : ``}
                           </Typography>
                           <Typography
-                            component="p"
-                            variant="body2"
-                            className={classes.inline}
+                            component="span"
+                            className={classes.flexRight}
                             color="textPrimary"
                             align="right"
                           >

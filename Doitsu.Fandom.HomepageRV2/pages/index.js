@@ -88,7 +88,7 @@ class Index extends React.Component {
     const sliderSettings = (getSliderSettings.data || []).slice(0,5).map(e => ({
       imgPath: e.thumbnailURL,
       label: e.title,
-      type: e.type,
+      href: e.type === 2 ? `/news/${e.slug}` : `/notice/${e.slug}`,
       category: e.blogCategoryId
     }));
 
@@ -103,15 +103,15 @@ class Index extends React.Component {
           description:
             "This is a wider card with supporting text below as a natural lead-in to additional content.",
           thumbUrl:
-            "https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/16/2017/10/03170150/master-facebook-left-image-966-x-1250-791x1024.png"
+            "http://api.ygfl.vn/resource-container/1/636934744662201796_348a45a128f34a3e9e77aaeb44e62273.png?width=360"
         },
         {
           title: "Advertiser 02",
-          date: "02/02/2019",
+          date: "01/01/2019",
           description:
             "This is a wider card with supporting text below as a natural lead-in to additional content.",
           thumbUrl:
-            "https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2016/11/08113103/Screen-Shot-2016-11-08-at-11.29.49-AM.png"
+            "http://api.ygfl.vn/resource-container/1/636934744662311171_1508c265235c4234adc39559f9cf4f8e.png?width=360"
         }
       ]
     };

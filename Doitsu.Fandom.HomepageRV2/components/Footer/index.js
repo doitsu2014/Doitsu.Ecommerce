@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.primary.main,
     padding: theme.spacing(1),
-    margin: theme.spacing(1, 0)
+    margin: theme.spacing(2,0,0,0)
   },
   panelHeader: {
     height: theme.spacing(6),
