@@ -44,7 +44,7 @@ function Footer() {
       <Grid container className={classes.root}>
         <Grid item xs={12} md={8} className={classes.panel}>
           <Typography className={classes.panelHeader}>
-            <img className={classes.leftInforImg} src={"/static/logo.png"} />
+            <img className={classes.leftInforImg} src={"/static/logo.png"} width="112" />
           </Typography>
           <Typography className={classes.inforText}>
             1st Vietnam fanpage of YG Family has YG Vietsub which is the most

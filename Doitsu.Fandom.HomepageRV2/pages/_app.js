@@ -12,7 +12,7 @@ import MainLayout from "../layouts/MainLayout";
 
 function GetCustomNProgress() {
   NProgress.configure({
-    parent: "#main-content"
+    parent: "#layout-header"
   });
   return NProgress;
 }
@@ -38,7 +38,7 @@ class FandomApp extends App {
     return (
       <Container>
         <Head>
-          <title>Fandom Homepage</title>
+          <title>YG Family</title>
         </Head>
         <ThemeProvider theme={theme}>
 

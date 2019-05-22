@@ -15,7 +15,12 @@ import NavTabs from "../NavTabs"
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: theme.palette.primary.main,
+    position: "fixed",
+    zIndex: 10,
+    maxWidth: "inherit",
+    width: "inherit",
+    top: 0
   },
   toolbarMain: {},
   toolbarTitle: {
@@ -35,10 +40,10 @@ class Header extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, id } = this.props;
     const { value } = this.state;
     return (
-      <div className={classes.root}>
+      <div className={classes.root} id={id} >
         <AppBar position="static">
           <Toolbar className={classes.toolbarMain}>
             <IconButton href="https://www.facebook.com/ygfl.vn/">
@@ -58,7 +63,7 @@ class Header extends React.Component {
               className={classes.toolbarTitle}
             >
               <img style={({
-                width: "216px",
+                width: "112px",
                 height: "auto"
               })} src="/static/logo.png" />
             </Typography>

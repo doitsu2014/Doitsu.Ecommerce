@@ -9,7 +9,7 @@ const styles = theme => ({
     padding: theme.spacing(0,2)
   },
   noticeContent: {
-    "& image": {
+    '& img': {
       maxWidth: "100%"
     }
   }

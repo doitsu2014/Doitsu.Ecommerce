@@ -7,10 +7,11 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import Link from "../Link";
 import SwipeableViews from "react-swipeable-views";
+import Fade from "@material-ui/core/Fade";
+
 import { autoPlay } from "react-swipeable-views-utils";
 
-const AutoPlaySwipeableViews = SwipeableViews;
-// autoPlay(SwipeableViews);
+const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const styles = theme => ({
   root: {
@@ -26,8 +27,7 @@ const styles = theme => ({
   carouselItemWrapper: {
     position: "relative"
   },
-  imgWrapper: {
-  },
+  imgWrapper: {},
   img: {
     height: "auto",
     width: "100%",
@@ -66,64 +66,66 @@ class Carousel extends React.Component {
     const { activeStep } = this.state;
     const maxSteps = steps.length;
     return (
-      <div className={classes.root}>
-        <AutoPlaySwipeableViews
-          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-          index={activeStep}
-          onChangeIndex={this.handleStepChange}
-          enableMouseEvents
-        >
-          {steps.map((step, index) => (
-            <div key={index} className={classes.carouselItemWrapper}>
-              {Math.abs(activeStep - index) <= 2 ? (
-                <Link href={step.href} className={classes.imgWrapper}>
-                  <img
-                    className={classes.img}
-                    src={`${step.imgPath}?width=1024&height=576`}
-                    alt={step.label}
-                  />
-                </Link>
-              ) : null}
-            </div>
-          ))}
-        </AutoPlaySwipeableViews>
-        <MobileStepper
-          steps={maxSteps}
-          position="static"
-          activeStep={activeStep}
-          className={classes.mobileStepper}
-          nextButton={
-            <Button
-              color="secondary"
-              size="small"
-              onClick={this.handleNext}
-              disabled={activeStep === maxSteps - 1}
-            >
-              Next
-              {theme.direction === "rtl" ? (
-                <KeyboardArrowLeft />
-              ) : (
-                <KeyboardArrowRight />
-              )}
-            </Button>
-          }
-          backButton={
-            <Button
-              size="small"
-              color="secondary"
-              onClick={this.handleBack}
-              disabled={activeStep === 0}
-            >
-              {theme.direction === "rtl" ? (
-                <KeyboardArrowRight />
-              ) : (
-                <KeyboardArrowLeft />
-              )}
-              Back
-            </Button>
-          }
-        />
-      </div>
+      <Fade in={true} timeout={1000}>
+        <div className={classes.root}>
+          <AutoPlaySwipeableViews
+            axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+            index={activeStep}
+            onChangeIndex={this.handleStepChange}
+            enableMouseEvents
+          >
+            {steps.map((step, index) => (
+              <div key={index} className={classes.carouselItemWrapper}>
+                {Math.abs(activeStep - index) <= 2 ? (
+                  <Link href={step.href} className={classes.imgWrapper}>
+                    <img
+                      className={classes.img}
+                      src={`${step.imgPath}?width=1024&height=576`}
+                      alt={step.label}
+                    />
+                  </Link>
+                ) : null}
+              </div>
+            ))}
+          </AutoPlaySwipeableViews>
+          <MobileStepper
+            steps={maxSteps}
+            position="static"
+            activeStep={activeStep}
+            className={classes.mobileStepper}
+            nextButton={
+              <Button
+                color="secondary"
+                size="small"
+                onClick={this.handleNext}
+                disabled={activeStep === maxSteps - 1}
+              >
+                Next
+                {theme.direction === "rtl" ? (
+                  <KeyboardArrowLeft />
+                ) : (
+                  <KeyboardArrowRight />
+                )}
+              </Button>
+            }
+            backButton={
+              <Button
+                size="small"
+                color="secondary"
+                onClick={this.handleBack}
+                disabled={activeStep === 0}
+              >
+                {theme.direction === "rtl" ? (
+                  <KeyboardArrowRight />
+                ) : (
+                  <KeyboardArrowLeft />
+                )}
+                Back
+              </Button>
+            }
+          />
+        </div>
+      </Fade>
     );
   }
 }

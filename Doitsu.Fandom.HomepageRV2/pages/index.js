@@ -14,6 +14,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import Grow from "@material-ui/core/Grow";
 
 import Carousel from "../components/Carousel";
 import ListBlog from "../components/ListBlog";
@@ -67,7 +68,6 @@ const styles = theme => ({
   card: {
     display: "flex",
     margin: theme.spacing(2)
-
   },
   cardDetails: {
     flex: 1
@@ -79,18 +79,27 @@ const styles = theme => ({
 
 class Index extends React.Component {
   static async getInitialProps() {
-    const getNoticeBaseRes = await BlogService.get(Utils.BLOG_CATEGORY_CONSTS.NOTICE, 3);
-    const getNewsBaseRes = await BlogService.get(Utils.BLOG_CATEGORY_CONSTS.NEWS, 3);
+
+    const getNoticeBaseRes = await BlogService.get(
+      Utils.BLOG_CATEGORY_CONSTS.NOTICE,
+      3
+    );
+    const getNewsBaseRes = await BlogService.get(
+      Utils.BLOG_CATEGORY_CONSTS.NEWS,
+      3
+    );
     const getSliderSettings = await SettingsService.get();
-    
-    const noticeItems = (getNoticeBaseRes.data || [])
-    const newsItems =  (getNewsBaseRes.data || [])
-    const sliderSettings = (getSliderSettings.data || []).slice(0,5).map(e => ({
-      imgPath: e.thumbnailURL,
-      label: e.title,
-      href: e.type === 2 ? `/news/${e.slug}` : `/notice/${e.slug}`,
-      category: e.blogCategoryId
-    }));
+
+    const noticeItems = getNoticeBaseRes.data || [];
+    const newsItems = getNewsBaseRes.data || [];
+    const sliderSettings = (getSliderSettings.data || [])
+      .slice(0, 5)
+      .map(e => ({
+        imgPath: e.thumbnailURL,
+        label: e.title,
+        href: e.type === 2 ? `/news/${e.slug}` : `/notice/${e.slug}`,
+        category: e.blogCategoryId
+      }));
 
     return {
       noticeItems,
@@ -156,7 +165,7 @@ class Index extends React.Component {
                 more...
               </Typography>
             </div>
-            <ListBlog items={noticeItems} type="notice" />
+            <ListBlog isShow={true} items={noticeItems} type="notice" />
           </Grid>
           <Grid item lg={6} xs={12} className={classes.mainBoardColumn}>
             <div className={classes.mainBoardTitleContainer}>
@@ -183,34 +192,36 @@ class Index extends React.Component {
                 more...
               </Typography>
             </div>
-            <ListBlog items={newsItems} type="news" />
+            <ListBlog isShow={true} items={newsItems} type="news" />
           </Grid>
         </Grid>
         <Grid container className={classes.cardGrid}>
-          {featuredPosts.map(post => (
+          {featuredPosts.map((post, index) => (
             <Grid item key={post.title} xs={12} md={6}>
-              <Card className={classes.card}>
-                <div className={classes.cardDetails}>
-                  <CardContent>
-                    <Typography component="h2" variant="h5">
-                      {post.title}
-                    </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
-                      {post.date}
-                    </Typography>
-                    <Typography variant="subtitle1" paragraph>
-                      {post.description}
-                    </Typography>
-                  </CardContent>
-                </div>
-                <Hidden xsDown>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image={post.thumbUrl}
-                    title="Image title"
-                  />
-                </Hidden>
-              </Card>
+              <Grow in={true} timeout={index * 500}>
+                <Card className={classes.card}>
+                  <div className={classes.cardDetails}>
+                    <CardContent>
+                      <Typography component="h2" variant="h5">
+                        {post.title}
+                      </Typography>
+                      <Typography variant="subtitle1" color="textSecondary">
+                        {post.date}
+                      </Typography>
+                      <Typography variant="subtitle1" paragraph>
+                        {post.description}
+                      </Typography>
+                    </CardContent>
+                  </div>
+                  <Hidden xsDown>
+                    <CardMedia
+                      className={classes.cardMedia}
+                      image={post.thumbUrl}
+                      title="Image title"
+                    />
+                  </Hidden>
+                </Card>
+              </Grow>
             </Grid>
           ))}
         </Grid>

@@ -5,6 +5,7 @@ import Link from "../components/Link";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
+import Box from "@material-ui/core/Box";
 import ListBlog from "../components/ListBlog";
 
 import BlogService from "../services/BlogService";
@@ -13,24 +14,30 @@ import Utils from "../utils";
 
 const styles = theme => ({
   root: {
-    padding: theme.spacing(0,2)
+    padding: theme.spacing(0, 2)
   },
   navButtons: {},
   navButtonsEnd: {
     display: "flex",
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
+    padding: theme.spacing(0, 2)
   },
   navButtonsStart: {
     display: "flex",
-    justifyContent: "flex-start"
+    justifyContent: "flex-start",
+    padding: theme.spacing(0, 2)
   },
   navInnerButton: {
     margin: theme.spacing(0, 1),
-    textDecoration: "none"
+    textDecoration: "none",
   }
 });
 
 class Notice extends Component {
+  state = {
+    isShow: true
+  }
+
   static async getInitialProps(context) {
     const params = context.query;
     const currentPage = params.page || 1;
@@ -50,6 +57,14 @@ class Notice extends Component {
     };
   }
 
+  componentWillReceiveProps() {
+    this.setState({isShow: true})
+  }
+
+  changePage = () => {
+    this.setState({isShow: false})
+  }
+
   render() {
     const {
       notices,
@@ -58,43 +73,56 @@ class Notice extends Component {
       isEndPage,
       isBeginPage
     } = this.props;
+
+    const { isShow } = this.state;
+
     return (
       <div className={classes.root}>
         <Grid container>
           <Grid item xs={12}>
-            <ListBlog items={notices} type="notice" isShortContent={true} limitShortContent={200} />
+            <ListBlog
+              items={notices}
+              type="notice"
+              isShow={isShow}
+            />
           </Grid>
           <Grid item xs={6} className={classes.navButtonsEnd}>
-            <Link
-              href={`/notice?page=${currentPage - 1}`}
-              underline="none"
-              className={classes.navInnerButton}
+            <Button
+              color="secondary"
+              disabled={isBeginPage}
+              variant="contained"
+              size="large"
+              onClick={this.changePage}
             >
-              <Button
-                color="secondary"
-                disabled={isBeginPage}
-                variant="contained"
-                size="large"
+              <Link
+                href={`/notice?page=${currentPage - 1}`}
+                underline="none"
+                className={classes.navInnerButton}
               >
-                <Icon>arrow_back_ios</Icon>Previous
-              </Button>
-            </Link>
+                <Box display="flex" color={isBeginPage ? "text.disabled" : "primary.main"}>
+                  <Icon>arrow_back_ios</Icon>Previous
+                </Box>
+              </Link>
+            </Button>
           </Grid>
           <Grid item xs={6} className={classes.navButtonsStart}>
-            <Link
-              href={`/notice?page=${Number.parseInt(currentPage) + 1}`}
-              underline="none"
-              className={classes.navInnerButton}
+            <Button
+              color="secondary"
+              disabled={isEndPage}
+              variant="contained"
+              size="large"
+              onClick={this.changePage}
             >
-              <Button
-                color="secondary"
-                disabled={isEndPage}
-                variant="contained"
-                size="large"
+              <Link
+                href={`/notice?page=${Number.parseInt(currentPage) + 1}`}
+                underline="none"
+                className={classes.navInnerButton}
               >
-                Next<Icon>arrow_forward_ios</Icon>
-              </Button>
-            </Link>
+                <Box display="flex" color={isEndPage ? "text.disabled" : "primary.main"}>
+                  Next<Icon>arrow_forward_ios</Icon>
+                </Box>
+              </Link>
+            </Button>
           </Grid>
         </Grid>
       </div>

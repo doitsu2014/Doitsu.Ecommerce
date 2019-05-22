@@ -6,7 +6,7 @@ import Divider from "@material-ui/core/Divider";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Typography from "@material-ui/core/Typography";
-
+import Grow from "@material-ui/core/Grow";
 import Link from "../Link";
 import Utils from "../../utils";
 
@@ -36,18 +36,18 @@ const TYPE_CONST = {
   news: {
     title: "News",
     originPrefix: "/news-detail",
-    fakePrefix: "/news",
+    fakePrefix: "/news"
   },
   "latest-news": {
     title: "Latest News",
     originPrefix: "/news-detail",
-    fakePrefix: "/news",
+    fakePrefix: "/news"
   }
 };
 
 function ListBlogWithAvatar({ blogs, type }) {
   const classes = useStyles();
-  const currentType =(TYPE_CONST[type] || TYPE_CONST["news"]);
+  const currentType = TYPE_CONST[type] || TYPE_CONST["news"];
   return (
     <div>
       <div className={classes.section1}>
@@ -57,36 +57,44 @@ function ListBlogWithAvatar({ blogs, type }) {
       </div>
       <Divider variant="middle" />
       <List className={classes.root}>
-        {(blogs || []).map(blog => {
+        {(blogs || []).map((blog, i) => {
           return (
-            <Link key={blog.id} href={`${currentType.originPrefix}?slug=${blog.slug}`} as={`${currentType.fakePrefix}/${blog.slug}`}>
+            <Link
+              key={blog.id}
+              href={`${currentType.originPrefix}?slug=${blog.slug}`}
+              as={`${currentType.fakePrefix}/${blog.slug}`}
+            >
+            <Grow in={true} timeout={400*i}>
               <ListItem alignItems="flex-start" button>
-                <ListItemAvatar className={classes.listItemAvatar}>
-                  <div
-                    className={classes.imagePreview}
-                    style={{
-                      backgroundImage: `url('${blog.thumbnailURL}?width=256&height=144')`,
-                      backgroundSize: "cover",
-                    }}
+                  <ListItemAvatar className={classes.listItemAvatar}>
+                    <div
+                      className={classes.imagePreview}
+                      style={{
+                        backgroundImage: `url('${
+                          blog.thumbnailURL
+                        }?width=256&height=144')`,
+                        backgroundSize: "cover"
+                      }}
+                    />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={Utils.buildShortContent(blog.title, 23)}
+                    secondary={
+                      <React.Fragment>
+                        <Typography
+                          component="span"
+                          variant="body2"
+                          className={classes.inline}
+                          color="textPrimary"
+                        >
+                          YGFL
+                        </Typography>
+                        {`- ${Utils.buildShortContent(blog.content, 30)}`}
+                      </React.Fragment>
+                    }
                   />
-                </ListItemAvatar>
-                <ListItemText
-                  primary={Utils.buildShortContent(blog.title, 23)}
-                  secondary={
-                    <React.Fragment>
-                      <Typography
-                        component="span"
-                        variant="body2"
-                        className={classes.inline}
-                        color="textPrimary"
-                      >
-                        YGFL
-                      </Typography>
-                      {`- ${Utils.buildShortContent(blog.content, 30)}`}
-                    </React.Fragment>
-                  }
-                />
               </ListItem>
+                </Grow>
               <Divider variant="inset" component="li" />
             </Link>
           );

@@ -13,15 +13,23 @@ app
   .then(() => {
     const server = express();
 
-    server.use(express.static(__dirname + "/staic"));
-    server.get("/robots.txt", (req, res) =>
-      res.status(200).sendFile("robots.txt", {
-        root: path.join(__dirname, "/static"),
-        headers: {
-          "Content-Type": "text/plain;charset=UTF-8"
-        }
-      })
-    );
+    server.use(express.static(__dirname + "/static"));
+    // server.get("/robots.txt", (req, res) =>
+    //   res.status(200).sendFile("robots.txt", {
+    //     root: path.join(__dirname, "/static"),
+    //     headers: {
+    //       "Content-Type": "text/plain;charset=UTF-8"
+    //     }
+    //   })
+    // );
+    // server.get("/robots.txt", (req, res) =>
+    //   res.status(200).sendFile("robots.txt", {
+    //     root: path.join(__dirname, "/static"),
+    //     headers: {
+    //       "Content-Type": "text/plain;charset=UTF-8"
+    //     }
+    //   })
+    // );
     server.get("/googleabd971340c2cd3e0.html", (req, res) =>
       res.status(200).sendFile("googleabd971340c2cd3e0.html", {
         root: path.join(__dirname, "/static"),
