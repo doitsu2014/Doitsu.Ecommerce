@@ -29,7 +29,7 @@ namespace Doitsu.Fandom.API.Controllers
 
         [HttpGet("read-list-slider")]
         [AllowAnonymous]
-        public async Task<ActionResult> GetListSlider([FromQuery] bool? isSlider, [FromQuery]int limit = 5, [FromQuery]int currentPage = 0)
+        public async Task<ActionResult> GetListSlider([FromQuery] bool? isSlider, [FromQuery]int limit = 300, [FromQuery]int currentPage = 0)
         {
             try
             {
@@ -37,14 +37,19 @@ namespace Doitsu.Fandom.API.Controllers
                     productCollectionService.GetActiveByQuery(limit, currentPage, isSlider: isSlider)
                     .ToListAsync());
 
-
                 var taskGetListBlog = (blogService.GetActiveByQuery(limit, currentPage, isSlider: isSlider)
                     .ToListAsync());
+
+                var taskCountListProductCollection = productCollectionService.CountWithIsSliderAsync(isSlider);
+
+                var taskCountBlogs = blogService.CountBlogsByBlogCategoryIdAsync(null);
+
 
                 var listProductCollection = (await taskGetListProductCollection)
                     .Select(pc => ConvertProductCollectionToSlider(pc));
                 var listBlog = (await taskGetListBlog)
                     .Select(b => ConvertBlogToSlider(b));
+
 
                 var result = new List<SliderViewModel>();
                 //Add range list product collection
@@ -59,8 +64,10 @@ namespace Doitsu.Fandom.API.Controllers
 
                 //Order
                 result = result.OrderByDescending(x => x.IsSlider).ToList();
-
-                return Ok(BaseResponse<List<SliderViewModel>>.PrepareDataSuccess(result));
+                var response = BaseResponse<List<SliderViewModel>>.PrepareDataSuccess(result);
+                response.TotalAvailData = result.Count;
+                response.TotalFullData = (await taskCountBlogs) + (await taskCountListProductCollection);
+                return Ok(response);
             }
             catch (Exception ex)
             {

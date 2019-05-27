@@ -1,53 +1,52 @@
 import React from 'react'
 import { Table, Icon, Button, notification } from 'antd'
 import { connect } from 'react-redux'
-import { push } from 'react-router-redux'
-import { read, updateIsSlider } from 'services/settings'
+import { updateIsSlider } from 'services/settings'
+import { getListSlider, setState } from 'redux/settingSlider/actions'
 
-const defaultPagination = {
-  pageSizeOptions: ['10', '20'],
-  showSizeChanger: true,
-  current: 1,
-  size: 'small',
-  showTotal: total => `Total ${total} items`,
-  total: 0,
-}
 
-@connect(({ blogState }) => ({ blogState }))
+const mapDispatchToProps = { getListSlider, setState }
+const mapStateToProps = state => ({
+  ...state.settingSliderState,
+})
+@connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)
 class Settings extends React.Component {
   state = {
-    data: [],
-    pager: { ...defaultPagination },
-    loading: false,
+    loading: false
   }
 
   componentDidMount() {
-    this.loadSettings()
+    const { listSettingSliderPagination } = this.props;
+    this.props.getListSlider({
+      limit: listSettingSliderPagination.pageSize,
+      currentPage: listSettingSliderPagination.current
+    });
   }
 
-  loadSettings = async () => {
-    this.setState({ loading: true })
-    const response = await read()
-    this.setState({
-      data: response.data,
-      loading: false,
-    })
+  loadSettings = (params = {}) => {
+    this.props.getListSlider(params);
   }
 
-  handleTableChange = pagination => {
-    const { pager } = this.state
-    if (pager) {
-      const pagerData = { ...pager }
-      if (pagerData.pageSize !== pagination.pageSize) {
-        pagerData.pageSize = pagination.pageSize
-        pagerData.current = 1
-      } else {
-        pagerData.current = pagination.current
-      }
-      this.setState({
-        ...pagerData,
-      })
-    }
+  handleTableChange = (curPagi, curFilters, curSorter) => {
+    // update state pagin of slider 
+    const { listSettingSliderPagination } = this.props;
+    listSettingSliderPagination.current = curPagi.current;
+    listSettingSliderPagination.pageSize = curPagi.pageSize;
+    this.props.setState({
+      listSettingSliderPagination
+    });
+
+    // update list again
+    this.props.getListSlider({
+      limit: curPagi.pageSize,
+      currentPage: curPagi.current,
+      sortField: curSorter.field,
+      sortOrder: curSorter.order,
+      ...curFilters,
+    });
   }
 
   handleUpdateSlider = e => {
@@ -57,6 +56,9 @@ class Settings extends React.Component {
       originalId,
       isSlider,
     }
+
+    const { listSettingSliderPagination } = this.props
+    
     this.setState({ loading: true })
     updateIsSlider(updateData)
       .then(res => {
@@ -70,6 +72,10 @@ class Settings extends React.Component {
           })
         }
         this.setState({ loading: false })
+        this.props.getListSlider({
+          limit: listSettingSliderPagination.pageSize,
+          currentPage: listSettingSliderPagination.current
+        });
       })
       .catch(error => {
         console.error(error)
@@ -77,20 +83,9 @@ class Settings extends React.Component {
       })
   }
 
-  handleUpdateBlog = e => {
-    const { dispatch } = this.props
-    const { blogId } = e.target.dataset
-    dispatch({
-      type: 'blog/SET_STATE',
-      payload: {
-        trackingId: blogId,
-      },
-    })
-    dispatch(push('/blogs/update'))
-  }
-
   render() {
-    const { pager, data, loading } = this.state
+    const { loading } = this.state
+    const { listSettingSlider, listSettingSliderPagination, settingSliderloading } = this.props;
     const columns = [
       {
         title: 'ID',
@@ -179,9 +174,9 @@ class Settings extends React.Component {
           <Table
             scroll={{ x: 1200 }}
             columns={columns}
-            dataSource={data}
-            pagination={pager}
-            loading={loading}
+            dataSource={listSettingSlider}
+            pagination={listSettingSliderPagination}
+            loading={loading || settingSliderloading}
             onChange={this.handleTableChange}
             rowKey="id"
           />

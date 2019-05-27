@@ -12,12 +12,12 @@
   "author": "doitsu technology",
   "license": "ISC",
   "dependencies": {
-    "@material-ui/core": "next",
-    "@material-ui/icons": "next",
-    "@material-ui/lab": "next",
-    "@material-ui/styles": "next",
+    "@material-ui/core": "^4.0.0",
+    "@material-ui/icons": "^4.0.0",
+    "@material-ui/lab": "^4.0.0-alpha.13",
+    "@material-ui/styles": "^4.0.0",
     "clsx": "latest",
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "html-react-parser": "^0.7.0",
     "isomorphic-unfetch": "^3.0.0",
     "next": "latest",
@@ -26,9 +26,11 @@
     "react": "latest",
     "react-dom": "latest",
     "react-jss": "^8.6.1",
-    "react-swipeable-views": "^0.13.1"
+    "react-swipeable-views": "^0.13.3"
   },
   "devDependencies": {
-    "nodemon": "^1.18.11"
+    "eslint": "^5.16.0",
+    "eslint-plugin-react": "^7.13.0",
+    "nodemon": "^1.19.1"
   }
 }

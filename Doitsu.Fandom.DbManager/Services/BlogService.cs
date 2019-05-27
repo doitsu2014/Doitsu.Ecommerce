@@ -67,6 +67,14 @@ namespace Doitsu.DBManager.Fandom.Services
         /// <returns>The blog VM.</returns>
         /// <param name="slug">Slug.</param>
         Task<BlogViewModel> FindBySlugAsync(string slug);
+
+        /// <summary>
+        /// Count all product may be support to pagination
+        /// </summary>
+        /// <param name="blogCategoryId"></param>
+        /// <returns></returns>
+        Task<int> CountBlogsByBlogCategoryIdAsync(int? blogCategoryId);
+
     }
     public class BlogService : BaseService<Blogs, BlogViewModel>, IBlogService
     {
@@ -244,6 +252,15 @@ namespace Doitsu.DBManager.Fandom.Services
                     throw ex;
                 }
             }
+        }
+
+        public async Task<int> CountBlogsByBlogCategoryIdAsync(int? blogCategoryId)
+        {
+            var result = await GetActiveAsNoTracking(
+              p => blogCategoryId == null
+              || blogCategoryId == p.BlogCategoryId)
+              .CountAsync();
+            return result;
         }
     }
 }

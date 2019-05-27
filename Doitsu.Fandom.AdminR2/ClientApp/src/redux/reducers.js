@@ -5,6 +5,7 @@ import menu from './menu/reducers'
 import settings from './settings/reducers'
 import artist from './artist/reducers'
 import blogState from './blog/reducers'
+import settingSliderState from './settingSlider/reducers'
 
 export default history =>
   combineReducers({
@@ -14,4 +15,5 @@ export default history =>
     settings,
     artist,
     blogState,
+    settingSliderState,
   })
